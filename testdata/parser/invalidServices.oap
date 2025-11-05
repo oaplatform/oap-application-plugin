@@ -1,0 +1,36 @@
+name = test
+services {
+a = b
+}
+-----
+OAP_FILE
+  OAP_MODULE_NAME
+    OapModuleNameIdValueImpl(OAP_MODULE_NAME_ID_VALUE)
+      PsiElement(letters)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OapModuleNameValueImpl(OAP_MODULE_NAME_VALUE)
+      OapIdValueImpl(OAP_ID_VALUE)
+        PsiElement(letters)('test')
+  OapNlImpl(OAP_NL)
+    PsiElement(nextline)('\n')
+  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+    OapModuleServicesIdValueImpl(OAP_MODULE_SERVICES_ID_VALUE)
+      PsiElement(letters)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
+      OapNlImpl(OAP_NL)
+        PsiElement(nextline)('\n')
+      OapModuleServicesServiceIdValueImpl(OAP_MODULE_SERVICES_SERVICE_ID_VALUE)
+        OapIdValueImpl(OAP_ID_VALUE)
+          PsiElement(letters)('a')
+      PsiWhiteSpace(' ')
+      PsiErrorElement:'=' unexpected
+        PsiElement(=)('=')
+      PsiWhiteSpace(' ')
+      PsiElement(letters)('b')
+    OapNlImpl(OAP_NL)
+      PsiElement(nextline)('\n')
+    PsiElement(})('}')

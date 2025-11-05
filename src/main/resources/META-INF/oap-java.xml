@@ -1,0 +1,8 @@
+<idea-plugin>
+    <extensions defaultExtensionNs="com.intellij">
+    </extensions>
+
+<!--    <extensions defaultExtensionNs="org.jetbrains.plugins.hocon">-->
+<!--        <packageDirsEnumerator implementation="org.jetbrains.plugins.hocon.ref.JavaPackageDirsEnumerator"/>-->
+<!--    </extensions>-->
+</idea-plugin>

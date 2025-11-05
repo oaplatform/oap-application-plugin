@@ -1,0 +1,71 @@
+<!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
+<idea-plugin require-restart="false">
+    <!-- Unique identifier of the plugin. It should be FQN. It cannot be changed between the plugin versions. -->
+    <id>oap</id>
+
+    <!-- Public plugin name should be written in Title Case.
+         Guidelines: https://plugins.jetbrains.com/docs/marketplace/best-practices-for-listing.html#plugin-name -->
+    <name>Oap</name>
+
+    <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
+    <vendor url="https://www.oaplatform.org">OAP</vendor>
+
+    <!-- Product and plugin compatibility requirements.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <depends config-file="oap-java.xml">com.intellij.modules.java</depends>
+
+    <!-- Extension points defined by the plugin.
+         Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
+    <extensions defaultExtensionNs="com.intellij">
+        <fileType implementationClass="oap.application.plugin.lang.OapFileType"
+                  name="OAP" language="OAP" extensions="oap"/>
+
+        <lang.psiStructureViewFactory language="OAP"
+                                      implementationClass="oap.application.plugin.structure.OapStructureViewFactory"/>
+        <lang.formatter language="OAP"
+                        implementationClass="oap.application.plugin.formatter.OapFormattingModelBuilder"/>
+
+        <lang.syntaxHighlighterFactory language="OAP"
+                                       implementationClass="oap.application.plugin.highlight.OapSyntaxHighlighterFactory"/>
+        <annotator language="OAP"
+                   implementationClass="oap.application.plugin.highlight.OapSyntaxHighlightingAnnotator"/>
+        <additionalTextAttributes scheme="Default" file="colorSchemes/OapDefault.xml"/>
+        <colorSettingsPage implementation="oap.application.plugin.highlight.OapColorSettingsPage"/>
+
+        <langCodeStyleSettingsProvider implementation="oap.application.plugin.codestyle.OapLanguageCodeStyleSettingsProvider"/>
+        <codeStyleSettingsProvider implementation="oap.application.plugin.codestyle.OapCodeStyleSettingsProvider"/>
+
+        <lang.parserDefinition language="OAP"
+                               implementationClass="oap.application.plugin.parser.OapParserDefinition"/>
+        <lang.braceMatcher language="OAP" implementationClass="oap.application.plugin.misc.OapBraceMatcher"/>
+        <lang.foldingBuilder language="OAP" implementationClass="oap.application.plugin.misc.OapFoldingBuilder"/>
+        <!--        <quoteHandler fileType="OAP" className="org.jetbrains.plugins.oap.editor.OapQuoteHandler"/>-->
+
+        <psi.referenceContributor implementation="oap.application.plugin.ref.OapReferenceContributor" language="OAP"/>
+        <psi.referenceContributor
+                language="OAP"
+                implementation="oap.application.plugin.ref.OapJavaReferenceContributor"/>
+
+        <lang.elementManipulator forClass="org.jetbrains.plugins.oap.gen.psi.OapClassValue"
+                                 implementationClass="org.jetbrains.plugins.oap.manipulators.OapValueManipulator"/>
+
+
+        <breadcrumbsInfoProvider implementation="oap.application.plugin.misc.OapBreadcrumbsInfoProvider"/>
+
+
+        <localInspection language="OAP"
+                         implementationClass="oap.application.plugin.ref.ValidClassNameInspection"
+                         displayName="Required valid class name" groupName="OAP" enabledByDefault="true"
+                         level="ERROR"/>
+
+        <localInspection language="OAP"
+                         implementationClass="oap.application.plugin.ref.ValidReferenceModuleServiceInspection"
+                         displayName="Required valid module name" groupName="OAP" enabledByDefault="true"
+                         level="ERROR"/>
+
+        <!-- index -->
+        <stubIndex implementation="oap.application.plugin.stub.OapModuleNameIndex"/>
+    </extensions>
+</idea-plugin>

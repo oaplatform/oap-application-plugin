@@ -1,0 +1,438 @@
+{
+    generate = [ token-accessors="yes" ]
+
+    parserClass="oap.application.plugin.gen.parser.OapParser"
+    parserUtilClass="oap.application.plugin.parser.OapParserUtil"
+
+    implements="oap.application.plugin.psi.OapCompositeElement"
+    extends="oap.application.plugin.psi.impl.OapCompositeElementImpl"
+
+    elementTypeHolderClass="oap.application.plugin.gen.OapTypes"
+    elementTypePrefix="OAP_"
+    elementTypeClass="oap.application.plugin.psi.OapCompositeElementType"
+    tokenTypeClass="oap.application.plugin.psi.OapTokenType"
+
+    psiClassPrefix="Oap"
+    psiImplClassSuffix="Impl"
+    psiPackage="oap.application.plugin.gen.psi"
+    psiImplPackage="oap.application.plugin.gen.psi.impl"
+
+    psiImplUtilClass="oap.application.plugin.psi.impl.GrammarPsiImplUtil"
+
+
+    tokens = [
+        eq="="
+        leftbrace="{"
+        rightbrace="}"
+        leftbracket="["
+        rightbracket="]"
+        rightbracket="]"
+        leftparen="("
+        rightparen=")"
+        leftangle='<'
+        rightangle='>'
+        comma=','
+        div='/'
+        dollar='$'
+
+        duration='regexp:[0-9]+(kb|mb|gb|ms|s|m|h|d|w)'
+
+        double='regexp:[-+]?[0-9]+(_[0-9]+)*\.[0-9]+'
+        long = 'regexp:[-+][0-9]+(_[0-9]+)*'
+        ulong = 'regexp:[0-9]+(_[0-9]+)*'
+
+        dot='.'
+        dash='-'
+
+        bool='regexp:true|false'
+
+        letters="regexp:\w+"
+
+        nextline='regexp:\r\n|\n'
+        WHITE_SPACE='regexp:[ \t\x0B\f\r]+'
+        string='regexp:"(\\"|[^"])*"'
+        comment='regexp:(//|#)[^\n]+'
+    ]
+}
+
+module ::= nl? module_name nl (module_enabled nl)? ( (module_include nl)? (module_depends_on nl (module_include nl)?)? module_services)? nl? (module_include nl)? module_configurations? nl? (module_include nl?)?
+
+nl ::= nextline+
+
+duration_value ::= ( long | duration )
+
+cron_value ::= string {
+    implements="oap.application.plugin.psi.OapValue"
+}
+id_value ::= letters (dash|letters|long)*
+env_variable ::= dollar leftbrace (letters|'_')+ rightbrace
+class_value ::= letters (long | letters)* (dot letters (long | letters)* )* {
+    mixin="org.jetbrains.plugins.oap.psi.OapClassValueMixin"
+}
+bool_value ::= bool {
+    methods=[getBooleanValue]
+    implements="oap.application.plugin.psi.OapValue"
+}
+unquotedstring_value ::= ( letters | long | ulong | double | dash | div | ' ' | dot )+
+string_value ::= string {
+    implements="oap.application.plugin.psi.OapValue"
+}
+
+reference_kernel_value ::= leftangle 'kernel' dot 'self' rightangle {
+    pin=2
+    implements="oap.application.plugin.psi.OapValue"
+}
+reference_modules_value ::= leftangle 'modules' dot (id_value | 'this') dot id_value rightangle {
+    pin=2
+    methods=[getReferenceModuleName getReferenceServiceName]
+    implements="oap.application.plugin.psi.OapValue"
+}
+reference_services_value ::= leftangle 'services' dot 'self' dot 'name' rightangle {
+    pin=2
+    implements="oap.application.plugin.psi.OapValue"
+}
+
+module_name_value ::= id_value {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+
+number_value ::= long | ulong | double
+
+
+module_name_id_value ::= 'name' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_name ::= module_name_id_value eq module_name_value {
+    pin=1
+    extends="oap.application.plugin.psi.impl.OapModuleNameBaseImpl"
+    implements="oap.application.plugin.psi.OapKeyValuePair"
+    stubClass="oap.application.plugin.stub.OapModuleNameStub"
+    elementTypeFactory="oap.application.plugin.psi.impl.OapElementTypeFactory.factory"
+    recoverWhile=recover_to_end_of_line
+}
+
+// dependsOn = [
+module_depends_on_id_value ::= 'dependsOn' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_depends_on ::= module_depends_on_id_value eq (&leftbracket module_depends_on_list | module_depends_on_single)* {pin=1 recoverWhile=property_recover}
+private module_depends_on_list ::= leftbracket module_depends_on_modules? nl? rightbracket
+
+module_depends_on_module_name ::= module_name_value {
+    implements="oap.application.plugin.psi.IndentNormal"
+}
+
+private module_depends_on_modules ::= !(rightbracket | nl rightbracket) nl module_depends_on_module_name (!(rightbracket | nl rightbracket) (nl|comma nl?) module_depends_on_module_name)*
+private module_depends_on_single ::= module_depends_on_module_name
+// ] // dependsOn
+
+// services {
+module_services_id_value ::= 'services' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services ::= module_services_id_value leftbrace ( !(rightbrace|nl rightbrace) module_services_service )* nl? rightbrace {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePair"
+    recoverWhile=property_recover
+}
+module_services_service_id_value ::= id_value
+module_services_service ::= nl module_services_service_id_value ( &dot dot_implementation_service | object_service ) {pin=2 mixin="oap.application.plugin.psi.OapModuleServicesServiceMixin" recoverWhile=property_recover}
+
+private dot_implementation_service ::= dot module_services_service_implementation {pin=1 recoverWhile=recover_to_end_of_line}
+private object_service ::= leftbrace nl module_services_service_entities rightbrace {pin=1 recoverWhile=property_recover}
+
+private module_services_service_entities ::=
+    (&'enabled' module_services_service_enabled nl)?
+    (&'abstract' module_services_service_abstract nl)?
+    &'implementation' module_services_service_implementation nl
+    (&'dependsOn' module_services_service_dependson nl)?
+    (&'default' module_services_service_default nl)?
+    (&'listen' module_services_service_listen nl)?
+    (&'parameters' module_services_service_parameters nl)?
+    (&'link' module_services_service_link nl)?
+    (&'remote' module_services_service_remote nl)?
+    (&'ws-service' module_services_service_wsservice nl)?
+    (&'supervision' module_services_service_supervision nl)?
+
+module_services_service_enabled_id_value ::= 'enabled' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_enabled ::= module_services_service_enabled_id_value eq bool_value {pin=1 mixin = "oap.application.plugin.psi.OapModuleServicesServiceEnabledMixin"}
+
+
+
+
+// dependsOn = [
+module_services_service_dependson_id_value ::= 'dependsOn' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_dependson ::= module_services_service_dependson_id_value eq (&leftbracket module_services_service_dependson_on_list | module_services_service_dependson_single)* {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=property_recover
+}
+private module_services_service_dependson_on_list ::= leftbracket module_services_service_dependson_services? nl? rightbracket
+
+private module_services_service_dependson_services ::= !(rightbracket | nl rightbracket) nl? module_services_service_id_value (!(rightbracket | nl rightbracket) (nl|comma nl?) module_services_service_id_value)*
+private module_services_service_dependson_single ::= module_services_service_id_value
+// ] // dependsOn
+
+module_services_service_abstract_id_value ::= 'abstract' {mixin="oap.application.plugin.psi.OapIdValueMixin" implements="oap.application.plugin.psi.IndentNormal"}
+module_services_service_abstract ::= module_services_service_abstract_id_value eq bool_value {pin=1}
+
+module_services_service_implementation_id_value ::= 'implementation' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_implementation ::= module_services_service_implementation_id_value eq class_value {
+    pin=1
+    mixin="oap.application.plugin.psi.OapModuleServicesServiceImplementationMixin"
+}
+
+module_services_service_default_id_value ::= 'default' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_default ::= module_services_service_default_id_value eq reference_modules_value {pin=1 }
+// } // services
+
+
+// parameters {
+module_services_service_parameters_id_value ::= 'parameters' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_parameters ::= module_services_service_parameters_id_value ( &dot dot_parameters | parameters_object )  {pin=1 mixin="oap.application.plugin.psi.OapModuleServicesServiceParametersMixin" recoverWhile=property_recover}
+private dot_parameters ::= dot parameter_key_value
+parameters_object ::= leftbrace (!(rightbracket | nl rightbracket) nl? parameters_object_entries)? nl? rightbrace {pin=1}
+parameters_array ::= leftbracket (!(rightbracket | nl rightbracket) nl? parameters_array_item)* nl? rightbracket {pin=1 recoverWhile=property_recover}
+parameters_array_item ::= parameters_object | parameters_reference | parameters_values {
+    implements="oap.application.plugin.psi.IndentNormal"
+}
+private parameters_object_entries ::=  (parameter_key_value nl?)*
+parameters_reference ::= &(leftangle 'modules') reference_modules_value | &(leftangle 'services') reference_services_value | &(leftangle 'kernel') reference_kernel_value
+parameter_id_value_or_path ::= id_value ( dot id_value )* {pin=1}
+parameter_key_value ::= parameter_id_value_or_path ( eq (
+          &leftbracket parameters_array
+        | parameters_reference
+        | parameters_function
+        | bool_value
+        | number_value &(nl|comma|rightbrace|rightbracket)
+        | duration_value
+        | string_value
+        | unquotedstring_value
+    ) | parameters_object ) {
+    pin=1
+    mixin="oap.application.plugin.psi.OapModuleServicesServiceParameterKeyValueMixin"
+    recoverWhile=property_recover
+}
+private parameters_values ::= (string_value | id_value) (comma (string_value | id_value) )*
+private parameters_function ::= &'classpath' class_path_parameters_function | &'json' json_parameters_function | &'path' path_parameters_function
+
+class_path_parameters_function ::= 'classpath' leftparen class_path_parameters_function_resource rightparen {pin=1}
+class_path_parameters_function_resource ::= div? id_value (div | id_value | env_variable | dot)*
+
+json_parameters_function ::= 'json' leftparen json_parameters_function_body rightparen {pin=1}
+json_parameters_function_body ::= string_value
+
+path_parameters_function ::= 'path' leftparen path_parameters_function_body rightparen {pin=1}
+path_parameters_function_body ::=  div? (env_variable | id_value ) (div | id_value | env_variable | dot)*
+// } parameters
+
+
+// listen|link {
+module_services_service_listen_id_value ::= 'listen' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_listen ::= module_services_service_listen_id_value ( &dot dot_module_services_service_link_field | module_services_service_link_field_object) {pin=1}
+
+dot_module_services_service_link_field ::= dot module_services_service_link_field {pin=1 recoverWhile=recover_to_end_of_line}
+module_services_service_link_field_object ::= leftbrace (!(rightbrace | nl rightbrace) nl module_services_service_link_field)* nl? rightbrace {pin=1 recoverWhile=property_recover}
+
+link_field ::= letters (digits | letters)*
+module_services_service_link_field ::= link_field eq reference_modules_value {pin=1 recoverWhile=recover_to_end_of_line}
+
+module_services_service_link_id_value ::= 'link'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_link ::= module_services_service_link_id_value ( &dot dot_module_services_service_link_field | module_services_service_link_field_object) {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
+// } // listen|link
+
+
+
+// supervision {
+module_services_service_supervision_id_value ::= 'supervision'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_supervision ::= module_services_service_supervision_id_value ( &dot dot_supervision | supervision_object ) {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
+
+private dot_supervision ::= dot module_services_service_supervision_entities {pin=1 recoverWhile=recover_to_end_of_line}
+private supervision_object ::= leftbrace ( !(rightbrace | nl rightbrace) module_services_service_supervision_line )* nl rightbrace {pin=1 recoverWhile=property_recover}
+
+private module_services_service_supervision_line ::=
+    nl module_services_service_supervision_entities {pin=1 recoverWhile=recover_to_end_of_line}
+
+private module_services_service_supervision_entities ::=
+      &'supervise' module_services_service_supervision_entities_supervise
+    | &'schedule' module_services_service_supervision_entities_schedule
+    | &'thread' module_services_service_supervision_entities_thread
+    | &'delay' module_services_service_supervision_entities_delay
+    | &'cron' module_services_service_supervision_entities_cron
+
+module_services_service_supervision_entities_supervise_id_value ::= 'supervise'
+module_services_service_supervision_entities_supervise ::= module_services_service_supervision_entities_supervise_id_value eq bool_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
+
+module_services_service_supervision_entities_schedule_id_value ::= 'schedule'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_supervision_entities_schedule ::= module_services_service_supervision_entities_schedule_id_value eq bool_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
+
+module_services_service_supervision_entities_thread_id_value ::= 'thread'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_supervision_entities_thread ::= module_services_service_supervision_entities_thread_id_value eq bool_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
+
+module_services_service_supervision_entities_delay_id_value ::= 'delay'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_supervision_entities_delay ::= module_services_service_supervision_entities_delay_id_value eq duration_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
+
+module_services_service_supervision_entities_cron_id_value ::= 'cron'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_supervision_entities_cron ::= module_services_service_supervision_entities_cron_id_value eq cron_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
+// } supervision
+
+
+// remote {
+module_services_service_remote_id_value ::= 'remote'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_remote ::= module_services_service_remote_id_value (&dot dot_remote | remote_object ) {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=property_recover
+}
+dot_remote ::= dot remote_name
+remote_object ::= leftbrace (!(rightbrace | nl rightbrace) nl remote_entries) nl? rightbrace {pin=1}
+remote_entries ::= ((&'name' remote_name | &'timeout' remote_timeout | &'serialization' remote_serialization | &'url' remote_url ) nl )*
+
+remote_name_id_value ::= 'name'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+remote_name ::= remote_name_id_value eq reference_modules_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=recover_to_end_of_line
+}
+
+remote_url_id_value ::= 'url'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+remote_url ::= remote_url_id_value eq string_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=recover_to_end_of_line
+}
+
+remote_timeout_id_value ::= 'timeout'
+remote_timeout ::= remote_timeout_id_value eq duration {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=recover_to_end_of_line
+}
+
+remote_serialization_id_value ::= 'serialization'
+remote_serialization ::= remote_serialization_id_value eq ('DEFAULT'|'JSON'|'BINARY') {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=recover_to_end_of_line
+}
+// } // remote
+
+
+// ws-service {
+module_services_service_wsservice_id_value ::= 'ws-service'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_services_service_wsservice ::= module_services_service_wsservice_id_value ( &dot dot_wsservice_path | wsservice_object ) {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=property_recover
+}
+dot_wsservice_path ::= dot wsservice_path {pin=1}
+wsservice_object ::= leftbrace (!(rightbracket | nl rightbracket) nl wsservice_entries)? nl? rightbrace {pin=1}
+wsservice_entries ::= ((&'path' wsservice_path|&'port' wsservice_port|&'sessionAware' wsservice_sessionAware|&'interceptors' wsservice_interceptors) nl)*
+
+wsservice_path_id_value ::= 'path'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+wsservice_path ::= wsservice_path_id_value eq (&leftbracket wsservice_path_multiple | wsservice_path_one ) {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=property_recover
+}
+
+wsservice_port_id_value ::= 'port'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+wsservice_port ::= wsservice_port_id_value eq id_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=recover_to_end_of_line
+}
+
+wsservice_sessionAware_id_value ::= 'sessionAware'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+wsservice_sessionAware ::= wsservice_sessionAware_id_value eq bool_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=recover_to_end_of_line
+}
+
+wsservice_interceptors_id_value ::= 'interceptors'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+wsservice_interceptors ::= wsservice_interceptors_id_value eq (wsservice_interceptor_one|wsservice_interceptor_multiple) {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=property_recover
+}
+
+wspath ::= div? (letters | '-' )+ ( div (letters | '-')+ )*
+
+private wsservice_path_one ::= wspath
+private wsservice_path_multiple ::= leftbracket nl? wsservice_path_one ((comma|nl) wsservice_path_one)* nl? rightbracket
+
+private wsservice_interceptor_one ::= wsservice_interceptor
+private wsservice_interceptor_multiple ::= leftbracket nl? wsservice_interceptor_one ( (comma|nl) wsservice_interceptor_one )* nl? rightbracket
+
+wsservice_interceptor ::= (letters | '-')+ ( dot (letters | '-')+ )*
+// } // ws-service
+
+
+// configurations = [
+module_configurations_id_value ::= 'configurations'  {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_configurations ::= module_configurations_id_value eq leftbracket (!(rightbracket | nl rightbracket) module_configuration)* nl? rightbracket nl? {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePair"
+}
+module_configuration ::= nl leftbrace nl? module_configuration_entries nl? rightbrace {
+    pin=2
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=property_recover
+}
+module_configuration_entries ::= module_configuration_entries_loader nl module_configuration_entries_config
+
+module_configuration_loader_id_value ::= 'loader' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_configuration_entries_loader ::= module_configuration_loader_id_value eq class_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=recover_to_end_of_line
+}
+module_configuration_config_id_value ::= 'config' {mixin="oap.application.plugin.psi.OapIdValueMixin"}
+module_configuration_entries_config ::= module_configuration_config_id_value (eq config_array | config_object) {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=property_recover
+}
+
+config_array ::= leftbracket (!(rightbracket | nl rightbracket) nl? config_array_object )* nl? rightbracket {pin=2 recoverWhile=property_recover}
+config_array_object ::= config_object {
+    implements="oap.application.plugin.psi.IndentNormal"
+}
+config_object ::= leftbrace (!(rightbrace | nl rightbrace) nl? (configurations_include | key_value))* nl? rightbrace {pin=1 recoverWhile=property_recover}
+
+configurations_config_key_value_id_or_path ::= id_value ( dot id_value )* {pin=1}
+key_value ::= configurations_config_key_value_id_or_path ( eq (bool_value | number_value | class_value | string_value | id_value | config_array ) | config_object ) {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+    recoverWhile=property_recover
+}
+
+configurations_include ::= module_include {
+    implements="oap.application.plugin.psi.IndentNormal"
+}
+
+// ] // configurations
+
+module_enabled ::= 'enabled' eq bool_value {pin=1}
+
+// include required("resource")
+module_include ::= 'include' 'required' leftparen string_value rightparen {pin=1}
+// include required("resource")
+
+
+private recover_to_end_of_line ::= !(nextline|<<eof>>)
+private property_recover ::= !( nextline | rightbracket | rightbrace | rightparen ) nl?

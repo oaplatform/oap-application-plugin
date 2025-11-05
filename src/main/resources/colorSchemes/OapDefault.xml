@@ -1,0 +1,54 @@
+<?xml version='1.0'?>
+<list>
+    <option name="OAP_QUOTED_STRING">
+        <value>
+            <option name="FONT_TYPE" value="2"/>
+            <option name="FOREGROUND" value="7D5B06"/>
+        </value>
+    </option>
+
+    <option name="OAP_MODULE_SERVICE_SUPERVISION_SUPERVISE">
+        <value>
+            <option name="FONT_TYPE" value="2"/>
+            <option name="FOREGROUND" value="549410"/>
+        </value>
+    </option>
+    <option name="OAP_MODULE_SERVICE_SUPERVISION_SCHEDULE">
+        <value>
+            <option name="FONT_TYPE" value="2"/>
+            <option name="FOREGROUND" value="549410"/>
+        </value>
+    </option>
+    <option name="OAP_MODULE_SERVICE_SUPERVISION_THREAD">
+        <value>
+            <option name="FONT_TYPE" value="2"/>
+            <option name="FOREGROUND" value="549410"/>
+        </value>
+    </option>
+    <option name="OAP_MODULE_SERVICE_SUPERVISION_CRON">
+        <value>
+            <option name="FONT_TYPE" value="2"/>
+            <option name="FOREGROUND" value="549410"/>
+        </value>
+    </option>
+    <option name="OAP_MODULE_SERVICE_SUPERVISION_DELAY">
+        <value>
+            <option name="FONT_TYPE" value="2"/>
+            <option name="FOREGROUND" value="549410"/>
+        </value>
+    </option>
+    <option name="OAP_REFERENCE_MODULES_VALUE">
+        <value>
+            <option name="EFFECT_TYPE" value="1" />
+            <option name="EFFECT_COLOR" value="808080" />
+            <option name="FONT_TYPE" value="2"/>
+            <option name="FOREGROUND" value="1F637B"/>
+        </value>
+    </option>
+    <option name="OAP_REFERENCE_KERNEL_VALUE">
+        <value>
+            <option name="FONT_TYPE" value="2"/>
+            <option name="FOREGROUND" value="1F637B"/>
+        </value>
+    </option>
+</list>

@@ -1,0 +1,15 @@
+name = test
+services {
+    test {
+        implementation = <caret>
+    }
+}
+-----
+[org.test.Main]
+-----
+name = test
+services {
+    test {
+        implementation = org.test.Main
+    }
+}

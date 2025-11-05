@@ -1,0 +1,127 @@
+// This is a generated file. Not intended for manual editing.
+package oap.application.plugin.gen.psi.impl;
+
+import java.util.List;
+import org.jetbrains.annotations.*;
+import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiElementVisitor;
+import com.intellij.psi.util.PsiTreeUtil;
+import static oap.application.plugin.gen.OapTypes.*;
+import oap.application.plugin.psi.OapModuleServicesServiceMixin;
+import oap.application.plugin.gen.psi.*;
+import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
+
+public class OapModuleServicesServiceImpl extends OapModuleServicesServiceMixin implements OapModuleServicesService {
+
+  public OapModuleServicesServiceImpl(@NotNull ASTNode node) {
+    super(node);
+  }
+
+  public void accept(@NotNull OapVisitor visitor) {
+    visitor.visitModuleServicesService(this);
+  }
+
+  @Override
+  public void accept(@NotNull PsiElementVisitor visitor) {
+    if (visitor instanceof OapVisitor) accept((OapVisitor)visitor);
+    else super.accept(visitor);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceAbstract getModuleServicesServiceAbstract() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceAbstract.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceDefault getModuleServicesServiceDefault() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceDefault.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceDependson getModuleServicesServiceDependson() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceDependson.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceEnabled getModuleServicesServiceEnabled() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceEnabled.class);
+  }
+
+  @Override
+  @NotNull
+  public OapModuleServicesServiceIdValue getModuleServicesServiceIdValue() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceIdValue.class));
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceImplementation getModuleServicesServiceImplementation() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceImplementation.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceLink getModuleServicesServiceLink() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceLink.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceListen getModuleServicesServiceListen() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceListen.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceParameters getModuleServicesServiceParameters() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceParameters.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceRemote getModuleServicesServiceRemote() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceRemote.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceSupervision getModuleServicesServiceSupervision() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceSupervision.class);
+  }
+
+  @Override
+  @Nullable
+  public OapModuleServicesServiceWsservice getModuleServicesServiceWsservice() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceWsservice.class);
+  }
+
+  @Override
+  @NotNull
+  public List<OapNl> getNlList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getDot() {
+    return findChildByType(OAP_DOT);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getLeftbrace() {
+    return findChildByType(OAP_LEFTBRACE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getRightbrace() {
+    return findChildByType(OAP_RIGHTBRACE);
+  }
+
+}

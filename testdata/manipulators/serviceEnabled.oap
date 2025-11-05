@@ -1,0 +1,17 @@
+name = test
+services {
+    test {
+        enabled = <caret>
+        implementation = Main
+    }
+}
+-----
+[enabled = true]
+-----
+name = test
+services {
+    test {
+        enabled = true
+        implementation = Main
+    }
+}
