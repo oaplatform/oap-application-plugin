@@ -15,3 +15,12 @@ jobs:
         java-version: 21
     - name: Build with Gradle
       run: ./gradlew clean test
+
+    - name: Store reports
+      if: failure()
+      uses: actions/upload-artifact@v3
+      with:
+        name: reports
+        path: |
+          **/build/reports/
+          **/build/test-results/
