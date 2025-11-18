@@ -30,8 +30,8 @@ public class OapConfigArrayImpl extends OapCompositeElementImpl implements OapCo
 
   @Override
   @NotNull
-  public List<OapConfigArrayObject> getConfigArrayObjectList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapConfigArrayObject.class);
+  public List<OapConfigArrayItem> getConfigArrayItemList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapConfigArrayItem.class);
   }
 
   @Override

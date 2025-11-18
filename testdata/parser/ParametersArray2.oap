@@ -1,0 +1,11 @@
+name = parameters-array2
+services {
+  m {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      enums = [ONE, TWO]
+      a = new value // pubilc final String
+      al = ["val"]
+    }
+  }
+}

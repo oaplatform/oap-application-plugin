@@ -9,7 +9,7 @@ import oap.application.plugin.psi.OapCompositeElement;
 public interface OapConfigArray extends OapCompositeElement {
 
   @NotNull
-  List<OapConfigArrayObject> getConfigArrayObjectList();
+  List<OapConfigArrayItem> getConfigArrayItemList();
 
   @NotNull
   PsiElement getLeftbracket();

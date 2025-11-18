@@ -4,9 +4,9 @@ package oap.application.plugin.gen.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import oap.application.plugin.psi.OapCompositeElement;
+import oap.application.plugin.psi.IndentNormal;
 
-public interface OapConfigObject extends OapCompositeElement {
+public interface OapConfigObject extends IndentNormal {
 
   @NotNull
   List<OapConfigurationKeyValuePair> getConfigurationKeyValuePairList();

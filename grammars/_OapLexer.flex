@@ -99,7 +99,7 @@ WHITE_SPACE=[ \t\x0B\f\r]+
 COMMENT=("//"|"#")[^\n]+
 STRING=\"(\\\"|[^\"])*\"
 UNQUOTED_STRING=([:jletterdigit:]|[-/\.]) ([:jletterdigit:]|[-/\. ])*
-CLASS_NAME=([:jletter:] [:jletterdigit:]+)("." [:jletter:] [:jletterdigit:]+)+
+CLASS_NAME=([:jletter:] [:jletterdigit:]*)("." [:jletter:] [:jletterdigit:]*)+
 FIELD_NAME=[:jletter:] [:jletterdigit:]+
 KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 

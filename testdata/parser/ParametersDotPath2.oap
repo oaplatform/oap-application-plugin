@@ -1,0 +1,7 @@
+name = parameters-dot-path-2
+services {
+  serviceImpl {
+    implementation = oap.application.plugin.TestService
+    parameters.i = 10
+  }
+}

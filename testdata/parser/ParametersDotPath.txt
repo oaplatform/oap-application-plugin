@@ -1,11 +1,3 @@
-name = parameters-dot-path-2
-services {
-  serviceImpl {
-    implementation = oap.application.plugin.TestService
-    parameters.i = 10
-  }
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
@@ -13,8 +5,8 @@ OAP_FILE
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
     OapModuleNameImpl(OAP_MODULE_NAME)
-      PsiElement(key_value)('parameters-dot-path-2')
-  PsiWhiteSpace('\n')
+      PsiElement(key_value)('parameters-dot-path')
+  PsiWhiteSpace('\n\n')
   OapModuleServicesImpl(OAP_MODULE_SERVICES)
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
@@ -23,7 +15,7 @@ OAP_FILE
     PsiWhiteSpace('  ')
     OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
       OapServiceNameImpl(OAP_SERVICE_NAME)
-        PsiElement(key_name)('serviceImpl')
+        PsiElement(key_name)('test-master')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
@@ -39,14 +31,27 @@ OAP_FILE
       PsiWhiteSpace('    ')
       OapModuleServicesServiceParametersImpl(OAP_MODULE_SERVICES_SERVICE_PARAMETERS)
         PsiElement(parameters)('parameters')
-        PsiElement(.)('.')
-        OapParameterKeyValueImpl(OAP_PARAMETER_KEY_VALUE)
-          PsiElement(key_name)('i')
-          PsiWhiteSpace(' ')
-          PsiElement(=)('=')
-          PsiWhiteSpace(' ')
-          OapIdValueImpl(OAP_ID_VALUE)
-            PsiElement(key_value)('10')
+        PsiWhiteSpace(' ')
+        OapParametersObjectImpl(OAP_PARAMETERS_OBJECT)
+          PsiElement({)('{')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('      ')
+          OapParameterKeyValueImpl(OAP_PARAMETER_KEY_VALUE)
+            PsiElement(key_name)('key')
+            PsiElement(.)('.')
+            PsiElement(key_name)('v1')
+            PsiElement(.)('.')
+            PsiElement(key_name)('v2')
+            PsiElement(.)('.')
+            PsiElement(key_name)('v3')
+            PsiWhiteSpace(' ')
+            PsiElement(=)('=')
+            PsiWhiteSpace(' ')
+            OapIdValueImpl(OAP_ID_VALUE)
+              PsiElement(key_value)('123')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('    ')
+          PsiElement(})('}')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('  ')
       PsiElement(})('}')

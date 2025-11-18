@@ -9,7 +9,7 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 public interface OapWsserviceInterceptors extends OapKeyValuePairWithIndentNormal {
 
   @NotNull
-  List<OapReferenceModulesValue> getReferenceModulesValueList();
+  List<OapWsserviceInterceptorOne> getWsserviceInterceptorOneList();
 
   @Nullable
   PsiElement getEq();

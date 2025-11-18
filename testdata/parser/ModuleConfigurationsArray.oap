@@ -1,0 +1,28 @@
+name = module-configurations-array
+
+configurations = [
+  {
+    loader = a.A
+    config {
+      test = [1,2]
+      test2 = [
+        1,
+        2
+      ]
+      test3 = [
+        sdfsdf
+        kljlkj
+      ]
+      test4 = [
+        "sdfsdf"
+        "kljlkj"
+      ]
+    }
+  }
+  {
+    loader = oap.MyLoader
+    config {
+      b = true
+    }
+  }
+]

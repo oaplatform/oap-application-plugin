@@ -1,0 +1,25 @@
+name = module-configurations
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+  }
+}
+
+configurations = [
+  {
+    loader = oap.json.TypeIdFactory
+    config {
+      test = oap.TestData
+      test-asset = oap.a.TestAssetData
+    }
+  }
+  {
+    loader = oap.MyLoader
+    config {
+      test-default = "/test.file"
+      a = 23
+      b = true
+    }
+  }
+]

@@ -12,7 +12,7 @@ services {
     }
     test-service2.implementation = oap.application.plugin.TestService
     test-service3 {
-        implementation = oap.application.plugin.TestService
+        implementation = a.A
         supervision.supervise = true
     }
 }

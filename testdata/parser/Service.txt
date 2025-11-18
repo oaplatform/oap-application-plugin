@@ -110,7 +110,7 @@ OAP_FILE
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
         OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
-          PsiElement(class_name)('oap.application.plugin.TestService')
+          PsiElement(class_name)('a.A')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('        ')
       OapModuleServicesServiceSupervisionImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION)

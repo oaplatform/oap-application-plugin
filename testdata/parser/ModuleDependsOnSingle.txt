@@ -1,13 +1,3 @@
-name = moduleDependsOnList
-
-dependsOn = [
-    module_a
-    module_b, module_c
-]
-
-services {
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
@@ -15,25 +5,15 @@ OAP_FILE
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
     OapModuleNameImpl(OAP_MODULE_NAME)
-      PsiElement(key_value)('moduleDependsOnList')
+      PsiElement(key_value)('moduleDependsOnSingle')
   PsiWhiteSpace('\n\n')
   OapModuleDependsOnImpl(OAP_MODULE_DEPENDS_ON)
     PsiElement(dependsOn)('dependsOn')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    PsiElement([)('[')
-    PsiWhiteSpace('\n')
-    PsiWhiteSpace('    ')
-    PsiElement(key_value)('module_a')
-    PsiWhiteSpace('\n')
-    PsiWhiteSpace('    ')
-    PsiElement(key_value)('module_b')
-    PsiElement(,)(',')
-    PsiWhiteSpace(' ')
-    PsiElement(key_value)('module_c')
-    PsiWhiteSpace('\n')
-    PsiElement(])(']')
+    OapModuleDependsOnModuleNameImpl(OAP_MODULE_DEPENDS_ON_MODULE_NAME)
+      PsiElement(key_value)('module_a')
   PsiWhiteSpace('\n\n')
   OapModuleServicesImpl(OAP_MODULE_SERVICES)
     PsiElement(services)('services')

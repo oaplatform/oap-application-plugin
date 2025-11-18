@@ -150,7 +150,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '[' config_array_object* ']'
+  // '[' config_array_item? (','? config_array_item)* ']'
   public static boolean config_array(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "config_array")) return false;
     if (!nextTokenIs(b, OAP_LEFTBRACKET)) return false;
@@ -159,31 +159,79 @@ public class OapParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, OAP_LEFTBRACKET);
     p = r; // pin = 1
     r = r && report_error_(b, config_array_1(b, l + 1));
+    r = p && report_error_(b, config_array_2(b, l + 1)) && r;
     r = p && consumeToken(b, OAP_RIGHTBRACKET) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
-  // config_array_object*
+  // config_array_item?
   private static boolean config_array_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "config_array_1")) return false;
+    config_array_item(b, l + 1);
+    return true;
+  }
+
+  // (','? config_array_item)*
+  private static boolean config_array_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "config_array_2")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!config_array_object(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "config_array_1", c)) break;
+      if (!config_array_2_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "config_array_2", c)) break;
     }
     return true;
   }
 
-  /* ********************************************************** */
-  // config_object
-  public static boolean config_array_object(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "config_array_object")) return false;
-    if (!nextTokenIs(b, OAP_LEFTBRACE)) return false;
+  // ','? config_array_item
+  private static boolean config_array_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "config_array_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = config_object(b, l + 1);
-    exit_section_(b, m, OAP_CONFIG_ARRAY_OBJECT, r);
+    r = config_array_2_0_0(b, l + 1);
+    r = r && config_array_item(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ','?
+  private static boolean config_array_2_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "config_array_2_0_0")) return false;
+    consumeToken(b, OAP_COMMA);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // &'{' config_object | key_value
+  public static boolean config_array_item(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "config_array_item")) return false;
+    if (!nextTokenIs(b, "<config array item>", OAP_KEY_VALUE, OAP_LEFTBRACE)) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, OAP_CONFIG_ARRAY_ITEM, "<config array item>");
+    r = config_array_item_0(b, l + 1);
+    if (!r) r = consumeToken(b, OAP_KEY_VALUE);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // &'{' config_object
+  private static boolean config_array_item_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "config_array_item_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = config_array_item_0_0(b, l + 1);
+    r = r && config_object(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // &'{'
+  private static boolean config_array_item_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "config_array_item_0_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _AND_);
+    r = consumeToken(b, OAP_LEFTBRACE);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -224,7 +272,8 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // ( &'include' module_include ) | key_name ('.' key_name)* ('=' (&'[' config_array | bool_value | id_value ) | config_object )
+  // ( &'include' module_include )
+  //     | key_name ('.' key_name)* ('=' (&'[' config_array | bool_value | id_value ) | config_object )
   public static boolean configuration_key_value_pair(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "configuration_key_value_pair")) return false;
     if (!nextTokenIs(b, "<configuration key value pair>", OAP_ID_INCLUDE, OAP_KEY_NAME)) return false;
@@ -870,7 +919,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'dependsOn' '=' ('[' (key_value ','?)* ']' | key_value)
+  // 'dependsOn' '=' ('[' (module_depends_on_module_name ','?)* ']' | module_depends_on_module_name)
   public static boolean module_depends_on(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on")) return false;
     boolean r, p;
@@ -882,18 +931,18 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  // '[' (key_value ','?)* ']' | key_value
+  // '[' (module_depends_on_module_name ','?)* ']' | module_depends_on_module_name
   private static boolean module_depends_on_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = module_depends_on_2_0(b, l + 1);
-    if (!r) r = consumeToken(b, OAP_KEY_VALUE);
+    if (!r) r = module_depends_on_module_name(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // '[' (key_value ','?)* ']'
+  // '[' (module_depends_on_module_name ','?)* ']'
   private static boolean module_depends_on_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2_0")) return false;
     boolean r;
@@ -905,7 +954,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (key_value ','?)*
+  // (module_depends_on_module_name ','?)*
   private static boolean module_depends_on_2_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2_0_1")) return false;
     while (true) {
@@ -916,12 +965,12 @@ public class OapParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // key_value ','?
+  // module_depends_on_module_name ','?
   private static boolean module_depends_on_2_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2_0_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, OAP_KEY_VALUE);
+    r = module_depends_on_module_name(b, l + 1);
     r = r && module_depends_on_2_0_1_0_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
@@ -932,6 +981,18 @@ public class OapParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(b, l, "module_depends_on_2_0_1_0_1")) return false;
     consumeToken(b, OAP_COMMA);
     return true;
+  }
+
+  /* ********************************************************** */
+  // key_value
+  public static boolean module_depends_on_module_name(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_depends_on_module_name")) return false;
+    if (!nextTokenIs(b, OAP_KEY_VALUE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, OAP_KEY_VALUE);
+    exit_section_(b, m, OAP_MODULE_DEPENDS_ON_MODULE_NAME, r);
+    return r;
   }
 
   /* ********************************************************** */
@@ -3360,8 +3421,14 @@ public class OapParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // reference_modules_value
-  static boolean wsservice_interceptor_one(PsiBuilder b, int l) {
-    return reference_modules_value(b, l + 1);
+  public static boolean wsservice_interceptor_one(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "wsservice_interceptor_one")) return false;
+    if (!nextTokenIs(b, OAP_LEFTANGLE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = reference_modules_value(b, l + 1);
+    exit_section_(b, m, OAP_WSSERVICE_INTERCEPTOR_ONE, r);
+    return r;
   }
 
   /* ********************************************************** */

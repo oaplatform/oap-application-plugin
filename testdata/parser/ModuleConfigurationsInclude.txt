@@ -1,20 +1,3 @@
-name = module-configurations-include
-
-configurations = [
-  {
-    loader = oap.json.properties.PropertiesDeserializer
-    config = [
-      {
-        class = oap.json.properties.TestJsonProperties
-        properties {
-          property1 = oap.json.properties.TestJsonProperties.TestProperty1
-          include required("oap-module-include.conf")
-        }
-      }
-    ]
-  }
-]
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')

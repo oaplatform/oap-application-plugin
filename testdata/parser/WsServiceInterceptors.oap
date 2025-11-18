@@ -1,0 +1,14 @@
+name = ws-service-interceptors
+services {
+  interceptor {
+    implementation = oap.ws.interceptor.InterceptorTest.TestWS
+    ws-service {
+      path = interceptor
+      sessionAware = true
+      interceptors = [
+        <modules.oap-ws-validate-test.pass-interceptor>
+        <modules.oap-ws-validate-test.error-interceptor>
+      ]
+    }
+  }
+}

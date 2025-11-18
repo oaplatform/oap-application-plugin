@@ -1,0 +1,6 @@
+name = moduleDependsOnSingle
+
+dependsOn = module_a
+
+services {
+}

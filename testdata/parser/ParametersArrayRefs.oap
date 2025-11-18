@@ -1,0 +1,13 @@
+name = parameters-array-refs
+services {
+  ServiceDepsList {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      deps = [
+        <modules.m1.ServiceOneP1>
+        <modules.m2.ServiceTwo>
+      ]
+    }
+  }
+}
+

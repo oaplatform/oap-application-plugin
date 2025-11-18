@@ -1,0 +1,19 @@
+name = module-configurations-path
+
+configurations = [
+  {
+    loader = oap.json.TypeIdFactory
+    config {
+      test = oap.TestData
+      test-asset = oap.a.TestAssetData
+    }
+  }
+  {
+    loader = oap.MyLoader
+    config {
+      test-default = "/test.file"
+      a.b.c = 23
+      b = true
+    }
+  }
+]

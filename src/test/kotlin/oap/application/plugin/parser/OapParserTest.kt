@@ -26,11 +26,68 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(true)
     }
 
+    fun testLineComment() {
+        doTest(false)
+    }
+
+
+    fun testModuleConfigurations() {
+        doTest(false)
+    }
+
+    fun testModuleConfigurationsArray() {
+        doTest(false)
+    }
+
+    fun testModuleConfigurationsEmpty() {
+        doTest(false)
+    }
+
+    fun testModuleConfigurationsInclude() {
+        doTest(false)
+    }
+
+    fun testModuleConfigurationsPath() {
+        doTest(false)
+    }
+
+
+
+
+    fun testModuleDependsOnList() {
+        doTest(false)
+    }
+
+    fun testModuleDependsOnListError() {
+        doTest(true)
+    }
+
+    fun testModuleDependsOnSingle() {
+        doTest(false)
+    }
+
+
     fun testParameters() {
         doTest(false)
     }
 
     fun testParametersArray1() {
+        doTest(false)
+    }
+
+    fun testParametersArray2() {
+        doTest(false)
+    }
+
+    fun testParametersArrayRefs() {
+        doTest(false)
+    }
+
+    fun testParametersDotPath() {
+        doTest(false)
+    }
+
+    fun testParametersDotPath2() {
         doTest(false)
     }
 
@@ -55,6 +112,11 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
     fun testServiceDotImplementation() {
+        doTest(false)
+    }
+
+
+    fun testWsServiceInterceptors() {
         doTest(false)
     }
 }
