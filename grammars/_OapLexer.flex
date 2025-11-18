@@ -78,7 +78,7 @@ import static oap.application.plugin.gen.OapTypes.*;
         yybegin(s);
       } else {
         // Handle the error or default to YYINITIAL if the stack is empty
-        System.out.println("pop state (no change) " + printState(yystate()) + " -> " + "YYINITIAL");
+//        System.out.println("pop state (no change) " + printState(yystate()) + " -> " + "YYINITIAL");
         yybegin(YYINITIAL);
       }
     }
