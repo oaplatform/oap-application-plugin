@@ -1,8 +1,3 @@
-name = invalidServices
-services {
-a = b
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
@@ -10,7 +5,7 @@ OAP_FILE
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
     OapModuleNameImpl(OAP_MODULE_NAME)
-      PsiElement(key_value)('invalidServices')
+      PsiElement(key_value)('InvalidServices')
   PsiWhiteSpace('\n')
   OapModuleServicesImpl(OAP_MODULE_SERVICES)
     PsiElement(services)('services')

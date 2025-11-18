@@ -243,7 +243,7 @@ module_services_service_parameters ::= 'parameters' ( &'.' dot_parameters | para
     mixin="oap.application.plugin.psi.OapModuleServicesServiceParametersMixin"
 }
 private dot_parameters ::= '.' parameter_key_value
-parameters_object ::= '{' parameter_key_value* '}' {pin=1}
+parameters_object ::= '{' parameter_key_value? (','? parameter_key_value )* '}' {pin=1}
 parameters_array ::= '[' parameters_array_item* ']' {pin=1}
 parameters_array_item ::= &'<' any_reference | &'{' parameters_object | ( id_value (',' id_value )* ) {
     implements="oap.application.plugin.psi.IndentNormal"

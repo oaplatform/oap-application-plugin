@@ -1,27 +1,44 @@
 package oap.application.plugin.parser
 
-import com.intellij.psi.PsiFile
-import com.intellij.psi.impl.DebugUtil
-import junit.framework.TestSuite
-import oap.application.plugin.OapFileSetTestCase
-import org.junit.runner.RunWith
-import org.junit.runners.AllTests
+import com.intellij.testFramework.ParsingTestCase
 
-@RunWith(AllTests::class)
-class OapParserTest : OapFileSetTestCase("parser") {
-    override fun transform(data: Array<String>): String {
-        val psiFile: PsiFile = createPseudoPhysicalOapFile(data[0])
-        return DebugUtil.psiToString(psiFile, true).replace(":" + psiFile.getName(), "")
+class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
+    override fun getTestDataPath(): String {
+        return "testdata"
     }
 
-    companion object {
-        @JvmStatic
-        fun suite(): TestSuite {
-            val suite = TestSuite()
+    override fun doTest(suppressErrors: Boolean) {
+        super.doTest(true)
 
-//            suite.addTest(OapParserTest())
-
-            return suite
+        if (!suppressErrors) {
+            assertFalse(
+                "PsiFile contains error elements",
+                toParseTreeText(myFile, skipSpaces(), includeRanges()).contains("PsiErrorElement")
+            )
         }
+    }
+
+    fun testInclude() {
+        doTest(false)
+    }
+
+    fun testInvalidServices() {
+        doTest(true)
+    }
+
+    fun testParameters() {
+        doTest(false)
+    }
+
+    fun testParametersArray1() {
+        doTest(false)
+    }
+
+    fun testParametersMap() {
+        doTest(false)
+    }
+
+    fun testParametersObjectComma() {
+        doTest(false)
     }
 }
