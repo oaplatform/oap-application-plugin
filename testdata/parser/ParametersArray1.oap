@@ -1,0 +1,15 @@
+name = ParametersArray1
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      complexes = [
+        {
+            i = 2
+        }
+      ]
+      complexes2 = [{i = 2}]
+    }
+  }
+}

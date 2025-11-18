@@ -1,0 +1,9 @@
+name = ParametersObjectComma
+services {
+  m {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      test {a = 5, b = AAA}
+    }
+  }
+}

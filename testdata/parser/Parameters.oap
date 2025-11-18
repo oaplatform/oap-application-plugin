@@ -1,0 +1,18 @@
+name = Parameters
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      uniqueName = <services.self.name>
+      kernel = <kernel.self>
+      a = <modules.xenoss-platform-dsp-missioncontrol.bidder-filter>
+      syncPeriod = 300
+      flightAheadMultiplier = 1.2
+      watch = true
+      collectionName = advertizers
+      dirForFailures = /tmp/dsp
+      prefix = /static/ pixel.png
+    }
+  }
+}

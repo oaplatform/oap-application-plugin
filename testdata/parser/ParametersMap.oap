@@ -1,0 +1,15 @@
+name = ParametersMap
+
+services {
+  test1 {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      map {
+        inMap {
+          a.b = 10
+        }
+      }
+    }
+  }
+  test2.implementation = oap.application.plugin.TestService
+}

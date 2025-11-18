@@ -473,6 +473,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
   {NEXTLINE}           { yypopState(); return WHITE_SPACE; }
+  ","                  { yypopState(); return OAP_COMMA; }
 }
 <_ENV> {
   "{"                  { return OAP_LEFTBRACE; }

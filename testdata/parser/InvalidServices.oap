@@ -1,0 +1,4 @@
+name = InvalidServices
+services {
+a = b
+}

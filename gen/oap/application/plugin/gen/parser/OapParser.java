@@ -2405,7 +2405,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '{' parameter_key_value* '}'
+  // '{' parameter_key_value? (','? parameter_key_value )* '}'
   public static boolean parameters_object(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "parameters_object")) return false;
     if (!nextTokenIs(b, OAP_LEFTBRACE)) return false;
@@ -2414,19 +2414,45 @@ public class OapParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, OAP_LEFTBRACE);
     p = r; // pin = 1
     r = r && report_error_(b, parameters_object_1(b, l + 1));
+    r = p && report_error_(b, parameters_object_2(b, l + 1)) && r;
     r = p && consumeToken(b, OAP_RIGHTBRACE) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
-  // parameter_key_value*
+  // parameter_key_value?
   private static boolean parameters_object_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "parameters_object_1")) return false;
+    parameter_key_value(b, l + 1);
+    return true;
+  }
+
+  // (','? parameter_key_value )*
+  private static boolean parameters_object_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameters_object_2")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!parameter_key_value(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "parameters_object_1", c)) break;
+      if (!parameters_object_2_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "parameters_object_2", c)) break;
     }
+    return true;
+  }
+
+  // ','? parameter_key_value
+  private static boolean parameters_object_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameters_object_2_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = parameters_object_2_0_0(b, l + 1);
+    r = r && parameter_key_value(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ','?
+  private static boolean parameters_object_2_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameters_object_2_0_0")) return false;
+    consumeToken(b, OAP_COMMA);
     return true;
   }
 
