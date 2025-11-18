@@ -1,0 +1,7 @@
+name = ServiceDotImplementation
+
+services {
+    test-service.implementation = oap.application.plugin.TestService
+    test-service2.implementation = oap.application.plugin.TestService
+    test-service3.implementation = oap.application.plugin.TestService
+}

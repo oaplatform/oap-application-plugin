@@ -1,0 +1,11 @@
+name = RemoteNameError
+
+services {
+  remote-client {
+    implementation = oap.application.plugin.TestService
+    remote {
+      name = oap-module-with-remoting.remote-service
+    }
+  }
+  test-service.implementation = oap.application.plugin.TestService
+}

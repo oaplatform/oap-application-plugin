@@ -1,0 +1,12 @@
+name = Remote
+
+services {
+  remote-client {
+    implementation = oap.remote.application.RemoteClient
+    remote {
+      url = "http://localhost/remote/"
+      name = <modules.oap-module-with-remoting.remote-service>
+      serialization = JSON
+    }
+  }
+}

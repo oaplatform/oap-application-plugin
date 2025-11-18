@@ -1,0 +1,18 @@
+name = Service
+services {
+    test-service {
+        enabled = false
+        implementation = oap.application.plugin.TestService
+        supervision {
+            supervise = true
+            schedule = true
+            delay = 1s
+            cron = "10 * * * * ? *"
+        }
+    }
+    test-service2.implementation = oap.application.plugin.TestService
+    test-service3 {
+        implementation = oap.application.plugin.TestService
+        supervision.supervise = true
+    }
+}

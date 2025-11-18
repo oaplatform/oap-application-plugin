@@ -1,0 +1,8 @@
+name = ServiceAbstractDefault
+services {
+  abstract-service-with-default-implementation {
+    abstract = true
+    implementation = oap.application.plugin.TestService
+    default = <modules.this.abstract-service-with-default-implementation>
+  }
+}
