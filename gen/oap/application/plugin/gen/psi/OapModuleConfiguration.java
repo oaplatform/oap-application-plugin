@@ -8,11 +8,8 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
 public interface OapModuleConfiguration extends OapKeyValuePairWithIndentNormal {
 
-  @Nullable
-  OapModuleConfigurationEntries getModuleConfigurationEntries();
-
   @NotNull
-  List<OapNl> getNlList();
+  OapModuleConfigurationEntries getModuleConfigurationEntries();
 
   @NotNull
   PsiElement getLeftbrace();

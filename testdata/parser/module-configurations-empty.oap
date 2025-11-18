@@ -1,0 +1,22 @@
+name = module-configurations-empty
+
+configurations = [
+]
+-----
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OapModuleNameImpl(OAP_MODULE_NAME)
+      PsiElement(key_value)('module-configurations-empty')
+  PsiWhiteSpace('\n\n')
+  OapModuleConfigurationsImpl(OAP_MODULE_CONFIGURATIONS)
+    PsiElement(configurations)('configurations')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    PsiElement([)('[')
+    PsiWhiteSpace('\n')
+    PsiElement(])(']')

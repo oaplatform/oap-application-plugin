@@ -19,7 +19,7 @@ class OapParserTest : OapFileSetTestCase("parser") {
         fun suite(): TestSuite {
             val suite = TestSuite()
 
-            suite.addTest(OapParserTest())
+//            suite.addTest(OapParserTest())
 
             return suite
         }

@@ -14,10 +14,10 @@ public interface OapModuleConfigurationEntriesConfig extends OapKeyValuePairWith
   @Nullable
   OapConfigObject getConfigObject();
 
-  @NotNull
-  OapModuleConfigurationConfigIdValue getModuleConfigurationConfigIdValue();
-
   @Nullable
   PsiElement getEq();
+
+  @Nullable
+  PsiElement getIdConfig();
 
 }

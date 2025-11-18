@@ -29,12 +29,6 @@ public class OapModuleServicesServiceLinkFieldImpl extends OapCompositeElementIm
   }
 
   @Override
-  @NotNull
-  public OapLinkField getLinkField() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapLinkField.class));
-  }
-
-  @Override
   @Nullable
   public OapReferenceModulesValue getReferenceModulesValue() {
     return PsiTreeUtil.getChildOfType(this, OapReferenceModulesValue.class);
@@ -44,6 +38,12 @@ public class OapModuleServicesServiceLinkFieldImpl extends OapCompositeElementIm
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getKeyName() {
+    return notNullChild(findChildByType(OAP_KEY_NAME));
   }
 
 }

@@ -35,15 +35,15 @@ public class OapRemoteNameImpl extends OapCompositeElementImpl implements OapRem
   }
 
   @Override
-  @NotNull
-  public OapRemoteNameIdValue getRemoteNameIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapRemoteNameIdValue.class));
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdName() {
+    return notNullChild(findChildByType(OAP_ID_NAME));
   }
 
 }

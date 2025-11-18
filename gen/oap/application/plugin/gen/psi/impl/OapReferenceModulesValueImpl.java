@@ -29,9 +29,9 @@ public class OapReferenceModulesValueImpl extends OapCompositeElementImpl implem
   }
 
   @Override
-  @NotNull
-  public List<OapIdValue> getIdValueList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapIdValue.class);
+  @Nullable
+  public OapReferenceModulesValueIn getReferenceModulesValueIn() {
+    return PsiTreeUtil.getChildOfType(this, OapReferenceModulesValueIn.class);
   }
 
   @Override

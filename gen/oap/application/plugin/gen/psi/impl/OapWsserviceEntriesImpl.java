@@ -30,8 +30,8 @@ public class OapWsserviceEntriesImpl extends OapCompositeElementImpl implements 
 
   @Override
   @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
+  public List<OapWsserviceEnabled> getWsserviceEnabledList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapWsserviceEnabled.class);
   }
 
   @Override

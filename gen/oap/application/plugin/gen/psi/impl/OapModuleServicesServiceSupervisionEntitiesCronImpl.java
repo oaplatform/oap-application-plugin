@@ -30,20 +30,20 @@ public class OapModuleServicesServiceSupervisionEntitiesCronImpl extends OapComp
 
   @Override
   @Nullable
-  public OapCronValue getCronValue() {
-    return PsiTreeUtil.getChildOfType(this, OapCronValue.class);
+  public PsiElement getEq() {
+    return findChildByType(OAP_EQ);
   }
 
   @Override
   @NotNull
-  public OapModuleServicesServiceSupervisionEntitiesCronIdValue getModuleServicesServiceSupervisionEntitiesCronIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceSupervisionEntitiesCronIdValue.class));
+  public PsiElement getIdCron() {
+    return notNullChild(findChildByType(OAP_ID_CRON));
   }
 
   @Override
   @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  public PsiElement getKeyValue() {
+    return findChildByType(OAP_KEY_VALUE);
   }
 
 }

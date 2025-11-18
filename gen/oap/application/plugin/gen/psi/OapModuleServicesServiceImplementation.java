@@ -9,12 +9,12 @@ import oap.application.plugin.psi.OapCompositeElement;
 public interface OapModuleServicesServiceImplementation extends OapCompositeElement {
 
   @Nullable
-  OapClassValue getClassValue();
-
-  @NotNull
-  OapModuleServicesServiceImplementationIdValue getModuleServicesServiceImplementationIdValue();
+  OapClassNamePsi getClassNamePsi();
 
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdImplementation();
 
 }

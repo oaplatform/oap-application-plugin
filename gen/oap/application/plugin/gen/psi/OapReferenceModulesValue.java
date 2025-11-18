@@ -8,8 +8,8 @@ import oap.application.plugin.psi.OapValue;
 
 public interface OapReferenceModulesValue extends OapValue {
 
-  @NotNull
-  List<OapIdValue> getIdValueList();
+  @Nullable
+  OapReferenceModulesValueIn getReferenceModulesValueIn();
 
   @NotNull
   PsiElement getLeftangle();

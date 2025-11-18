@@ -35,15 +35,15 @@ public class OapModuleServicesServiceRemoteImpl extends OapCompositeElementImpl 
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceRemoteIdValue getModuleServicesServiceRemoteIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceRemoteIdValue.class));
-  }
-
-  @Override
   @Nullable
   public OapRemoteObject getRemoteObject() {
     return PsiTreeUtil.getChildOfType(this, OapRemoteObject.class);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdRemote() {
+    return notNullChild(findChildByType(OAP_ID_REMOTE));
   }
 
 }

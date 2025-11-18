@@ -35,15 +35,15 @@ public class OapModuleServicesServiceEnabledImpl extends OapModuleServicesServic
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceEnabledIdValue getModuleServicesServiceEnabledIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceEnabledIdValue.class));
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdEnabled() {
+    return notNullChild(findChildByType(OAP_ID_ENABLED));
   }
 
 }

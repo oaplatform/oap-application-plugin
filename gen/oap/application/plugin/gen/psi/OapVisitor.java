@@ -6,24 +6,24 @@ import com.intellij.psi.PsiElementVisitor;
 import oap.application.plugin.psi.OapCompositeElement;
 import oap.application.plugin.psi.IndentNormal;
 import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
-import oap.application.plugin.psi.OapKeyValuePair;
 import oap.application.plugin.psi.OapValue;
+import oap.application.plugin.psi.OapKeyValuePair;
 
 public class OapVisitor extends PsiElementVisitor {
+
+  public void visitAnyReference(@NotNull OapAnyReference o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitAnyReferenceIn(@NotNull OapAnyReferenceIn o) {
+    visitCompositeElement(o);
+  }
 
   public void visitBoolValue(@NotNull OapBoolValue o) {
     visitValue(o);
   }
 
-  public void visitClassPathParametersFunction(@NotNull OapClassPathParametersFunction o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitClassPathParametersFunctionResource(@NotNull OapClassPathParametersFunctionResource o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitClassValue(@NotNull OapClassValue o) {
+  public void visitClassNamePsi(@NotNull OapClassNamePsi o) {
     visitCompositeElement(o);
   }
 
@@ -39,16 +39,8 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitConfigurationsConfigKeyValueIdOrPath(@NotNull OapConfigurationsConfigKeyValueIdOrPath o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitConfigurationsInclude(@NotNull OapConfigurationsInclude o) {
-    visitIndentNormal(o);
-  }
-
-  public void visitCronValue(@NotNull OapCronValue o) {
-    visitValue(o);
+  public void visitConfigurationKeyValuePair(@NotNull OapConfigurationKeyValuePair o) {
+    visitKeyValuePairWithIndentNormal(o);
   }
 
   public void visitDotModuleServicesServiceLinkField(@NotNull OapDotModuleServicesServiceLinkField o) {
@@ -63,11 +55,11 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitDurationValue(@NotNull OapDurationValue o) {
+  public void visitEnvValue(@NotNull OapEnvValue o) {
     visitCompositeElement(o);
   }
 
-  public void visitEnvVariable(@NotNull OapEnvVariable o) {
+  public void visitFunction(@NotNull OapFunction o) {
     visitCompositeElement(o);
   }
 
@@ -75,28 +67,8 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitJsonParametersFunction(@NotNull OapJsonParametersFunction o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitJsonParametersFunctionBody(@NotNull OapJsonParametersFunctionBody o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitKeyValue(@NotNull OapKeyValue o) {
-    visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitLinkField(@NotNull OapLinkField o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleConfiguration(@NotNull OapModuleConfiguration o) {
     visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitModuleConfigurationConfigIdValue(@NotNull OapModuleConfigurationConfigIdValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitModuleConfigurationEntries(@NotNull OapModuleConfigurationEntries o) {
@@ -111,28 +83,12 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitModuleConfigurationLoaderIdValue(@NotNull OapModuleConfigurationLoaderIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleConfigurations(@NotNull OapModuleConfigurations o) {
     visitKeyValuePair(o);
   }
 
-  public void visitModuleConfigurationsIdValue(@NotNull OapModuleConfigurationsIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleDependsOn(@NotNull OapModuleDependsOn o) {
     visitCompositeElement(o);
-  }
-
-  public void visitModuleDependsOnIdValue(@NotNull OapModuleDependsOnIdValue o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitModuleDependsOnModuleName(@NotNull OapModuleDependsOnModuleName o) {
-    visitIndentNormal(o);
   }
 
   public void visitModuleEnabled(@NotNull OapModuleEnabled o) {
@@ -144,23 +100,15 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleName(@NotNull OapModuleName o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitModuleNamePair(@NotNull OapModuleNamePair o) {
     visitKeyValuePair(o);
-  }
-
-  public void visitModuleNameIdValue(@NotNull OapModuleNameIdValue o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitModuleNameValue(@NotNull OapModuleNameValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitModuleServices(@NotNull OapModuleServices o) {
     visitKeyValuePair(o);
-  }
-
-  public void visitModuleServicesIdValue(@NotNull OapModuleServicesIdValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitModuleServicesService(@NotNull OapModuleServicesService o) {
@@ -171,15 +119,7 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitModuleServicesServiceAbstractIdValue(@NotNull OapModuleServicesServiceAbstractIdValue o) {
-    visitIndentNormal(o);
-  }
-
   public void visitModuleServicesServiceDefault(@NotNull OapModuleServicesServiceDefault o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitModuleServicesServiceDefaultIdValue(@NotNull OapModuleServicesServiceDefaultIdValue o) {
     visitCompositeElement(o);
   }
 
@@ -187,27 +127,11 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitModuleServicesServiceDependsonIdValue(@NotNull OapModuleServicesServiceDependsonIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleServicesServiceEnabled(@NotNull OapModuleServicesServiceEnabled o) {
     visitCompositeElement(o);
   }
 
-  public void visitModuleServicesServiceEnabledIdValue(@NotNull OapModuleServicesServiceEnabledIdValue o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitModuleServicesServiceIdValue(@NotNull OapModuleServicesServiceIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleServicesServiceImplementation(@NotNull OapModuleServicesServiceImplementation o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitModuleServicesServiceImplementationIdValue(@NotNull OapModuleServicesServiceImplementationIdValue o) {
     visitCompositeElement(o);
   }
 
@@ -223,15 +147,7 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitModuleServicesServiceLinkIdValue(@NotNull OapModuleServicesServiceLinkIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleServicesServiceListen(@NotNull OapModuleServicesServiceListen o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitModuleServicesServiceListenIdValue(@NotNull OapModuleServicesServiceListenIdValue o) {
     visitCompositeElement(o);
   }
 
@@ -239,16 +155,8 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitModuleServicesServiceParametersIdValue(@NotNull OapModuleServicesServiceParametersIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleServicesServiceRemote(@NotNull OapModuleServicesServiceRemote o) {
     visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitModuleServicesServiceRemoteIdValue(@NotNull OapModuleServicesServiceRemoteIdValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitModuleServicesServiceSupervision(@NotNull OapModuleServicesServiceSupervision o) {
@@ -259,64 +167,28 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitModuleServicesServiceSupervisionEntitiesCronIdValue(@NotNull OapModuleServicesServiceSupervisionEntitiesCronIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleServicesServiceSupervisionEntitiesDelay(@NotNull OapModuleServicesServiceSupervisionEntitiesDelay o) {
     visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitModuleServicesServiceSupervisionEntitiesDelayIdValue(@NotNull OapModuleServicesServiceSupervisionEntitiesDelayIdValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitModuleServicesServiceSupervisionEntitiesSchedule(@NotNull OapModuleServicesServiceSupervisionEntitiesSchedule o) {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitModuleServicesServiceSupervisionEntitiesScheduleIdValue(@NotNull OapModuleServicesServiceSupervisionEntitiesScheduleIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitModuleServicesServiceSupervisionEntitiesSupervise(@NotNull OapModuleServicesServiceSupervisionEntitiesSupervise o) {
     visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitModuleServicesServiceSupervisionEntitiesSuperviseIdValue(@NotNull OapModuleServicesServiceSupervisionEntitiesSuperviseIdValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitModuleServicesServiceSupervisionEntitiesThread(@NotNull OapModuleServicesServiceSupervisionEntitiesThread o) {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitModuleServicesServiceSupervisionEntitiesThreadIdValue(@NotNull OapModuleServicesServiceSupervisionEntitiesThreadIdValue o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitModuleServicesServiceSupervisionIdValue(@NotNull OapModuleServicesServiceSupervisionIdValue o) {
-    visitCompositeElement(o);
+  public void visitModuleServicesServiceWshandler(@NotNull OapModuleServicesServiceWshandler o) {
+    visitKeyValuePairWithIndentNormal(o);
   }
 
   public void visitModuleServicesServiceWsservice(@NotNull OapModuleServicesServiceWsservice o) {
     visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitModuleServicesServiceWsserviceIdValue(@NotNull OapModuleServicesServiceWsserviceIdValue o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitNl(@NotNull OapNl o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitNumberValue(@NotNull OapNumberValue o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitParameterIdValueOrPath(@NotNull OapParameterIdValueOrPath o) {
-    visitCompositeElement(o);
   }
 
   public void visitParameterKeyValue(@NotNull OapParameterKeyValue o) {
@@ -335,28 +207,56 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitParametersReference(@NotNull OapParametersReference o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitPathParametersFunction(@NotNull OapPathParametersFunction o) {
-    visitCompositeElement(o);
-  }
-
-  public void visitPathParametersFunctionBody(@NotNull OapPathParametersFunctionBody o) {
-    visitCompositeElement(o);
-  }
-
   public void visitReferenceKernelValue(@NotNull OapReferenceKernelValue o) {
     visitValue(o);
+  }
+
+  public void visitReferenceKernelValueIn(@NotNull OapReferenceKernelValueIn o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitReferenceModulesName(@NotNull OapReferenceModulesName o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitReferenceModulesServiceName(@NotNull OapReferenceModulesServiceName o) {
+    visitCompositeElement(o);
   }
 
   public void visitReferenceModulesValue(@NotNull OapReferenceModulesValue o) {
     visitValue(o);
   }
 
+  public void visitReferenceModulesValueIn(@NotNull OapReferenceModulesValueIn o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitReferenceServicesIn(@NotNull OapReferenceServicesIn o) {
+    visitCompositeElement(o);
+  }
+
   public void visitReferenceServicesValue(@NotNull OapReferenceServicesValue o) {
     visitValue(o);
+  }
+
+  public void visitReferenceTypeKernel(@NotNull OapReferenceTypeKernel o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitReferenceTypeModules(@NotNull OapReferenceTypeModules o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitReferenceTypeServices(@NotNull OapReferenceTypeServices o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitReferenceTypeServicesProperty(@NotNull OapReferenceTypeServicesProperty o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitReferenceTypeServicesSelf(@NotNull OapReferenceTypeServicesSelf o) {
+    visitCompositeElement(o);
   }
 
   public void visitRemoteEntries(@NotNull OapRemoteEntries o) {
@@ -367,20 +267,12 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitRemoteNameIdValue(@NotNull OapRemoteNameIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitRemoteObject(@NotNull OapRemoteObject o) {
     visitCompositeElement(o);
   }
 
   public void visitRemoteSerialization(@NotNull OapRemoteSerialization o) {
     visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitRemoteSerializationIdValue(@NotNull OapRemoteSerializationIdValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitRemoteTimeout(@NotNull OapRemoteTimeout o) {
@@ -395,36 +287,36 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitRemoteUrlIdValue(@NotNull OapRemoteUrlIdValue o) {
+  public void visitServiceName(@NotNull OapServiceName o) {
     visitCompositeElement(o);
   }
 
-  public void visitStringValue(@NotNull OapStringValue o) {
-    visitValue(o);
+  public void visitWshandlerBlocking(@NotNull OapWshandlerBlocking o) {
+    visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitUnquotedstringValue(@NotNull OapUnquotedstringValue o) {
+  public void visitWshandlerCompression(@NotNull OapWshandlerCompression o) {
+    visitKeyValuePairWithIndentNormal(o);
+  }
+
+  public void visitWshandlerEntries(@NotNull OapWshandlerEntries o) {
     visitCompositeElement(o);
   }
 
-  public void visitWspath(@NotNull OapWspath o) {
+  public void visitWshandlerObject(@NotNull OapWshandlerObject o) {
     visitCompositeElement(o);
+  }
+
+  public void visitWsserviceEnabled(@NotNull OapWsserviceEnabled o) {
+    visitKeyValuePairWithIndentNormal(o);
   }
 
   public void visitWsserviceEntries(@NotNull OapWsserviceEntries o) {
     visitCompositeElement(o);
   }
 
-  public void visitWsserviceInterceptor(@NotNull OapWsserviceInterceptor o) {
-    visitCompositeElement(o);
-  }
-
   public void visitWsserviceInterceptors(@NotNull OapWsserviceInterceptors o) {
     visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitWsserviceInterceptorsIdValue(@NotNull OapWsserviceInterceptorsIdValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitWsserviceObject(@NotNull OapWsserviceObject o) {
@@ -435,24 +327,12 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitWsservicePathIdValue(@NotNull OapWsservicePathIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitWsservicePort(@NotNull OapWsservicePort o) {
     visitKeyValuePairWithIndentNormal(o);
   }
 
-  public void visitWsservicePortIdValue(@NotNull OapWsservicePortIdValue o) {
-    visitCompositeElement(o);
-  }
-
   public void visitWsserviceSessionAware(@NotNull OapWsserviceSessionAware o) {
     visitKeyValuePairWithIndentNormal(o);
-  }
-
-  public void visitWsserviceSessionAwareIdValue(@NotNull OapWsserviceSessionAwareIdValue o) {
-    visitCompositeElement(o);
   }
 
   public void visitIndentNormal(@NotNull IndentNormal o) {

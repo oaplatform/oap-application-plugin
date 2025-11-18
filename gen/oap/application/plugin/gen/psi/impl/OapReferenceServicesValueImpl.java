@@ -29,6 +29,12 @@ public class OapReferenceServicesValueImpl extends OapCompositeElementImpl imple
   }
 
   @Override
+  @Nullable
+  public OapReferenceServicesIn getReferenceServicesIn() {
+    return PsiTreeUtil.getChildOfType(this, OapReferenceServicesIn.class);
+  }
+
+  @Override
   @NotNull
   public PsiElement getLeftangle() {
     return notNullChild(findChildByType(OAP_LEFTANGLE));

@@ -29,21 +29,21 @@ public class OapRemoteUrlImpl extends OapCompositeElementImpl implements OapRemo
   }
 
   @Override
-  @NotNull
-  public OapRemoteUrlIdValue getRemoteUrlIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapRemoteUrlIdValue.class));
-  }
-
-  @Override
-  @Nullable
-  public OapStringValue getStringValue() {
-    return PsiTreeUtil.getChildOfType(this, OapStringValue.class);
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdUrl() {
+    return notNullChild(findChildByType(OAP_ID_URL));
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getKeyValue() {
+    return findChildByType(OAP_KEY_VALUE);
   }
 
 }

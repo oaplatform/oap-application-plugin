@@ -35,15 +35,15 @@ public class OapModuleServicesServiceSupervisionEntitiesThreadImpl extends OapCo
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceSupervisionEntitiesThreadIdValue getModuleServicesServiceSupervisionEntitiesThreadIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceSupervisionEntitiesThreadIdValue.class));
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdThread() {
+    return notNullChild(findChildByType(OAP_ID_THREAD));
   }
 
 }

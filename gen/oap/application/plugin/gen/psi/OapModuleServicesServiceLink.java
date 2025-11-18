@@ -15,6 +15,6 @@ public interface OapModuleServicesServiceLink extends OapKeyValuePairWithIndentN
   OapModuleServicesServiceLinkFieldObject getModuleServicesServiceLinkFieldObject();
 
   @NotNull
-  OapModuleServicesServiceLinkIdValue getModuleServicesServiceLinkIdValue();
+  PsiElement getIdLink();
 
 }

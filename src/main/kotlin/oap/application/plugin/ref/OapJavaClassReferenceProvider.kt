@@ -3,7 +3,7 @@ package oap.application.plugin.ref
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReference
 import com.intellij.psi.impl.source.resolve.reference.impl.providers.JavaClassReferenceProvider
-import oap.application.plugin.gen.psi.OapClassValue
+import oap.application.plugin.gen.psi.OapClassNamePsi
 
 class OapJavaClassReferenceProvider : JavaClassReferenceProvider() {
     init {
@@ -11,7 +11,7 @@ class OapJavaClassReferenceProvider : JavaClassReferenceProvider() {
     }
 
     override fun getReferencesByString(str: String, position: PsiElement, offsetInPosition: Int): Array<PsiReference> {
-        if (position is OapClassValue) {
+        if (position is OapClassNamePsi) {
             return super.getReferencesByString(str, position, offsetInPosition)
         } else {
             return PsiReference.EMPTY_ARRAY;

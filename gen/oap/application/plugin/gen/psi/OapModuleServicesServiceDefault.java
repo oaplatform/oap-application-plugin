@@ -8,13 +8,13 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapModuleServicesServiceDefault extends OapCompositeElement {
 
-  @NotNull
-  OapModuleServicesServiceDefaultIdValue getModuleServicesServiceDefaultIdValue();
-
   @Nullable
   OapReferenceModulesValue getReferenceModulesValue();
 
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdDefault();
 
 }

@@ -30,8 +30,8 @@ public class OapReferenceKernelValueImpl extends OapCompositeElementImpl impleme
 
   @Override
   @Nullable
-  public PsiElement getDot() {
-    return findChildByType(OAP_DOT);
+  public OapReferenceKernelValueIn getReferenceKernelValueIn() {
+    return PsiTreeUtil.getChildOfType(this, OapReferenceKernelValueIn.class);
   }
 
   @Override

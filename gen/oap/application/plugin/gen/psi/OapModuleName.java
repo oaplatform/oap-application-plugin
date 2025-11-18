@@ -4,19 +4,11 @@ package oap.application.plugin.gen.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import oap.application.plugin.psi.OapKeyValuePair;
-import com.intellij.psi.StubBasedPsiElement;
-import oap.application.plugin.stub.OapModuleNameStub;
+import oap.application.plugin.psi.OapCompositeElement;
 
-public interface OapModuleName extends OapKeyValuePair, StubBasedPsiElement<OapModuleNameStub> {
-
-  @NotNull
-  OapModuleNameIdValue getModuleNameIdValue();
+public interface OapModuleName extends OapCompositeElement {
 
   @Nullable
-  OapModuleNameValue getModuleNameValue();
-
-  @Nullable
-  PsiElement getEq();
+  PsiElement getKeyValue();
 
 }

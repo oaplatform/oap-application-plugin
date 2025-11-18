@@ -1,0 +1,19 @@
+name = module-enabled-eq-error
+
+enabled =
+-----
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OapModuleNameImpl(OAP_MODULE_NAME)
+      PsiElement(key_value)('module-enabled-eq-error')
+  PsiWhiteSpace('\n\n')
+  OapModuleEnabledImpl(OAP_MODULE_ENABLED)
+    PsiElement(enabled)('enabled')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiErrorElement:bool expected
+      <empty list>

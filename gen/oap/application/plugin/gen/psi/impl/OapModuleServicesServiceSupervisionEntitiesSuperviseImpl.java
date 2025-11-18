@@ -35,15 +35,15 @@ public class OapModuleServicesServiceSupervisionEntitiesSuperviseImpl extends Oa
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceSupervisionEntitiesSuperviseIdValue getModuleServicesServiceSupervisionEntitiesSuperviseIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceSupervisionEntitiesSuperviseIdValue.class));
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdSupervise() {
+    return notNullChild(findChildByType(OAP_ID_SUPERVISE));
   }
 
 }

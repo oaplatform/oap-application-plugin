@@ -8,16 +8,13 @@ import oap.application.plugin.psi.IndentNormal;
 
 public interface OapParametersArrayItem extends IndentNormal {
 
+  @Nullable
+  OapAnyReference getAnyReference();
+
   @NotNull
   List<OapIdValue> getIdValueList();
 
   @Nullable
   OapParametersObject getParametersObject();
-
-  @Nullable
-  OapParametersReference getParametersReference();
-
-  @NotNull
-  List<OapStringValue> getStringValueList();
 
 }

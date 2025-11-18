@@ -1,8 +1,8 @@
 plugins {
     id("java")
     id("idea")
-    id("org.jetbrains.kotlin.jvm") version "2.1.0"
-    id("org.jetbrains.intellij.platform") version "2.7.1"
+    id("org.jetbrains.kotlin.jvm") version "2.2.21"
+    id("org.jetbrains.intellij.platform") version "2.10.4"
 }
 
 group = "oap"
@@ -36,6 +36,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.opentest4j:opentest4j:1.3.0")
+    testImplementation("org.assertj:assertj-core:3.27.6")
 }
 
 intellijPlatform {

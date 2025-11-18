@@ -30,20 +30,8 @@ public class OapConfigObjectImpl extends OapCompositeElementImpl implements OapC
 
   @Override
   @NotNull
-  public List<OapConfigurationsInclude> getConfigurationsIncludeList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapConfigurationsInclude.class);
-  }
-
-  @Override
-  @NotNull
-  public List<OapKeyValue> getKeyValueList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapKeyValue.class);
-  }
-
-  @Override
-  @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
+  public List<OapConfigurationKeyValuePair> getConfigurationKeyValuePairList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapConfigurationKeyValuePair.class);
   }
 
   @Override

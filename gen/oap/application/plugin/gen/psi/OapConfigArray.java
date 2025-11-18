@@ -12,9 +12,6 @@ public interface OapConfigArray extends OapCompositeElement {
   List<OapConfigArrayObject> getConfigArrayObjectList();
 
   @NotNull
-  List<OapNl> getNlList();
-
-  @NotNull
   PsiElement getLeftbracket();
 
   @Nullable

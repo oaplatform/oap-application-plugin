@@ -15,6 +15,6 @@ public interface OapModuleServicesServiceListen extends OapCompositeElement {
   OapModuleServicesServiceLinkFieldObject getModuleServicesServiceLinkFieldObject();
 
   @NotNull
-  OapModuleServicesServiceListenIdValue getModuleServicesServiceListenIdValue();
+  PsiElement getIdListen();
 
 }

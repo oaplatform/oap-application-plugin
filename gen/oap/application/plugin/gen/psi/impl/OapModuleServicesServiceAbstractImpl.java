@@ -35,15 +35,15 @@ public class OapModuleServicesServiceAbstractImpl extends OapCompositeElementImp
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceAbstractIdValue getModuleServicesServiceAbstractIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceAbstractIdValue.class));
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdAbstract() {
+    return notNullChild(findChildByType(OAP_ID_ABSTRACT));
   }
 
 }

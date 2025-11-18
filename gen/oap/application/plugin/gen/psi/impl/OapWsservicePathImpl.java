@@ -29,27 +29,15 @@ public class OapWsservicePathImpl extends OapCompositeElementImpl implements Oap
   }
 
   @Override
-  @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
-  }
-
-  @Override
-  @NotNull
-  public List<OapWspath> getWspathList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapWspath.class);
-  }
-
-  @Override
-  @NotNull
-  public OapWsservicePathIdValue getWsservicePathIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapWsservicePathIdValue.class));
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdPath() {
+    return notNullChild(findChildByType(OAP_ID_PATH));
   }
 
   @Override

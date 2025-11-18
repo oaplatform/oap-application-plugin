@@ -35,15 +35,15 @@ public class OapWsserviceSessionAwareImpl extends OapCompositeElementImpl implem
   }
 
   @Override
-  @NotNull
-  public OapWsserviceSessionAwareIdValue getWsserviceSessionAwareIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapWsserviceSessionAwareIdValue.class));
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdSessionaware() {
+    return notNullChild(findChildByType(OAP_ID_SESSIONAWARE));
   }
 
 }

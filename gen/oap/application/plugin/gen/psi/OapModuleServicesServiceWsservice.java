@@ -11,10 +11,10 @@ public interface OapModuleServicesServiceWsservice extends OapKeyValuePairWithIn
   @Nullable
   OapDotWsservicePath getDotWsservicePath();
 
-  @NotNull
-  OapModuleServicesServiceWsserviceIdValue getModuleServicesServiceWsserviceIdValue();
-
   @Nullable
   OapWsserviceObject getWsserviceObject();
+
+  @NotNull
+  PsiElement getIdWsService();
 
 }

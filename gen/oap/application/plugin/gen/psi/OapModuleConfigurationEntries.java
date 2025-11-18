@@ -8,13 +8,10 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapModuleConfigurationEntries extends OapCompositeElement {
 
-  @NotNull
+  @Nullable
   OapModuleConfigurationEntriesConfig getModuleConfigurationEntriesConfig();
 
-  @NotNull
+  @Nullable
   OapModuleConfigurationEntriesLoader getModuleConfigurationEntriesLoader();
-
-  @NotNull
-  OapNl getNl();
 
 }

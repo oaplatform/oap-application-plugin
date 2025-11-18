@@ -30,20 +30,14 @@ public class OapModuleServicesImpl extends OapCompositeElementImpl implements Oa
 
   @Override
   @NotNull
-  public OapModuleServicesIdValue getModuleServicesIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesIdValue.class));
-  }
-
-  @Override
-  @NotNull
   public List<OapModuleServicesService> getModuleServicesServiceList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleServicesService.class);
   }
 
   @Override
-  @Nullable
-  public OapNl getNl() {
-    return PsiTreeUtil.getChildOfType(this, OapNl.class);
+  @NotNull
+  public PsiElement getIdServices() {
+    return notNullChild(findChildByType(OAP_ID_SERVICES));
   }
 
   @Override

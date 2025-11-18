@@ -8,16 +8,16 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapModuleDependsOn extends OapCompositeElement {
 
-  @NotNull
-  OapModuleDependsOnIdValue getModuleDependsOnIdValue();
-
-  @NotNull
-  List<OapModuleDependsOnModuleName> getModuleDependsOnModuleNameList();
-
-  @NotNull
-  List<OapNl> getNlList();
-
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdDependsOn();
+
+  @Nullable
+  PsiElement getLeftbracket();
+
+  @Nullable
+  PsiElement getRightbracket();
 
 }

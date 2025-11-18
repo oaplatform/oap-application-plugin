@@ -7,10 +7,8 @@ import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.PsiWhiteSpace
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.refactoring.extractMethod.newImpl.ExtractMethodHelper.addSiblingAfter
-import oap.application.plugin.gen.psi.OapClassValue
+import oap.application.plugin.gen.psi.OapClassNamePsi
 import oap.application.plugin.gen.psi.OapIdValue
-import oap.application.plugin.psi.OapCompositeElement
-import oap.application.plugin.psi.OapValue
 
 interface OapKeyValuePair : PsiElement, OapCompositeElement, PsiNamedElement {
     fun getId(): OapIdValue {
@@ -28,7 +26,7 @@ interface OapKeyValuePair : PsiElement, OapCompositeElement, PsiNamedElement {
     fun replaceValue(newKeyValue: OapKeyValuePair) {
         val error: PsiElement? = _findChildByClass(PsiErrorElement::class.java)
         if (error != null) {
-            val clazz: OapClassValue = newKeyValue._findChildByClass(OapClassValue::class.java)!!
+            val clazz: OapClassNamePsi = newKeyValue._findChildByClass(OapClassNamePsi::class.java)!!
             while (clazz.nextSibling != null) {
                 clazz.nextSibling.delete()
             }
@@ -39,8 +37,8 @@ interface OapKeyValuePair : PsiElement, OapCompositeElement, PsiNamedElement {
             }
             error.delete()
         } else {
-            val clazz: OapClassValue = newKeyValue._findChildByClass(OapClassValue::class.java)!!
-            _findChildByClass(OapClassValue::class.java)!!.replace(clazz)
+            val clazz: OapClassNamePsi = newKeyValue._findChildByClass(OapClassNamePsi::class.java)!!
+            _findChildByClass(OapClassNamePsi::class.java)!!.replace(clazz)
         }
     }
 

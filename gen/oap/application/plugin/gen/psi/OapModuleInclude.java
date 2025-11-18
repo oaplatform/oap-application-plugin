@@ -8,8 +8,14 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapModuleInclude extends OapCompositeElement {
 
+  @NotNull
+  PsiElement getIdInclude();
+
   @Nullable
-  OapStringValue getStringValue();
+  PsiElement getIdRequired();
+
+  @Nullable
+  PsiElement getIncludeResourceName();
 
   @Nullable
   PsiElement getLeftparen();

@@ -8,9 +8,6 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapWsserviceObject extends OapCompositeElement {
 
-  @NotNull
-  List<OapNl> getNlList();
-
   @Nullable
   OapWsserviceEntries getWsserviceEntries();
 

@@ -23,14 +23,11 @@ public interface OapModuleServicesServiceSupervision extends OapKeyValuePairWith
   @NotNull
   List<OapModuleServicesServiceSupervisionEntitiesThread> getModuleServicesServiceSupervisionEntitiesThreadList();
 
-  @NotNull
-  OapModuleServicesServiceSupervisionIdValue getModuleServicesServiceSupervisionIdValue();
-
-  @NotNull
-  List<OapNl> getNlList();
-
   @Nullable
   PsiElement getDot();
+
+  @NotNull
+  PsiElement getIdSupervision();
 
   @Nullable
   PsiElement getLeftbrace();

@@ -9,7 +9,7 @@ import oap.application.plugin.psi.OapValue;
 public interface OapReferenceKernelValue extends OapValue {
 
   @Nullable
-  PsiElement getDot();
+  OapReferenceKernelValueIn getReferenceKernelValueIn();
 
   @NotNull
   PsiElement getLeftangle();

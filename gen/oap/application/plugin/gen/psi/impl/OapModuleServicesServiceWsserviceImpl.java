@@ -35,15 +35,15 @@ public class OapModuleServicesServiceWsserviceImpl extends OapCompositeElementIm
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceWsserviceIdValue getModuleServicesServiceWsserviceIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceWsserviceIdValue.class));
-  }
-
-  @Override
   @Nullable
   public OapWsserviceObject getWsserviceObject() {
     return PsiTreeUtil.getChildOfType(this, OapWsserviceObject.class);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdWsService() {
+    return notNullChild(findChildByType(OAP_ID_WS_SERVICE));
   }
 
 }

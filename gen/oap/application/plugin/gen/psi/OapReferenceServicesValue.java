@@ -8,6 +8,9 @@ import oap.application.plugin.psi.OapValue;
 
 public interface OapReferenceServicesValue extends OapValue {
 
+  @Nullable
+  OapReferenceServicesIn getReferenceServicesIn();
+
   @NotNull
   PsiElement getLeftangle();
 

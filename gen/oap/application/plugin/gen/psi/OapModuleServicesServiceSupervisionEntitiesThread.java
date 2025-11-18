@@ -11,10 +11,10 @@ public interface OapModuleServicesServiceSupervisionEntitiesThread extends OapKe
   @Nullable
   OapBoolValue getBoolValue();
 
-  @NotNull
-  OapModuleServicesServiceSupervisionEntitiesThreadIdValue getModuleServicesServiceSupervisionEntitiesThreadIdValue();
-
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdThread();
 
 }

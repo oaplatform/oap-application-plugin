@@ -10,7 +10,7 @@ import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.parentOfType
-import oap.application.plugin.gen.psi.OapModuleName
+import oap.application.plugin.gen.psi.OapModuleNamePair
 import oap.application.plugin.gen.psi.OapModuleServices
 import oap.application.plugin.gen.psi.OapReferenceModulesValue
 import oap.application.plugin.stub.OapModuleNameIndex
@@ -46,14 +46,14 @@ class ValidReferenceModuleServiceInspection : LocalInspectionTool() {
                     } else {
                         if (referenceModuleName != null) {
                             services = StubIndex
-                                .getElements(OapModuleNameIndex.KEY, referenceModuleName, element.project, GlobalSearchScope.allScope(project), OapModuleName::class.java)
+                                .getElements(OapModuleNameIndex.KEY, referenceModuleName, element.project, GlobalSearchScope.allScope(project), OapModuleNamePair::class.java)
                                 .mapNotNull { PsiTreeUtil.findChildOfType(it.parent, OapModuleServices::class.java) }
                         } else {
                             services = emptyList()
                         }
                     }
 
-                    val serviceNames: List<String> = services.flatMap { it.moduleServicesServiceList.map { it.moduleServicesServiceIdValue.text } }
+                    val serviceNames: List<String> = services.flatMap { it.moduleServicesServiceList.map { it.serviceName.text } }
 
                     if (!serviceNames.contains(referenceServiceName)) {
                         holder.registerProblem(

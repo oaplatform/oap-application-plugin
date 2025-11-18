@@ -29,6 +29,12 @@ public class OapParametersArrayItemImpl extends OapCompositeElementImpl implemen
   }
 
   @Override
+  @Nullable
+  public OapAnyReference getAnyReference() {
+    return PsiTreeUtil.getChildOfType(this, OapAnyReference.class);
+  }
+
+  @Override
   @NotNull
   public List<OapIdValue> getIdValueList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, OapIdValue.class);
@@ -38,18 +44,6 @@ public class OapParametersArrayItemImpl extends OapCompositeElementImpl implemen
   @Nullable
   public OapParametersObject getParametersObject() {
     return PsiTreeUtil.getChildOfType(this, OapParametersObject.class);
-  }
-
-  @Override
-  @Nullable
-  public OapParametersReference getParametersReference() {
-    return PsiTreeUtil.getChildOfType(this, OapParametersReference.class);
-  }
-
-  @Override
-  @NotNull
-  public List<OapStringValue> getStringValueList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapStringValue.class);
   }
 
 }

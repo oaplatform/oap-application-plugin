@@ -43,13 +43,17 @@
         <lang.foldingBuilder language="OAP" implementationClass="oap.application.plugin.misc.OapFoldingBuilder"/>
         <!--        <quoteHandler fileType="OAP" className="org.jetbrains.plugins.oap.editor.OapQuoteHandler"/>-->
 
+        <completion.contributor language="OAP" implementationClass="oap.application.plugin.completion.OapReferenceCompletionContributor" order="first"/>
+        <completion.contributor language="OAP" implementationClass="oap.application.plugin.completion.OapKeywordCompletionContributor" order="last"/>
         <psi.referenceContributor implementation="oap.application.plugin.ref.OapReferenceContributor" language="OAP"/>
         <psi.referenceContributor
                 language="OAP"
                 implementation="oap.application.plugin.ref.OapJavaReferenceContributor"/>
 
-        <lang.elementManipulator forClass="org.jetbrains.plugins.oap.gen.psi.OapClassValue"
-                                 implementationClass="org.jetbrains.plugins.oap.manipulators.OapValueManipulator"/>
+        <lang.elementManipulator forClass="oap.application.plugin.gen.psi.OapClassNamePsi"
+                                 implementationClass="oap.application.plugin.manipulators.OapValueManipulator"/>
+        <lang.elementManipulator forClass="oap.application.plugin.gen.psi.OapModuleName"
+                                 implementationClass="oap.application.plugin.manipulators.OapModuleNameManipulator"/>
 
 
         <breadcrumbsInfoProvider implementation="oap.application.plugin.misc.OapBreadcrumbsInfoProvider"/>

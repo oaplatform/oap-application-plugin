@@ -9,40 +9,25 @@ import oap.application.plugin.psi.OapCompositeElement;
 public interface OapParameterKeyValue extends OapCompositeElement {
 
   @Nullable
+  OapAnyReference getAnyReference();
+
+  @Nullable
   OapBoolValue getBoolValue();
 
   @Nullable
-  OapClassPathParametersFunction getClassPathParametersFunction();
+  OapFunction getFunction();
 
   @Nullable
-  OapDurationValue getDurationValue();
+  OapIdValue getIdValue();
 
   @Nullable
-  OapJsonParametersFunction getJsonParametersFunction();
-
-  @Nullable
-  OapNumberValue getNumberValue();
-
-  @NotNull
-  OapParameterIdValueOrPath getParameterIdValueOrPath();
+  OapModuleInclude getModuleInclude();
 
   @Nullable
   OapParametersArray getParametersArray();
 
   @Nullable
   OapParametersObject getParametersObject();
-
-  @Nullable
-  OapParametersReference getParametersReference();
-
-  @Nullable
-  OapPathParametersFunction getPathParametersFunction();
-
-  @Nullable
-  OapStringValue getStringValue();
-
-  @Nullable
-  OapUnquotedstringValue getUnquotedstringValue();
 
   @Nullable
   PsiElement getEq();

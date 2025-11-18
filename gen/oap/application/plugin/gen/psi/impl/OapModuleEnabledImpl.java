@@ -30,14 +30,20 @@ public class OapModuleEnabledImpl extends OapCompositeElementImpl implements Oap
 
   @Override
   @Nullable
-  public OapBoolValue getBoolValue() {
-    return PsiTreeUtil.getChildOfType(this, OapBoolValue.class);
+  public PsiElement getBool() {
+    return findChildByType(OAP_BOOL);
   }
 
   @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdEnabled() {
+    return notNullChild(findChildByType(OAP_ID_ENABLED));
   }
 
 }

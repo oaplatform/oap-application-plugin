@@ -8,20 +8,14 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static oap.application.plugin.gen.OapTypes.*;
-import oap.application.plugin.psi.impl.OapModuleNameBaseImpl;
+import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
-import oap.application.plugin.stub.OapModuleNameStub;
-import com.intellij.psi.stubs.IStubElementType;
 
-public class OapModuleNameImpl extends OapModuleNameBaseImpl implements OapModuleName {
+public class OapModuleNameImpl extends OapCompositeElementImpl implements OapModuleName {
 
   public OapModuleNameImpl(@NotNull ASTNode node) {
     super(node);
-  }
-
-  public OapModuleNameImpl(@NotNull OapModuleNameStub stub, @NotNull IStubElementType<?, ?> type) {
-    super(stub, type);
   }
 
   public void accept(@NotNull OapVisitor visitor) {
@@ -35,21 +29,9 @@ public class OapModuleNameImpl extends OapModuleNameBaseImpl implements OapModul
   }
 
   @Override
-  @NotNull
-  public OapModuleNameIdValue getModuleNameIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleNameIdValue.class));
-  }
-
-  @Override
   @Nullable
-  public OapModuleNameValue getModuleNameValue() {
-    return PsiTreeUtil.getChildOfType(this, OapModuleNameValue.class);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  public PsiElement getKeyValue() {
+    return findChildByType(OAP_KEY_VALUE);
   }
 
 }

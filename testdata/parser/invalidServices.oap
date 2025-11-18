@@ -1,36 +1,30 @@
-name = test
+name = invalidServices
 services {
 a = b
 }
 -----
 OAP_FILE
-  OAP_MODULE_NAME
-    OapModuleNameIdValueImpl(OAP_MODULE_NAME_ID_VALUE)
-      PsiElement(letters)('name')
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameValueImpl(OAP_MODULE_NAME_VALUE)
-      OapIdValueImpl(OAP_ID_VALUE)
-        PsiElement(letters)('test')
-  OapNlImpl(OAP_NL)
-    PsiElement(nextline)('\n')
+    OapModuleNameImpl(OAP_MODULE_NAME)
+      PsiElement(key_value)('invalidServices')
+  PsiWhiteSpace('\n')
   OapModuleServicesImpl(OAP_MODULE_SERVICES)
-    OapModuleServicesIdValueImpl(OAP_MODULE_SERVICES_ID_VALUE)
-      PsiElement(letters)('services')
+    PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
+    PsiWhiteSpace('\n')
     OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapNlImpl(OAP_NL)
-        PsiElement(nextline)('\n')
-      OapModuleServicesServiceIdValueImpl(OAP_MODULE_SERVICES_SERVICE_ID_VALUE)
-        OapIdValueImpl(OAP_ID_VALUE)
-          PsiElement(letters)('a')
-      PsiWhiteSpace(' ')
-      PsiErrorElement:'=' unexpected
-        PsiElement(=)('=')
-      PsiWhiteSpace(' ')
-      PsiElement(letters)('b')
-    OapNlImpl(OAP_NL)
-      PsiElement(nextline)('\n')
-    PsiElement(})('}')
+      OapServiceNameImpl(OAP_SERVICE_NAME)
+        PsiElement(key_name)('a')
+      PsiErrorElement:'.' or '{' expected, got '='
+        <empty list>
+  PsiWhiteSpace(' ')
+  PsiElement(BAD_CHARACTER)('=')
+  PsiWhiteSpace(' ')
+  PsiElement(key_name)('b')
+  PsiWhiteSpace('\n')
+  PsiElement(})('}')

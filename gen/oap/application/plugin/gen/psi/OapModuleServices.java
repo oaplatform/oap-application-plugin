@@ -9,13 +9,10 @@ import oap.application.plugin.psi.OapKeyValuePair;
 public interface OapModuleServices extends OapKeyValuePair {
 
   @NotNull
-  OapModuleServicesIdValue getModuleServicesIdValue();
-
-  @NotNull
   List<OapModuleServicesService> getModuleServicesServiceList();
 
-  @Nullable
-  OapNl getNl();
+  @NotNull
+  PsiElement getIdServices();
 
   @Nullable
   PsiElement getLeftbrace();

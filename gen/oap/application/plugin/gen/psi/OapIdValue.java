@@ -8,4 +8,13 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapIdValue extends OapCompositeElement {
 
+  @Nullable
+  OapEnvValue getEnvValue();
+
+  @Nullable
+  OapIdValue getIdValue();
+
+  @Nullable
+  PsiElement getKeyValue();
+
 }

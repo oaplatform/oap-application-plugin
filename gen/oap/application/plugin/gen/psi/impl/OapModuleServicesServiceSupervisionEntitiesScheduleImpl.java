@@ -35,15 +35,15 @@ public class OapModuleServicesServiceSupervisionEntitiesScheduleImpl extends Oap
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceSupervisionEntitiesScheduleIdValue getModuleServicesServiceSupervisionEntitiesScheduleIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceSupervisionEntitiesScheduleIdValue.class));
-  }
-
-  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdSchedule() {
+    return notNullChild(findChildByType(OAP_ID_SCHEDULE));
   }
 
 }

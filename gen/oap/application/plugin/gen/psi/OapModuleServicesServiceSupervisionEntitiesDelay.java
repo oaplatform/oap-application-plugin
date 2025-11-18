@@ -9,12 +9,12 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 public interface OapModuleServicesServiceSupervisionEntitiesDelay extends OapKeyValuePairWithIndentNormal {
 
   @Nullable
-  OapDurationValue getDurationValue();
+  PsiElement getEq();
 
   @NotNull
-  OapModuleServicesServiceSupervisionEntitiesDelayIdValue getModuleServicesServiceSupervisionEntitiesDelayIdValue();
+  PsiElement getIdDelay();
 
   @Nullable
-  PsiElement getEq();
+  PsiElement getKeyValue();
 
 }

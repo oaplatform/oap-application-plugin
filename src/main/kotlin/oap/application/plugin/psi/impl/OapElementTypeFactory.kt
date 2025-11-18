@@ -7,7 +7,7 @@ object OapElementTypeFactory {
     @JvmStatic
     fun factory(name: String): IElementType {
         return when (name) {
-            "OAP_MODULE_NAME" -> return OapModuleNameStubElementType(name)
+            "OAP_MODULE_NAME_PAIR" -> return OapModuleNameStubElementType(name)
             else -> throw RuntimeException("Unknown element type: $name")
         }
     }

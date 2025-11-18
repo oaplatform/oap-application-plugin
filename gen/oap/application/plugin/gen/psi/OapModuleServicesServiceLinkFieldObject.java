@@ -12,9 +12,6 @@ public interface OapModuleServicesServiceLinkFieldObject extends OapCompositeEle
   List<OapModuleServicesServiceLinkField> getModuleServicesServiceLinkFieldList();
 
   @NotNull
-  List<OapNl> getNlList();
-
-  @NotNull
   PsiElement getLeftbrace();
 
   @Nullable

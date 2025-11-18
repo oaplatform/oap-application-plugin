@@ -1,0 +1,75 @@
+name = ws-service-enabled
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+
+    ws-service {
+        path = mobile-action
+        enabled = false
+    }
+  }
+}
+-----
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OapModuleNameImpl(OAP_MODULE_NAME)
+      PsiElement(key_value)('ws-service-enabled')
+  PsiWhiteSpace('\n\n')
+  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
+      OapServiceNameImpl(OAP_SERVICE_NAME)
+        PsiElement(key_name)('test-master')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+          PsiElement(class_name)('oap.application.plugin.TestService')
+      PsiWhiteSpace('\n\n')
+      PsiWhiteSpace('    ')
+      OapModuleServicesServiceWsserviceImpl(OAP_MODULE_SERVICES_SERVICE_WSSERVICE)
+        PsiElement(ws-service)('ws-service')
+        PsiWhiteSpace(' ')
+        OapWsserviceObjectImpl(OAP_WSSERVICE_OBJECT)
+          PsiElement({)('{')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('        ')
+          OapWsserviceEntriesImpl(OAP_WSSERVICE_ENTRIES)
+            OapWsservicePathImpl(OAP_WSSERVICE_PATH)
+              PsiElement(path)('path')
+              PsiWhiteSpace(' ')
+              PsiElement(=)('=')
+              PsiWhiteSpace(' ')
+              PsiElement(key_value)('mobile-action')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('        ')
+            OapWsserviceEnabledImpl(OAP_WSSERVICE_ENABLED)
+              PsiElement(enabled)('enabled')
+              PsiWhiteSpace(' ')
+              PsiElement(=)('=')
+              PsiWhiteSpace(' ')
+              OapBoolValueImpl(OAP_BOOL_VALUE)
+                PsiElement(bool)('false')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('    ')
+          PsiElement(})('}')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

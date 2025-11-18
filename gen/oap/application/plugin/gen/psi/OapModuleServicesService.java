@@ -20,9 +20,6 @@ public interface OapModuleServicesService extends OapCompositeElement {
   @Nullable
   OapModuleServicesServiceEnabled getModuleServicesServiceEnabled();
 
-  @NotNull
-  OapModuleServicesServiceIdValue getModuleServicesServiceIdValue();
-
   @Nullable
   OapModuleServicesServiceImplementation getModuleServicesServiceImplementation();
 
@@ -42,10 +39,13 @@ public interface OapModuleServicesService extends OapCompositeElement {
   OapModuleServicesServiceSupervision getModuleServicesServiceSupervision();
 
   @Nullable
+  OapModuleServicesServiceWshandler getModuleServicesServiceWshandler();
+
+  @Nullable
   OapModuleServicesServiceWsservice getModuleServicesServiceWsservice();
 
   @NotNull
-  List<OapNl> getNlList();
+  OapServiceName getServiceName();
 
   @Nullable
   PsiElement getDot();

@@ -29,27 +29,27 @@ public class OapModuleDependsOnImpl extends OapCompositeElementImpl implements O
   }
 
   @Override
-  @NotNull
-  public OapModuleDependsOnIdValue getModuleDependsOnIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleDependsOnIdValue.class));
+  @Nullable
+  public PsiElement getEq() {
+    return findChildByType(OAP_EQ);
   }
 
   @Override
   @NotNull
-  public List<OapModuleDependsOnModuleName> getModuleDependsOnModuleNameList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleDependsOnModuleName.class);
-  }
-
-  @Override
-  @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
+  public PsiElement getIdDependsOn() {
+    return notNullChild(findChildByType(OAP_ID_DEPENDS_ON));
   }
 
   @Override
   @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  public PsiElement getLeftbracket() {
+    return findChildByType(OAP_LEFTBRACKET);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getRightbracket() {
+    return findChildByType(OAP_RIGHTBRACKET);
   }
 
 }

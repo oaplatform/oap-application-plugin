@@ -30,38 +30,32 @@ public class OapParameterKeyValueImpl extends OapModuleServicesServiceParameterK
 
   @Override
   @Nullable
+  public OapAnyReference getAnyReference() {
+    return PsiTreeUtil.getChildOfType(this, OapAnyReference.class);
+  }
+
+  @Override
+  @Nullable
   public OapBoolValue getBoolValue() {
     return PsiTreeUtil.getChildOfType(this, OapBoolValue.class);
   }
 
   @Override
   @Nullable
-  public OapClassPathParametersFunction getClassPathParametersFunction() {
-    return PsiTreeUtil.getChildOfType(this, OapClassPathParametersFunction.class);
+  public OapFunction getFunction() {
+    return PsiTreeUtil.getChildOfType(this, OapFunction.class);
   }
 
   @Override
   @Nullable
-  public OapDurationValue getDurationValue() {
-    return PsiTreeUtil.getChildOfType(this, OapDurationValue.class);
+  public OapIdValue getIdValue() {
+    return PsiTreeUtil.getChildOfType(this, OapIdValue.class);
   }
 
   @Override
   @Nullable
-  public OapJsonParametersFunction getJsonParametersFunction() {
-    return PsiTreeUtil.getChildOfType(this, OapJsonParametersFunction.class);
-  }
-
-  @Override
-  @Nullable
-  public OapNumberValue getNumberValue() {
-    return PsiTreeUtil.getChildOfType(this, OapNumberValue.class);
-  }
-
-  @Override
-  @NotNull
-  public OapParameterIdValueOrPath getParameterIdValueOrPath() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapParameterIdValueOrPath.class));
+  public OapModuleInclude getModuleInclude() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleInclude.class);
   }
 
   @Override
@@ -74,30 +68,6 @@ public class OapParameterKeyValueImpl extends OapModuleServicesServiceParameterK
   @Nullable
   public OapParametersObject getParametersObject() {
     return PsiTreeUtil.getChildOfType(this, OapParametersObject.class);
-  }
-
-  @Override
-  @Nullable
-  public OapParametersReference getParametersReference() {
-    return PsiTreeUtil.getChildOfType(this, OapParametersReference.class);
-  }
-
-  @Override
-  @Nullable
-  public OapPathParametersFunction getPathParametersFunction() {
-    return PsiTreeUtil.getChildOfType(this, OapPathParametersFunction.class);
-  }
-
-  @Override
-  @Nullable
-  public OapStringValue getStringValue() {
-    return PsiTreeUtil.getChildOfType(this, OapStringValue.class);
-  }
-
-  @Override
-  @Nullable
-  public OapUnquotedstringValue getUnquotedstringValue() {
-    return PsiTreeUtil.getChildOfType(this, OapUnquotedstringValue.class);
   }
 
   @Override

@@ -1,0 +1,19 @@
+name =
+services {
+}
+-----
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace('\n')
+    OapModuleNameImpl(OAP_MODULE_NAME)
+      PsiErrorElement:key_value expected, got 'services'
+        <empty list>
+  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

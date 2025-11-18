@@ -53,12 +53,6 @@ public class OapModuleServicesServiceImpl extends OapModuleServicesServiceMixin 
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceIdValue getModuleServicesServiceIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceIdValue.class));
-  }
-
-  @Override
   @Nullable
   public OapModuleServicesServiceImplementation getModuleServicesServiceImplementation() {
     return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceImplementation.class);
@@ -96,14 +90,20 @@ public class OapModuleServicesServiceImpl extends OapModuleServicesServiceMixin 
 
   @Override
   @Nullable
+  public OapModuleServicesServiceWshandler getModuleServicesServiceWshandler() {
+    return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceWshandler.class);
+  }
+
+  @Override
+  @Nullable
   public OapModuleServicesServiceWsservice getModuleServicesServiceWsservice() {
     return PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceWsservice.class);
   }
 
   @Override
   @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
+  public OapServiceName getServiceName() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapServiceName.class));
   }
 
   @Override

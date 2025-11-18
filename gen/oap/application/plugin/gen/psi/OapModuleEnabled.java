@@ -9,9 +9,12 @@ import oap.application.plugin.psi.OapCompositeElement;
 public interface OapModuleEnabled extends OapCompositeElement {
 
   @Nullable
-  OapBoolValue getBoolValue();
+  PsiElement getBool();
 
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdEnabled();
 
 }

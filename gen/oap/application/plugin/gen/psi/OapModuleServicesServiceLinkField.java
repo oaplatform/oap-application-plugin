@@ -8,13 +8,13 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapModuleServicesServiceLinkField extends OapCompositeElement {
 
-  @NotNull
-  OapLinkField getLinkField();
-
   @Nullable
   OapReferenceModulesValue getReferenceModulesValue();
 
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getKeyName();
 
 }

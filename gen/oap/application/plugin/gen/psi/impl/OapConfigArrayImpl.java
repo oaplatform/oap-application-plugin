@@ -36,12 +36,6 @@ public class OapConfigArrayImpl extends OapCompositeElementImpl implements OapCo
 
   @Override
   @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
-  }
-
-  @Override
-  @NotNull
   public PsiElement getLeftbracket() {
     return notNullChild(findChildByType(OAP_LEFTBRACKET));
   }

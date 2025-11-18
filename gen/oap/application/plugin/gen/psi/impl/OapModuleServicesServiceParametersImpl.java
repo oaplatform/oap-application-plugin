@@ -29,12 +29,6 @@ public class OapModuleServicesServiceParametersImpl extends OapModuleServicesSer
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceParametersIdValue getModuleServicesServiceParametersIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceParametersIdValue.class));
-  }
-
-  @Override
   @Nullable
   public OapParameterKeyValue getParameterKeyValue() {
     return PsiTreeUtil.getChildOfType(this, OapParameterKeyValue.class);
@@ -50,6 +44,12 @@ public class OapModuleServicesServiceParametersImpl extends OapModuleServicesSer
   @Nullable
   public PsiElement getDot() {
     return findChildByType(OAP_DOT);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdParameters() {
+    return notNullChild(findChildByType(OAP_ID_PARAMETERS));
   }
 
 }

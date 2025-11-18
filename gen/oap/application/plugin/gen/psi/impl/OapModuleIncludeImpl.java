@@ -29,9 +29,21 @@ public class OapModuleIncludeImpl extends OapCompositeElementImpl implements Oap
   }
 
   @Override
+  @NotNull
+  public PsiElement getIdInclude() {
+    return notNullChild(findChildByType(OAP_ID_INCLUDE));
+  }
+
+  @Override
   @Nullable
-  public OapStringValue getStringValue() {
-    return PsiTreeUtil.getChildOfType(this, OapStringValue.class);
+  public PsiElement getIdRequired() {
+    return findChildByType(OAP_ID_REQUIRED);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getIncludeResourceName() {
+    return findChildByType(OAP_INCLUDE_RESOURCE_NAME);
   }
 
   @Override

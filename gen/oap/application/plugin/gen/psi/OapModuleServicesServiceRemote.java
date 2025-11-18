@@ -11,10 +11,10 @@ public interface OapModuleServicesServiceRemote extends OapKeyValuePairWithInden
   @Nullable
   OapDotRemote getDotRemote();
 
-  @NotNull
-  OapModuleServicesServiceRemoteIdValue getModuleServicesServiceRemoteIdValue();
-
   @Nullable
   OapRemoteObject getRemoteObject();
+
+  @NotNull
+  PsiElement getIdRemote();
 
 }

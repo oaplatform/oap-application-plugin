@@ -30,12 +30,6 @@ public class OapParametersArrayImpl extends OapCompositeElementImpl implements O
 
   @Override
   @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
-  }
-
-  @Override
-  @NotNull
   public List<OapParametersArrayItem> getParametersArrayItemList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, OapParametersArrayItem.class);
   }

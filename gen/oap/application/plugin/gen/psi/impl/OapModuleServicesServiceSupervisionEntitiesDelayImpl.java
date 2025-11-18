@@ -30,20 +30,20 @@ public class OapModuleServicesServiceSupervisionEntitiesDelayImpl extends OapCom
 
   @Override
   @Nullable
-  public OapDurationValue getDurationValue() {
-    return PsiTreeUtil.getChildOfType(this, OapDurationValue.class);
+  public PsiElement getEq() {
+    return findChildByType(OAP_EQ);
   }
 
   @Override
   @NotNull
-  public OapModuleServicesServiceSupervisionEntitiesDelayIdValue getModuleServicesServiceSupervisionEntitiesDelayIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceSupervisionEntitiesDelayIdValue.class));
+  public PsiElement getIdDelay() {
+    return notNullChild(findChildByType(OAP_ID_DELAY));
   }
 
   @Override
   @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  public PsiElement getKeyValue() {
+    return findChildByType(OAP_KEY_VALUE);
   }
 
 }

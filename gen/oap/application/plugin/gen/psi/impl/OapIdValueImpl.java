@@ -28,4 +28,22 @@ public class OapIdValueImpl extends OapCompositeElementImpl implements OapIdValu
     else super.accept(visitor);
   }
 
+  @Override
+  @Nullable
+  public OapEnvValue getEnvValue() {
+    return PsiTreeUtil.getChildOfType(this, OapEnvValue.class);
+  }
+
+  @Override
+  @Nullable
+  public OapIdValue getIdValue() {
+    return PsiTreeUtil.getChildOfType(this, OapIdValue.class);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getKeyValue() {
+    return findChildByType(OAP_KEY_VALUE);
+  }
+
 }

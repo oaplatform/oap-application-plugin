@@ -30,20 +30,20 @@ public class OapModuleServicesServiceImplementationImpl extends OapModuleService
 
   @Override
   @Nullable
-  public OapClassValue getClassValue() {
-    return PsiTreeUtil.getChildOfType(this, OapClassValue.class);
-  }
-
-  @Override
-  @NotNull
-  public OapModuleServicesServiceImplementationIdValue getModuleServicesServiceImplementationIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceImplementationIdValue.class));
+  public OapClassNamePsi getClassNamePsi() {
+    return PsiTreeUtil.getChildOfType(this, OapClassNamePsi.class);
   }
 
   @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdImplementation() {
+    return notNullChild(findChildByType(OAP_ID_IMPLEMENTATION));
   }
 
 }

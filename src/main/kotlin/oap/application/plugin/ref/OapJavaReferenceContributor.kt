@@ -5,8 +5,7 @@ import com.intellij.patterns.PsiElementPattern
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReferenceContributor
 import com.intellij.psi.PsiReferenceRegistrar
-import oap.application.plugin.gen.psi.OapClassValue
-import oap.application.plugin.ref.OapJavaClassReferenceProvider
+import oap.application.plugin.gen.psi.OapClassNamePsi
 
 class OapJavaReferenceContributor : PsiReferenceContributor() {
     inline private fun <reified T : PsiElement> pattern(): PsiElementPattern.Capture<T> {
@@ -14,6 +13,6 @@ class OapJavaReferenceContributor : PsiReferenceContributor() {
     }
 
     override fun registerReferenceProviders(registrar: PsiReferenceRegistrar) {
-        registrar.registerReferenceProvider(pattern<OapClassValue>(), OapJavaClassReferenceProvider())
+        registrar.registerReferenceProvider(pattern<OapClassNamePsi>(), OapJavaClassReferenceProvider())
     }
 }

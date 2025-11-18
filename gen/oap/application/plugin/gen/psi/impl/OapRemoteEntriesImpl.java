@@ -30,12 +30,6 @@ public class OapRemoteEntriesImpl extends OapCompositeElementImpl implements Oap
 
   @Override
   @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
-  }
-
-  @Override
-  @NotNull
   public List<OapRemoteName> getRemoteNameList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, OapRemoteName.class);
   }

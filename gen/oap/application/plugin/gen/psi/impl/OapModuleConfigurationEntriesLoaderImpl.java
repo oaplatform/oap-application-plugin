@@ -30,20 +30,20 @@ public class OapModuleConfigurationEntriesLoaderImpl extends OapCompositeElement
 
   @Override
   @Nullable
-  public OapClassValue getClassValue() {
-    return PsiTreeUtil.getChildOfType(this, OapClassValue.class);
-  }
-
-  @Override
-  @NotNull
-  public OapModuleConfigurationLoaderIdValue getModuleConfigurationLoaderIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleConfigurationLoaderIdValue.class));
+  public OapClassNamePsi getClassNamePsi() {
+    return PsiTreeUtil.getChildOfType(this, OapClassNamePsi.class);
   }
 
   @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdLoader() {
+    return notNullChild(findChildByType(OAP_ID_LOADER));
   }
 
 }

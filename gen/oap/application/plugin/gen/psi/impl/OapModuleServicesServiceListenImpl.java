@@ -42,8 +42,8 @@ public class OapModuleServicesServiceListenImpl extends OapCompositeElementImpl 
 
   @Override
   @NotNull
-  public OapModuleServicesServiceListenIdValue getModuleServicesServiceListenIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceListenIdValue.class));
+  public PsiElement getIdListen() {
+    return notNullChild(findChildByType(OAP_ID_LISTEN));
   }
 
 }

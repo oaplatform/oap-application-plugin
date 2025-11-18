@@ -8,16 +8,10 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
 public interface OapModuleServicesServiceDependson extends OapKeyValuePairWithIndentNormal {
 
-  @NotNull
-  OapModuleServicesServiceDependsonIdValue getModuleServicesServiceDependsonIdValue();
-
-  @NotNull
-  List<OapModuleServicesServiceIdValue> getModuleServicesServiceIdValueList();
-
-  @NotNull
-  List<OapNl> getNlList();
-
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdDependsOn();
 
 }

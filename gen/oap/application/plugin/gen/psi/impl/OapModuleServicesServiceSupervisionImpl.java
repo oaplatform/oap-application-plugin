@@ -59,21 +59,15 @@ public class OapModuleServicesServiceSupervisionImpl extends OapCompositeElement
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceSupervisionIdValue getModuleServicesServiceSupervisionIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceSupervisionIdValue.class));
-  }
-
-  @Override
-  @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
-  }
-
-  @Override
   @Nullable
   public PsiElement getDot() {
     return findChildByType(OAP_DOT);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdSupervision() {
+    return notNullChild(findChildByType(OAP_ID_SUPERVISION));
   }
 
   @Override

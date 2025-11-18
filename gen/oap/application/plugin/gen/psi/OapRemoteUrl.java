@@ -8,13 +8,13 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
 public interface OapRemoteUrl extends OapKeyValuePairWithIndentNormal {
 
-  @NotNull
-  OapRemoteUrlIdValue getRemoteUrlIdValue();
-
-  @Nullable
-  OapStringValue getStringValue();
-
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdUrl();
+
+  @Nullable
+  PsiElement getKeyValue();
 
 }

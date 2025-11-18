@@ -8,10 +8,13 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
 public interface OapRemoteSerialization extends OapKeyValuePairWithIndentNormal {
 
-  @NotNull
-  OapRemoteSerializationIdValue getRemoteSerializationIdValue();
-
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdSerialization();
+
+  @Nullable
+  PsiElement getKeyValue();
 
 }

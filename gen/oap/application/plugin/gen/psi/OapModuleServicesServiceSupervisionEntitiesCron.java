@@ -9,12 +9,12 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 public interface OapModuleServicesServiceSupervisionEntitiesCron extends OapKeyValuePairWithIndentNormal {
 
   @Nullable
-  OapCronValue getCronValue();
+  PsiElement getEq();
 
   @NotNull
-  OapModuleServicesServiceSupervisionEntitiesCronIdValue getModuleServicesServiceSupervisionEntitiesCronIdValue();
+  PsiElement getIdCron();
 
   @Nullable
-  PsiElement getEq();
+  PsiElement getKeyValue();
 
 }

@@ -8,17 +8,11 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
 public interface OapWsservicePath extends OapKeyValuePairWithIndentNormal {
 
-  @NotNull
-  List<OapNl> getNlList();
-
-  @NotNull
-  List<OapWspath> getWspathList();
-
-  @NotNull
-  OapWsservicePathIdValue getWsservicePathIdValue();
-
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdPath();
 
   @Nullable
   PsiElement getLeftbracket();

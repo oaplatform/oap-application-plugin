@@ -29,15 +29,9 @@ public class OapModuleConfigurationImpl extends OapCompositeElementImpl implemen
   }
 
   @Override
-  @Nullable
-  public OapModuleConfigurationEntries getModuleConfigurationEntries() {
-    return PsiTreeUtil.getChildOfType(this, OapModuleConfigurationEntries.class);
-  }
-
-  @Override
   @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
+  public OapModuleConfigurationEntries getModuleConfigurationEntries() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleConfigurationEntries.class));
   }
 
   @Override

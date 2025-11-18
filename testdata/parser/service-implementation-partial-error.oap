@@ -1,4 +1,4 @@
-name = test
+name = service-implementation-partial-error
 
 services {
 
@@ -11,52 +11,35 @@ services {
 }
 -----
 OAP_FILE
-  OAP_MODULE_NAME
-    OapModuleNameIdValueImpl(OAP_MODULE_NAME_ID_VALUE)
-      PsiElement(letters)('name')
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameValueImpl(OAP_MODULE_NAME_VALUE)
-      OapIdValueImpl(OAP_ID_VALUE)
-        PsiElement(letters)('test')
-  OapNlImpl(OAP_NL)
-    PsiElement(nextline)('\n')
-    PsiElement(nextline)('\n')
+    OapModuleNameImpl(OAP_MODULE_NAME)
+      PsiElement(key_value)('service-implementation-partial-error')
+  PsiWhiteSpace('\n\n')
   OapModuleServicesImpl(OAP_MODULE_SERVICES)
-    OapModuleServicesIdValueImpl(OAP_MODULE_SERVICES_ID_VALUE)
-      PsiElement(letters)('services')
+    PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
+    PsiWhiteSpace('\n\n')
+    PsiWhiteSpace('    ')
     OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapNlImpl(OAP_NL)
-        PsiElement(nextline)('\n')
-        PsiElement(nextline)('\n')
-      PsiWhiteSpace('    ')
-      OapModuleServicesServiceIdValueImpl(OAP_MODULE_SERVICES_SERVICE_ID_VALUE)
-        OapIdValueImpl(OAP_ID_VALUE)
-          PsiElement(letters)('test')
-          PsiElement(-)('-')
-          PsiElement(letters)('service')
+      OapServiceNameImpl(OAP_SERVICE_NAME)
+        PsiElement(key_name)('test-service')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
-      OapNlImpl(OAP_NL)
-        PsiElement(nextline)('\n')
-        PsiElement(nextline)('\n')
+      PsiWhiteSpace('\n\n')
       PsiWhiteSpace('      ')
       OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
-        OapModuleServicesServiceImplementationIdValueImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION_ID_VALUE)
-          PsiElement(letters)('implementation')
+        PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
-        PsiErrorElement:letters expected
+        PsiErrorElement:class_name expected, got '}'
           <empty list>
-      OapNlImpl(OAP_NL)
-        PsiElement(nextline)('\n')
-        PsiElement(nextline)('\n')
+      PsiWhiteSpace('\n\n')
       PsiWhiteSpace('    ')
       PsiElement(})('}')
-    OapNlImpl(OAP_NL)
-      PsiElement(nextline)('\n')
-      PsiElement(nextline)('\n')
+    PsiWhiteSpace('\n\n')
     PsiElement(})('}')

@@ -34,7 +34,7 @@ class OapFormattingBlock(val formatter: OapFormatter, node: ASTNode, val myInden
                 child = child.treeNext
                 continue
             }
-            if (childType == TokenType.WHITE_SPACE || childType == OapTypes.OAP_NEXTLINE || childType == OapTypes.OAP_NL) {
+            if (childType == TokenType.WHITE_SPACE) {
                 child = child.treeNext
                 continue
             }

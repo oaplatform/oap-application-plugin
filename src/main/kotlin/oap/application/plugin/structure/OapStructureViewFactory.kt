@@ -11,11 +11,11 @@ import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
+import oap.application.plugin.gen.psi.OapModuleName
 import oap.application.plugin.gen.psi.OapModuleServicesService
-import oap.application.plugin.psi.OapModuleNameMixin
 import oap.application.plugin.psi.OapModuleServicesServiceMixin
-import org.jetbrains.annotations.Unmodifiable
 import oap.application.plugin.psi.OapPsiFile
+import org.jetbrains.annotations.Unmodifiable
 import javax.swing.Icon
 
 class OapStructureViewFactory : PsiStructureViewFactory {
@@ -67,10 +67,10 @@ class OapStructureViewElement(val e: PsiElement) : PsiTreeElementBase<PsiElement
 
     override fun getPresentableText(): String {
         return when (e) {
-            is OapPsiFile -> PsiTreeUtil.findChildOfType(e, OapModuleNameMixin::class.java)?.getModuleName() ?: "Unknown"
+            is OapPsiFile -> PsiTreeUtil.findChildOfType(e, OapModuleName::class.java)?.text ?: "Unknown"
             is OapModuleServicesServiceMixin -> {
                 val psiClass: PsiClass? = e.getImplementationClass()
-                return e.getServiceName() + (if (psiClass != null) "(${psiClass.qualifiedName})" else "")
+                return e.getServiceName().text + (if (psiClass != null) "(${psiClass.qualifiedName})" else "")
             }
 
             else -> "Unknown"

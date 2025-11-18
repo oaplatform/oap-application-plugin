@@ -29,15 +29,21 @@ public class OapRemoteSerializationImpl extends OapCompositeElementImpl implemen
   }
 
   @Override
+  @Nullable
+  public PsiElement getEq() {
+    return findChildByType(OAP_EQ);
+  }
+
+  @Override
   @NotNull
-  public OapRemoteSerializationIdValue getRemoteSerializationIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapRemoteSerializationIdValue.class));
+  public PsiElement getIdSerialization() {
+    return notNullChild(findChildByType(OAP_ID_SERIALIZATION));
   }
 
   @Override
   @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  public PsiElement getKeyValue() {
+    return findChildByType(OAP_KEY_VALUE);
   }
 
 }

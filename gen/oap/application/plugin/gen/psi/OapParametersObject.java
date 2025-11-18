@@ -9,9 +9,6 @@ import oap.application.plugin.psi.OapCompositeElement;
 public interface OapParametersObject extends OapCompositeElement {
 
   @NotNull
-  List<OapNl> getNlList();
-
-  @NotNull
   List<OapParameterKeyValue> getParameterKeyValueList();
 
   @NotNull

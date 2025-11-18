@@ -9,9 +9,6 @@ import oap.application.plugin.psi.OapCompositeElement;
 public interface OapRemoteEntries extends OapCompositeElement {
 
   @NotNull
-  List<OapNl> getNlList();
-
-  @NotNull
   List<OapRemoteName> getRemoteNameList();
 
   @NotNull

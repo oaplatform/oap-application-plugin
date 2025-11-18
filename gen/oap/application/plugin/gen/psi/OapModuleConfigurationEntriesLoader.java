@@ -9,12 +9,12 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 public interface OapModuleConfigurationEntriesLoader extends OapKeyValuePairWithIndentNormal {
 
   @Nullable
-  OapClassValue getClassValue();
-
-  @NotNull
-  OapModuleConfigurationLoaderIdValue getModuleConfigurationLoaderIdValue();
+  OapClassNamePsi getClassNamePsi();
 
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdLoader();
 
 }

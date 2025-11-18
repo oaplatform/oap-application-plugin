@@ -36,12 +36,6 @@ public class OapModuleServicesServiceLinkFieldObjectImpl extends OapCompositeEle
 
   @Override
   @NotNull
-  public List<OapNl> getNlList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapNl.class);
-  }
-
-  @Override
-  @NotNull
   public PsiElement getLeftbrace() {
     return notNullChild(findChildByType(OAP_LEFTBRACE));
   }

@@ -4,9 +4,9 @@ import com.intellij.psi.stubs.IStubElementType
 import com.intellij.psi.stubs.NamedStubBase
 import com.intellij.psi.stubs.StubElement
 import com.intellij.util.io.StringRef
-import oap.application.plugin.gen.psi.OapModuleName
+import oap.application.plugin.gen.psi.OapModuleNamePair
 
-class OapModuleNameStub : NamedStubBase<OapModuleName> {
+class OapModuleNameStub : NamedStubBase<OapModuleNamePair> {
     constructor(parent: StubElement<*>?, elementType: IStubElementType<*, *>, name: StringRef?) : super(
         parent,
         elementType,

@@ -11,14 +11,11 @@ public interface OapModuleConfigurations extends OapKeyValuePair {
   @NotNull
   List<OapModuleConfiguration> getModuleConfigurationList();
 
-  @NotNull
-  OapModuleConfigurationsIdValue getModuleConfigurationsIdValue();
-
-  @NotNull
-  List<OapNl> getNlList();
-
   @Nullable
   PsiElement getEq();
+
+  @NotNull
+  PsiElement getIdConfigurations();
 
   @Nullable
   PsiElement getLeftbracket();

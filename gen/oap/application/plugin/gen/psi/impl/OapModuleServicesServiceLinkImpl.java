@@ -42,8 +42,8 @@ public class OapModuleServicesServiceLinkImpl extends OapCompositeElementImpl im
 
   @Override
   @NotNull
-  public OapModuleServicesServiceLinkIdValue getModuleServicesServiceLinkIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceLinkIdValue.class));
+  public PsiElement getIdLink() {
+    return notNullChild(findChildByType(OAP_ID_LINK));
   }
 
 }

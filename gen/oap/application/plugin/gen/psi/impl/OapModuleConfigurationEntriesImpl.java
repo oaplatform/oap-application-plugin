@@ -29,21 +29,15 @@ public class OapModuleConfigurationEntriesImpl extends OapCompositeElementImpl i
   }
 
   @Override
-  @NotNull
+  @Nullable
   public OapModuleConfigurationEntriesConfig getModuleConfigurationEntriesConfig() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleConfigurationEntriesConfig.class));
+    return PsiTreeUtil.getChildOfType(this, OapModuleConfigurationEntriesConfig.class);
   }
 
   @Override
-  @NotNull
+  @Nullable
   public OapModuleConfigurationEntriesLoader getModuleConfigurationEntriesLoader() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleConfigurationEntriesLoader.class));
-  }
-
-  @Override
-  @NotNull
-  public OapNl getNl() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapNl.class));
+    return PsiTreeUtil.getChildOfType(this, OapModuleConfigurationEntriesLoader.class);
   }
 
 }

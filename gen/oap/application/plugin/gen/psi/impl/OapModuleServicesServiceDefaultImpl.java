@@ -29,12 +29,6 @@ public class OapModuleServicesServiceDefaultImpl extends OapCompositeElementImpl
   }
 
   @Override
-  @NotNull
-  public OapModuleServicesServiceDefaultIdValue getModuleServicesServiceDefaultIdValue() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceDefaultIdValue.class));
-  }
-
-  @Override
   @Nullable
   public OapReferenceModulesValue getReferenceModulesValue() {
     return PsiTreeUtil.getChildOfType(this, OapReferenceModulesValue.class);
@@ -44,6 +38,12 @@ public class OapModuleServicesServiceDefaultImpl extends OapCompositeElementImpl
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @NotNull
+  public PsiElement getIdDefault() {
+    return notNullChild(findChildByType(OAP_ID_DEFAULT));
   }
 
 }

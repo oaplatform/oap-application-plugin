@@ -1,0 +1,39 @@
+name = moduleDependsOnList-error
+
+dependsOn = [
+    module_a
+    module_b, module_c
+
+services {
+}
+-----
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OapModuleNameImpl(OAP_MODULE_NAME)
+      PsiElement(key_value)('moduleDependsOnList-error')
+  PsiWhiteSpace('\n\n')
+  OapModuleDependsOnImpl(OAP_MODULE_DEPENDS_ON)
+    PsiElement(dependsOn)('dependsOn')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    PsiElement([)('[')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('    ')
+    PsiElement(key_value)('module_a')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('    ')
+    PsiElement(key_value)('module_b')
+    PsiElement(,)(',')
+    PsiWhiteSpace(' ')
+    PsiElement(key_value)('module_c')
+    PsiWhiteSpace('\n\n')
+    PsiElement(key_value)('services ')
+    PsiErrorElement:',', ']' or key_value expected, got '{'
+      PsiElement(BAD_CHARACTER)('{')
+    PsiWhiteSpace('\n')
+    PsiElement(BAD_CHARACTER)('}')
