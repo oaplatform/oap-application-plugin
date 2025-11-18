@@ -2508,6 +2508,30 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // !('name' | 'url' | '}' | 'serialization' | 'timeout' | '>' )
+  static boolean recover_remote(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "recover_remote")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NOT_);
+    r = !recover_remote_0(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  // 'name' | 'url' | '}' | 'serialization' | 'timeout' | '>'
+  private static boolean recover_remote_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "recover_remote_0")) return false;
+    boolean r;
+    r = consumeToken(b, OAP_ID_NAME);
+    if (!r) r = consumeToken(b, OAP_ID_URL);
+    if (!r) r = consumeToken(b, OAP_RIGHTBRACE);
+    if (!r) r = consumeToken(b, OAP_ID_SERIALIZATION);
+    if (!r) r = consumeToken(b, "timeout");
+    if (!r) r = consumeToken(b, OAP_RIGHTANGLE);
+    return r;
+  }
+
+  /* ********************************************************** */
   // '<' reference_kernel_value_in '>'
   public static boolean reference_kernel_value(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "reference_kernel_value")) return false;
@@ -2847,13 +2871,12 @@ public class OapParser implements PsiParser, LightPsiParser {
   // 'name' '=' reference_modules_value
   public static boolean remote_name(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "remote_name")) return false;
-    if (!nextTokenIs(b, OAP_ID_NAME)) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, OAP_REMOTE_NAME, null);
+    Marker m = enter_section_(b, l, _NONE_, OAP_REMOTE_NAME, "<remote name>");
     r = consumeTokens(b, 1, OAP_ID_NAME, OAP_EQ);
     p = r; // pin = 1
     r = r && reference_modules_value(b, l + 1);
-    exit_section_(b, l, m, r, p, null);
+    exit_section_(b, l, m, r, p, OapParser::recover_remote);
     return r || p;
   }
 

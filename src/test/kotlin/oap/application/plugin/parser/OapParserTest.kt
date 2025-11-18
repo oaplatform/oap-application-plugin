@@ -41,4 +41,20 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     fun testParametersObjectComma() {
         doTest(false)
     }
+
+    fun testRemote() {
+        doTest(false)
+    }
+
+    fun testRemoteNameError() {
+        doTest(true)
+    }
+
+    fun testService() {
+        doTest(false)
+    }
+
+    fun testServiceDotImplementation() {
+        doTest(false)
+    }
 }
