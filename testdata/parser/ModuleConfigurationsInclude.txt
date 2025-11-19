@@ -38,7 +38,7 @@ OAP_FILE
             PsiElement([)('[')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapConfigArrayObjectImpl(OAP_CONFIG_ARRAY_OBJECT)
+            OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
               OapConfigObjectImpl(OAP_CONFIG_OBJECT)
                 PsiElement({)('{')
                 PsiWhiteSpace('\n')
