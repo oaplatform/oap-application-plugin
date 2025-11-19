@@ -1,0 +1,15 @@
+# a
+name = line-comment // b
+
+// test
+// test
+
+dependsOn = [ # test
+    module_a
+// test
+    module_b, module_c
+]
+
+services {
+// test
+}

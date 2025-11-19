@@ -6,15 +6,12 @@ import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import oap.application.plugin.psi.IndentNormal;
 
-public interface OapConfigObject extends IndentNormal {
-
-  @NotNull
-  List<OapConfigurationKeyValuePair> getConfigurationKeyValuePairList();
-
-  @NotNull
-  PsiElement getLeftbrace();
+public interface OapConfigArrayItem extends IndentNormal {
 
   @Nullable
-  PsiElement getRightbrace();
+  OapConfigObject getConfigObject();
+
+  @Nullable
+  PsiElement getKeyValue();
 
 }

@@ -6,9 +6,9 @@ import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import oap.application.plugin.psi.IndentNormal;
 
-public interface OapConfigArrayObject extends IndentNormal {
+public interface OapModuleDependsOnModuleName extends IndentNormal {
 
   @NotNull
-  OapConfigObject getConfigObject();
+  PsiElement getKeyValue();
 
 }

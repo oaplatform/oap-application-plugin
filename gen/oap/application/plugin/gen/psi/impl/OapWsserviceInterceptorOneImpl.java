@@ -12,14 +12,14 @@ import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
 
-public class OapConfigArrayImpl extends OapCompositeElementImpl implements OapConfigArray {
+public class OapWsserviceInterceptorOneImpl extends OapCompositeElementImpl implements OapWsserviceInterceptorOne {
 
-  public OapConfigArrayImpl(@NotNull ASTNode node) {
+  public OapWsserviceInterceptorOneImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull OapVisitor visitor) {
-    visitor.visitConfigArray(this);
+    visitor.visitWsserviceInterceptorOne(this);
   }
 
   @Override
@@ -30,20 +30,8 @@ public class OapConfigArrayImpl extends OapCompositeElementImpl implements OapCo
 
   @Override
   @NotNull
-  public List<OapConfigArrayItem> getConfigArrayItemList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapConfigArrayItem.class);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getLeftbracket() {
-    return notNullChild(findChildByType(OAP_LEFTBRACKET));
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getRightbracket() {
-    return findChildByType(OAP_RIGHTBRACKET);
+  public OapReferenceModulesValue getReferenceModulesValue() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapReferenceModulesValue.class));
   }
 
 }

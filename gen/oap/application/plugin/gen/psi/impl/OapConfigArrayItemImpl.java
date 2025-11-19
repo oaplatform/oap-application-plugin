@@ -12,14 +12,14 @@ import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
 
-public class OapConfigArrayObjectImpl extends OapCompositeElementImpl implements OapConfigArrayObject {
+public class OapConfigArrayItemImpl extends OapCompositeElementImpl implements OapConfigArrayItem {
 
-  public OapConfigArrayObjectImpl(@NotNull ASTNode node) {
+  public OapConfigArrayItemImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull OapVisitor visitor) {
-    visitor.visitConfigArrayObject(this);
+    visitor.visitConfigArrayItem(this);
   }
 
   @Override
@@ -29,9 +29,15 @@ public class OapConfigArrayObjectImpl extends OapCompositeElementImpl implements
   }
 
   @Override
-  @NotNull
+  @Nullable
   public OapConfigObject getConfigObject() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapConfigObject.class));
+    return PsiTreeUtil.getChildOfType(this, OapConfigObject.class);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getKeyValue() {
+    return findChildByType(OAP_KEY_VALUE);
   }
 
 }

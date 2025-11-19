@@ -172,7 +172,10 @@ module_enabled ::= 'enabled' '=' bool {
 // enabled =
 
 // dependsOn = [
-module_depends_on ::= 'dependsOn' '=' ('[' (key_value ','?)* ']' | key_value) {
+module_depends_on_module_name ::= key_value {
+    implements="oap.application.plugin.psi.IndentNormal"
+}
+module_depends_on ::= 'dependsOn' '=' ('[' (module_depends_on_module_name ','?)* ']' | module_depends_on_module_name) {
     pin=1
     recoverWhile=recover_module
 }
@@ -393,7 +396,9 @@ wsservice_interceptors ::= 'interceptors' '=' (&'[' wsservice_interceptor_multip
 
 private wsservice_path_multiple ::= '[' key_value (!']' ','? key_value)* ']'
 
-private wsservice_interceptor_one ::= reference_modules_value
+wsservice_interceptor_one ::= reference_modules_value {
+    implements="oap.application.plugin.psi.IndentNormal"
+}
 private wsservice_interceptor_multiple ::= '[' wsservice_interceptor_one ( ','? wsservice_interceptor_one )* ']' {pin=1}
 
 
@@ -438,17 +443,21 @@ module_configuration_entries_config ::= [] 'config' ('=' config_array | config_o
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-config_array ::= '[' config_array_object* ']' {
+config_array ::= '[' config_array_item? (','? config_array_item)* ']' {
     pin=1
 }
-config_array_object ::= config_object {
+config_array_item ::= &'{' config_object | key_value {
     implements="oap.application.plugin.psi.IndentNormal"
 }
 config_object ::= '{' (configuration_key_value_pair)* '}' {
     pin=1
+    implements="oap.application.plugin.psi.IndentNormal"
 }
 
-configuration_key_value_pair ::= ( &'include' module_include ) | key_name ('.' key_name)* ('=' (&'[' config_array | bool_value | id_value ) | config_object ) {
+configuration_key_value_pair ::=
+    ( &'include' module_include )
+    | key_name ('.' key_name)* ('=' (&'[' config_array | bool_value | id_value ) | config_object ) {
+
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }

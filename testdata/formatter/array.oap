@@ -1,0 +1,42 @@
+name = ArrayFormatter
+dependsOn = [
+   oap-ws-sso-api
+     oap-account
+oap-remote
+]
+services {
+  service-a {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      array = [1,2]
+      array2 = [
+        1,
+            2
+      ]
+      array3 = [
+            test1
+        test2
+      ]
+    }
+    ws-service {
+      path = secure
+      sessionAware = true
+      interceptors = [
+            <modules.this.service-a>
+<modules.this.service-a>
+      ]
+    }
+  }
+}
+
+configurations = [
+  {
+    loader = a.A
+    config {
+       configArray = [
+         1
+         2
+       ]
+    }
+  }
+]

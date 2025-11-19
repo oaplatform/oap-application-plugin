@@ -30,8 +30,8 @@ public class OapWsserviceInterceptorsImpl extends OapCompositeElementImpl implem
 
   @Override
   @NotNull
-  public List<OapReferenceModulesValue> getReferenceModulesValueList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapReferenceModulesValue.class);
+  public List<OapWsserviceInterceptorOne> getWsserviceInterceptorOneList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapWsserviceInterceptorOne.class);
   }
 
   @Override

@@ -41,3 +41,6 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+/gen/jflex-1.9.2.jar
+/gen/idea-flex.skeleton
+/.intellijPlatform/localPlatformArtifacts/IC-*

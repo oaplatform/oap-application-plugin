@@ -1,0 +1,8 @@
+name = moduleDependsOnList-error
+
+dependsOn = [
+    module_a
+    module_b, module_c
+
+services {
+}

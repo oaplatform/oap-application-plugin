@@ -8,6 +8,9 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapModuleDependsOn extends OapCompositeElement {
 
+  @NotNull
+  List<OapModuleDependsOnModuleName> getModuleDependsOnModuleNameList();
+
   @Nullable
   PsiElement getEq();
 
