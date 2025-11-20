@@ -6,11 +6,10 @@ import com.intellij.psi.codeStyle.CodeStyleManager
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CodeStyleSettingsManager
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings.IndentOptions
-import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import oap.application.plugin.lang.OapFileType
 import java.io.File
 
-class FormatterTest : BasePlatformTestCase() {
+class FormatterTest : OapFixtureTestCase() {
     fun testArray() {
         doTest(true)
     }

@@ -5,6 +5,12 @@ import oap.application.plugin.OapFixtureTestCase
 import oap.application.plugin.ref.ValidModuleDependsOnInspection
 
 class OapModuleDependsOnInspectionTest : OapFixtureTestCase() {
+    override fun setUp() {
+        super.setUp()
+
+        myFixture.enableInspections(ValidModuleDependsOnInspection::class.java)
+    }
+
     override fun getBasePath(): String {
         return "inspection"
     }
