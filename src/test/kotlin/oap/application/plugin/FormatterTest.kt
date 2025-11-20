@@ -49,17 +49,15 @@ class FormatterTest : OapFixtureTestCase() {
         return "testdata/formatter/"
     }
 
-//    @Throws(Exception::class)
-//    protected override fun setUp() {
-//        super.setUp()
+    protected override fun setUp() {
+        super.setUp()
 //        setTestStyleSettings()
-//    }
+    }
 
-//    @Throws(Exception::class)
-//    public override fun tearDown() {
+    public override fun tearDown() {
 //        restoreStyleSettings()
-//        super.tearDown()
-//    }
+        super.tearDown()
+    }
 
 //    private var myTemporarySettings: CodeStyleSettings? = null
 //

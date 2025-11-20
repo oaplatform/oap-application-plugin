@@ -7,4 +7,5 @@ abstract class OapFixtureTestCase : BasePlatformTestCase() {
     override fun getTestDataPath(): String {
         return File("testdata/$basePath").absolutePath
     }
+
 }
