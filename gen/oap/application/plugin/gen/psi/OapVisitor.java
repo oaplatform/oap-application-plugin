@@ -91,6 +91,10 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
+  public void visitModuleDependsOnName(@NotNull OapModuleDependsOnName o) {
+    visitCompositeElement(o);
+  }
+
   public void visitModuleDependsOnModuleName(@NotNull OapModuleDependsOnModuleName o) {
     visitIndentNormal(o);
   }
