@@ -49,31 +49,31 @@ class FormatterTest : OapFixtureTestCase() {
         return "testdata/formatter/"
     }
 
-    @Throws(Exception::class)
-    protected override fun setUp() {
-        super.setUp()
-        setTestStyleSettings()
-    }
+//    @Throws(Exception::class)
+//    protected override fun setUp() {
+//        super.setUp()
+//        setTestStyleSettings()
+//    }
 
-    @Throws(Exception::class)
-    public override fun tearDown() {
-        restoreStyleSettings()
-        super.tearDown()
-    }
+//    @Throws(Exception::class)
+//    public override fun tearDown() {
+//        restoreStyleSettings()
+//        super.tearDown()
+//    }
 
-    private var myTemporarySettings: CodeStyleSettings? = null
-
-    private fun setTestStyleSettings() {
-        val settingsManager: CodeStyleSettingsManager = CodeStyleSettingsManager.getInstance(getProject())
-        val currSettings: CodeStyleSettings = settingsManager.getCurrentSettings()
-        assertNotNull(currSettings)
-        myTemporarySettings = currSettings.clone()
-        val indentOptions: IndentOptions = myTemporarySettings!!.getIndentOptions(OapFileType.OapFileType.INSTANCE)
-        assertNotNull(indentOptions)
-        settingsManager.setTemporarySettings(myTemporarySettings!!)
-    }
-
-    private fun restoreStyleSettings() {
-        CodeStyleSettingsManager.getInstance(getProject()).dropTemporarySettings()
-    }
+//    private var myTemporarySettings: CodeStyleSettings? = null
+//
+//    private fun setTestStyleSettings() {
+//        val settingsManager: CodeStyleSettingsManager = CodeStyleSettingsManager.getInstance(getProject())
+//        val currSettings: CodeStyleSettings = settingsManager.getCurrentSettings()
+//        assertNotNull(currSettings)
+//        myTemporarySettings = currSettings.clone()
+//        val indentOptions: IndentOptions = myTemporarySettings!!.getIndentOptions(OapFileType.OapFileType.INSTANCE)
+//        assertNotNull(indentOptions)
+//        settingsManager.setTemporarySettings(myTemporarySettings!!)
+//    }
+//
+//    private fun restoreStyleSettings() {
+//        CodeStyleSettingsManager.getInstance(getProject()).dropTemporarySettings()
+//    }
 }
