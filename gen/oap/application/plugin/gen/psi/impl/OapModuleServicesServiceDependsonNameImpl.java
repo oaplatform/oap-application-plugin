@@ -12,14 +12,14 @@ import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
 
-public class OapModuleServicesServiceDependsonImpl extends OapCompositeElementImpl implements OapModuleServicesServiceDependson {
+public class OapModuleServicesServiceDependsonNameImpl extends OapCompositeElementImpl implements OapModuleServicesServiceDependsonName {
 
-  public OapModuleServicesServiceDependsonImpl(@NotNull ASTNode node) {
+  public OapModuleServicesServiceDependsonNameImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull OapVisitor visitor) {
-    visitor.visitModuleServicesServiceDependson(this);
+    visitor.visitModuleServicesServiceDependsonName(this);
   }
 
   @Override
@@ -30,20 +30,8 @@ public class OapModuleServicesServiceDependsonImpl extends OapCompositeElementIm
 
   @Override
   @NotNull
-  public List<OapModuleServicesServiceDependsonName> getModuleServicesServiceDependsonNameList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleServicesServiceDependsonName.class);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getIdDependsOn() {
-    return notNullChild(findChildByType(OAP_ID_DEPENDS_ON));
+  public PsiElement getKeyValue() {
+    return notNullChild(findChildByType(OAP_KEY_VALUE));
   }
 
 }

@@ -41,6 +41,7 @@ public interface OapTypes {
   IElementType OAP_MODULE_SERVICES_SERVICE_ABSTRACT = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_ABSTRACT");
   IElementType OAP_MODULE_SERVICES_SERVICE_DEFAULT = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEFAULT");
   IElementType OAP_MODULE_SERVICES_SERVICE_DEPENDSON = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEPENDSON");
+  IElementType OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME");
   IElementType OAP_MODULE_SERVICES_SERVICE_ENABLED = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_ENABLED");
   IElementType OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION");
   IElementType OAP_MODULE_SERVICES_SERVICE_LINK = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_LINK");
@@ -250,6 +251,9 @@ public interface OapTypes {
       }
       else if (type == OAP_MODULE_SERVICES_SERVICE_DEPENDSON) {
         return new OapModuleServicesServiceDependsonImpl(node);
+      }
+      else if (type == OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME) {
+        return new OapModuleServicesServiceDependsonNameImpl(node);
       }
       else if (type == OAP_MODULE_SERVICES_SERVICE_ENABLED) {
         return new OapModuleServicesServiceEnabledImpl(node);

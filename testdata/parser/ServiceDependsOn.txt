@@ -1,21 +1,3 @@
-name = serviceDependsOn
-services {
-  c1 {
-    implementation = oap.application.plugin.TestService
-    supervision.supervise = true
-  }
-  c2 {
-    implementation = oap.application.plugin.TestService.TestService2
-    dependsOn = [c1]
-    supervision.supervise = true
-  }
-  c3 {
-    implementation = oap.application.plugin.TestService.TestService2
-    dependsOn = c2
-    supervision.supervise = true
-  }
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
@@ -84,7 +66,8 @@ OAP_FILE
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
         PsiElement([)('[')
-        PsiElement(key_value)('c1')
+        OapModuleServicesServiceDependsonNameImpl(OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME)
+          PsiElement(key_value)('c1')
         PsiElement(])(']')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
@@ -124,7 +107,8 @@ OAP_FILE
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        PsiElement(key_value)('c2')
+        OapModuleServicesServiceDependsonNameImpl(OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME)
+          PsiElement(key_value)('c2')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
       OapModuleServicesServiceSupervisionImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION)

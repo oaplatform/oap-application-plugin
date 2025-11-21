@@ -1,0 +1,17 @@
+name = serviceDependsOn
+services {
+  c1 {
+    implementation = oap.application.plugin.TestService
+    supervision.supervise = true
+  }
+  c2 {
+    implementation = oap.application.plugin.TestService.TestService2
+    dependsOn = [c1]
+    supervision.supervise = true
+  }
+  c3 {
+    implementation = oap.application.plugin.TestService.TestService2
+    dependsOn = c2
+    supervision.supervise = true
+  }
+}

@@ -70,6 +70,11 @@
                          level="ERROR"/>
 
         <localInspection language="OAP"
+                         implementationClass="oap.application.plugin.ref.ValidServiceDependsOnInspection"
+                         displayName="Required valid module name" groupName="OAP" enabledByDefault="true"
+                         level="ERROR"/>
+
+        <localInspection language="OAP"
                          implementationClass="oap.application.plugin.ref.ValidReferenceModuleServiceInspection"
                          displayName="Required valid module name" groupName="OAP" enabledByDefault="true"
                          level="ERROR"/>

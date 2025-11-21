@@ -223,7 +223,10 @@ module_services_service_enabled ::= 'enabled' '=' bool_value {
 
 
 // dependsOn = [
-module_services_service_dependson ::= 'dependsOn' '=' ('[' ( ','? key_value )* ']' | key_value)* {
+module_services_service_dependson_name ::= key_value {
+    implements="oap.application.plugin.psi.IndentNormal"
+}
+module_services_service_dependson ::= 'dependsOn' '=' ('[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)* {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
