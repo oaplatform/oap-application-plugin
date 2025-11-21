@@ -52,8 +52,6 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
 
-
-
     fun testModuleDependsOnList() {
         doTest(false)
     }
@@ -64,6 +62,27 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
 
     fun testModuleDependsOnSingle() {
         doTest(false)
+    }
+
+
+    fun testModuleEnabled() {
+        doTest(false)
+    }
+
+    fun testModuleEnabledEqError() {
+        doTest(true)
+    }
+
+    fun testModuleNameEqualError() {
+        doTest(true)
+    }
+
+    fun testModuleNameNoEqualError() {
+        doTest(true)
+    }
+
+    fun testModuleNoNameError() {
+        doTest(true)
     }
 
 
@@ -100,7 +119,6 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
 
-
     fun testRemote() {
         doTest(false)
     }
@@ -110,6 +128,10 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
     fun testService() {
+        doTest(false)
+    }
+
+    fun testServiceDependsOn() {
         doTest(false)
     }
 

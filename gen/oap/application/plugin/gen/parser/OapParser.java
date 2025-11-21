@@ -1176,7 +1176,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'dependsOn' '=' ('[' ( ','? key_value )* ']' | key_value)*
+  // 'dependsOn' '=' ('[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)*
   public static boolean module_services_service_dependson(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_dependson")) return false;
     if (!nextTokenIs(b, OAP_ID_DEPENDS_ON)) return false;
@@ -1189,7 +1189,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  // ('[' ( ','? key_value )* ']' | key_value)*
+  // ('[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)*
   private static boolean module_services_service_dependson_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_dependson_2")) return false;
     while (true) {
@@ -1200,56 +1200,76 @@ public class OapParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // '[' ( ','? key_value )* ']' | key_value
+  // '[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name
   private static boolean module_services_service_dependson_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_dependson_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = module_services_service_dependson_2_0_0(b, l + 1);
-    if (!r) r = consumeToken(b, OAP_KEY_VALUE);
+    if (!r) r = module_services_service_dependson_name(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // '[' ( ','? key_value )* ']'
+  // '[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']'
   private static boolean module_services_service_dependson_2_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_dependson_2_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, OAP_LEFTBRACKET);
     r = r && module_services_service_dependson_2_0_0_1(b, l + 1);
+    r = r && module_services_service_dependson_2_0_0_2(b, l + 1);
     r = r && consumeToken(b, OAP_RIGHTBRACKET);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // ( ','? key_value )*
+  // module_services_service_dependson_name?
   private static boolean module_services_service_dependson_2_0_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_dependson_2_0_0_1")) return false;
+    module_services_service_dependson_name(b, l + 1);
+    return true;
+  }
+
+  // ( ','? module_services_service_dependson_name )*
+  private static boolean module_services_service_dependson_2_0_0_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_services_service_dependson_2_0_0_2")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!module_services_service_dependson_2_0_0_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "module_services_service_dependson_2_0_0_1", c)) break;
+      if (!module_services_service_dependson_2_0_0_2_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "module_services_service_dependson_2_0_0_2", c)) break;
     }
     return true;
   }
 
-  // ','? key_value
-  private static boolean module_services_service_dependson_2_0_0_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_services_service_dependson_2_0_0_1_0")) return false;
+  // ','? module_services_service_dependson_name
+  private static boolean module_services_service_dependson_2_0_0_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_services_service_dependson_2_0_0_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = module_services_service_dependson_2_0_0_1_0_0(b, l + 1);
-    r = r && consumeToken(b, OAP_KEY_VALUE);
+    r = module_services_service_dependson_2_0_0_2_0_0(b, l + 1);
+    r = r && module_services_service_dependson_name(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // ','?
-  private static boolean module_services_service_dependson_2_0_0_1_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_services_service_dependson_2_0_0_1_0_0")) return false;
+  private static boolean module_services_service_dependson_2_0_0_2_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_services_service_dependson_2_0_0_2_0_0")) return false;
     consumeToken(b, OAP_COMMA);
     return true;
+  }
+
+  /* ********************************************************** */
+  // key_value
+  public static boolean module_services_service_dependson_name(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_services_service_dependson_name")) return false;
+    if (!nextTokenIs(b, OAP_KEY_VALUE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, OAP_KEY_VALUE);
+    exit_section_(b, m, OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME, r);
+    return r;
   }
 
   /* ********************************************************** */

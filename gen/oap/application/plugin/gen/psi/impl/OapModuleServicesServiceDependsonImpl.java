@@ -29,6 +29,12 @@ public class OapModuleServicesServiceDependsonImpl extends OapCompositeElementIm
   }
 
   @Override
+  @NotNull
+  public List<OapModuleServicesServiceDependsonName> getModuleServicesServiceDependsonNameList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleServicesServiceDependsonName.class);
+  }
+
+  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
