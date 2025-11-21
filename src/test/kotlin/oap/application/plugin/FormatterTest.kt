@@ -3,10 +3,6 @@ package oap.application.plugin
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.util.io.FileUtil
 import com.intellij.psi.codeStyle.CodeStyleManager
-import com.intellij.psi.codeStyle.CodeStyleSettings
-import com.intellij.psi.codeStyle.CodeStyleSettingsManager
-import com.intellij.psi.codeStyle.CommonCodeStyleSettings.IndentOptions
-import oap.application.plugin.lang.OapFileType
 import java.io.File
 
 class FormatterTest : OapFixtureTestCase() {
@@ -27,7 +23,7 @@ class FormatterTest : OapFixtureTestCase() {
             myFixture.type('\n')
         }
 
-        val outputFile = File(myFixture.getTestDataPath() + "/" + getExpectedOutputFileName())
+        val outputFile: File = File(myFixture.getTestDataPath() + "/" + getExpectedOutputFileName())
         if (!outputFile.exists()) {
             FileUtil.writeToFile(outputFile, "")
             System.err.println("Output file " + outputFile.getPath() + " doesn't exist. It was created.")

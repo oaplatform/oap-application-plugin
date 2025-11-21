@@ -22,6 +22,7 @@ class OapModuleDependsOnInspectionTest : OapFixtureTestCase() {
             dependsOn = <error descr="Cycle reference to self">testDependsOnSelf</error>
         """.trimIndent()
         )
+
         myFixture.checkHighlighting()
     }
 

@@ -57,6 +57,10 @@ tasks {
         sourceCompatibility = "21"
         targetCompatibility = "21"
     }
+
+    test {
+        environment("NO_FS_ROOTS_ACCESS_CHECK", "true")
+    }
 }
 
 kotlin {
