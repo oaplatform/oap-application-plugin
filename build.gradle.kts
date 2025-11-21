@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "oap"
-version = "0.0.2"
+version = "0.0.3"
 
 repositories {
     mavenCentral()
@@ -56,6 +56,10 @@ tasks {
     withType<JavaCompile> {
         sourceCompatibility = "21"
         targetCompatibility = "21"
+    }
+
+    test {
+        environment("NO_FS_ROOTS_ACCESS_CHECK", "true")
     }
 }
 

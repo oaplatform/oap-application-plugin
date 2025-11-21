@@ -919,7 +919,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'dependsOn' '=' ('[' (module_depends_on_module_name ','?)* ']' | module_depends_on_module_name)
+  // 'dependsOn' '=' ('[' (module_depends_on_name (','? module_depends_on_name )* )? ']' | module_depends_on_name)
   public static boolean module_depends_on(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on")) return false;
     boolean r, p;
@@ -931,18 +931,18 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  // '[' (module_depends_on_module_name ','?)* ']' | module_depends_on_module_name
+  // '[' (module_depends_on_name (','? module_depends_on_name )* )? ']' | module_depends_on_name
   private static boolean module_depends_on_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = module_depends_on_2_0(b, l + 1);
-    if (!r) r = module_depends_on_module_name(b, l + 1);
+    if (!r) r = module_depends_on_name(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // '[' (module_depends_on_module_name ','?)* ']'
+  // '[' (module_depends_on_name (','? module_depends_on_name )* )? ']'
   private static boolean module_depends_on_2_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2_0")) return false;
     boolean r;
@@ -954,44 +954,62 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // (module_depends_on_module_name ','?)*
+  // (module_depends_on_name (','? module_depends_on_name )* )?
   private static boolean module_depends_on_2_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2_0_1")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!module_depends_on_2_0_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "module_depends_on_2_0_1", c)) break;
-    }
+    module_depends_on_2_0_1_0(b, l + 1);
     return true;
   }
 
-  // module_depends_on_module_name ','?
+  // module_depends_on_name (','? module_depends_on_name )*
   private static boolean module_depends_on_2_0_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2_0_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = module_depends_on_module_name(b, l + 1);
+    r = module_depends_on_name(b, l + 1);
     r = r && module_depends_on_2_0_1_0_1(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // ','?
+  // (','? module_depends_on_name )*
   private static boolean module_depends_on_2_0_1_0_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_depends_on_2_0_1_0_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!module_depends_on_2_0_1_0_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "module_depends_on_2_0_1_0_1", c)) break;
+    }
+    return true;
+  }
+
+  // ','? module_depends_on_name
+  private static boolean module_depends_on_2_0_1_0_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_depends_on_2_0_1_0_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = module_depends_on_2_0_1_0_1_0_0(b, l + 1);
+    r = r && module_depends_on_name(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ','?
+  private static boolean module_depends_on_2_0_1_0_1_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_depends_on_2_0_1_0_1_0_0")) return false;
     consumeToken(b, OAP_COMMA);
     return true;
   }
 
   /* ********************************************************** */
   // key_value
-  public static boolean module_depends_on_module_name(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_depends_on_module_name")) return false;
+  public static boolean module_depends_on_name(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_depends_on_name")) return false;
     if (!nextTokenIs(b, OAP_KEY_VALUE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, OAP_KEY_VALUE);
-    exit_section_(b, m, OAP_MODULE_DEPENDS_ON_MODULE_NAME, r);
+    exit_section_(b, m, OAP_MODULE_DEPENDS_ON_NAME, r);
     return r;
   }
 

@@ -12,14 +12,14 @@ import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
 
-public class OapModuleDependsOnModuleNameImpl extends OapCompositeElementImpl implements OapModuleDependsOnModuleName {
+public class OapModuleDependsOnNameImpl extends OapCompositeElementImpl implements OapModuleDependsOnName {
 
-  public OapModuleDependsOnModuleNameImpl(@NotNull ASTNode node) {
+  public OapModuleDependsOnNameImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull OapVisitor visitor) {
-    visitor.visitModuleDependsOnModuleName(this);
+    visitor.visitModuleDependsOnName(this);
   }
 
   @Override

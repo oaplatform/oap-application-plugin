@@ -4,8 +4,8 @@ package oap.application.plugin.gen.psi;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import oap.application.plugin.psi.OapCompositeElement;
-import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 import oap.application.plugin.psi.IndentNormal;
+import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 import oap.application.plugin.psi.OapValue;
 import oap.application.plugin.psi.OapKeyValuePair;
 
@@ -91,7 +91,7 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitModuleDependsOnModuleName(@NotNull OapModuleDependsOnModuleName o) {
+  public void visitModuleDependsOnName(@NotNull OapModuleDependsOnName o) {
     visitIndentNormal(o);
   }
 

@@ -12,7 +12,7 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleDependsOnModuleNameImpl(OAP_MODULE_DEPENDS_ON_MODULE_NAME)
+    OapModuleDependsOnNameImpl(OAP_MODULE_DEPENDS_ON_NAME)
       PsiElement(key_value)('module_a')
   PsiWhiteSpace('\n\n')
   OapModuleServicesImpl(OAP_MODULE_SERVICES)

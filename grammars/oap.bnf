@@ -172,10 +172,10 @@ module_enabled ::= 'enabled' '=' bool {
 // enabled =
 
 // dependsOn = [
-module_depends_on_module_name ::= key_value {
+module_depends_on_name ::= key_value {
     implements="oap.application.plugin.psi.IndentNormal"
 }
-module_depends_on ::= 'dependsOn' '=' ('[' (module_depends_on_module_name ','?)* ']' | module_depends_on_module_name) {
+module_depends_on ::= 'dependsOn' '=' ('[' (module_depends_on_name (','? module_depends_on_name )* )? ']' | module_depends_on_name) {
     pin=1
     recoverWhile=recover_module
 }

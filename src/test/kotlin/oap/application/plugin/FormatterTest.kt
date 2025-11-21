@@ -3,14 +3,9 @@ package oap.application.plugin
 import com.intellij.openapi.command.WriteCommandAction
 import com.intellij.openapi.util.io.FileUtil
 import com.intellij.psi.codeStyle.CodeStyleManager
-import com.intellij.psi.codeStyle.CodeStyleSettings
-import com.intellij.psi.codeStyle.CodeStyleSettingsManager
-import com.intellij.psi.codeStyle.CommonCodeStyleSettings.IndentOptions
-import com.intellij.testFramework.fixtures.BasePlatformTestCase
-import oap.application.plugin.lang.OapFileType
 import java.io.File
 
-class FormatterTest : BasePlatformTestCase() {
+class FormatterTest : OapFixtureTestCase() {
     fun testArray() {
         doTest(true)
     }
@@ -28,7 +23,7 @@ class FormatterTest : BasePlatformTestCase() {
             myFixture.type('\n')
         }
 
-        val outputFile = File(myFixture.getTestDataPath() + "/" + getExpectedOutputFileName())
+        val outputFile: File = File(myFixture.getTestDataPath() + "/" + getExpectedOutputFileName())
         if (!outputFile.exists()) {
             FileUtil.writeToFile(outputFile, "")
             System.err.println("Output file " + outputFile.getPath() + " doesn't exist. It was created.")
@@ -50,31 +45,29 @@ class FormatterTest : BasePlatformTestCase() {
         return "testdata/formatter/"
     }
 
-    @Throws(Exception::class)
     protected override fun setUp() {
         super.setUp()
-        setTestStyleSettings()
+//        setTestStyleSettings()
     }
 
-    @Throws(Exception::class)
     public override fun tearDown() {
-        restoreStyleSettings()
+//        restoreStyleSettings()
         super.tearDown()
     }
 
-    private var myTemporarySettings: CodeStyleSettings? = null
-
-    private fun setTestStyleSettings() {
-        val settingsManager: CodeStyleSettingsManager = CodeStyleSettingsManager.getInstance(getProject())
-        val currSettings: CodeStyleSettings = settingsManager.getCurrentSettings()
-        assertNotNull(currSettings)
-        myTemporarySettings = currSettings.clone()
-        val indentOptions: IndentOptions = myTemporarySettings!!.getIndentOptions(OapFileType.OapFileType.INSTANCE)
-        assertNotNull(indentOptions)
-        settingsManager.setTemporarySettings(myTemporarySettings!!)
-    }
-
-    private fun restoreStyleSettings() {
-        CodeStyleSettingsManager.getInstance(getProject()).dropTemporarySettings()
-    }
+//    private var myTemporarySettings: CodeStyleSettings? = null
+//
+//    private fun setTestStyleSettings() {
+//        val settingsManager: CodeStyleSettingsManager = CodeStyleSettingsManager.getInstance(getProject())
+//        val currSettings: CodeStyleSettings = settingsManager.getCurrentSettings()
+//        assertNotNull(currSettings)
+//        myTemporarySettings = currSettings.clone()
+//        val indentOptions: IndentOptions = myTemporarySettings!!.getIndentOptions(OapFileType.OapFileType.INSTANCE)
+//        assertNotNull(indentOptions)
+//        settingsManager.setTemporarySettings(myTemporarySettings!!)
+//    }
+//
+//    private fun restoreStyleSettings() {
+//        CodeStyleSettingsManager.getInstance(getProject()).dropTemporarySettings()
+//    }
 }

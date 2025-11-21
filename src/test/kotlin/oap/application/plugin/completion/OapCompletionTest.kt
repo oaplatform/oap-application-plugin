@@ -3,7 +3,6 @@ package oap.application.plugin.completion
 import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.psi.PsiFile
 import oap.application.plugin.OapFixtureTestCase
-import oap.application.plugin.lang.OapFileType
 import org.assertj.core.api.Assertions.assertThat
 
 class OapCompletionTest : OapFixtureTestCase() {
@@ -33,7 +32,7 @@ class OapCompletionTest : OapFixtureTestCase() {
 
     fun testReferenceId() {
         myFixture.configureByText(
-            OapFileType.OapFileType.INSTANCE, """
+            "testReferenceId.oap", """
             name = testReferenceId
             services {
                 test-service {
@@ -52,7 +51,7 @@ class OapCompletionTest : OapFixtureTestCase() {
 
     fun testReferenceIdM() {
         myFixture.configureByText(
-            OapFileType.OapFileType.INSTANCE, """
+            "testReferenceIdM.oap", """
             name = testReferenceIdM
             services {
                 test-service {

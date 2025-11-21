@@ -30,8 +30,8 @@ public class OapModuleDependsOnImpl extends OapCompositeElementImpl implements O
 
   @Override
   @NotNull
-  public List<OapModuleDependsOnModuleName> getModuleDependsOnModuleNameList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleDependsOnModuleName.class);
+  public List<OapModuleDependsOnName> getModuleDependsOnNameList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleDependsOnName.class);
   }
 
   @Override

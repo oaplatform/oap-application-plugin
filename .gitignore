@@ -41,6 +41,15 @@ bin/
 
 ### Mac OS ###
 .DS_Store
-/gen/jflex-1.9.2.jar
+/.intellijPlatform/localPlatformArtifacts/*
+/.idea/uiDesigner.xml
+/.idea/vcs.xml
+/.idea/misc.xml
+/.idea/kotlinc.xml
+/.idea/inspectionProfiles/Project_Default.xml
+/.run/Run IDE with Plugin.run.xml
 /gen/idea-flex.skeleton
-/.intellijPlatform/localPlatformArtifacts/IC-*
+/gen/jflex-*.jar
+/.intellijPlatform/coroutines-javaagent-legacy.jar
+/.idea/gradle.xml
+/.intellijPlatform/self-update.lock

@@ -31,7 +31,7 @@ public interface OapTypes {
   IElementType OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG = new OapCompositeElementType("OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG");
   IElementType OAP_MODULE_CONFIGURATION_ENTRIES_LOADER = new OapCompositeElementType("OAP_MODULE_CONFIGURATION_ENTRIES_LOADER");
   IElementType OAP_MODULE_DEPENDS_ON = new OapCompositeElementType("OAP_MODULE_DEPENDS_ON");
-  IElementType OAP_MODULE_DEPENDS_ON_MODULE_NAME = new OapCompositeElementType("OAP_MODULE_DEPENDS_ON_MODULE_NAME");
+  IElementType OAP_MODULE_DEPENDS_ON_NAME = new OapCompositeElementType("OAP_MODULE_DEPENDS_ON_NAME");
   IElementType OAP_MODULE_ENABLED = new OapCompositeElementType("OAP_MODULE_ENABLED");
   IElementType OAP_MODULE_INCLUDE = new OapCompositeElementType("OAP_MODULE_INCLUDE");
   IElementType OAP_MODULE_NAME = new OapCompositeElementType("OAP_MODULE_NAME");
@@ -221,8 +221,8 @@ public interface OapTypes {
       else if (type == OAP_MODULE_DEPENDS_ON) {
         return new OapModuleDependsOnImpl(node);
       }
-      else if (type == OAP_MODULE_DEPENDS_ON_MODULE_NAME) {
-        return new OapModuleDependsOnModuleNameImpl(node);
+      else if (type == OAP_MODULE_DEPENDS_ON_NAME) {
+        return new OapModuleDependsOnNameImpl(node);
       }
       else if (type == OAP_MODULE_ENABLED) {
         return new OapModuleEnabledImpl(node);
