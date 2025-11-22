@@ -4,40 +4,40 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('Remote')
   PsiWhiteSpace('\n\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('remote-client')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.remote.application.RemoteClient')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceRemoteImpl(OAP_MODULE_SERVICES_SERVICE_REMOTE)
+      OAP_MODULE_SERVICES_SERVICE_REMOTE
         PsiElement(remote)('remote')
         PsiWhiteSpace(' ')
-        OapRemoteObjectImpl(OAP_REMOTE_OBJECT)
+        OAP_REMOTE_OBJECT
           PsiElement({)('{')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('      ')
-          OapRemoteEntriesImpl(OAP_REMOTE_ENTRIES)
-            OapRemoteUrlImpl(OAP_REMOTE_URL)
+          OAP_REMOTE_ENTRIES
+            OAP_REMOTE_URL
               PsiElement(url)('url')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
@@ -45,26 +45,26 @@ OAP_FILE
               PsiElement(key_value)('"http://localhost/remote/"')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapRemoteNameImpl(OAP_REMOTE_NAME)
+            OAP_REMOTE_NAME
               PsiElement(name)('name')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              OapReferenceModulesValueImpl(OAP_REFERENCE_MODULES_VALUE)
+              OAP_REFERENCE_MODULES_VALUE
                 PsiElement(<)('<')
-                OapReferenceModulesValueInImpl(OAP_REFERENCE_MODULES_VALUE_IN)
-                  OapReferenceTypeModulesImpl(OAP_REFERENCE_TYPE_MODULES)
+                OAP_REFERENCE_MODULES_VALUE_IN
+                  OAP_REFERENCE_TYPE_MODULES
                     PsiElement(modules)('modules')
                   PsiElement(.)('.')
-                  OapReferenceModulesNameImpl(OAP_REFERENCE_MODULES_NAME)
+                  OAP_REFERENCE_MODULES_NAME
                     PsiElement(reference_value)('oap-module-with-remoting')
                   PsiElement(.)('.')
-                  OapReferenceModulesServiceNameImpl(OAP_REFERENCE_MODULES_SERVICE_NAME)
+                  OAP_REFERENCE_MODULES_SERVICE_NAME
                     PsiElement(reference_value)('remote-service')
                 PsiElement(>)('>')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapRemoteSerializationImpl(OAP_REMOTE_SERIALIZATION)
+            OAP_REMOTE_SERIALIZATION
               PsiElement(serialization)('serialization')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')

@@ -4,10 +4,10 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('module-configurations-include')
   PsiWhiteSpace('\n\n')
-  OapModuleConfigurationsImpl(OAP_MODULE_CONFIGURATIONS)
+  OAP_MODULE_CONFIGURATIONS
     PsiElement(configurations)('configurations')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
@@ -15,61 +15,61 @@ OAP_FILE
     PsiElement([)('[')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleConfigurationImpl(OAP_MODULE_CONFIGURATION)
+    OAP_MODULE_CONFIGURATION
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleConfigurationEntriesImpl(OAP_MODULE_CONFIGURATION_ENTRIES)
-        OapModuleConfigurationEntriesLoaderImpl(OAP_MODULE_CONFIGURATION_ENTRIES_LOADER)
+      OAP_MODULE_CONFIGURATION_ENTRIES
+        OAP_MODULE_CONFIGURATION_ENTRIES_LOADER
           PsiElement(loader)('loader')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
           PsiWhiteSpace(' ')
-          OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+          OAP_CLASS_NAME_PSI
             PsiElement(class_name)('oap.json.properties.PropertiesDeserializer')
         PsiWhiteSpace('\n')
         PsiWhiteSpace('    ')
-        OapModuleConfigurationEntriesConfigImpl(OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG)
+        OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG
           PsiElement(config)('config')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
           PsiWhiteSpace(' ')
-          OapConfigArrayImpl(OAP_CONFIG_ARRAY)
+          OAP_CONFIG_ARRAY
             PsiElement([)('[')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
-              OapConfigObjectImpl(OAP_CONFIG_OBJECT)
+            OAP_CONFIG_ARRAY_ITEM
+              OAP_CONFIG_OBJECT
                 PsiElement({)('{')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('        ')
-                OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
+                OAP_CONFIGURATION_KEY_VALUE_PAIR
                   PsiElement(key_name)('class')
                   PsiWhiteSpace(' ')
                   PsiElement(=)('=')
                   PsiWhiteSpace(' ')
-                  OapIdValueImpl(OAP_ID_VALUE)
+                  OAP_ID_VALUE
                     PsiElement(key_value)('oap.json.properties.TestJsonProperties')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('        ')
-                OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
+                OAP_CONFIGURATION_KEY_VALUE_PAIR
                   PsiElement(key_name)('properties')
                   PsiWhiteSpace(' ')
-                  OapConfigObjectImpl(OAP_CONFIG_OBJECT)
+                  OAP_CONFIG_OBJECT
                     PsiElement({)('{')
                     PsiWhiteSpace('\n')
                     PsiWhiteSpace('          ')
-                    OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
+                    OAP_CONFIGURATION_KEY_VALUE_PAIR
                       PsiElement(key_name)('property1')
                       PsiWhiteSpace(' ')
                       PsiElement(=)('=')
                       PsiWhiteSpace(' ')
-                      OapIdValueImpl(OAP_ID_VALUE)
+                      OAP_ID_VALUE
                         PsiElement(key_value)('oap.json.properties.TestJsonProperties.TestProperty1')
                     PsiWhiteSpace('\n')
                     PsiWhiteSpace('          ')
-                    OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
-                      OapModuleIncludeImpl(OAP_MODULE_INCLUDE)
+                    OAP_CONFIGURATION_KEY_VALUE_PAIR
+                      OAP_MODULE_INCLUDE
                         PsiElement(include)('include')
                         PsiWhiteSpace(' ')
                         PsiElement(required)('required')

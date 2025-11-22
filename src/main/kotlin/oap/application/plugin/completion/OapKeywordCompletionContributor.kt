@@ -27,7 +27,7 @@ class OapKeywordCompletionContributor : CompletionContributor() {
             PlatformPatterns.psiElement()
                 .withSuperParent(
                     2, PlatformPatterns.psiElement()
-                        .withChild(PlatformPatterns.psiElement().afterSibling(PlatformPatterns.psiElement(OapModuleName::class.java)))
+                        .withChild(PlatformPatterns.psiElement().afterSibling(PlatformPatterns.psiElement(OapModuleNamePair::class.java)))
                 ),
             object : CompletionProvider<CompletionParameters>() {
                 override fun addCompletions(
@@ -35,10 +35,10 @@ class OapKeywordCompletionContributor : CompletionContributor() {
                     context: ProcessingContext,
                     result: CompletionResultSet
                 ) {
-                    result.addElement(LookupElementBuilder.create("enabled = "));
-                    result.addElement(LookupElementBuilder.create("dependOn = "));
-                    result.addElement(LookupElementBuilder.create("services {"));
-                    result.addElement(LookupElementBuilder.create("configurations = ["));
+                    result.addElement(LookupElementBuilder.create("enabled"));
+                    result.addElement(LookupElementBuilder.create("dependOn"));
+                    result.addElement(LookupElementBuilder.create("services"));
+                    result.addElement(LookupElementBuilder.create("configurations"));
                 }
             })
     }

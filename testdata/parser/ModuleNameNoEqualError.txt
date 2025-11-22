@@ -4,10 +4,10 @@ OAP_FILE
     PsiErrorElement:'=' expected, got 'services'
       <empty list>
     PsiWhiteSpace('\n')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiErrorElement:'=' or key_value expected, got 'services'
         <empty list>
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')

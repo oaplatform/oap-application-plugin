@@ -4,10 +4,10 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('moduleDependsOnList')
   PsiWhiteSpace('\n\n')
-  OapModuleDependsOnImpl(OAP_MODULE_DEPENDS_ON)
+  OAP_MODULE_DEPENDS_ON
     PsiElement(dependsOn)('dependsOn')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
@@ -15,20 +15,20 @@ OAP_FILE
     PsiElement([)('[')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('    ')
-    OapModuleDependsOnNameImpl(OAP_MODULE_DEPENDS_ON_NAME)
+    OAP_MODULE_DEPENDS_ON_NAME
       PsiElement(key_value)('module_a')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('    ')
-    OapModuleDependsOnNameImpl(OAP_MODULE_DEPENDS_ON_NAME)
+    OAP_MODULE_DEPENDS_ON_NAME
       PsiElement(key_value)('module_b')
     PsiElement(,)(',')
     PsiWhiteSpace(' ')
-    OapModuleDependsOnNameImpl(OAP_MODULE_DEPENDS_ON_NAME)
+    OAP_MODULE_DEPENDS_ON_NAME
       PsiElement(key_value)('module_c')
     PsiWhiteSpace('\n')
     PsiElement(])(']')
   PsiWhiteSpace('\n\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')

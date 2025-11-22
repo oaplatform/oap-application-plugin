@@ -4,11 +4,14 @@ package oap.application.plugin.gen.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import oap.application.plugin.psi.OapCompositeElement;
+import oap.application.plugin.psi.IServiceName;
+import oap.application.plugin.psi.impl.OapServiceReference;
 
-public interface OapReferenceModulesServiceName extends OapCompositeElement {
+public interface OapReferenceModulesServiceName extends IServiceName {
 
   @Nullable
   PsiElement getReferenceValue();
+
+  @Nullable OapServiceReference getReference();
 
 }

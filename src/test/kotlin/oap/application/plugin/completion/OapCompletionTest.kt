@@ -17,18 +17,18 @@ class OapCompletionTest : OapFixtureTestCase() {
         myFixture.checkResult("name")
     }
 
-//    fun testAfterModuleName() {
-//        myFixture.configureByText(
-//            "testAfterModuleName.oap", """"
-//            name = test
-//
-//            <caret>
-//            """.trimIndent()
-//        )
-//        myFixture.complete(CompletionType.BASIC)
-//
-//        assertSameElements(myFixture.lookupElementStrings!!, "enabled", "dependOn", "services", "configurations")
-//    }
+    fun testAfterModuleName() {
+        myFixture.configureByText(
+            "testAfterModuleName.oap", """
+            name = test
+
+            <caret>
+            """.trimIndent()
+        )
+        myFixture.complete(CompletionType.BASIC)
+
+        assertSameElements(myFixture.lookupElementStrings!!, "enabled", "dependOn", "services", "configurations")
+    }
 
     fun testReferenceId() {
         myFixture.configureByText(

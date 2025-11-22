@@ -4,10 +4,10 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('Include')
   PsiWhiteSpace('\n\n')
-  OapModuleIncludeImpl(OAP_MODULE_INCLUDE)
+  OAP_MODULE_INCLUDE
     PsiElement(include)('include')
     PsiWhiteSpace(' ')
     PsiElement(required)('required')

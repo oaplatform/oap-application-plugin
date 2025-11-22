@@ -4,73 +4,73 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('parameters-array2')
   PsiWhiteSpace('\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('m')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.application.plugin.TestService')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceParametersImpl(OAP_MODULE_SERVICES_SERVICE_PARAMETERS)
+      OAP_MODULE_SERVICES_SERVICE_PARAMETERS
         PsiElement(parameters)('parameters')
         PsiWhiteSpace(' ')
-        OapParametersObjectImpl(OAP_PARAMETERS_OBJECT)
+        OAP_PARAMETERS_OBJECT
           PsiElement({)('{')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('      ')
-          OapParameterKeyValueImpl(OAP_PARAMETER_KEY_VALUE)
+          OAP_PARAMETER_KEY_VALUE
             PsiElement(key_name)('enums')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
-            OapParametersArrayImpl(OAP_PARAMETERS_ARRAY)
+            OAP_PARAMETERS_ARRAY
               PsiElement([)('[')
-              OapParametersArrayItemImpl(OAP_PARAMETERS_ARRAY_ITEM)
-                OapIdValueImpl(OAP_ID_VALUE)
+              OAP_PARAMETERS_ARRAY_ITEM
+                OAP_ID_VALUE
                   PsiElement(key_value)('ONE')
                 PsiElement(,)(',')
                 PsiWhiteSpace(' ')
-                OapIdValueImpl(OAP_ID_VALUE)
+                OAP_ID_VALUE
                   PsiElement(key_value)('TWO')
               PsiElement(])(']')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('      ')
-          OapParameterKeyValueImpl(OAP_PARAMETER_KEY_VALUE)
+          OAP_PARAMETER_KEY_VALUE
             PsiElement(key_name)('a')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
-            OapIdValueImpl(OAP_ID_VALUE)
+            OAP_ID_VALUE
               PsiElement(key_value)('new value // pubilc final String')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('      ')
-          OapParameterKeyValueImpl(OAP_PARAMETER_KEY_VALUE)
+          OAP_PARAMETER_KEY_VALUE
             PsiElement(key_name)('al')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
-            OapParametersArrayImpl(OAP_PARAMETERS_ARRAY)
+            OAP_PARAMETERS_ARRAY
               PsiElement([)('[')
-              OapParametersArrayItemImpl(OAP_PARAMETERS_ARRAY_ITEM)
-                OapIdValueImpl(OAP_ID_VALUE)
+              OAP_PARAMETERS_ARRAY_ITEM
+                OAP_ID_VALUE
                   PsiElement(key_value)('"val"')
               PsiElement(])(']')
           PsiWhiteSpace('\n')

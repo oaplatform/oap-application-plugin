@@ -5,9 +5,11 @@ import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
 import oap.application.plugin.psi.OapCompositeElement;
 import oap.application.plugin.psi.IndentNormal;
+import oap.application.plugin.psi.IModuleName;
 import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 import oap.application.plugin.psi.OapValue;
 import oap.application.plugin.psi.OapKeyValuePair;
+import oap.application.plugin.psi.IServiceName;
 
 public class OapVisitor extends PsiElementVisitor {
 
@@ -93,6 +95,7 @@ public class OapVisitor extends PsiElementVisitor {
 
   public void visitModuleDependsOnName(@NotNull OapModuleDependsOnName o) {
     visitIndentNormal(o);
+    // visitIModuleName(o);
   }
 
   public void visitModuleEnabled(@NotNull OapModuleEnabled o) {
@@ -104,7 +107,7 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleName(@NotNull OapModuleName o) {
-    visitCompositeElement(o);
+    visitIModuleName(o);
   }
 
   public void visitModuleNamePair(@NotNull OapModuleNamePair o) {
@@ -133,6 +136,7 @@ public class OapVisitor extends PsiElementVisitor {
 
   public void visitModuleServicesServiceDependsonName(@NotNull OapModuleServicesServiceDependsonName o) {
     visitIndentNormal(o);
+    // visitIServiceName(o);
   }
 
   public void visitModuleServicesServiceEnabled(@NotNull OapModuleServicesServiceEnabled o) {
@@ -224,11 +228,11 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitReferenceModulesName(@NotNull OapReferenceModulesName o) {
-    visitCompositeElement(o);
+    visitIModuleName(o);
   }
 
   public void visitReferenceModulesServiceName(@NotNull OapReferenceModulesServiceName o) {
-    visitCompositeElement(o);
+    visitIServiceName(o);
   }
 
   public void visitReferenceModulesValue(@NotNull OapReferenceModulesValue o) {
@@ -345,6 +349,14 @@ public class OapVisitor extends PsiElementVisitor {
 
   public void visitWsserviceSessionAware(@NotNull OapWsserviceSessionAware o) {
     visitKeyValuePairWithIndentNormal(o);
+  }
+
+  public void visitIModuleName(@NotNull IModuleName o) {
+    visitElement(o);
+  }
+
+  public void visitIServiceName(@NotNull IServiceName o) {
+    visitElement(o);
   }
 
   public void visitIndentNormal(@NotNull IndentNormal o) {

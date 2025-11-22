@@ -4,10 +4,10 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('module-configurations-array')
   PsiWhiteSpace('\n\n')
-  OapModuleConfigurationsImpl(OAP_MODULE_CONFIGURATIONS)
+  OAP_MODULE_CONFIGURATIONS
     PsiElement(configurations)('configurations')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
@@ -15,97 +15,97 @@ OAP_FILE
     PsiElement([)('[')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleConfigurationImpl(OAP_MODULE_CONFIGURATION)
+    OAP_MODULE_CONFIGURATION
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleConfigurationEntriesImpl(OAP_MODULE_CONFIGURATION_ENTRIES)
-        OapModuleConfigurationEntriesLoaderImpl(OAP_MODULE_CONFIGURATION_ENTRIES_LOADER)
+      OAP_MODULE_CONFIGURATION_ENTRIES
+        OAP_MODULE_CONFIGURATION_ENTRIES_LOADER
           PsiElement(loader)('loader')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
           PsiWhiteSpace(' ')
-          OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+          OAP_CLASS_NAME_PSI
             PsiElement(class_name)('a.A')
         PsiWhiteSpace('\n')
         PsiWhiteSpace('    ')
-        OapModuleConfigurationEntriesConfigImpl(OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG)
+        OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG
           PsiElement(config)('config')
           PsiWhiteSpace(' ')
-          OapConfigObjectImpl(OAP_CONFIG_OBJECT)
+          OAP_CONFIG_OBJECT
             PsiElement({)('{')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
               PsiElement(key_name)('test')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              OapConfigArrayImpl(OAP_CONFIG_ARRAY)
+              OAP_CONFIG_ARRAY
                 PsiElement([)('[')
-                OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
+                OAP_CONFIG_ARRAY_ITEM
                   PsiElement(key_value)('1')
                 PsiElement(,)(',')
-                OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
+                OAP_CONFIG_ARRAY_ITEM
                   PsiElement(key_value)('2')
                 PsiElement(])(']')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
               PsiElement(key_name)('test2')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              OapConfigArrayImpl(OAP_CONFIG_ARRAY)
+              OAP_CONFIG_ARRAY
                 PsiElement([)('[')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('        ')
-                OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
+                OAP_CONFIG_ARRAY_ITEM
                   PsiElement(key_value)('1')
                 PsiElement(,)(',')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('        ')
-                OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
+                OAP_CONFIG_ARRAY_ITEM
                   PsiElement(key_value)('2')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('      ')
                 PsiElement(])(']')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
               PsiElement(key_name)('test3')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              OapConfigArrayImpl(OAP_CONFIG_ARRAY)
+              OAP_CONFIG_ARRAY
                 PsiElement([)('[')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('        ')
-                OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
+                OAP_CONFIG_ARRAY_ITEM
                   PsiElement(key_value)('sdfsdf')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('        ')
-                OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
+                OAP_CONFIG_ARRAY_ITEM
                   PsiElement(key_value)('kljlkj')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('      ')
                 PsiElement(])(']')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
               PsiElement(key_name)('test4')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              OapConfigArrayImpl(OAP_CONFIG_ARRAY)
+              OAP_CONFIG_ARRAY
                 PsiElement([)('[')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('        ')
-                OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
+                OAP_CONFIG_ARRAY_ITEM
                   PsiElement(key_value)('"sdfsdf"')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('        ')
-                OapConfigArrayItemImpl(OAP_CONFIG_ARRAY_ITEM)
+                OAP_CONFIG_ARRAY_ITEM
                   PsiElement(key_value)('"kljlkj"')
                 PsiWhiteSpace('\n')
                 PsiWhiteSpace('      ')
@@ -118,33 +118,33 @@ OAP_FILE
       PsiElement(})('}')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleConfigurationImpl(OAP_MODULE_CONFIGURATION)
+    OAP_MODULE_CONFIGURATION
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleConfigurationEntriesImpl(OAP_MODULE_CONFIGURATION_ENTRIES)
-        OapModuleConfigurationEntriesLoaderImpl(OAP_MODULE_CONFIGURATION_ENTRIES_LOADER)
+      OAP_MODULE_CONFIGURATION_ENTRIES
+        OAP_MODULE_CONFIGURATION_ENTRIES_LOADER
           PsiElement(loader)('loader')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
           PsiWhiteSpace(' ')
-          OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+          OAP_CLASS_NAME_PSI
             PsiElement(class_name)('oap.MyLoader')
         PsiWhiteSpace('\n')
         PsiWhiteSpace('    ')
-        OapModuleConfigurationEntriesConfigImpl(OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG)
+        OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG
           PsiElement(config)('config')
           PsiWhiteSpace(' ')
-          OapConfigObjectImpl(OAP_CONFIG_OBJECT)
+          OAP_CONFIG_OBJECT
             PsiElement({)('{')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapConfigurationKeyValuePairImpl(OAP_CONFIGURATION_KEY_VALUE_PAIR)
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
               PsiElement(key_name)('b')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              OapBoolValueImpl(OAP_BOOL_VALUE)
+              OAP_BOOL_VALUE
                 PsiElement(bool)('true')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('    ')

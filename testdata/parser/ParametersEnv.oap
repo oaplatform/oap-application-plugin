@@ -1,0 +1,10 @@
+name = parameters-env
+services {
+  service3 {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      name = a
+      service3 = path( ${TEST_PATH}/beanFromPathFile.conf )
+    }
+  }
+}

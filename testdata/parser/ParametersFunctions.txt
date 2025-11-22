@@ -1,77 +1,65 @@
-name = parameters-functions
-
-services {
-  test-master {
-    implementation = oap.application.plugin.TestService
-    parameters {
-        service3 = classpath(/oap/application/KernelTest/beanFromClasspathFile.conf)
-        service3Field = json("{\"name\":\"from resource\",\"timeout\":1234}")
-    }
-  }
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('parameters-functions')
   PsiWhiteSpace('\n\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('test-master')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.application.plugin.TestService')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceParametersImpl(OAP_MODULE_SERVICES_SERVICE_PARAMETERS)
+      OAP_MODULE_SERVICES_SERVICE_PARAMETERS
         PsiElement(parameters)('parameters')
         PsiWhiteSpace(' ')
-        OapParametersObjectImpl(OAP_PARAMETERS_OBJECT)
+        OAP_PARAMETERS_OBJECT
           PsiElement({)('{')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('        ')
-          OapParameterKeyValueImpl(OAP_PARAMETER_KEY_VALUE)
+          OAP_PARAMETER_KEY_VALUE
             PsiElement(key_name)('service3')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
-            OapFunctionImpl(OAP_FUNCTION)
-              OapIdValueImpl(OAP_ID_VALUE)
+            OAP_FUNCTION
+              OAP_ID_VALUE
                 PsiElement(key_value)('classpath')
               PsiElement(()('(')
-              OapIdValueImpl(OAP_ID_VALUE)
+              OAP_ID_VALUE
                 PsiElement(key_value)('/oap/application/KernelTest/beanFromClasspathFile.conf')
               PsiElement())(')')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('        ')
-          OapParameterKeyValueImpl(OAP_PARAMETER_KEY_VALUE)
+          OAP_PARAMETER_KEY_VALUE
             PsiElement(key_name)('service3Field')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
-            OapFunctionImpl(OAP_FUNCTION)
-              OapIdValueImpl(OAP_ID_VALUE)
+            OAP_FUNCTION
+              OAP_ID_VALUE
                 PsiElement(key_value)('json')
               PsiElement(()('(')
-              OapIdValueImpl(OAP_ID_VALUE)
+              OAP_ID_VALUE
                 PsiElement(key_value)('"{\"name\":\"from resource\",\"timeout\":1234}"')
               PsiElement())(')')
           PsiWhiteSpace('\n')

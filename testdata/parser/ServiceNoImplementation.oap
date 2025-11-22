@@ -1,0 +1,6 @@
+name = service-no-implementation
+services {
+    test-service {
+       implementation =
+    }
+}

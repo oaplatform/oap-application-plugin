@@ -1,0 +1,13 @@
+name = service-dot-names
+services {
+  links {
+    implementation = oap.application.KernelLinkImplementationsTest.TestCLinks
+    listen.references = <modules.this.links>
+    parameters.reference = <modules.this.link1>
+    link.references = <modules.this.links>
+  }
+  link1 {
+    implementation = oap.application.KernelLinkImplementationsTest.TestCLink
+    link.linkingPhaseTestLink = <modules.this.links>
+  }
+}
