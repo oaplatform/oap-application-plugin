@@ -1,0 +1,18 @@
+name = parameters-error-reference
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      a1 = <
+      a2 = <m
+      a3 = <msdfsdf.
+      a4 = <modules.
+      a4 = <modules.dddd
+      a5 = <modules.fff.
+      a6 = <modules.this.
+      a7 = <modules.this.ffff
+      a8 = <modules.this.ffff>
+    }
+  }
+}

@@ -4,65 +4,65 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('Service')
   PsiWhiteSpace('\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('    ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('test-service')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('        ')
-      OapModuleServicesServiceEnabledImpl(OAP_MODULE_SERVICES_SERVICE_ENABLED)
+      OAP_MODULE_SERVICES_SERVICE_ENABLED
         PsiElement(enabled)('enabled')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapBoolValueImpl(OAP_BOOL_VALUE)
+        OAP_BOOL_VALUE
           PsiElement(bool)('false')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('        ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.application.plugin.TestService')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('        ')
-      OapModuleServicesServiceSupervisionImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION)
+      OAP_MODULE_SERVICES_SERVICE_SUPERVISION
         PsiElement(supervision)('supervision')
         PsiWhiteSpace(' ')
         PsiElement({)('{')
         PsiWhiteSpace('\n')
         PsiWhiteSpace('            ')
-        OapModuleServicesServiceSupervisionEntitiesSuperviseImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SUPERVISE)
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SUPERVISE
           PsiElement(supervise)('supervise')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
           PsiWhiteSpace(' ')
-          OapBoolValueImpl(OAP_BOOL_VALUE)
+          OAP_BOOL_VALUE
             PsiElement(bool)('true')
         PsiWhiteSpace('\n')
         PsiWhiteSpace('            ')
-        OapModuleServicesServiceSupervisionEntitiesScheduleImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SCHEDULE)
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SCHEDULE
           PsiElement(schedule)('schedule')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
           PsiWhiteSpace(' ')
-          OapBoolValueImpl(OAP_BOOL_VALUE)
+          OAP_BOOL_VALUE
             PsiElement(bool)('true')
         PsiWhiteSpace('\n')
         PsiWhiteSpace('            ')
-        OapModuleServicesServiceSupervisionEntitiesDelayImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_DELAY)
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_DELAY
           PsiElement(delay)('delay')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
@@ -70,7 +70,7 @@ OAP_FILE
           PsiElement(key_value)('1s')
         PsiWhiteSpace('\n')
         PsiWhiteSpace('            ')
-        OapModuleServicesServiceSupervisionEntitiesCronImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_CRON)
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_CRON
           PsiElement(cron)('cron')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
@@ -84,44 +84,44 @@ OAP_FILE
       PsiElement(})('}')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('    ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('test-service2')
       PsiElement(.)('.')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.application.plugin.TestService')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('    ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('test-service3')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('        ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('a.A')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('        ')
-      OapModuleServicesServiceSupervisionImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION)
+      OAP_MODULE_SERVICES_SERVICE_SUPERVISION
         PsiElement(supervision)('supervision')
         PsiElement(.)('.')
-        OapModuleServicesServiceSupervisionEntitiesSuperviseImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SUPERVISE)
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SUPERVISE
           PsiElement(supervise)('supervise')
           PsiWhiteSpace(' ')
           PsiElement(=)('=')
           PsiWhiteSpace(' ')
-          OapBoolValueImpl(OAP_BOOL_VALUE)
+          OAP_BOOL_VALUE
             PsiElement(bool)('true')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')

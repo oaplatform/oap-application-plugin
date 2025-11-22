@@ -1,0 +1,10 @@
+name = parameters-value-dot-number
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters {
+      version = 0.0.1
+    }
+  }
+}

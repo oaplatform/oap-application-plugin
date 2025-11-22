@@ -1,5 +1,6 @@
 package oap.application.plugin.psi
 
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
 import com.intellij.psi.util.PsiTreeUtil
@@ -9,7 +10,7 @@ import oap.application.plugin.lang.OapFileType
 object OapPsiElementFactory {
     private val Dummy = "dummy.oap"
 
-    fun createServiceImplementation(content: String, element: OapClassNamePsi): OapClassNamePsi? {
+    fun createServiceImplementation(content: String, element: OapClassNamePsi): OapClassNamePsi {
         val createFileFromText: PsiFile = PsiFileFactory.getInstance(element.project)
             .createFileFromText(
                 Dummy, OapFileType.OapFileType.INSTANCE, """
@@ -20,6 +21,12 @@ object OapPsiElementFactory {
             """.trimIndent()
             )
 
-        return PsiTreeUtil.findChildOfType(createFileFromText, OapClassNamePsi::class.java)
+        return PsiTreeUtil.findChildOfType(createFileFromText, OapClassNamePsi::class.java)!!
+    }
+
+    fun <T> replaceText(element: T, newContent: String): T where T : PsiElement {
+        when (element.node.elementType) {
+            else -> TODO("not implemented")
+        }
     }
 }

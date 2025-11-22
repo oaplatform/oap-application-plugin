@@ -110,6 +110,18 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(false)
     }
 
+    fun testParametersEnv() {
+        doTest(false)
+    }
+
+    fun testParametersErrorReference() {
+        doTest(true)
+    }
+
+    fun testParametersFunctions() {
+        doTest(false)
+    }
+
     fun testParametersMap() {
         doTest(false)
     }
@@ -117,6 +129,10 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     fun testParametersObjectComma() {
         doTest(false)
     }
+    fun testParametersValueDotNumber() {
+        doTest(false)
+    }
+
 
 
     fun testRemote() {
@@ -137,6 +153,15 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
 
     fun testServiceDotImplementation() {
         doTest(false)
+    }
+    fun testServiceDotNames() {
+        doTest(false)
+    }
+    fun testServiceImplementationPartialError() {
+        doTest(true)
+    }
+    fun testServiceNoImplementation() {
+        doTest(true)
     }
 
 

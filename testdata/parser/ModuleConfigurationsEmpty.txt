@@ -4,10 +4,10 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('module-configurations-empty')
   PsiWhiteSpace('\n\n')
-  OapModuleConfigurationsImpl(OAP_MODULE_CONFIGURATIONS)
+  OAP_MODULE_CONFIGURATIONS
     PsiElement(configurations)('configurations')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')

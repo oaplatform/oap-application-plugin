@@ -103,7 +103,6 @@ public interface OapTypes {
   IElementType OAP_DASH = new OapTokenType("-");
   IElementType OAP_DOLLAR = new OapTokenType("$");
   IElementType OAP_DOT = new OapTokenType(".");
-  IElementType OAP_DOUBLE = new OapTokenType("double");
   IElementType OAP_DURATION = new OapTokenType("duration");
   IElementType OAP_EQ = new OapTokenType("=");
   IElementType OAP_ID_ABSTRACT = new OapTokenType("abstract");
@@ -149,15 +148,12 @@ public interface OapTypes {
   IElementType OAP_LEFTBRACE = new OapTokenType("{");
   IElementType OAP_LEFTBRACKET = new OapTokenType("[");
   IElementType OAP_LEFTPAREN = new OapTokenType("(");
-  IElementType OAP_LONG = new OapTokenType("long");
   IElementType OAP_REFERENCE_VALUE = new OapTokenType("reference_value");
   IElementType OAP_RIGHTANGLE = new OapTokenType(">");
   IElementType OAP_RIGHTBRACE = new OapTokenType("}");
   IElementType OAP_RIGHTBRACKET = new OapTokenType("]");
   IElementType OAP_RIGHTPAREN = new OapTokenType(")");
   IElementType OAP_STRING = new OapTokenType("string");
-  IElementType OAP_ULONG = new OapTokenType("ulong");
-  IElementType OAP_UNQUOTED_STRING = new OapTokenType("unquoted_string");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {

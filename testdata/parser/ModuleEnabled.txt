@@ -4,10 +4,10 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('module-enabled')
   PsiWhiteSpace('\n\n')
-  OapModuleEnabledImpl(OAP_MODULE_ENABLED)
+  OAP_MODULE_ENABLED
     PsiElement(enabled)('enabled')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')

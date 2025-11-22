@@ -11,6 +11,7 @@ import static oap.application.plugin.gen.OapTypes.*;
 import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
+import oap.application.plugin.psi.impl.OapServiceReference;
 
 public class OapReferenceModulesServiceNameImpl extends OapCompositeElementImpl implements OapReferenceModulesServiceName {
 
@@ -32,6 +33,11 @@ public class OapReferenceModulesServiceNameImpl extends OapCompositeElementImpl 
   @Nullable
   public PsiElement getReferenceValue() {
     return findChildByType(OAP_REFERENCE_VALUE);
+  }
+
+  @Override
+  public @Nullable OapServiceReference getReference() {
+    return GrammarPsiImplUtil.getReference(this);
   }
 
 }

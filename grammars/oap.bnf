@@ -35,10 +35,6 @@
 
         duration='regexp:[0-9]+(kb|mb|gb|ms|s|m|h|d|w)'
 
-        double='regexp:[-+]?[0-9]+(_[0-9]+)*\.[0-9]+'
-        long = 'regexp:[-+][0-9]+(_[0-9]+)*'
-        ulong = 'regexp:[0-9]+(_[0-9]+)*'
-
         dot='.'
         dash='-'
 
@@ -84,8 +80,7 @@
         id_cron='cron'
         id_kernel='kernel'
 
-        letters="regexp:\w+"
-        unquoted_string="regexp:\w+"
+        key_value="regexp:\w+"
 
         nextline='regexp:\r\n|\n'
         string='regexp:"(\\"|[^"])*"'
@@ -136,8 +131,13 @@ reference_type_modules ::= [] 'modules' { pin=1 }
 reference_modules_name ::= [] (reference_value | 'this') {
     pin=1
     methods=[getReference]
+    implements="oap.application.plugin.psi.IModuleName"
 }
-reference_modules_service_name ::= [] reference_value { pin=1 }
+reference_modules_service_name ::= [] reference_value {
+    pin=1
+    implements="oap.application.plugin.psi.IServiceName"
+    methods=[getReference]
+}
 reference_modules_value_in ::= reference_type_modules '.' reference_modules_name '.' reference_modules_service_name { pin=1 }
 reference_modules_value ::= '<' reference_modules_value_in '>' {
     pin=1
@@ -155,6 +155,7 @@ reference_services_value ::= '<' reference_services_in '>' {
 
 module_name ::= [] key_value {
     pin=1
+    implements="oap.application.plugin.psi.IModuleName"
 }
 module_name_pair ::= [] id_name eq module_name {
     pin=1
@@ -173,7 +174,8 @@ module_enabled ::= 'enabled' '=' bool {
 
 // dependsOn = [
 module_depends_on_name ::= key_value {
-    implements="oap.application.plugin.psi.IndentNormal"
+    implements=["oap.application.plugin.psi.IndentNormal";"oap.application.plugin.psi.IModuleName"]
+    methods=[getReference]
 }
 module_depends_on ::= 'dependsOn' '=' ('[' (module_depends_on_name (','? module_depends_on_name )* )? ']' | module_depends_on_name) {
     pin=1
@@ -224,7 +226,8 @@ module_services_service_enabled ::= 'enabled' '=' bool_value {
 
 // dependsOn = [
 module_services_service_dependson_name ::= key_value {
-    implements="oap.application.plugin.psi.IndentNormal"
+    implements=["oap.application.plugin.psi.IndentNormal";"oap.application.plugin.psi.IServiceName"]
+    methods=[getReference]
 }
 module_services_service_dependson ::= 'dependsOn' '=' ('[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)* {
     pin=1

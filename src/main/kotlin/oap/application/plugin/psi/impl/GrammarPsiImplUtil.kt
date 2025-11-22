@@ -1,9 +1,13 @@
 package oap.application.plugin.psi.impl
 
+import com.intellij.psi.PsiFile
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.psi.util.PsiTreeUtil
 import oap.application.plugin.gen.psi.*
+import oap.application.plugin.psi.IModuleName
+import oap.application.plugin.psi.IServiceName
+import oap.application.plugin.psi.ModuleUtils
 import oap.application.plugin.stub.OapModuleNameIndex
 
 class GrammarPsiImplUtil {
@@ -26,20 +30,36 @@ class GrammarPsiImplUtil {
         }
 
         @JvmStatic
-        fun getReference(m: OapReferenceModulesName): OapModuleReference? {
-            if (m.idThis?.text != null) {
-                val oapModuleName: OapModuleName? = PsiTreeUtil.findChildOfType(m.containingFile, OapModuleName::class.java)
-                return oapModuleName?.let { OapModuleReference(it) }
+        fun getReference(m: IModuleName): OapModuleReference? {
+            if ("this".equals(m.text)) {
+                val oapModuleName: OapModuleNamePair? = PsiTreeUtil.findChildOfType(m.containingFile, OapModuleNamePair::class.java)
+                return oapModuleName?.let { OapModuleReference(m, it) }
             } else {
-                val moduleName: String? = m.referenceValue?.text
+                val moduleName: String? = m.text
                 return moduleName?.let { t ->
                     return StubIndex
                         .getElements(OapModuleNameIndex.KEY, t, m.project, GlobalSearchScope.allScope(m.project), OapModuleNamePair::class.java)
-                        .mapNotNull { PsiTreeUtil.findChildOfType(m.containingFile, OapModuleName::class.java) }
                         .firstOrNull()
-                        ?.let { moduleName -> OapModuleReference(moduleName) }
+                        ?.let { moduleName -> OapModuleReference(m, moduleName) }
                 }
             }
+        }
+
+        @JvmStatic
+        fun getReference(m: IServiceName): OapServiceReference? {
+            val serviceName: String? = m.text
+            val moduleFile: PsiFile? = if (m is OapReferenceModulesServiceName) {
+                val moduleName: OapReferenceModulesName? = PsiTreeUtil.findChildOfType(m.parent, OapReferenceModulesName::class.java)
+                moduleName?.let { ModuleUtils.getModuleFile(it) }
+            } else {
+                m.containingFile
+            }
+
+            val service: OapModuleServicesService? = moduleFile
+                ?.let { PsiTreeUtil.findChildrenOfType(it, OapModuleServicesService::class.java) }
+                ?.firstOrNull { it.serviceName.text.equals(serviceName) }
+
+            return service?.let { OapServiceReference(m, it) }
         }
     }
 }

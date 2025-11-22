@@ -1,0 +1,11 @@
+name = service-implementation-partial-error
+
+services {
+
+    test-service {
+
+      implementation =
+
+    }
+
+}
