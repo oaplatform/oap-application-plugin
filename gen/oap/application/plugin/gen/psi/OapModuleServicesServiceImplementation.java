@@ -4,9 +4,11 @@ package oap.application.plugin.gen.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import oap.application.plugin.psi.OapCompositeElement;
+import com.intellij.psi.PsiNamedElement;
+import com.intellij.psi.StubBasedPsiElement;
+import oap.application.plugin.stub.OapModuleServicesServiceImplementationStub;
 
-public interface OapModuleServicesServiceImplementation extends OapCompositeElement {
+public interface OapModuleServicesServiceImplementation extends PsiNamedElement, StubBasedPsiElement<OapModuleServicesServiceImplementationStub> {
 
   @Nullable
   OapClassNamePsi getClassNamePsi();

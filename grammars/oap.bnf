@@ -239,7 +239,10 @@ module_services_service_abstract ::= 'abstract' '=' bool_value {pin=1}
 
 module_services_service_implementation ::= 'implementation' '=' class_name_psi {
     pin=1
-    mixin="oap.application.plugin.psi.OapModuleServicesServiceImplementationMixin"
+    implements=["com.intellij.psi.PsiNamedElement"]
+    extends="oap.application.plugin.psi.impl.OapModuleServicesServiceImplementationImpl"
+    stubClass="oap.application.plugin.stub.OapModuleServicesServiceImplementationStub"
+    elementTypeFactory="oap.application.plugin.psi.impl.OapElementTypeFactory.factory"
 }
 
 module_services_service_default ::= 'default' '=' reference_modules_value {pin=1 }

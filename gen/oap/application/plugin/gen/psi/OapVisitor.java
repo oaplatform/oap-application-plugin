@@ -10,6 +10,7 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 import oap.application.plugin.psi.OapValue;
 import oap.application.plugin.psi.OapKeyValuePair;
 import oap.application.plugin.psi.IServiceName;
+import com.intellij.psi.PsiNamedElement;
 
 public class OapVisitor extends PsiElementVisitor {
 
@@ -144,7 +145,7 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleServicesServiceImplementation(@NotNull OapModuleServicesServiceImplementation o) {
-    visitCompositeElement(o);
+    visitPsiNamedElement(o);
   }
 
   public void visitModuleServicesServiceLink(@NotNull OapModuleServicesServiceLink o) {
@@ -349,6 +350,10 @@ public class OapVisitor extends PsiElementVisitor {
 
   public void visitWsserviceSessionAware(@NotNull OapWsserviceSessionAware o) {
     visitKeyValuePairWithIndentNormal(o);
+  }
+
+  public void visitPsiNamedElement(@NotNull PsiNamedElement o) {
+    visitElement(o);
   }
 
   public void visitIModuleName(@NotNull IModuleName o) {

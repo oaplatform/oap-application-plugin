@@ -4,56 +4,56 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('ServiceAbstractDefault')
   PsiWhiteSpace('\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('abstract-service-with-default-implementation')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceAbstractImpl(OAP_MODULE_SERVICES_SERVICE_ABSTRACT)
+      OAP_MODULE_SERVICES_SERVICE_ABSTRACT
         PsiElement(abstract)('abstract')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapBoolValueImpl(OAP_BOOL_VALUE)
+        OAP_BOOL_VALUE
           PsiElement(bool)('true')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
-          PsiElement(class_name)('oap.util.Cuid')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestService')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceDefaultImpl(OAP_MODULE_SERVICES_SERVICE_DEFAULT)
+      OAP_MODULE_SERVICES_SERVICE_DEFAULT
         PsiElement(default)('default')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapReferenceModulesValueImpl(OAP_REFERENCE_MODULES_VALUE)
+        OAP_REFERENCE_MODULES_VALUE
           PsiElement(<)('<')
-          OapReferenceModulesValueInImpl(OAP_REFERENCE_MODULES_VALUE_IN)
-            OapReferenceTypeModulesImpl(OAP_REFERENCE_TYPE_MODULES)
+          OAP_REFERENCE_MODULES_VALUE_IN
+            OAP_REFERENCE_TYPE_MODULES
               PsiElement(modules)('modules')
             PsiElement(.)('.')
-            OapReferenceModulesNameImpl(OAP_REFERENCE_MODULES_NAME)
+            OAP_REFERENCE_MODULES_NAME
               PsiElement(this)('this')
             PsiElement(.)('.')
-            OapReferenceModulesServiceNameImpl(OAP_REFERENCE_MODULES_SERVICE_NAME)
-              PsiElement(reference_value)('impl')
+            OAP_REFERENCE_MODULES_SERVICE_NAME
+              PsiElement(reference_value)('abstract-service-with-default-implementation')
           PsiElement(>)('>')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('  ')

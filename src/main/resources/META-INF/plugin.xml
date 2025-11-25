@@ -60,6 +60,8 @@
 
         <breadcrumbsInfoProvider implementation="oap.application.plugin.misc.OapBreadcrumbsInfoProvider"/>
 
+        <codeInsight.lineMarkerProvider language="OAP" implementationClass="oap.application.plugin.editor.OapImplementationLineMarkerProvider" />
+        <codeInsight.lineMarkerProvider language="JAVA" implementationClass="oap.application.plugin.editor.JavaOapImplementationLineMarkerProvider" />
 
         <localInspection language="OAP"
                          implementationClass="oap.application.plugin.ref.ValidClassNameInspection"
@@ -83,5 +85,6 @@
 
         <!-- index -->
         <stubIndex implementation="oap.application.plugin.stub.OapModuleNameIndex"/>
+        <stubIndex implementation="oap.application.plugin.stub.OapModuleServicesServiceImplementationIndex"/>
     </extensions>
 </idea-plugin>

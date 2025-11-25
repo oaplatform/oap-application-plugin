@@ -8,14 +8,19 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static oap.application.plugin.gen.OapTypes.*;
-import oap.application.plugin.psi.OapModuleServicesServiceImplementationMixin;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
+import oap.application.plugin.stub.OapModuleServicesServiceImplementationStub;
+import com.intellij.psi.stubs.IStubElementType;
 
-public class OapModuleServicesServiceImplementationImpl extends OapModuleServicesServiceImplementationMixin implements OapModuleServicesServiceImplementation {
+public class OapModuleServicesServiceImplementationImpl extends oap.application.plugin.psi.impl.OapModuleServicesServiceImplementationImpl implements OapModuleServicesServiceImplementation {
 
   public OapModuleServicesServiceImplementationImpl(@NotNull ASTNode node) {
     super(node);
+  }
+
+  public OapModuleServicesServiceImplementationImpl(@NotNull OapModuleServicesServiceImplementationStub stub, @NotNull IStubElementType<?, ?> type) {
+    super(stub, type);
   }
 
   public void accept(@NotNull OapVisitor visitor) {

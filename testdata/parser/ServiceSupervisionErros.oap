@@ -1,0 +1,15 @@
+name = service-supervision-erros
+services {
+    test-service {
+        implementation = oap.application.plugin.TestService
+        supervision.su = true
+    }
+    test-service3 {
+        enabled = false
+        implementation = oap.application.plugin.TestService
+        supervision {
+            su = true
+            schedule = t
+        }
+    }
+}
