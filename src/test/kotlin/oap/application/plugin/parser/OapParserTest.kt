@@ -16,16 +16,16 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         try {
             super.doTest(true)
         } catch (e: FileComparisonFailedError) {
-            println("actual:\n${e.actualStringPresentation}\n---\nexpected:\n${e.expectedStringPresentation}")
-
-            val actual: List<String> = e.actualStringPresentation.lines()
-            val expected: List<String> = e.expectedStringPresentation.lines()
-
-            val patch: Patch<String> = DiffUtils.diff(expected, actual)
-
-            for (delta in patch.getDeltas()) {
-                println(delta)
-            }
+//            println("actual:\n${e.actualStringPresentation}\n---\nexpected:\n${e.expectedStringPresentation}")
+//
+//            val actual: List<String> = e.actualStringPresentation.lines()
+//            val expected: List<String> = e.expectedStringPresentation.lines()
+//
+//            val patch: Patch<String> = DiffUtils.diff(expected, actual)
+//
+//            for (delta in patch.getDeltas()) {
+//                println(delta)
+//            }
 
             throw e;
         }
