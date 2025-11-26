@@ -36,14 +36,14 @@ public class OapRemoteTimeoutImpl extends OapCompositeElementImpl implements Oap
 
   @Override
   @Nullable
-  public PsiElement getDuration() {
-    return findChildByType(OAP_DURATION);
+  public PsiElement getEq() {
+    return findChildByType(OAP_EQ);
   }
 
   @Override
   @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  public PsiElement getKeyValue() {
+    return findChildByType(OAP_KEY_VALUE);
   }
 
 }

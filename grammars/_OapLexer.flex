@@ -263,7 +263,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "}"                  { yybegin(SERVICES_SERVICE); return OAP_RIGHTBRACE; }
   "url"                { yypushState(KEY_VALUE_STRING); return OAP_ID_URL; }
   "name"               { yypushState(_VALUE_REFERENCE); return OAP_ID_NAME; }
-  "serialization"      { yypushState(KEY_VALUE_STRING); return OAP_ID_SERIALIZATION; }
+  "timeout"            { yypushState(KEY_VALUE_STRING); return OAP_ID_TIMEOUT; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
   {NEXTLINE}           { return WHITE_SPACE; }

@@ -284,10 +284,6 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
-  public void visitRemoteSerialization(@NotNull OapRemoteSerialization o) {
-    visitKeyValuePairWithIndentNormal(o);
-  }
-
   public void visitRemoteTimeout(@NotNull OapRemoteTimeout o) {
     visitKeyValuePairWithIndentNormal(o);
   }

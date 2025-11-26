@@ -58,7 +58,7 @@
         id_implementation='implementation'
         id_remote='remote'
         id_url='url'
-        id_serialization='serialization'
+        id_timeout='timeout'
         id_configurations='configurations'
         id_loader='loader'
         id_config='config'
@@ -340,7 +340,7 @@ module_services_service_remote ::= 'remote' (&'.' dot_remote | remote_object ) {
 }
 dot_remote ::= '.' remote_name
 remote_object ::= '{' remote_entries '}' {pin=1}
-remote_entries ::= (&'name' remote_name | &'timeout' remote_timeout | &'serialization' remote_serialization | &'url' remote_url )*
+remote_entries ::= (&'name' remote_name | &'timeout' remote_timeout | &'url' remote_url )*
 
 remote_name ::= 'name' '=' reference_modules_value {
     pin=1
@@ -354,18 +354,13 @@ remote_url ::= 'url' '=' key_value {
 }
 
 remote_timeout_id_value ::= 'timeout'
-remote_timeout ::= remote_timeout_id_value eq duration {
+remote_timeout ::= remote_timeout_id_value eq key_value {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
     recoverWhile=recover_to_end_of_line
 }
 
-remote_serialization ::= 'serialization' '=' key_value {
-    pin=1
-    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
-}
-
-private recover_remote ::= !('name' | 'url' | '}' | 'serialization' | 'timeout' | '>' )
+private recover_remote ::= !('name' | 'url' | '}' | 'timeout' | '>' )
 // } // remote
 
 

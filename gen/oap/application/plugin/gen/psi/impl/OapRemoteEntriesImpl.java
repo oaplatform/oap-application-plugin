@@ -36,12 +36,6 @@ public class OapRemoteEntriesImpl extends OapCompositeElementImpl implements Oap
 
   @Override
   @NotNull
-  public List<OapRemoteSerialization> getRemoteSerializationList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapRemoteSerialization.class);
-  }
-
-  @Override
-  @NotNull
   public List<OapRemoteTimeout> getRemoteTimeoutList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, OapRemoteTimeout.class);
   }
