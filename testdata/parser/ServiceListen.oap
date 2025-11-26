@@ -1,0 +1,20 @@
+name = serviceListen
+
+services {
+  test-object {
+    implementation = oap.application.plugin.TestService
+    listen {
+      a = <modules.this.service1>
+      a2 = <modules.module-2.service-2>
+    }
+  }
+  test-empty-object {
+    implementation = oap.application.plugin.TestService
+    listen {
+    }
+  }
+  test-dot {
+    implementation = oap.application.plugin.TestService
+    listen.data = <modules.a.a>
+  }
+}

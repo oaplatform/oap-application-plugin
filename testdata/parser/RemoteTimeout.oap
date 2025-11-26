@@ -6,6 +6,7 @@ services {
     remote {
       url = "http://localhost/remote/"
       name = <modules.oap-module-with-remoting.remote-service>
+      timeout = 60s
     }
   }
 }

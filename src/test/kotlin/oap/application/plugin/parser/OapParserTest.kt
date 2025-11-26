@@ -1,6 +1,11 @@
 package oap.application.plugin.parser
 
+import com.intellij.platform.testFramework.core.FileComparisonFailedError
 import com.intellij.testFramework.ParsingTestCase
+import com.jetbrains.rd.util.string.println
+import org.assertj.core.util.diff.DiffUtils
+import org.assertj.core.util.diff.Patch
+
 
 class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     override fun getTestDataPath(): String {
@@ -8,7 +13,22 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
     override fun doTest(suppressErrors: Boolean) {
-        super.doTest(true)
+        try {
+            super.doTest(true)
+        } catch (e: FileComparisonFailedError) {
+//            println("actual:\n${e.actualStringPresentation}\n---\nexpected:\n${e.expectedStringPresentation}")
+//
+//            val actual: List<String> = e.actualStringPresentation.lines()
+//            val expected: List<String> = e.expectedStringPresentation.lines()
+//
+//            val patch: Patch<String> = DiffUtils.diff(expected, actual)
+//
+//            for (delta in patch.getDeltas()) {
+//                println(delta)
+//            }
+
+            throw e;
+        }
 
         if (!suppressErrors) {
             assertFalse(
@@ -129,13 +149,17 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     fun testParametersObjectComma() {
         doTest(false)
     }
+
     fun testParametersValueDotNumber() {
         doTest(false)
     }
 
 
-
     fun testRemote() {
+        doTest(false)
+    }
+
+    fun testRemoteTimeout() {
         doTest(false)
     }
 
@@ -147,6 +171,10 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(false)
     }
 
+    fun testServiceAbstractDefault() {
+        doTest(false)
+    }
+
     fun testServiceDependsOn() {
         doTest(false)
     }
@@ -154,13 +182,24 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     fun testServiceDotImplementation() {
         doTest(false)
     }
+
     fun testServiceDotNames() {
         doTest(false)
     }
+
     fun testServiceImplementationPartialError() {
         doTest(true)
     }
+
+    fun testServiceListen() {
+        doTest(false)
+    }
+
     fun testServiceNoImplementation() {
+        doTest(true)
+    }
+
+    fun testServiceSupervisionErros() {
         doTest(true)
     }
 

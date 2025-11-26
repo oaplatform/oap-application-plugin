@@ -12,9 +12,6 @@ public interface OapRemoteEntries extends OapCompositeElement {
   List<OapRemoteName> getRemoteNameList();
 
   @NotNull
-  List<OapRemoteSerialization> getRemoteSerializationList();
-
-  @NotNull
   List<OapRemoteTimeout> getRemoteTimeoutList();
 
   @NotNull

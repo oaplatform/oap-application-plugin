@@ -37,7 +37,7 @@ public interface OapTypes {
   IElementType OAP_MODULE_NAME = new OapCompositeElementType("OAP_MODULE_NAME");
   IElementType OAP_MODULE_NAME_PAIR = OapElementTypeFactory.factory("OAP_MODULE_NAME_PAIR");
   IElementType OAP_MODULE_SERVICES = new OapCompositeElementType("OAP_MODULE_SERVICES");
-  IElementType OAP_MODULE_SERVICES_SERVICE = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE");
+  IElementType OAP_MODULE_SERVICES_SERVICE = OapElementTypeFactory.factory("OAP_MODULE_SERVICES_SERVICE");
   IElementType OAP_MODULE_SERVICES_SERVICE_ABSTRACT = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_ABSTRACT");
   IElementType OAP_MODULE_SERVICES_SERVICE_DEFAULT = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEFAULT");
   IElementType OAP_MODULE_SERVICES_SERVICE_DEPENDSON = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEPENDSON");
@@ -78,7 +78,6 @@ public interface OapTypes {
   IElementType OAP_REMOTE_ENTRIES = new OapCompositeElementType("OAP_REMOTE_ENTRIES");
   IElementType OAP_REMOTE_NAME = new OapCompositeElementType("OAP_REMOTE_NAME");
   IElementType OAP_REMOTE_OBJECT = new OapCompositeElementType("OAP_REMOTE_OBJECT");
-  IElementType OAP_REMOTE_SERIALIZATION = new OapCompositeElementType("OAP_REMOTE_SERIALIZATION");
   IElementType OAP_REMOTE_TIMEOUT = new OapCompositeElementType("OAP_REMOTE_TIMEOUT");
   IElementType OAP_REMOTE_TIMEOUT_ID_VALUE = new OapCompositeElementType("OAP_REMOTE_TIMEOUT_ID_VALUE");
   IElementType OAP_REMOTE_URL = new OapCompositeElementType("OAP_REMOTE_URL");
@@ -131,13 +130,13 @@ public interface OapTypes {
   IElementType OAP_ID_REQUIRED = new OapTokenType("required");
   IElementType OAP_ID_SCHEDULE = new OapTokenType("schedule");
   IElementType OAP_ID_SELF = new OapTokenType("self");
-  IElementType OAP_ID_SERIALIZATION = new OapTokenType("serialization");
   IElementType OAP_ID_SERVICES = new OapTokenType("services");
   IElementType OAP_ID_SESSIONAWARE = new OapTokenType("sessionAware");
   IElementType OAP_ID_SUPERVISE = new OapTokenType("supervise");
   IElementType OAP_ID_SUPERVISION = new OapTokenType("supervision");
   IElementType OAP_ID_THIS = new OapTokenType("this");
   IElementType OAP_ID_THREAD = new OapTokenType("thread");
+  IElementType OAP_ID_TIMEOUT = new OapTokenType("timeout");
   IElementType OAP_ID_URL = new OapTokenType("url");
   IElementType OAP_ID_WS_HANDLER = new OapTokenType("ws-handler");
   IElementType OAP_ID_WS_SERVICE = new OapTokenType("ws-service");
@@ -358,9 +357,6 @@ public interface OapTypes {
       }
       else if (type == OAP_REMOTE_OBJECT) {
         return new OapRemoteObjectImpl(node);
-      }
-      else if (type == OAP_REMOTE_SERIALIZATION) {
-        return new OapRemoteSerializationImpl(node);
       }
       else if (type == OAP_REMOTE_TIMEOUT) {
         return new OapRemoteTimeoutImpl(node);

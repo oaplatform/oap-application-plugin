@@ -1,51 +1,35 @@
-name = service-supervision-erros
-services {
-    test-service {
-        implementation = oap.application.plugin.TestService
-        supervision.su = true
-    }
-    test-service3 {
-        enabled = false
-        implementation = oap.application.plugin.TestService
-        supervision {
-            su = true
-            schedule = t
-        }
-    }
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('service-supervision-erros')
   PsiWhiteSpace('\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('    ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('test-service')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('        ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.application.plugin.TestService')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('        ')
-      OapModuleServicesServiceSupervisionImpl(OAP_MODULE_SERVICES_SERVICE_SUPERVISION)
+      OAP_MODULE_SERVICES_SERVICE_SUPERVISION
         PsiElement(supervision)('supervision')
         PsiElement(.)('.')
         PsiErrorElement:cron, delay, schedule, supervise or thread expected, got 's'

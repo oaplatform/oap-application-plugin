@@ -8,4 +8,7 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapRemoteTimeoutIdValue extends OapCompositeElement {
 
+  @NotNull
+  PsiElement getIdTimeout();
+
 }

@@ -28,4 +28,10 @@ public class OapRemoteTimeoutIdValueImpl extends OapCompositeElementImpl impleme
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public PsiElement getIdTimeout() {
+    return notNullChild(findChildByType(OAP_ID_TIMEOUT));
+  }
+
 }

@@ -6,7 +6,7 @@ plugins {
 }
 
 group = "oap"
-version = "0.0.3"
+version = "0.0.4"
 
 repositories {
     mavenCentral()
@@ -37,6 +37,7 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.opentest4j:opentest4j:1.3.0")
     testImplementation("org.assertj:assertj-core:3.27.6")
+    testImplementation("io.github.java-diff-utils:java-diff-utils:4.16")
 }
 
 intellijPlatform {

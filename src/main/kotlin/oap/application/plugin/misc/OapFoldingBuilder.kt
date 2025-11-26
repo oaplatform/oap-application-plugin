@@ -6,9 +6,8 @@ import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.openapi.editor.Document
 import com.intellij.psi.tree.TokenSet
 import oap.application.plugin.gen.OapTypes
-import oap.application.plugin.psi.OapModuleServicesServiceMixin
+import oap.application.plugin.psi.impl.OapModuleServicesServiceImpl
 import oap.application.plugin.psi.OapCompositeElement
-import kotlin.collections.plusAssign
 
 class OapFoldingBuilder : FoldingBuilder {
     override fun buildFoldRegions(node: ASTNode, document: Document): Array<FoldingDescriptor> {
@@ -34,7 +33,7 @@ class OapFoldingBuilder : FoldingBuilder {
 
     override fun getPlaceholderText(node: ASTNode): String? {
         return when (node.elementType) {
-            OapTypes.OAP_MODULE_SERVICES_SERVICE -> "{...} // ${(node.getPsi() as OapModuleServicesServiceMixin).getServiceName()}"
+            OapTypes.OAP_MODULE_SERVICES_SERVICE -> "{...} // ${(node.getPsi() as OapModuleServicesServiceImpl).getServiceName()}"
 
             OapTypes.OAP_MODULE_SERVICES_SERVICE_REMOTE,
             OapTypes.OAP_MODULE_SERVICES_SERVICE_SUPERVISION,
