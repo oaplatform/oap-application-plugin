@@ -1,6 +1,10 @@
 package oap.application.plugin.parser
 
+import com.intellij.platform.testFramework.core.FileComparisonFailedError
 import com.intellij.testFramework.ParsingTestCase
+import org.assertj.core.util.diff.DiffUtils
+import org.assertj.core.util.diff.Patch
+
 
 class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     override fun getTestDataPath(): String {
@@ -8,7 +12,20 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
     override fun doTest(suppressErrors: Boolean) {
-        super.doTest(true)
+        try {
+            super.doTest(true)
+        } catch (e: FileComparisonFailedError) {
+            val actual: List<String> = e.actualStringPresentation.lines()
+            val expected: List<String> = e.expectedStringPresentation.lines()
+
+            val patch: Patch<String> = DiffUtils.diff(expected, actual)
+
+            for (delta in patch.getDeltas()) {
+                println(delta)
+            }
+
+            throw e;
+        }
 
         if (!suppressErrors) {
             assertFalse(
