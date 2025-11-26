@@ -19,7 +19,7 @@ class OapServiceLineMarkerProvider : LineMarkerProvider {
                 return NavigationGutterIconBuilder
                     .create(AllIcons.Nodes.Class)
                     .setTargets(listOf(psiClass))
-                    .setTooltipText("Service implementation")
+                    .setTooltipText(psiClass.qualifiedName!!)
                     .setAlignment(GutterIconRenderer.Alignment.RIGHT)
                     .createLineMarkerInfo(element)
             }
