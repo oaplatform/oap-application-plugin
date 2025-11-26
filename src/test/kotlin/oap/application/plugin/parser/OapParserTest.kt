@@ -2,6 +2,7 @@ package oap.application.plugin.parser
 
 import com.intellij.platform.testFramework.core.FileComparisonFailedError
 import com.intellij.testFramework.ParsingTestCase
+import com.jetbrains.rd.util.string.println
 import org.assertj.core.util.diff.DiffUtils
 import org.assertj.core.util.diff.Patch
 
@@ -15,6 +16,8 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         try {
             super.doTest(true)
         } catch (e: FileComparisonFailedError) {
+            println("actual:\n${e.actualStringPresentation}\n---\nexpected:\n${e.expectedStringPresentation}")
+
             val actual: List<String> = e.actualStringPresentation.lines()
             val expected: List<String> = e.expectedStringPresentation.lines()
 
