@@ -7,13 +7,13 @@ import com.intellij.icons.AllIcons
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
-import oap.application.plugin.gen.psi.OapModuleServicesServiceImplementation
+import oap.application.plugin.gen.psi.OapModuleServicesService
 import oap.application.plugin.psi.OapClassValueMixin
 
-class OapImplementationLineMarkerProvider : LineMarkerProvider {
+class OapServiceLineMarkerProvider : LineMarkerProvider {
     override fun getLineMarkerInfo(element: PsiElement): LineMarkerInfo<*>? {
-        if (element is OapModuleServicesServiceImplementation) {
-            val psiClass: PsiClass? = (element.classNamePsi as? OapClassValueMixin)?.getPsiClass()
+        if (element is OapModuleServicesService) {
+            val psiClass: PsiClass? = (element.moduleServicesServiceImplementation?.classNamePsi as? OapClassValueMixin)?.getPsiClass()
 
             if (psiClass != null) {
                 return NavigationGutterIconBuilder

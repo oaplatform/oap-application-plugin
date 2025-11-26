@@ -1102,7 +1102,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // service_name ( &dot dot_implementation_service | object_service )
+  // service_name ( &'.' dot_implementation_service | object_service )
   public static boolean module_services_service(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service")) return false;
     if (!nextTokenIs(b, OAP_KEY_NAME)) return false;
@@ -1115,7 +1115,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  // &dot dot_implementation_service | object_service
+  // &'.' dot_implementation_service | object_service
   private static boolean module_services_service_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_1")) return false;
     boolean r;
@@ -1126,7 +1126,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // &dot dot_implementation_service
+  // &'.' dot_implementation_service
   private static boolean module_services_service_1_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_1_0")) return false;
     boolean r;
@@ -1137,7 +1137,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // &dot
+  // &'.'
   private static boolean module_services_service_1_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_1_0_0")) return false;
     boolean r;
@@ -2607,7 +2607,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // !('name' | 'url' | '}' | 'serialization' | 'timeout' | '>' )
+  // !('name' | 'url' | '}' | 'timeout' | '>' )
   static boolean recover_remote(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "recover_remote")) return false;
     boolean r;
@@ -2617,14 +2617,13 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // 'name' | 'url' | '}' | 'serialization' | 'timeout' | '>'
+  // 'name' | 'url' | '}' | 'timeout' | '>'
   private static boolean recover_remote_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "recover_remote_0")) return false;
     boolean r;
     r = consumeToken(b, OAP_ID_NAME);
     if (!r) r = consumeToken(b, OAP_ID_URL);
     if (!r) r = consumeToken(b, OAP_RIGHTBRACE);
-    if (!r) r = consumeToken(b, "serialization");
     if (!r) r = consumeToken(b, OAP_ID_TIMEOUT);
     if (!r) r = consumeToken(b, OAP_RIGHTANGLE);
     return r;

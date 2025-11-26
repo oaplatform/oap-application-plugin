@@ -189,9 +189,12 @@ module_services ::= 'services' '{' module_services_service* '}' {
     implements="oap.application.plugin.psi.OapKeyValuePair"
 }
 service_name ::= key_name
-module_services_service ::= service_name ( &dot dot_implementation_service | object_service ) {
+module_services_service ::= service_name ( &'.' dot_implementation_service | object_service ) {
     pin=1
-    mixin="oap.application.plugin.psi.OapModuleServicesServiceMixin"
+    implements=["com.intellij.psi.PsiNamedElement"]
+    mixin="oap.application.plugin.psi.impl.OapModuleServicesServiceImpl"
+    elementTypeFactory="oap.application.plugin.psi.impl.OapElementTypeFactory.factory"
+    stubClass="oap.application.plugin.stub.OapModuleServicesServiceStub"
 }
 
 private dot_implementation_service ::= '.' module_services_service_implementation {
@@ -239,10 +242,7 @@ module_services_service_abstract ::= 'abstract' '=' bool_value {pin=1}
 
 module_services_service_implementation ::= 'implementation' '=' class_name_psi {
     pin=1
-    implements=["com.intellij.psi.PsiNamedElement"]
     extends="oap.application.plugin.psi.impl.OapModuleServicesServiceImplementationImpl"
-    stubClass="oap.application.plugin.stub.OapModuleServicesServiceImplementationStub"
-    elementTypeFactory="oap.application.plugin.psi.impl.OapElementTypeFactory.factory"
 }
 
 module_services_service_default ::= 'default' '=' reference_modules_value {pin=1 }

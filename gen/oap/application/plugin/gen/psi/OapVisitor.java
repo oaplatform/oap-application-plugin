@@ -120,7 +120,7 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleServicesService(@NotNull OapModuleServicesService o) {
-    visitCompositeElement(o);
+    visitPsiNamedElement(o);
   }
 
   public void visitModuleServicesServiceAbstract(@NotNull OapModuleServicesServiceAbstract o) {
@@ -145,7 +145,7 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleServicesServiceImplementation(@NotNull OapModuleServicesServiceImplementation o) {
-    visitPsiNamedElement(o);
+    visitCompositeElement(o);
   }
 
   public void visitModuleServicesServiceLink(@NotNull OapModuleServicesServiceLink o) {
