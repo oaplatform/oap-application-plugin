@@ -71,10 +71,12 @@ class OapDependsOnInspectionTest : OapFixtureTestCase() {
             name = testDependsOnUnknownService
             services {
               service1.implementation = oap.application.plugin.TestService
+              service11.implementation = oap.application.plugin.TestService
               service2 {
                 implementation = oap.application.plugin.TestService
                 dependsOn = [
                   service1
+                  service11
                   <error descr="Service 'unknownService' not found">unknownService</error>
                 ]
               }
