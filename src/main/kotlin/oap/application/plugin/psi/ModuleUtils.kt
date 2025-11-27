@@ -15,8 +15,8 @@ object ModuleUtils {
         return PsiTreeUtil.findChildOfType<OapModuleName>(psiFile, OapModuleName::class.java)?.keyValue?.text
     }
 
-    fun findServices(psiFile: PsiFile): List<OapModuleServicesService> {
-        return PsiTreeUtil.findChildOfType(psiFile, OapModuleServicesService::class.java)?.let { listOf(it) } ?: emptyList()
+    fun findServices(psiFile: PsiFile): Collection<OapModuleServicesService> {
+        return PsiTreeUtil.findChildrenOfType(psiFile, OapModuleServicesService::class.java)
     }
 
     fun getModuleFile(moduleName: OapReferenceModulesName): PsiFile? {

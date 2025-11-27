@@ -19,7 +19,7 @@ class ValidServiceDependsOnInspection : LocalInspectionTool() {
 
                     val thisServiceName: String? = element.findParentOfType<OapModuleServicesService>()?.serviceName?.text
 
-                    val services: List<OapModuleServicesService> = ModuleUtils.findServices(element.containingFile)
+                    val services: Collection<OapModuleServicesService> = ModuleUtils.findServices(element.containingFile)
 
                     if (thisServiceName != null && thisServiceName == serviceName) {
                         holder.registerProblem(
