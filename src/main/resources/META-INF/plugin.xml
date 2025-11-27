@@ -83,6 +83,11 @@
                          displayName="Required valid module name" groupName="OAP" enabledByDefault="true"
                          level="ERROR"/>
 
+        <localInspection language="OAP"
+                         implementationClass="oap.application.plugin.ref.ValidParametersInspection"
+                         displayName="Required valid parameter name" groupName="OAP" enabledByDefault="true"
+                         level="ERROR"/>
+
         <!-- index -->
         <stubIndex implementation="oap.application.plugin.stub.OapModuleNameIndex"/>
         <stubIndex implementation="oap.application.plugin.stub.OapModuleServicesServiceIndex"/>

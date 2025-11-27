@@ -1,0 +1,48 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('Include2')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_INCLUDE
+    PsiElement(include)('include')
+    PsiWhiteSpace(' ')
+    PsiElement(required)('required')
+    PsiElement(()('(')
+    PsiElement(include_resource_name)('"1"')
+    PsiElement())(')')
+  PsiWhiteSpace('\n')
+  OAP_MODULE_INCLUDE
+    PsiElement(include)('include')
+    PsiWhiteSpace(' ')
+    PsiElement(required)('required')
+    PsiElement(()('(')
+    PsiElement(include_resource_name)('"2"')
+    PsiElement())(')')
+  PsiWhiteSpace('\n')
+  OAP_MODULE_INCLUDE
+    PsiElement(include)('include')
+    PsiWhiteSpace(' ')
+    PsiElement(required)('required')
+    PsiElement(()('(')
+    PsiElement(include_resource_name)('"3"')
+    PsiElement())(')')
+  PsiWhiteSpace('\n')
+  OAP_MODULE_INCLUDE
+    PsiElement(include)('include')
+    PsiWhiteSpace(' ')
+    PsiElement(required)('required')
+    PsiElement(()('(')
+    PsiElement(include_resource_name)('"4"')
+    PsiElement())(')')
+  PsiWhiteSpace('\n')
+  OAP_MODULE_INCLUDE
+    PsiElement(include)('include')
+    PsiWhiteSpace(' ')
+    PsiElement(required)('required')
+    PsiElement(()('(')
+    PsiElement(include_resource_name)('"5"')
+    PsiElement())(')')

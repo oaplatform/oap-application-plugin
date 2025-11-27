@@ -41,6 +41,9 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     fun testInclude() {
         doTest(false)
     }
+    fun testInclude2() {
+        doTest(false)
+    }
 
     fun testInvalidServices() {
         doTest(true)
