@@ -8,7 +8,7 @@ import oap.application.plugin.psi.OapCompositeElement;
 
 public interface OapDotRemote extends OapCompositeElement {
 
-  @NotNull
+  @Nullable
   OapRemoteName getRemoteName();
 
   @NotNull

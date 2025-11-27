@@ -106,7 +106,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 %state INCLUDE
 %state DEPENDS_ON, DEPENDS_ON_IN
 %state CONFIGURATIONS, CONFIGURATIONS_OBJECTS, CONFIGURATIONS_OBJECT, CONFIGURATIONS_OBJECT_LOADER, CONFIGURATIONS_OBJECT_CONFIG
-%state SERVICES, SERVICES_IN, SERVICES_SERVICE, SERVICES_SERVICE_REMOTE
+%state SERVICES, SERVICES_IN, SERVICES_SERVICE, SERVICES_SERVICE_REMOTE, SERVICES_SERVICE_REMOTE_DOT_NAME
 %state SERVICES_SERVICE_PARAMETERS
 %state SERVICES_SERVICE_WS_SERVICE, SERVICES_SERVICE_WS_SERVICE_DOT_PATH
 %state SERVICES_SERVICE_WS_HANDLER, SERVICES_SERVICE_WS_HANDLER_DOT_PATH
@@ -250,7 +250,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "listen"             { yypushState(LISTEN); return OAP_ID_LISTEN; }
   "link"               { yypushState(LISTEN); return OAP_ID_LINK; }
   "parameters"         { yypushState(SERVICES_SERVICE_PARAMETERS); return OAP_ID_PARAMETERS; }
-  "remote"             { yybegin(SERVICES_SERVICE_REMOTE); return OAP_ID_REMOTE; }
+  "remote"             { yypushState(SERVICES_SERVICE_REMOTE); return OAP_ID_REMOTE; }
   "ws-service"         { yypushState(SERVICES_SERVICE_WS_SERVICE); return OAP_ID_WS_SERVICE; }
   "ws-handler"         { yypushState(SERVICES_SERVICE_WS_HANDLER); return OAP_ID_WS_HANDLER; }
   "supervision"        { yypushState(SERVICES_SERVICE_SUPERVISION); return OAP_ID_SUPERVISION; }
@@ -259,14 +259,21 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   {NEXTLINE}           { return WHITE_SPACE; }
 }
 <SERVICES_SERVICE_REMOTE> {
+  "."                  { yybegin(SERVICES_SERVICE_REMOTE_DOT_NAME); return OAP_DOT; }
   "{"                  { return OAP_LEFTBRACE; }
-  "}"                  { yybegin(SERVICES_SERVICE); return OAP_RIGHTBRACE; }
+  "}"                  { yypopState(); return OAP_RIGHTBRACE; }
   "url"                { yypushState(KEY_VALUE_STRING); return OAP_ID_URL; }
   "name"               { yypushState(_VALUE_REFERENCE); return OAP_ID_NAME; }
   "timeout"            { yypushState(KEY_VALUE_STRING); return OAP_ID_TIMEOUT; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
   {NEXTLINE}           { return WHITE_SPACE; }
+}
+<SERVICES_SERVICE_REMOTE_DOT_NAME> {
+  "name"               { yybegin(_VALUE_REFERENCE); return OAP_ID_NAME; }
+
+  {WHITE_SPACE}        { return WHITE_SPACE; }
+  {NEXTLINE}           { yypopState(); return WHITE_SPACE; }
 }
 <SERVICES_SERVICE_WS_SERVICE> {
   "."                  { yybegin(SERVICES_SERVICE_WS_SERVICE_DOT_PATH); return OAP_DOT; }

@@ -167,6 +167,10 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(false)
     }
 
+    fun testRemoteDotName() {
+        doTest(false)
+    }
+
     fun testRemoteNameError() {
         doTest(true)
     }

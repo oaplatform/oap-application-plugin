@@ -342,7 +342,7 @@ module_services_service_remote ::= 'remote' (&'.' dot_remote | remote_object ) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
-dot_remote ::= '.' remote_name
+dot_remote ::= '.' remote_name {pin=1}
 remote_object ::= '{' remote_entries '}' {pin=1}
 remote_entries ::= (&'name' remote_name | &'timeout' remote_timeout | &'url' remote_url )*
 

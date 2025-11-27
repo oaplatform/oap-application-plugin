@@ -1,0 +1,8 @@
+name = RemoteDotName
+
+services {
+  remote-client {
+    implementation = oap.remote.application.RemoteClient
+    remote.name = <modules.oap-module-with-remoting.remote-service>
+  }
+}

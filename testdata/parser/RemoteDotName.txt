@@ -1,0 +1,57 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('RemoteDotName')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('remote-client')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.remote.application.RemoteClient')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_REMOTE
+        PsiElement(remote)('remote')
+        OAP_DOT_REMOTE
+          PsiElement(.)('.')
+          OAP_REMOTE_NAME
+            PsiElement(name)('name')
+            PsiWhiteSpace(' ')
+            PsiElement(=)('=')
+            PsiWhiteSpace(' ')
+            OAP_REFERENCE_MODULES_VALUE
+              PsiElement(<)('<')
+              OAP_REFERENCE_MODULES_VALUE_IN
+                OAP_REFERENCE_TYPE_MODULES
+                  PsiElement(modules)('modules')
+                PsiElement(.)('.')
+                OAP_REFERENCE_MODULES_NAME
+                  PsiElement(reference_value)('oap-module-with-remoting')
+                PsiElement(.)('.')
+                OAP_REFERENCE_MODULES_SERVICE_NAME
+                  PsiElement(reference_value)('remote-service')
+              PsiElement(>)('>')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')
