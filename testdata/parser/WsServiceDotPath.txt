@@ -1,52 +1,41 @@
-name = ws-service-dot-path
-services {
-  api-ws {
-    implementation = oap.ws.api.ApiWS
-    ws-service.path = system/api
-  }
-  api-ws2 {
-    implementation = oap.ws.api.ApiWS
-    ws-service.path = system/api2
-  }
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('ws-service-dot-path')
   PsiWhiteSpace('\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('api-ws')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.ws.api.ApiWS')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceWsserviceImpl(OAP_MODULE_SERVICES_SERVICE_WSSERVICE)
+      OAP_MODULE_SERVICES_SERVICE_WSSERVICE
         PsiElement(ws-service)('ws-service')
-        OapDotWsservicePathImpl(OAP_DOT_WSSERVICE_PATH)
+        OAP_DOT_WSSERVICE_PATH
           PsiElement(.)('.')
-          OapWsservicePathImpl(OAP_WSSERVICE_PATH)
-            PsiElement(path)('path')
+          OAP_WSSERVICE_PATH
+            OAP_WSSERVICE_PATH_ID
+              PsiElement(path)('path')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -56,28 +45,29 @@ OAP_FILE
       PsiElement(})('}')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('api-ws2')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.ws.api.ApiWS')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceWsserviceImpl(OAP_MODULE_SERVICES_SERVICE_WSSERVICE)
+      OAP_MODULE_SERVICES_SERVICE_WSSERVICE
         PsiElement(ws-service)('ws-service')
-        OapDotWsservicePathImpl(OAP_DOT_WSSERVICE_PATH)
+        OAP_DOT_WSSERVICE_PATH
           PsiElement(.)('.')
-          OapWsservicePathImpl(OAP_WSSERVICE_PATH)
-            PsiElement(path)('path')
+          OAP_WSSERVICE_PATH
+            OAP_WSSERVICE_PATH_ID
+              PsiElement(path)('path')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')

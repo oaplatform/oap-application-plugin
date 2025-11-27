@@ -1,0 +1,14 @@
+name = parameters-functions
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters {
+        service3 = [
+          classpath(/oap/application/KernelTest/beanFromClasspathFile.conf)
+          file(/oap/application/KernelTest/beanFromClasspathFile.conf)
+        ]
+        service3Field = [json("{\"name\":\"from resource\",\"timeout\":1234}")]
+    }
+  }
+}

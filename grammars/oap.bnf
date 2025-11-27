@@ -109,7 +109,9 @@ class_name_psi ::= class_name {
 
 env_value ::=  '$' '{' key_value '}'
 id_value ::=  env_value id_value? | key_value id_value?
-function ::= &(id_value '(') id_value '(' id_value ')'
+function ::= &(id_value '(') id_value '(' id_value ')' {
+    pin = 2
+}
 
 bool_value ::= bool {
     methods=[getBooleanValue]
@@ -258,8 +260,8 @@ module_services_service_parameters ::= module_services_service_parameters_id ( &
 }
 private dot_parameters ::= '.' parameter_key_value
 parameters_object ::= '{' parameter_key_value? (','? parameter_key_value )* '}' {pin=1}
-parameters_array ::= '[' parameters_array_item* ']' {pin=1}
-parameters_array_item ::= &'<' any_reference | &'{' parameters_object | ( id_value (',' id_value )* ) {
+parameters_array ::= '[' parameters_array_item? (','? parameters_array_item)* ']' {pin=1}
+parameters_array_item ::= &'<' any_reference | &'{' parameters_object | function | bool_value | id_value {
     implements="oap.application.plugin.psi.IndentNormal"
 }
 

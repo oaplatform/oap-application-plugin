@@ -1,0 +1,11 @@
+name = ws-service-dot-path
+services {
+  api-ws {
+    implementation = oap.ws.api.ApiWS
+    ws-service.path = system/api
+  }
+  api-ws2 {
+    implementation = oap.ws.api.ApiWS
+    ws-service.path = system/api2
+  }
+}

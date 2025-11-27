@@ -142,6 +142,10 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(false)
     }
 
+    fun testParametersFunctionsArray() {
+        doTest(false)
+    }
+
     fun testParametersMap() {
         doTest(false)
     }
@@ -218,7 +222,16 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     fun testWsService() {
         doTest(false)
     }
+    fun testWsServiceDotPath() {
+        doTest(false)
+    }
+    fun testWsServiceEnabled() {
+        doTest(false)
+    }
     fun testWsServiceInterceptors() {
+        doTest(false)
+    }
+    fun testWsServicePathArray() {
         doTest(false)
     }
 }

@@ -1,0 +1,10 @@
+name = ws-service-path-array
+services {
+  math {
+    implementation = oap.ws.WebServicesTest.MathWS
+    ws-service.path = [
+      math
+      x/v/math
+    ]
+  }
+}
