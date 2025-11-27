@@ -5,8 +5,8 @@ OAP_FILE
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
     OAP_MODULE_NAME
-      PsiElement(key_value)('ws-service-interceptors')
-  PsiWhiteSpace('\n')
+      PsiElement(key_value)('ws-service')
+  PsiWhiteSpace('\n\n')
   OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
@@ -15,7 +15,7 @@ OAP_FILE
     PsiWhiteSpace('  ')
     OAP_MODULE_SERVICES_SERVICE
       OAP_SERVICE_NAME
-        PsiElement(key_name)('interceptor')
+        PsiElement(key_name)('test-master')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
@@ -26,8 +26,8 @@ OAP_FILE
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
         OAP_CLASS_NAME_PSI
-          PsiElement(class_name)('oap.ws.interceptor.InterceptorTest.TestWS')
-      PsiWhiteSpace('\n')
+          PsiElement(class_name)('oap.application.plugin.TestService')
+      PsiWhiteSpace('\n\n')
       PsiWhiteSpace('    ')
       OAP_MODULE_SERVICES_SERVICE_WSSERVICE
         PsiElement(ws-service)('ws-service')
@@ -35,7 +35,7 @@ OAP_FILE
         OAP_WSSERVICE_OBJECT
           PsiElement({)('{')
           PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+          PsiWhiteSpace('        ')
           OAP_WSSERVICE_ENTRIES
             OAP_WSSERVICE_PATH
               OAP_WSSERVICE_PATH_ID
@@ -43,9 +43,18 @@ OAP_FILE
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              PsiElement(key_value)('interceptor')
+              PsiElement(key_value)('mobile-action')
             PsiWhiteSpace('\n')
-            PsiWhiteSpace('      ')
+            PsiWhiteSpace('        ')
+            OAP_WSSERVICE_PATH
+              OAP_WSSERVICE_PATH_ID
+                PsiElement(path)('port')
+              PsiWhiteSpace(' ')
+              PsiElement(=)('=')
+              PsiWhiteSpace(' ')
+              PsiElement(key_value)('httpprivate')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('        ')
             OAP_WSSERVICE_SESSION_AWARE
               OAP_WSSERVICE_SESSION_AWARE_ID
                 PsiElement(sessionAware)('sessionAware')
@@ -55,16 +64,13 @@ OAP_FILE
               OAP_BOOL_VALUE
                 PsiElement(bool)('true')
             PsiWhiteSpace('\n')
-            PsiWhiteSpace('      ')
+            PsiWhiteSpace('        ')
             OAP_WSSERVICE_INTERCEPTORS
               OAP_WSSERVICE_INTERCEPTORS_ID
                 PsiElement(interceptors)('interceptors')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              PsiElement([)('[')
-              PsiWhiteSpace('\n')
-              PsiWhiteSpace('        ')
               OAP_WSSERVICE_INTERCEPTOR_ONE
                 OAP_REFERENCE_MODULES_VALUE
                   PsiElement(<)('<')
@@ -73,29 +79,11 @@ OAP_FILE
                       PsiElement(modules)('modules')
                     PsiElement(.)('.')
                     OAP_REFERENCE_MODULES_NAME
-                      PsiElement(reference_value)('oap-ws-validate-test')
+                      PsiElement(reference_value)('oap-ws-sso-api')
                     PsiElement(.)('.')
                     OAP_REFERENCE_MODULES_SERVICE_NAME
-                      PsiElement(reference_value)('pass-interceptor')
+                      PsiElement(reference_value)('oap-ws-sso-jwt-security-interceptor')
                   PsiElement(>)('>')
-              PsiWhiteSpace('\n')
-              PsiWhiteSpace('        ')
-              OAP_WSSERVICE_INTERCEPTOR_ONE
-                OAP_REFERENCE_MODULES_VALUE
-                  PsiElement(<)('<')
-                  OAP_REFERENCE_MODULES_VALUE_IN
-                    OAP_REFERENCE_TYPE_MODULES
-                      PsiElement(modules)('modules')
-                    PsiElement(.)('.')
-                    OAP_REFERENCE_MODULES_NAME
-                      PsiElement(reference_value)('oap-ws-validate-test')
-                    PsiElement(.)('.')
-                    OAP_REFERENCE_MODULES_SERVICE_NAME
-                      PsiElement(reference_value)('error-interceptor')
-                  PsiElement(>)('>')
-              PsiWhiteSpace('\n')
-              PsiWhiteSpace('      ')
-              PsiElement(])(']')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('    ')
           PsiElement(})('}')

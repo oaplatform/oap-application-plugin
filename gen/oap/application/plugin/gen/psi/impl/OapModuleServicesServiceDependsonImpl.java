@@ -30,6 +30,12 @@ public class OapModuleServicesServiceDependsonImpl extends OapCompositeElementIm
 
   @Override
   @NotNull
+  public OapModuleServicesServiceDependsonId getModuleServicesServiceDependsonId() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceDependsonId.class));
+  }
+
+  @Override
+  @NotNull
   public List<OapModuleServicesServiceDependsonName> getModuleServicesServiceDependsonNameList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleServicesServiceDependsonName.class);
   }
@@ -38,12 +44,6 @@ public class OapModuleServicesServiceDependsonImpl extends OapCompositeElementIm
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
-  }
-
-  @Override
-  @NotNull
-  public PsiElement getIdDependsOn() {
-    return notNullChild(findChildByType(OAP_ID_DEPENDS_ON));
   }
 
 }

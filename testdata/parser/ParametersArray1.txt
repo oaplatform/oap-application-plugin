@@ -30,7 +30,8 @@ OAP_FILE
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
       OAP_MODULE_SERVICES_SERVICE_PARAMETERS
-        PsiElement(parameters)('parameters')
+        OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
+          PsiElement(parameters)('parameters')
         PsiWhiteSpace(' ')
         OAP_PARAMETERS_OBJECT
           PsiElement({)('{')

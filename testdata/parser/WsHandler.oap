@@ -1,0 +1,13 @@
+name = ws-handler
+
+services {
+  test-handler {
+    implementation = oap.application.plugin.TestService
+
+    ws-handler {
+      path = /rtb
+      compression = false
+      blocking = false
+    }
+  }
+}

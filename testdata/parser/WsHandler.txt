@@ -1,79 +1,66 @@
-name = ws-handler
-
-services {
-  test-handler {
-    implementation = oap.application.plugin.TestService
-
-    ws-handler {
-      path = /rtb
-      compression = false
-      blocking = false
-    }
-  }
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('ws-handler')
   PsiWhiteSpace('\n\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('test-handler')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.application.plugin.TestService')
       PsiWhiteSpace('\n\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceWshandlerImpl(OAP_MODULE_SERVICES_SERVICE_WSHANDLER)
+      OAP_MODULE_SERVICES_SERVICE_WSHANDLER
         PsiElement(ws-handler)('ws-handler')
         PsiWhiteSpace(' ')
-        OapWshandlerObjectImpl(OAP_WSHANDLER_OBJECT)
+        OAP_WSHANDLER_OBJECT
           PsiElement({)('{')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('      ')
-          OapWshandlerEntriesImpl(OAP_WSHANDLER_ENTRIES)
-            OapWsservicePathImpl(OAP_WSSERVICE_PATH)
-              PsiElement(path)('path')
+          OAP_WSHANDLER_ENTRIES
+            OAP_WSSERVICE_PATH
+              OAP_WSSERVICE_PATH_ID
+                PsiElement(path)('path')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
               PsiElement(key_value)('/rtb')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapWshandlerCompressionImpl(OAP_WSHANDLER_COMPRESSION)
+            OAP_WSHANDLER_COMPRESSION
               PsiElement(compression)('compression')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              OapBoolValueImpl(OAP_BOOL_VALUE)
+              OAP_BOOL_VALUE
                 PsiElement(bool)('false')
             PsiWhiteSpace('\n')
             PsiWhiteSpace('      ')
-            OapWshandlerBlockingImpl(OAP_WSHANDLER_BLOCKING)
+            OAP_WSHANDLER_BLOCKING
               PsiElement(blocking)('blocking')
               PsiWhiteSpace(' ')
               PsiElement(=)('=')
               PsiWhiteSpace(' ')
-              OapBoolValueImpl(OAP_BOOL_VALUE)
+              OAP_BOOL_VALUE
                 PsiElement(bool)('false')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('    ')

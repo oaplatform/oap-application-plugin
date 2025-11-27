@@ -12,14 +12,14 @@ import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
 
-public class OapWsserviceSessionAwareImpl extends OapCompositeElementImpl implements OapWsserviceSessionAware {
+public class OapWsservicePathIdImpl extends OapCompositeElementImpl implements OapWsservicePathId {
 
-  public OapWsserviceSessionAwareImpl(@NotNull ASTNode node) {
+  public OapWsservicePathIdImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull OapVisitor visitor) {
-    visitor.visitWsserviceSessionAware(this);
+    visitor.visitWsservicePathId(this);
   }
 
   @Override
@@ -29,21 +29,9 @@ public class OapWsserviceSessionAwareImpl extends OapCompositeElementImpl implem
   }
 
   @Override
-  @Nullable
-  public OapBoolValue getBoolValue() {
-    return PsiTreeUtil.getChildOfType(this, OapBoolValue.class);
-  }
-
-  @Override
   @NotNull
-  public OapWsserviceSessionAwareId getWsserviceSessionAwareId() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapWsserviceSessionAwareId.class));
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  public PsiElement getIdPath() {
+    return notNullChild(findChildByType(OAP_ID_PATH));
   }
 
 }

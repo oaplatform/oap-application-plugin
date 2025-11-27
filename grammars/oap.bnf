@@ -232,7 +232,8 @@ module_services_service_dependson_name ::= key_value {
     implements=["oap.application.plugin.psi.IndentNormal";"oap.application.plugin.psi.IServiceName"]
     methods=[getReference]
 }
-module_services_service_dependson ::= 'dependsOn' '=' ('[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)* {
+module_services_service_dependson_id ::= 'dependsOn'
+module_services_service_dependson ::= module_services_service_dependson_id '=' ('[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)* {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
@@ -250,7 +251,8 @@ module_services_service_default ::= 'default' '=' reference_modules_value {pin=1
 
 
 // parameters {
-module_services_service_parameters ::= 'parameters' ( &'.' dot_parameters | parameters_object )  {
+module_services_service_parameters_id ::= 'parameters'
+module_services_service_parameters ::= module_services_service_parameters_id ( &'.' dot_parameters | parameters_object )  {
     pin=1
     mixin="oap.application.plugin.psi.OapModuleServicesServiceParametersMixin"
 }
@@ -373,27 +375,32 @@ dot_wsservice_path ::= '.' wsservice_path {pin=1}
 wsservice_object ::= '{' wsservice_entries? '}' {pin=1}
 wsservice_entries ::= (&'path' wsservice_path | &'port' wsservice_port| &'sessionAware' wsservice_sessionAware| &'interceptors' wsservice_interceptors | &'enabled' wsservice_enabled)*
 
-wsservice_path ::= 'path' '=' (&'[' wsservice_path_multiple | key_value ) {
+wsservice_path_id ::= 'path'
+wsservice_path ::= wsservice_path_id '=' (&'[' wsservice_path_multiple | key_value ) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-wsservice_port ::= 'port' '=' key_value {
+wsservice_port_id ::= 'port'
+wsservice_port ::= wsservice_port_id '=' key_value {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-wsservice_sessionAware ::= 'sessionAware' '=' bool_value {
+wsservice_sessionAware_id ::= 'sessionAware'
+wsservice_sessionAware ::= wsservice_sessionAware_id '=' bool_value {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-wsservice_enabled ::= 'enabled' '=' bool_value {
+wsservice_enabled_id ::= 'enabled'
+wsservice_enabled ::= wsservice_enabled_id '=' bool_value {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-wsservice_interceptors ::= 'interceptors' '=' (&'[' wsservice_interceptor_multiple|wsservice_interceptor_one) {
+wsservice_interceptors_id ::= 'interceptors'
+wsservice_interceptors ::= wsservice_interceptors_id '=' (&'[' wsservice_interceptor_multiple|wsservice_interceptor_one) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }

@@ -35,15 +35,15 @@ public class OapWsserviceInterceptorsImpl extends OapCompositeElementImpl implem
   }
 
   @Override
-  @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  @NotNull
+  public OapWsserviceInterceptorsId getWsserviceInterceptorsId() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapWsserviceInterceptorsId.class));
   }
 
   @Override
-  @NotNull
-  public PsiElement getIdInterceptors() {
-    return notNullChild(findChildByType(OAP_ID_INTERCEPTORS));
+  @Nullable
+  public PsiElement getEq() {
+    return findChildByType(OAP_EQ);
   }
 
   @Override

@@ -29,15 +29,15 @@ public class OapWsservicePortImpl extends OapCompositeElementImpl implements Oap
   }
 
   @Override
-  @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  @NotNull
+  public OapWsservicePortId getWsservicePortId() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapWsservicePortId.class));
   }
 
   @Override
-  @NotNull
-  public PsiElement getIdPort() {
-    return notNullChild(findChildByType(OAP_ID_PORT));
+  @Nullable
+  public PsiElement getEq() {
+    return findChildByType(OAP_EQ);
   }
 
   @Override

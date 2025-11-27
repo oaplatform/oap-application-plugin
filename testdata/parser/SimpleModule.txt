@@ -1,16 +1,13 @@
-name = simpleModule
-services {}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('simpleModule')
   PsiWhiteSpace('\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
