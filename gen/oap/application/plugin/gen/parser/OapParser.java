@@ -440,12 +440,13 @@ public class OapParser implements PsiParser, LightPsiParser {
   public static boolean dot_remote(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "dot_remote")) return false;
     if (!nextTokenIs(b, OAP_DOT)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, OAP_DOT_REMOTE, null);
     r = consumeToken(b, OAP_DOT);
+    p = r; // pin = 1
     r = r && remote_name(b, l + 1);
-    exit_section_(b, m, OAP_DOT_REMOTE, r);
-    return r;
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
   }
 
   /* ********************************************************** */

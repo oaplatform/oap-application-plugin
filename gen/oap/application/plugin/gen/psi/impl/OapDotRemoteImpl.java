@@ -29,9 +29,9 @@ public class OapDotRemoteImpl extends OapCompositeElementImpl implements OapDotR
   }
 
   @Override
-  @NotNull
+  @Nullable
   public OapRemoteName getRemoteName() {
-    return notNullChild(PsiTreeUtil.getChildOfType(this, OapRemoteName.class));
+    return PsiTreeUtil.getChildOfType(this, OapRemoteName.class);
   }
 
   @Override
