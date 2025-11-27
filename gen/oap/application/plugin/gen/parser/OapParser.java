@@ -580,11 +580,11 @@ public class OapParser implements PsiParser, LightPsiParser {
   // []
   //         module_name_pair
   //         ( &'enabled' module_enabled )?
-  //         ( &'include' module_include )?
+  //         ( &'include' module_include )*
   //         ( &'dependsOn' module_depends_on )?
-  //         ( &'include' module_include )?
+  //         ( &'include' module_include )*
   //         ( &'services' module_services )?
-  //         ( &'include' module_include )?
+  //         ( &'include' module_include )*
   //         ( &'configurations' module_configurations )?
   static boolean module(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module")) return false;
@@ -637,10 +637,14 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( &'include' module_include )?
+  // ( &'include' module_include )*
   private static boolean module_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_3")) return false;
-    module_3_0(b, l + 1);
+    while (true) {
+      int c = current_position_(b);
+      if (!module_3_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "module_3", c)) break;
+    }
     return true;
   }
 
@@ -693,10 +697,14 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( &'include' module_include )?
+  // ( &'include' module_include )*
   private static boolean module_5(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_5")) return false;
-    module_5_0(b, l + 1);
+    while (true) {
+      int c = current_position_(b);
+      if (!module_5_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "module_5", c)) break;
+    }
     return true;
   }
 
@@ -749,10 +757,14 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( &'include' module_include )?
+  // ( &'include' module_include )*
   private static boolean module_7(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_7")) return false;
-    module_7_0(b, l + 1);
+    while (true) {
+      int c = current_position_(b);
+      if (!module_7_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "module_7", c)) break;
+    }
     return true;
   }
 
