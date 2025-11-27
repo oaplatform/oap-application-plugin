@@ -5,8 +5,8 @@ OAP_FILE
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
     OAP_MODULE_NAME
-      PsiElement(key_value)('parameters-array2')
-  PsiWhiteSpace('\n')
+      PsiElement(key_value)('parameters-functions')
+  PsiWhiteSpace('\n\n')
   OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
@@ -15,7 +15,7 @@ OAP_FILE
     PsiWhiteSpace('  ')
     OAP_MODULE_SERVICES_SERVICE
       OAP_SERVICE_NAME
-        PsiElement(key_name)('m')
+        PsiElement(key_name)('test-master')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
@@ -36,44 +36,54 @@ OAP_FILE
         OAP_PARAMETERS_OBJECT
           PsiElement({)('{')
           PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+          PsiWhiteSpace('        ')
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('enums')
+            PsiElement(key_name)('service3')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
             OAP_PARAMETERS_ARRAY
               PsiElement([)('[')
+              PsiWhiteSpace('\n')
+              PsiWhiteSpace('          ')
               OAP_PARAMETERS_ARRAY_ITEM
-                OAP_ID_VALUE
-                  PsiElement(key_value)('ONE')
-              PsiElement(,)(',')
-              PsiWhiteSpace(' ')
+                OAP_FUNCTION
+                  OAP_ID_VALUE
+                    PsiElement(key_value)('classpath')
+                  PsiElement(()('(')
+                  OAP_ID_VALUE
+                    PsiElement(key_value)('/oap/application/KernelTest/beanFromClasspathFile.conf')
+                  PsiElement())(')')
+              PsiWhiteSpace('\n')
+              PsiWhiteSpace('          ')
               OAP_PARAMETERS_ARRAY_ITEM
-                OAP_ID_VALUE
-                  PsiElement(key_value)('TWO')
+                OAP_FUNCTION
+                  OAP_ID_VALUE
+                    PsiElement(key_value)('file')
+                  PsiElement(()('(')
+                  OAP_ID_VALUE
+                    PsiElement(key_value)('/oap/application/KernelTest/beanFromClasspathFile.conf')
+                  PsiElement())(')')
+              PsiWhiteSpace('\n')
+              PsiWhiteSpace('        ')
               PsiElement(])(']')
           PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+          PsiWhiteSpace('        ')
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a')
-            PsiWhiteSpace(' ')
-            PsiElement(=)('=')
-            PsiWhiteSpace(' ')
-            OAP_ID_VALUE
-              PsiElement(key_value)('new value // pubilc final String')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
-          OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('al')
+            PsiElement(key_name)('service3Field')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
             OAP_PARAMETERS_ARRAY
               PsiElement([)('[')
               OAP_PARAMETERS_ARRAY_ITEM
-                OAP_ID_VALUE
-                  PsiElement(key_value)('"val"')
+                OAP_FUNCTION
+                  OAP_ID_VALUE
+                    PsiElement(key_value)('json')
+                  PsiElement(()('(')
+                  OAP_ID_VALUE
+                    PsiElement(key_value)('"{\"name\":\"from resource\",\"timeout\":1234}"')
+                  PsiElement())(')')
               PsiElement(])(']')
           PsiWhiteSpace('\n')
           PsiWhiteSpace('    ')

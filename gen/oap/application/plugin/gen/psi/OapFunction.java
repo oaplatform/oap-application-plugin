@@ -11,10 +11,10 @@ public interface OapFunction extends OapCompositeElement {
   @NotNull
   List<OapIdValue> getIdValueList();
 
-  @NotNull
+  @Nullable
   PsiElement getLeftparen();
 
-  @NotNull
+  @Nullable
   PsiElement getRightparen();
 
 }

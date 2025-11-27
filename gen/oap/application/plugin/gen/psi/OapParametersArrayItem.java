@@ -11,8 +11,14 @@ public interface OapParametersArrayItem extends IndentNormal {
   @Nullable
   OapAnyReference getAnyReference();
 
-  @NotNull
-  List<OapIdValue> getIdValueList();
+  @Nullable
+  OapBoolValue getBoolValue();
+
+  @Nullable
+  OapFunction getFunction();
+
+  @Nullable
+  OapIdValue getIdValue();
 
   @Nullable
   OapParametersObject getParametersObject();

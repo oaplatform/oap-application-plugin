@@ -35,9 +35,21 @@ public class OapParametersArrayItemImpl extends OapCompositeElementImpl implemen
   }
 
   @Override
-  @NotNull
-  public List<OapIdValue> getIdValueList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapIdValue.class);
+  @Nullable
+  public OapBoolValue getBoolValue() {
+    return PsiTreeUtil.getChildOfType(this, OapBoolValue.class);
+  }
+
+  @Override
+  @Nullable
+  public OapFunction getFunction() {
+    return PsiTreeUtil.getChildOfType(this, OapFunction.class);
+  }
+
+  @Override
+  @Nullable
+  public OapIdValue getIdValue() {
+    return PsiTreeUtil.getChildOfType(this, OapIdValue.class);
   }
 
   @Override

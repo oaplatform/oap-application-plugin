@@ -35,15 +35,15 @@ public class OapFunctionImpl extends OapCompositeElementImpl implements OapFunct
   }
 
   @Override
-  @NotNull
+  @Nullable
   public PsiElement getLeftparen() {
-    return notNullChild(findChildByType(OAP_LEFTPAREN));
+    return findChildByType(OAP_LEFTPAREN);
   }
 
   @Override
-  @NotNull
+  @Nullable
   public PsiElement getRightparen() {
-    return notNullChild(findChildByType(OAP_RIGHTPAREN));
+    return findChildByType(OAP_RIGHTPAREN);
   }
 
 }

@@ -1,51 +1,41 @@
-name = ws-service-path-array
-services {
-  math {
-    implementation = oap.ws.WebServicesTest.MathWS
-    ws-service.path = [
-      math
-      x/v/math
-    ]
-  }
-}
------
 OAP_FILE
   OAP_MODULE_NAME_PAIR
     PsiElement(name)('name')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
     PsiWhiteSpace(' ')
-    OapModuleNameImpl(OAP_MODULE_NAME)
+    OAP_MODULE_NAME
       PsiElement(key_value)('ws-service-path-array')
   PsiWhiteSpace('\n')
-  OapModuleServicesImpl(OAP_MODULE_SERVICES)
+  OAP_MODULE_SERVICES
     PsiElement(services)('services')
     PsiWhiteSpace(' ')
     PsiElement({)('{')
     PsiWhiteSpace('\n')
     PsiWhiteSpace('  ')
-    OapModuleServicesServiceImpl(OAP_MODULE_SERVICES_SERVICE)
-      OapServiceNameImpl(OAP_SERVICE_NAME)
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
         PsiElement(key_name)('math')
       PsiWhiteSpace(' ')
       PsiElement({)('{')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceImplementationImpl(OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION)
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
         PsiElement(implementation)('implementation')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
-        OapClassNamePsiImpl(OAP_CLASS_NAME_PSI)
+        OAP_CLASS_NAME_PSI
           PsiElement(class_name)('oap.ws.WebServicesTest.MathWS')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
-      OapModuleServicesServiceWsserviceImpl(OAP_MODULE_SERVICES_SERVICE_WSSERVICE)
+      OAP_MODULE_SERVICES_SERVICE_WSSERVICE
         PsiElement(ws-service)('ws-service')
-        OapDotWsservicePathImpl(OAP_DOT_WSSERVICE_PATH)
+        OAP_DOT_WSSERVICE_PATH
           PsiElement(.)('.')
-          OapWsservicePathImpl(OAP_WSSERVICE_PATH)
-            PsiElement(path)('path')
+          OAP_WSSERVICE_PATH
+            OAP_WSSERVICE_PATH_ID
+              PsiElement(path)('path')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')

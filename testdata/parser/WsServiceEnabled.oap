@@ -1,0 +1,12 @@
+name = ws-service-enabled
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+
+    ws-service {
+        path = mobile-action
+        enabled = false
+    }
+  }
+}

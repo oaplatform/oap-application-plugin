@@ -493,15 +493,16 @@ public class OapParser implements PsiParser, LightPsiParser {
   public static boolean function(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "function")) return false;
     if (!nextTokenIs(b, "<function>", OAP_DOLLAR, OAP_KEY_VALUE)) return false;
-    boolean r;
+    boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, OAP_FUNCTION, "<function>");
     r = function_0(b, l + 1);
     r = r && id_value(b, l + 1);
-    r = r && consumeToken(b, OAP_LEFTPAREN);
-    r = r && id_value(b, l + 1);
-    r = r && consumeToken(b, OAP_RIGHTPAREN);
-    exit_section_(b, l, m, r, false, null);
-    return r;
+    p = r; // pin = 2
+    r = r && report_error_(b, consumeToken(b, OAP_LEFTPAREN));
+    r = p && report_error_(b, id_value(b, l + 1)) && r;
+    r = p && consumeToken(b, OAP_RIGHTPAREN) && r;
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
   }
 
   // &(id_value '(')
@@ -2415,7 +2416,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '[' parameters_array_item* ']'
+  // '[' parameters_array_item? (','? parameters_array_item)* ']'
   public static boolean parameters_array(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "parameters_array")) return false;
     if (!nextTokenIs(b, OAP_LEFTBRACKET)) return false;
@@ -2424,31 +2425,59 @@ public class OapParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, OAP_LEFTBRACKET);
     p = r; // pin = 1
     r = r && report_error_(b, parameters_array_1(b, l + 1));
+    r = p && report_error_(b, parameters_array_2(b, l + 1)) && r;
     r = p && consumeToken(b, OAP_RIGHTBRACKET) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
-  // parameters_array_item*
+  // parameters_array_item?
   private static boolean parameters_array_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "parameters_array_1")) return false;
+    parameters_array_item(b, l + 1);
+    return true;
+  }
+
+  // (','? parameters_array_item)*
+  private static boolean parameters_array_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameters_array_2")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!parameters_array_item(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "parameters_array_1", c)) break;
+      if (!parameters_array_2_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "parameters_array_2", c)) break;
     }
     return true;
   }
 
+  // ','? parameters_array_item
+  private static boolean parameters_array_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameters_array_2_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = parameters_array_2_0_0(b, l + 1);
+    r = r && parameters_array_item(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ','?
+  private static boolean parameters_array_2_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameters_array_2_0_0")) return false;
+    consumeToken(b, OAP_COMMA);
+    return true;
+  }
+
   /* ********************************************************** */
-  // &'<' any_reference | &'{' parameters_object | ( id_value (',' id_value )* )
+  // &'<' any_reference | &'{' parameters_object | function | bool_value | id_value
   public static boolean parameters_array_item(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "parameters_array_item")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, OAP_PARAMETERS_ARRAY_ITEM, "<parameters array item>");
     r = parameters_array_item_0(b, l + 1);
     if (!r) r = parameters_array_item_1(b, l + 1);
-    if (!r) r = parameters_array_item_2(b, l + 1);
+    if (!r) r = function(b, l + 1);
+    if (!r) r = bool_value(b, l + 1);
+    if (!r) r = id_value(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -2492,39 +2521,6 @@ public class OapParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b, l, _AND_);
     r = consumeToken(b, OAP_LEFTBRACE);
     exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  // id_value (',' id_value )*
-  private static boolean parameters_array_item_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameters_array_item_2")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = id_value(b, l + 1);
-    r = r && parameters_array_item_2_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // (',' id_value )*
-  private static boolean parameters_array_item_2_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameters_array_item_2_1")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!parameters_array_item_2_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "parameters_array_item_2_1", c)) break;
-    }
-    return true;
-  }
-
-  // ',' id_value
-  private static boolean parameters_array_item_2_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameters_array_item_2_1_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, OAP_COMMA);
-    r = r && id_value(b, l + 1);
-    exit_section_(b, m, null, r);
     return r;
   }
 
