@@ -435,7 +435,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "]"                  { yypopState(); return OAP_RIGHTBRACKET; }
   "{"                  { yypushState(_OBJECT); return OAP_LEFTBRACE; }
   ","                  { return OAP_COMMA; }
-  "<"                  { return OAP_LEFTANGLE; }
+  "<"                  { yypushState(VALUE_REFERENCE); return OAP_LEFTANGLE; }
   "("                  { return OAP_LEFTPAREN; }
   ")"                  { return OAP_RIGHTPAREN; }
 

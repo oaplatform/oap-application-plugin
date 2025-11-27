@@ -47,8 +47,9 @@ OAP_FILE
               OAP_PARAMETERS_ARRAY_ITEM
                 OAP_ID_VALUE
                   PsiElement(key_value)('ONE')
-                PsiElement(,)(',')
-                PsiWhiteSpace(' ')
+              PsiElement(,)(',')
+              PsiWhiteSpace(' ')
+              OAP_PARAMETERS_ARRAY_ITEM
                 OAP_ID_VALUE
                   PsiElement(key_value)('TWO')
               PsiElement(])(']')
