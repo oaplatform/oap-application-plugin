@@ -96,7 +96,7 @@ BOOL=true|false
 
 NEXTLINE=(\r\n|\n)+
 WHITE_SPACE=[ \t\x0B\f\r]+
-COMMENT=("//"|"#")[^\n]+
+COMMENT=("//"|"#")[^\n]*
 STRING=\"(\\\"|[^\"])*\"
 UNQUOTED_STRING=([:jletterdigit:]|[-/\.]) ([:jletterdigit:]|[-/\. ])*
 CLASS_NAME=([:jletter:] [:jletterdigit:]*)("." [:jletter:] [:jletterdigit:]*)+

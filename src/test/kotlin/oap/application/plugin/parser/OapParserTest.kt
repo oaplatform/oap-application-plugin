@@ -52,6 +52,9 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     fun testLineComment() {
         doTest(false)
     }
+    fun testLineComment2() {
+        doTest(false)
+    }
 
 
     fun testModuleConfigurations() {
