@@ -11,10 +11,10 @@ public interface OapWsserviceSessionAware extends OapKeyValuePairWithIndentNorma
   @Nullable
   OapBoolValue getBoolValue();
 
+  @NotNull
+  OapWsserviceSessionAwareId getWsserviceSessionAwareId();
+
   @Nullable
   PsiElement getEq();
-
-  @NotNull
-  PsiElement getIdSessionaware();
 
 }

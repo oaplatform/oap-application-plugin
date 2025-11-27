@@ -1,0 +1,14 @@
+name = ws-service
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+
+    ws-service {
+        path = mobile-action
+        port = httpprivate
+        sessionAware = true
+        interceptors = <modules.oap-ws-sso-api.oap-ws-sso-jwt-security-interceptor>
+    }
+  }
+}

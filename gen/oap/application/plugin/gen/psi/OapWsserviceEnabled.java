@@ -11,10 +11,10 @@ public interface OapWsserviceEnabled extends OapKeyValuePairWithIndentNormal {
   @Nullable
   OapBoolValue getBoolValue();
 
+  @NotNull
+  OapWsserviceEnabledId getWsserviceEnabledId();
+
   @Nullable
   PsiElement getEq();
-
-  @NotNull
-  PsiElement getIdEnabled();
 
 }

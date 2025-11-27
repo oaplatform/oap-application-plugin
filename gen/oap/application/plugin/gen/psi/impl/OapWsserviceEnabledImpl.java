@@ -35,15 +35,15 @@ public class OapWsserviceEnabledImpl extends OapCompositeElementImpl implements 
   }
 
   @Override
-  @Nullable
-  public PsiElement getEq() {
-    return findChildByType(OAP_EQ);
+  @NotNull
+  public OapWsserviceEnabledId getWsserviceEnabledId() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapWsserviceEnabledId.class));
   }
 
   @Override
-  @NotNull
-  public PsiElement getIdEnabled() {
-    return notNullChild(findChildByType(OAP_ID_ENABLED));
+  @Nullable
+  public PsiElement getEq() {
+    return findChildByType(OAP_EQ);
   }
 
 }

@@ -204,6 +204,20 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
 
+    fun testSimpleModule() {
+        doTest(false)
+    }
+
+
+    fun testWsHandler() {
+        doTest(false)
+    }
+    fun testWsHandlerDotPath() {
+        doTest(false)
+    }
+    fun testWsService() {
+        doTest(false)
+    }
     fun testWsServiceInterceptors() {
         doTest(false)
     }

@@ -1,0 +1,23 @@
+name = ws-handler
+
+services {
+  test-handler {
+    implementation = oap.application.plugin.TestService
+
+    ws-handler.path = /rtb
+  }
+  test-handler2 {
+    implementation = oap.application.plugin.TestService
+
+    ws-handler.path = [
+        /rtb
+        /bbb/a
+        ""
+    ]
+  }
+  test-handler3 {
+    implementation = oap.application.plugin.TestService
+
+    ws-handler.path = [/rtb, /bbb/a]
+  }
+}

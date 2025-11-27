@@ -61,7 +61,8 @@ OAP_FILE
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
       OAP_MODULE_SERVICES_SERVICE_DEPENDSON
-        PsiElement(dependsOn)('dependsOn')
+        OAP_MODULE_SERVICES_SERVICE_DEPENDSON_ID
+          PsiElement(dependsOn)('dependsOn')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')
@@ -103,7 +104,8 @@ OAP_FILE
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
       OAP_MODULE_SERVICES_SERVICE_DEPENDSON
-        PsiElement(dependsOn)('dependsOn')
+        OAP_MODULE_SERVICES_SERVICE_DEPENDSON_ID
+          PsiElement(dependsOn)('dependsOn')
         PsiWhiteSpace(' ')
         PsiElement(=)('=')
         PsiWhiteSpace(' ')

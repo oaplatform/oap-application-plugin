@@ -41,6 +41,7 @@ public interface OapTypes {
   IElementType OAP_MODULE_SERVICES_SERVICE_ABSTRACT = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_ABSTRACT");
   IElementType OAP_MODULE_SERVICES_SERVICE_DEFAULT = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEFAULT");
   IElementType OAP_MODULE_SERVICES_SERVICE_DEPENDSON = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEPENDSON");
+  IElementType OAP_MODULE_SERVICES_SERVICE_DEPENDSON_ID = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEPENDSON_ID");
   IElementType OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME");
   IElementType OAP_MODULE_SERVICES_SERVICE_ENABLED = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_ENABLED");
   IElementType OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION");
@@ -49,6 +50,7 @@ public interface OapTypes {
   IElementType OAP_MODULE_SERVICES_SERVICE_LINK_FIELD_OBJECT = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_LINK_FIELD_OBJECT");
   IElementType OAP_MODULE_SERVICES_SERVICE_LISTEN = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_LISTEN");
   IElementType OAP_MODULE_SERVICES_SERVICE_PARAMETERS = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_PARAMETERS");
+  IElementType OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID");
   IElementType OAP_MODULE_SERVICES_SERVICE_REMOTE = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_REMOTE");
   IElementType OAP_MODULE_SERVICES_SERVICE_SUPERVISION = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_SUPERVISION");
   IElementType OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_CRON = new OapCompositeElementType("OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_CRON");
@@ -87,13 +89,18 @@ public interface OapTypes {
   IElementType OAP_WSHANDLER_ENTRIES = new OapCompositeElementType("OAP_WSHANDLER_ENTRIES");
   IElementType OAP_WSHANDLER_OBJECT = new OapCompositeElementType("OAP_WSHANDLER_OBJECT");
   IElementType OAP_WSSERVICE_ENABLED = new OapCompositeElementType("OAP_WSSERVICE_ENABLED");
+  IElementType OAP_WSSERVICE_ENABLED_ID = new OapCompositeElementType("OAP_WSSERVICE_ENABLED_ID");
   IElementType OAP_WSSERVICE_ENTRIES = new OapCompositeElementType("OAP_WSSERVICE_ENTRIES");
   IElementType OAP_WSSERVICE_INTERCEPTORS = new OapCompositeElementType("OAP_WSSERVICE_INTERCEPTORS");
+  IElementType OAP_WSSERVICE_INTERCEPTORS_ID = new OapCompositeElementType("OAP_WSSERVICE_INTERCEPTORS_ID");
   IElementType OAP_WSSERVICE_INTERCEPTOR_ONE = new OapCompositeElementType("OAP_WSSERVICE_INTERCEPTOR_ONE");
   IElementType OAP_WSSERVICE_OBJECT = new OapCompositeElementType("OAP_WSSERVICE_OBJECT");
   IElementType OAP_WSSERVICE_PATH = new OapCompositeElementType("OAP_WSSERVICE_PATH");
+  IElementType OAP_WSSERVICE_PATH_ID = new OapCompositeElementType("OAP_WSSERVICE_PATH_ID");
   IElementType OAP_WSSERVICE_PORT = new OapCompositeElementType("OAP_WSSERVICE_PORT");
+  IElementType OAP_WSSERVICE_PORT_ID = new OapCompositeElementType("OAP_WSSERVICE_PORT_ID");
   IElementType OAP_WSSERVICE_SESSION_AWARE = new OapCompositeElementType("OAP_WSSERVICE_SESSION_AWARE");
+  IElementType OAP_WSSERVICE_SESSION_AWARE_ID = new OapCompositeElementType("OAP_WSSERVICE_SESSION_AWARE_ID");
 
   IElementType OAP_BOOL = new OapTokenType("bool");
   IElementType OAP_CLASS_NAME = new OapTokenType("class_name");
@@ -247,6 +254,9 @@ public interface OapTypes {
       else if (type == OAP_MODULE_SERVICES_SERVICE_DEPENDSON) {
         return new OapModuleServicesServiceDependsonImpl(node);
       }
+      else if (type == OAP_MODULE_SERVICES_SERVICE_DEPENDSON_ID) {
+        return new OapModuleServicesServiceDependsonIdImpl(node);
+      }
       else if (type == OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME) {
         return new OapModuleServicesServiceDependsonNameImpl(node);
       }
@@ -270,6 +280,9 @@ public interface OapTypes {
       }
       else if (type == OAP_MODULE_SERVICES_SERVICE_PARAMETERS) {
         return new OapModuleServicesServiceParametersImpl(node);
+      }
+      else if (type == OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID) {
+        return new OapModuleServicesServiceParametersIdImpl(node);
       }
       else if (type == OAP_MODULE_SERVICES_SERVICE_REMOTE) {
         return new OapModuleServicesServiceRemoteImpl(node);
@@ -385,11 +398,17 @@ public interface OapTypes {
       else if (type == OAP_WSSERVICE_ENABLED) {
         return new OapWsserviceEnabledImpl(node);
       }
+      else if (type == OAP_WSSERVICE_ENABLED_ID) {
+        return new OapWsserviceEnabledIdImpl(node);
+      }
       else if (type == OAP_WSSERVICE_ENTRIES) {
         return new OapWsserviceEntriesImpl(node);
       }
       else if (type == OAP_WSSERVICE_INTERCEPTORS) {
         return new OapWsserviceInterceptorsImpl(node);
+      }
+      else if (type == OAP_WSSERVICE_INTERCEPTORS_ID) {
+        return new OapWsserviceInterceptorsIdImpl(node);
       }
       else if (type == OAP_WSSERVICE_INTERCEPTOR_ONE) {
         return new OapWsserviceInterceptorOneImpl(node);
@@ -400,11 +419,20 @@ public interface OapTypes {
       else if (type == OAP_WSSERVICE_PATH) {
         return new OapWsservicePathImpl(node);
       }
+      else if (type == OAP_WSSERVICE_PATH_ID) {
+        return new OapWsservicePathIdImpl(node);
+      }
       else if (type == OAP_WSSERVICE_PORT) {
         return new OapWsservicePortImpl(node);
       }
+      else if (type == OAP_WSSERVICE_PORT_ID) {
+        return new OapWsservicePortIdImpl(node);
+      }
       else if (type == OAP_WSSERVICE_SESSION_AWARE) {
         return new OapWsserviceSessionAwareImpl(node);
+      }
+      else if (type == OAP_WSSERVICE_SESSION_AWARE_ID) {
+        return new OapWsserviceSessionAwareIdImpl(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }

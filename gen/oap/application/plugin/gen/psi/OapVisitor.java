@@ -135,6 +135,10 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
+  public void visitModuleServicesServiceDependsonId(@NotNull OapModuleServicesServiceDependsonId o) {
+    visitCompositeElement(o);
+  }
+
   public void visitModuleServicesServiceDependsonName(@NotNull OapModuleServicesServiceDependsonName o) {
     visitIndentNormal(o);
     // visitIServiceName(o);
@@ -165,6 +169,10 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleServicesServiceParameters(@NotNull OapModuleServicesServiceParameters o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitModuleServicesServiceParametersId(@NotNull OapModuleServicesServiceParametersId o) {
     visitCompositeElement(o);
   }
 
@@ -320,6 +328,10 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
+  public void visitWsserviceEnabledId(@NotNull OapWsserviceEnabledId o) {
+    visitCompositeElement(o);
+  }
+
   public void visitWsserviceEntries(@NotNull OapWsserviceEntries o) {
     visitCompositeElement(o);
   }
@@ -332,6 +344,10 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
+  public void visitWsserviceInterceptorsId(@NotNull OapWsserviceInterceptorsId o) {
+    visitCompositeElement(o);
+  }
+
   public void visitWsserviceObject(@NotNull OapWsserviceObject o) {
     visitCompositeElement(o);
   }
@@ -340,12 +356,24 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
+  public void visitWsservicePathId(@NotNull OapWsservicePathId o) {
+    visitCompositeElement(o);
+  }
+
   public void visitWsservicePort(@NotNull OapWsservicePort o) {
     visitKeyValuePairWithIndentNormal(o);
   }
 
+  public void visitWsservicePortId(@NotNull OapWsservicePortId o) {
+    visitCompositeElement(o);
+  }
+
   public void visitWsserviceSessionAware(@NotNull OapWsserviceSessionAware o) {
     visitKeyValuePairWithIndentNormal(o);
+  }
+
+  public void visitWsserviceSessionAwareId(@NotNull OapWsserviceSessionAwareId o) {
+    visitCompositeElement(o);
   }
 
   public void visitPsiNamedElement(@NotNull PsiNamedElement o) {

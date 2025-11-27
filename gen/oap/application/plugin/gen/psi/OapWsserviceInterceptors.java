@@ -11,11 +11,11 @@ public interface OapWsserviceInterceptors extends OapKeyValuePairWithIndentNorma
   @NotNull
   List<OapWsserviceInterceptorOne> getWsserviceInterceptorOneList();
 
+  @NotNull
+  OapWsserviceInterceptorsId getWsserviceInterceptorsId();
+
   @Nullable
   PsiElement getEq();
-
-  @NotNull
-  PsiElement getIdInterceptors();
 
   @Nullable
   PsiElement getLeftbracket();
