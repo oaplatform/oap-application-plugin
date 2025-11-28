@@ -33,12 +33,13 @@ OAP_FILE
         OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
           PsiElement(parameters)('parameters')
         PsiWhiteSpace(' ')
-        OAP_PARAMETERS_OBJECT
-          PsiElement({)('{')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiElement({)('{')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('complexes')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('complexes')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -52,7 +53,8 @@ OAP_FILE
                   PsiWhiteSpace('\n')
                   PsiWhiteSpace('            ')
                   OAP_PARAMETER_KEY_VALUE
-                    PsiElement(key_name)('i')
+                    OAP_PARAMETER_KEY_VALUE_FIRST_ID
+                      PsiElement(key_name)('i')
                     PsiWhiteSpace(' ')
                     PsiElement(=)('=')
                     PsiWhiteSpace(' ')
@@ -64,10 +66,12 @@ OAP_FILE
               PsiWhiteSpace('\n')
               PsiWhiteSpace('      ')
               PsiElement(])(']')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('complexes2')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('complexes2')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -77,7 +81,8 @@ OAP_FILE
                 OAP_PARAMETERS_OBJECT
                   PsiElement({)('{')
                   OAP_PARAMETER_KEY_VALUE
-                    PsiElement(key_name)('i')
+                    OAP_PARAMETER_KEY_VALUE_FIRST_ID
+                      PsiElement(key_name)('i')
                     PsiWhiteSpace(' ')
                     PsiElement(=)('=')
                     PsiWhiteSpace(' ')
@@ -85,9 +90,9 @@ OAP_FILE
                       PsiElement(key_value)('2')
                   PsiElement(})('}')
               PsiElement(])(']')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('    ')
-          PsiElement(})('}')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('    ')
+        PsiElement(})('}')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('  ')
       PsiElement(})('}')

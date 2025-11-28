@@ -33,12 +33,13 @@ OAP_FILE
         OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
           PsiElement(parameters)('parameters')
         PsiWhiteSpace(' ')
-        OAP_PARAMETERS_OBJECT
-          PsiElement({)('{')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiElement({)('{')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('deps')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('deps')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -79,9 +80,9 @@ OAP_FILE
               PsiWhiteSpace('\n')
               PsiWhiteSpace('      ')
               PsiElement(])(']')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('    ')
-          PsiElement(})('}')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('    ')
+        PsiElement(})('}')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('  ')
       PsiElement(})('}')

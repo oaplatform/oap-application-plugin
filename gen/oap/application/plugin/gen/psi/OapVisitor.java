@@ -70,6 +70,10 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
+  public void visitJavaParameterKeyValue(@NotNull OapJavaParameterKeyValue o) {
+    visitCompositeElement(o);
+  }
+
   public void visitModuleConfiguration(@NotNull OapModuleConfiguration o) {
     visitKeyValuePairWithIndentNormal(o);
   }
@@ -213,6 +217,10 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitParameterKeyValue(@NotNull OapParameterKeyValue o) {
+    visitCompositeElement(o);
+  }
+
+  public void visitParameterKeyValueFirstId(@NotNull OapParameterKeyValueFirstId o) {
     visitCompositeElement(o);
   }
 

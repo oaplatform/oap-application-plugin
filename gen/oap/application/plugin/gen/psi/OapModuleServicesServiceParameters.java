@@ -9,15 +9,18 @@ import oap.application.plugin.psi.OapCompositeElement;
 public interface OapModuleServicesServiceParameters extends OapCompositeElement {
 
   @NotNull
+  List<OapJavaParameterKeyValue> getJavaParameterKeyValueList();
+
+  @NotNull
   OapModuleServicesServiceParametersId getModuleServicesServiceParametersId();
 
   @Nullable
-  OapParameterKeyValue getParameterKeyValue();
-
-  @Nullable
-  OapParametersObject getParametersObject();
-
-  @Nullable
   PsiElement getDot();
+
+  @Nullable
+  PsiElement getLeftbrace();
+
+  @Nullable
+  PsiElement getRightbrace();
 
 }

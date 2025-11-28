@@ -33,12 +33,13 @@ OAP_FILE
         OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
           PsiElement(parameters)('parameters')
         PsiWhiteSpace(' ')
-        OAP_PARAMETERS_OBJECT
-          PsiElement({)('{')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiElement({)('{')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('uniqueName')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('uniqueName')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -55,10 +56,12 @@ OAP_FILE
                   OAP_REFERENCE_TYPE_SERVICES_PROPERTY
                     PsiElement(reference_value)('name')
               PsiElement(>)('>')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('kernel')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('kernel')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -71,10 +74,12 @@ OAP_FILE
                   PsiElement(.)('.')
                   PsiElement(self)('self')
               PsiElement(>)('>')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -91,63 +96,75 @@ OAP_FILE
                   OAP_REFERENCE_MODULES_SERVICE_NAME
                     PsiElement(reference_value)('bidder-filter')
               PsiElement(>)('>')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('syncPeriod')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('syncPeriod')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
             OAP_ID_VALUE
               PsiElement(key_value)('300')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('flightAheadMultiplier')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('flightAheadMultiplier')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
             OAP_ID_VALUE
               PsiElement(key_value)('1.2')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('watch')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('watch')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
             OAP_BOOL_VALUE
               PsiElement(bool)('true')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('collectionName')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('collectionName')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
             OAP_ID_VALUE
               PsiElement(key_value)('advertizers')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('dirForFailures')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('dirForFailures')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
             OAP_ID_VALUE
               PsiElement(key_value)('/tmp/dsp')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('prefix')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('prefix')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
             OAP_ID_VALUE
               PsiElement(key_value)('/static/ pixel.png')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('    ')
-          PsiElement(})('}')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('    ')
+        PsiElement(})('}')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('  ')
       PsiElement(})('}')

@@ -53,9 +53,9 @@ public class OapParameterKeyValueImpl extends OapModuleServicesServiceParameterK
   }
 
   @Override
-  @Nullable
-  public OapModuleInclude getModuleInclude() {
-    return PsiTreeUtil.getChildOfType(this, OapModuleInclude.class);
+  @NotNull
+  public OapParameterKeyValueFirstId getParameterKeyValueFirstId() {
+    return notNullChild(PsiTreeUtil.getChildOfType(this, OapParameterKeyValueFirstId.class));
   }
 
   @Override

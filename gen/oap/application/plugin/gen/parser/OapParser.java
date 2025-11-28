@@ -423,14 +423,14 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '.' parameter_key_value
+  // '.' java_parameter_key_value
   static boolean dot_parameters(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "dot_parameters")) return false;
     if (!nextTokenIs(b, OAP_DOT)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, OAP_DOT);
-    r = r && parameter_key_value(b, l + 1);
+    r = r && java_parameter_key_value(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -573,6 +573,70 @@ public class OapParser implements PsiParser, LightPsiParser {
   private static boolean id_value_1_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "id_value_1_1")) return false;
     id_value(b, l + 1);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // parameter_key_value
+  public static boolean java_parameter_key_value(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_parameter_key_value")) return false;
+    if (!nextTokenIs(b, OAP_KEY_NAME)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = parameter_key_value(b, l + 1);
+    exit_section_(b, m, OAP_JAVA_PARAMETER_KEY_VALUE, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // '{' java_parameter_key_value? (','? java_parameter_key_value )* '}'
+  static boolean java_parameters_object(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_parameters_object")) return false;
+    if (!nextTokenIs(b, OAP_LEFTBRACE)) return false;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_);
+    r = consumeToken(b, OAP_LEFTBRACE);
+    p = r; // pin = 1
+    r = r && report_error_(b, java_parameters_object_1(b, l + 1));
+    r = p && report_error_(b, java_parameters_object_2(b, l + 1)) && r;
+    r = p && consumeToken(b, OAP_RIGHTBRACE) && r;
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
+  }
+
+  // java_parameter_key_value?
+  private static boolean java_parameters_object_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_parameters_object_1")) return false;
+    java_parameter_key_value(b, l + 1);
+    return true;
+  }
+
+  // (','? java_parameter_key_value )*
+  private static boolean java_parameters_object_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_parameters_object_2")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!java_parameters_object_2_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "java_parameters_object_2", c)) break;
+    }
+    return true;
+  }
+
+  // ','? java_parameter_key_value
+  private static boolean java_parameters_object_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_parameters_object_2_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = java_parameters_object_2_0_0(b, l + 1);
+    r = r && java_parameter_key_value(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // ','?
+  private static boolean java_parameters_object_2_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "java_parameters_object_2_0_0")) return false;
+    consumeToken(b, OAP_COMMA);
     return true;
   }
 
@@ -1801,7 +1865,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // module_services_service_parameters_id ( &'.' dot_parameters | parameters_object )
+  // module_services_service_parameters_id ( &'.' dot_parameters | java_parameters_object )
   public static boolean module_services_service_parameters(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_parameters")) return false;
     if (!nextTokenIs(b, OAP_ID_PARAMETERS)) return false;
@@ -1814,13 +1878,13 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r || p;
   }
 
-  // &'.' dot_parameters | parameters_object
+  // &'.' dot_parameters | java_parameters_object
   private static boolean module_services_service_parameters_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_services_service_parameters_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = module_services_service_parameters_1_0(b, l + 1);
-    if (!r) r = parameters_object(b, l + 1);
+    if (!r) r = java_parameters_object(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
@@ -2250,69 +2314,34 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // &'include' module_include
-  //     | parameter_key_value_key
+  // parameter_key_value_first_id ('.' key_name)* (&'=' parameter_key_value_key_eq | parameter_key_value_key_object )
   public static boolean parameter_key_value(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "parameter_key_value")) return false;
-    if (!nextTokenIs(b, "<parameter key value>", OAP_ID_INCLUDE, OAP_KEY_NAME)) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, OAP_PARAMETER_KEY_VALUE, "<parameter key value>");
-    r = parameter_key_value_0(b, l + 1);
-    if (!r) r = parameter_key_value_key(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  // &'include' module_include
-  private static boolean parameter_key_value_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_key_value_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = parameter_key_value_0_0(b, l + 1);
-    r = r && module_include(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // &'include'
-  private static boolean parameter_key_value_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_key_value_0_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _AND_);
-    r = consumeToken(b, OAP_ID_INCLUDE);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // key_name ('.' key_name)* (&'=' parameter_key_value_key_eq | parameter_key_value_key_object )
-  static boolean parameter_key_value_key(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_key_value_key")) return false;
     if (!nextTokenIs(b, OAP_KEY_NAME)) return false;
     boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_);
-    r = consumeToken(b, OAP_KEY_NAME);
+    Marker m = enter_section_(b, l, _NONE_, OAP_PARAMETER_KEY_VALUE, null);
+    r = parameter_key_value_first_id(b, l + 1);
     p = r; // pin = 1
-    r = r && report_error_(b, parameter_key_value_key_1(b, l + 1));
-    r = p && parameter_key_value_key_2(b, l + 1) && r;
+    r = r && report_error_(b, parameter_key_value_1(b, l + 1));
+    r = p && parameter_key_value_2(b, l + 1) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
   // ('.' key_name)*
-  private static boolean parameter_key_value_key_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_key_value_key_1")) return false;
+  private static boolean parameter_key_value_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameter_key_value_1")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!parameter_key_value_key_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "parameter_key_value_key_1", c)) break;
+      if (!parameter_key_value_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "parameter_key_value_1", c)) break;
     }
     return true;
   }
 
   // '.' key_name
-  private static boolean parameter_key_value_key_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_key_value_key_1_0")) return false;
+  private static boolean parameter_key_value_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameter_key_value_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeTokens(b, 0, OAP_DOT, OAP_KEY_NAME);
@@ -2321,34 +2350,46 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   // &'=' parameter_key_value_key_eq | parameter_key_value_key_object
-  private static boolean parameter_key_value_key_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_key_value_key_2")) return false;
+  private static boolean parameter_key_value_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameter_key_value_2")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = parameter_key_value_key_2_0(b, l + 1);
+    r = parameter_key_value_2_0(b, l + 1);
     if (!r) r = parameter_key_value_key_object(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // &'=' parameter_key_value_key_eq
-  private static boolean parameter_key_value_key_2_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_key_value_key_2_0")) return false;
+  private static boolean parameter_key_value_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameter_key_value_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = parameter_key_value_key_2_0_0(b, l + 1);
+    r = parameter_key_value_2_0_0(b, l + 1);
     r = r && parameter_key_value_key_eq(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // &'='
-  private static boolean parameter_key_value_key_2_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "parameter_key_value_key_2_0_0")) return false;
+  private static boolean parameter_key_value_2_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameter_key_value_2_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _AND_);
     r = consumeToken(b, OAP_EQ);
     exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // key_name
+  public static boolean parameter_key_value_first_id(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "parameter_key_value_first_id")) return false;
+    if (!nextTokenIs(b, OAP_KEY_NAME)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, OAP_KEY_NAME);
+    exit_section_(b, m, OAP_PARAMETER_KEY_VALUE_FIRST_ID, r);
     return r;
   }
 
