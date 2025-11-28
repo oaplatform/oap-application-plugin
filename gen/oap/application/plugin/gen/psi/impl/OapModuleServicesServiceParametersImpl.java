@@ -30,26 +30,32 @@ public class OapModuleServicesServiceParametersImpl extends OapModuleServicesSer
 
   @Override
   @NotNull
+  public List<OapJavaParameterKeyValue> getJavaParameterKeyValueList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapJavaParameterKeyValue.class);
+  }
+
+  @Override
+  @NotNull
   public OapModuleServicesServiceParametersId getModuleServicesServiceParametersId() {
     return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceParametersId.class));
   }
 
   @Override
   @Nullable
-  public OapParameterKeyValue getParameterKeyValue() {
-    return PsiTreeUtil.getChildOfType(this, OapParameterKeyValue.class);
-  }
-
-  @Override
-  @Nullable
-  public OapParametersObject getParametersObject() {
-    return PsiTreeUtil.getChildOfType(this, OapParametersObject.class);
-  }
-
-  @Override
-  @Nullable
   public PsiElement getDot() {
     return findChildByType(OAP_DOT);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getLeftbrace() {
+    return findChildByType(OAP_LEFTBRACE);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getRightbrace() {
+    return findChildByType(OAP_RIGHTBRACE);
   }
 
 }

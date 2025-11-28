@@ -80,6 +80,7 @@
         id_cron='cron'
         id_kernel='kernel'
 
+        key_name="regexp:\w+"
         key_value="regexp:\w+"
 
         nextline='regexp:\r\n|\n'
@@ -254,23 +255,25 @@ module_services_service_default ::= 'default' '=' reference_modules_value {pin=1
 
 // parameters {
 module_services_service_parameters_id ::= 'parameters'
-module_services_service_parameters ::= module_services_service_parameters_id ( &'.' dot_parameters | parameters_object )  {
+module_services_service_parameters ::= module_services_service_parameters_id ( &'.' dot_parameters | java_parameters_object )  {
     pin=1
     mixin="oap.application.plugin.psi.OapModuleServicesServiceParametersMixin"
 }
-private dot_parameters ::= '.' parameter_key_value
+private dot_parameters ::= '.' java_parameter_key_value
 parameters_object ::= '{' parameter_key_value? (','? parameter_key_value )* '}' {pin=1}
 parameters_array ::= '[' parameters_array_item? (','? parameters_array_item)* ']' {pin=1}
 parameters_array_item ::= &'<' any_reference | &'{' parameters_object | function | bool_value | id_value {
     implements="oap.application.plugin.psi.IndentNormal"
 }
 
-parameter_key_value ::=
-      &'include' module_include
-    | parameter_key_value_key {
+java_parameter_key_value ::= parameter_key_value
+private java_parameters_object ::= '{' java_parameter_key_value? (','? java_parameter_key_value )* '}' {pin=1}
+
+parameter_key_value_first_id ::= key_name
+parameter_key_value ::= parameter_key_value_first_id ('.' key_name)* (&'=' parameter_key_value_key_eq | parameter_key_value_key_object ) {
+    pin=1
     mixin="oap.application.plugin.psi.OapModuleServicesServiceParameterKeyValueMixin"
 }
-private parameter_key_value_key ::= key_name ('.' key_name)* (&'=' parameter_key_value_key_eq | parameter_key_value_key_object ) { pin=1 }
 private parameter_key_value_key_eq ::= '=' ( &'[' parameters_array | &'<' any_reference | function | bool_value | id_value ) { pin=1 }
 private parameter_key_value_key_object ::= parameters_object
 // } parameters

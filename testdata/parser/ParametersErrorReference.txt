@@ -33,12 +33,13 @@ OAP_FILE
         OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
           PsiElement(parameters)('parameters')
         PsiWhiteSpace(' ')
-        OAP_PARAMETERS_OBJECT
-          PsiElement({)('{')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiElement({)('{')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a1')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a1')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -46,10 +47,12 @@ OAP_FILE
               PsiElement(<)('<')
               PsiErrorElement:<any reference in> expected, got 'a2'
                 <empty list>
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a2')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a2')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -58,10 +61,12 @@ OAP_FILE
               PsiErrorElement:<any reference in> expected, got 'm'
                 <empty list>
               PsiElement(reference_value)('m')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a3')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a3')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -71,10 +76,12 @@ OAP_FILE
                 <empty list>
               PsiElement(reference_value)('msdfsdf')
               PsiElement(.)('.')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a4')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a4')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -92,8 +99,10 @@ OAP_FILE
                       <empty list>
                   OAP_REFERENCE_MODULES_SERVICE_NAME
                     <empty list>
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a4')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a4')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -113,8 +122,10 @@ OAP_FILE
                   OAP_REFERENCE_MODULES_SERVICE_NAME
                     PsiErrorElement:'.' or reference_value expected, got 'a5'
                       <empty list>
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a5')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a5')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -133,8 +144,10 @@ OAP_FILE
                   OAP_REFERENCE_MODULES_SERVICE_NAME
                     PsiErrorElement:reference_value expected, got 'a6'
                       <empty list>
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a6')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a6')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -153,8 +166,10 @@ OAP_FILE
                   OAP_REFERENCE_MODULES_SERVICE_NAME
                     PsiErrorElement:reference_value expected, got 'a7'
                       <empty list>
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a7')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a7')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -172,10 +187,12 @@ OAP_FILE
                     PsiElement(reference_value)('ffff')
             PsiErrorElement:'>' expected, got 'a8'
               <empty list>
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('      ')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
           OAP_PARAMETER_KEY_VALUE
-            PsiElement(key_name)('a8')
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('a8')
             PsiWhiteSpace(' ')
             PsiElement(=)('=')
             PsiWhiteSpace(' ')
@@ -192,9 +209,9 @@ OAP_FILE
                   OAP_REFERENCE_MODULES_SERVICE_NAME
                     PsiElement(reference_value)('ffff')
               PsiElement(>)('>')
-          PsiWhiteSpace('\n')
-          PsiWhiteSpace('    ')
-          PsiElement(})('}')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('    ')
+        PsiElement(})('}')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('  ')
       PsiElement(})('}')

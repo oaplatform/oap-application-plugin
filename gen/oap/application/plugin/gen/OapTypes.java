@@ -25,6 +25,7 @@ public interface OapTypes {
   IElementType OAP_ENV_VALUE = new OapCompositeElementType("OAP_ENV_VALUE");
   IElementType OAP_FUNCTION = new OapCompositeElementType("OAP_FUNCTION");
   IElementType OAP_ID_VALUE = new OapCompositeElementType("OAP_ID_VALUE");
+  IElementType OAP_JAVA_PARAMETER_KEY_VALUE = new OapCompositeElementType("OAP_JAVA_PARAMETER_KEY_VALUE");
   IElementType OAP_MODULE_CONFIGURATION = new OapCompositeElementType("OAP_MODULE_CONFIGURATION");
   IElementType OAP_MODULE_CONFIGURATIONS = new OapCompositeElementType("OAP_MODULE_CONFIGURATIONS");
   IElementType OAP_MODULE_CONFIGURATION_ENTRIES = new OapCompositeElementType("OAP_MODULE_CONFIGURATION_ENTRIES");
@@ -64,6 +65,7 @@ public interface OapTypes {
   IElementType OAP_PARAMETERS_ARRAY_ITEM = new OapCompositeElementType("OAP_PARAMETERS_ARRAY_ITEM");
   IElementType OAP_PARAMETERS_OBJECT = new OapCompositeElementType("OAP_PARAMETERS_OBJECT");
   IElementType OAP_PARAMETER_KEY_VALUE = new OapCompositeElementType("OAP_PARAMETER_KEY_VALUE");
+  IElementType OAP_PARAMETER_KEY_VALUE_FIRST_ID = new OapCompositeElementType("OAP_PARAMETER_KEY_VALUE_FIRST_ID");
   IElementType OAP_REFERENCE_KERNEL_VALUE = new OapCompositeElementType("OAP_REFERENCE_KERNEL_VALUE");
   IElementType OAP_REFERENCE_KERNEL_VALUE_IN = new OapCompositeElementType("OAP_REFERENCE_KERNEL_VALUE_IN");
   IElementType OAP_REFERENCE_MODULES_NAME = new OapCompositeElementType("OAP_REFERENCE_MODULES_NAME");
@@ -206,6 +208,9 @@ public interface OapTypes {
       else if (type == OAP_ID_VALUE) {
         return new OapIdValueImpl(node);
       }
+      else if (type == OAP_JAVA_PARAMETER_KEY_VALUE) {
+        return new OapJavaParameterKeyValueImpl(node);
+      }
       else if (type == OAP_MODULE_CONFIGURATION) {
         return new OapModuleConfigurationImpl(node);
       }
@@ -322,6 +327,9 @@ public interface OapTypes {
       }
       else if (type == OAP_PARAMETER_KEY_VALUE) {
         return new OapParameterKeyValueImpl(node);
+      }
+      else if (type == OAP_PARAMETER_KEY_VALUE_FIRST_ID) {
+        return new OapParameterKeyValueFirstIdImpl(node);
       }
       else if (type == OAP_REFERENCE_KERNEL_VALUE) {
         return new OapReferenceKernelValueImpl(node);

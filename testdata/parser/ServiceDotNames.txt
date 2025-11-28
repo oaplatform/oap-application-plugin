@@ -56,24 +56,26 @@ OAP_FILE
         OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
           PsiElement(parameters)('parameters')
         PsiElement(.)('.')
-        OAP_PARAMETER_KEY_VALUE
-          PsiElement(key_name)('reference')
-          PsiWhiteSpace(' ')
-          PsiElement(=)('=')
-          PsiWhiteSpace(' ')
-          OAP_ANY_REFERENCE
-            PsiElement(<)('<')
-            OAP_ANY_REFERENCE_IN
-              OAP_REFERENCE_MODULES_VALUE_IN
-                OAP_REFERENCE_TYPE_MODULES
-                  PsiElement(modules)('modules')
-                PsiElement(.)('.')
-                OAP_REFERENCE_MODULES_NAME
-                  PsiElement(this)('this')
-                PsiElement(.)('.')
-                OAP_REFERENCE_MODULES_SERVICE_NAME
-                  PsiElement(reference_value)('link1')
-            PsiElement(>)('>')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('reference')
+            PsiWhiteSpace(' ')
+            PsiElement(=)('=')
+            PsiWhiteSpace(' ')
+            OAP_ANY_REFERENCE
+              PsiElement(<)('<')
+              OAP_ANY_REFERENCE_IN
+                OAP_REFERENCE_MODULES_VALUE_IN
+                  OAP_REFERENCE_TYPE_MODULES
+                    PsiElement(modules)('modules')
+                  PsiElement(.)('.')
+                  OAP_REFERENCE_MODULES_NAME
+                    PsiElement(this)('this')
+                  PsiElement(.)('.')
+                  OAP_REFERENCE_MODULES_SERVICE_NAME
+                    PsiElement(reference_value)('link1')
+              PsiElement(>)('>')
       PsiWhiteSpace('\n')
       PsiWhiteSpace('    ')
       OAP_MODULE_SERVICES_SERVICE_LINK

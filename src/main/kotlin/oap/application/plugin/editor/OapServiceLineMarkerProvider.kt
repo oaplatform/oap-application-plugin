@@ -21,7 +21,7 @@ class OapServiceLineMarkerProvider : LineMarkerProvider {
                     .setTargets(listOf(psiClass))
                     .setTooltipText(psiClass.qualifiedName!!)
                     .setAlignment(GutterIconRenderer.Alignment.RIGHT)
-                    .createLineMarkerInfo(element)
+                    .createLineMarkerInfo(element.serviceName.keyName)
             }
         }
 

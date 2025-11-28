@@ -20,8 +20,8 @@ public interface OapParameterKeyValue extends OapCompositeElement {
   @Nullable
   OapIdValue getIdValue();
 
-  @Nullable
-  OapModuleInclude getModuleInclude();
+  @NotNull
+  OapParameterKeyValueFirstId getParameterKeyValueFirstId();
 
   @Nullable
   OapParametersArray getParametersArray();
