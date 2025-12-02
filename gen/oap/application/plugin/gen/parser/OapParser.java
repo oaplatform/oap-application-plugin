@@ -644,11 +644,9 @@ public class OapParser implements PsiParser, LightPsiParser {
   // []
   //         module_name_pair
   //         ( &'enabled' module_enabled )?
-  //         ( &'include' module_include )*
   //         ( &'dependsOn' module_depends_on )?
   //         ( &'include' module_include )*
   //         ( &'services' module_services )?
-  //         ( &'include' module_include )*
   //         ( &'configurations' module_configurations )?
   static boolean module(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module")) return false;
@@ -661,9 +659,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     r = p && report_error_(b, module_3(b, l + 1)) && r;
     r = p && report_error_(b, module_4(b, l + 1)) && r;
     r = p && report_error_(b, module_5(b, l + 1)) && r;
-    r = p && report_error_(b, module_6(b, l + 1)) && r;
-    r = p && report_error_(b, module_7(b, l + 1)) && r;
-    r = p && module_8(b, l + 1) && r;
+    r = p && module_6(b, l + 1) && r;
     exit_section_(b, l, m, r, p, OapParser::recover_module);
     return r || p;
   }
@@ -701,59 +697,27 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( &'include' module_include )*
+  // ( &'dependsOn' module_depends_on )?
   private static boolean module_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_3")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!module_3_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "module_3", c)) break;
-    }
+    module_3_0(b, l + 1);
     return true;
   }
 
-  // &'include' module_include
+  // &'dependsOn' module_depends_on
   private static boolean module_3_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_3_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = module_3_0_0(b, l + 1);
-    r = r && module_include(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // &'include'
-  private static boolean module_3_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_3_0_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _AND_);
-    r = consumeToken(b, OAP_ID_INCLUDE);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
-  // ( &'dependsOn' module_depends_on )?
-  private static boolean module_4(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_4")) return false;
-    module_4_0(b, l + 1);
-    return true;
-  }
-
-  // &'dependsOn' module_depends_on
-  private static boolean module_4_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_4_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = module_4_0_0(b, l + 1);
     r = r && module_depends_on(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // &'dependsOn'
-  private static boolean module_4_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_4_0_0")) return false;
+  private static boolean module_3_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_3_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _AND_);
     r = consumeToken(b, OAP_ID_DEPENDS_ON);
@@ -762,30 +726,30 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   // ( &'include' module_include )*
-  private static boolean module_5(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_5")) return false;
+  private static boolean module_4(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_4")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!module_5_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "module_5", c)) break;
+      if (!module_4_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "module_4", c)) break;
     }
     return true;
   }
 
   // &'include' module_include
-  private static boolean module_5_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_5_0")) return false;
+  private static boolean module_4_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_4_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = module_5_0_0(b, l + 1);
+    r = module_4_0_0(b, l + 1);
     r = r && module_include(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // &'include'
-  private static boolean module_5_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_5_0_0")) return false;
+  private static boolean module_4_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_4_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _AND_);
     r = consumeToken(b, OAP_ID_INCLUDE);
@@ -794,26 +758,26 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   // ( &'services' module_services )?
-  private static boolean module_6(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_6")) return false;
-    module_6_0(b, l + 1);
+  private static boolean module_5(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_5")) return false;
+    module_5_0(b, l + 1);
     return true;
   }
 
   // &'services' module_services
-  private static boolean module_6_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_6_0")) return false;
+  private static boolean module_5_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_5_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = module_6_0_0(b, l + 1);
+    r = module_5_0_0(b, l + 1);
     r = r && module_services(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // &'services'
-  private static boolean module_6_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_6_0_0")) return false;
+  private static boolean module_5_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_5_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _AND_);
     r = consumeToken(b, OAP_ID_SERVICES);
@@ -821,59 +785,27 @@ public class OapParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // ( &'include' module_include )*
-  private static boolean module_7(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_7")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!module_7_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "module_7", c)) break;
-    }
-    return true;
-  }
-
-  // &'include' module_include
-  private static boolean module_7_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_7_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = module_7_0_0(b, l + 1);
-    r = r && module_include(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // &'include'
-  private static boolean module_7_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_7_0_0")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _AND_);
-    r = consumeToken(b, OAP_ID_INCLUDE);
-    exit_section_(b, l, m, r, false, null);
-    return r;
-  }
-
   // ( &'configurations' module_configurations )?
-  private static boolean module_8(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_8")) return false;
-    module_8_0(b, l + 1);
+  private static boolean module_6(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_6")) return false;
+    module_6_0(b, l + 1);
     return true;
   }
 
   // &'configurations' module_configurations
-  private static boolean module_8_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_8_0")) return false;
+  private static boolean module_6_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_6_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = module_8_0_0(b, l + 1);
+    r = module_6_0_0(b, l + 1);
     r = r && module_configurations(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // &'configurations'
-  private static boolean module_8_0_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_8_0_0")) return false;
+  private static boolean module_6_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_6_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _AND_);
     r = consumeToken(b, OAP_ID_CONFIGURATIONS);

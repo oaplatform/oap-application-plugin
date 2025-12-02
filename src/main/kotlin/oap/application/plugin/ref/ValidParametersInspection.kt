@@ -3,6 +3,7 @@ package oap.application.plugin.ref
 import com.intellij.codeInspection.LocalInspectionTool
 import com.intellij.codeInspection.ProblemHighlightType
 import com.intellij.codeInspection.ProblemsHolder
+import com.intellij.openapi.util.NlsSafe
 import com.intellij.openapi.util.text.Strings
 import com.intellij.psi.*
 import com.intellij.psi.util.PsiTreeUtil
@@ -21,19 +22,18 @@ class ValidParametersInspection : LocalInspectionTool() {
                     val psiClass: PsiClass? = (service?.moduleServicesServiceImplementation?.classNamePsi as? OapClassValueMixin)?.getPsiClass()
                     if (psiClass != null) {
                         val firstId: OapParameterKeyValueFirstId? = PsiTreeUtil.findChildOfType(element, OapParameterKeyValueFirstId::class.java)
-                        val propertyName: String? = firstId?.keyName?.text
-                        if (propertyName == null) {
-                            return;
-                        }
-                        val setter: Boolean = psiClass.methods.firstOrNull { m -> m.name.startsWith("set" + Strings.capitalize(propertyName)) && m.parameterList.parametersCount == 1 } == null
+
+                        val propertyName: String = firstId?.keyName?.text ?: return
+
+                        val setter: Boolean = psiClass.methods.firstOrNull { it.name.startsWith("set" + Strings.capitalize(propertyName)) && it.parameterList.parametersCount == 1 } == null
                         if (!setter) {
                             return;
                         }
-                        val parameter: Boolean = psiClass.constructors.flatMap { c -> c.parameters.mapNotNull { p -> p.name } }.distinct().contains(propertyName)
+                        val parameter: Boolean = psiClass.constructors.flatMap { it.parameters.mapNotNull { it.name } }.distinct().contains(propertyName)
                         if (parameter) {
                             return;
                         }
-                        val psiField: PsiField? = psiClass.allFields.firstOrNull { f -> f.name.equals(propertyName) }
+                        val psiField: PsiField? = psiClass.allFields.firstOrNull { it.name.equals(propertyName) }
                         if (psiField == null) {
                             holder.registerProblem(
                                 firstId,

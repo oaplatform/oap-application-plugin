@@ -26,7 +26,7 @@ class JavaOapServiceLineMarkerProvider : LineMarkerProvider {
                     .setTargets(services)
                     .setTooltipText("Service implementation")
                     .setAlignment(GutterIconRenderer.Alignment.RIGHT)
-                    .createLineMarkerInfo(element)
+                    .createLineMarkerInfo(element.nameIdentifier!!)
             }
         }
 

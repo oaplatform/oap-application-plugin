@@ -11,6 +11,7 @@ import static oap.application.plugin.gen.OapTypes.*;
 import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
+import oap.application.plugin.psi.impl.JvmNamedElementReference;
 
 public class OapParameterKeyValueFirstIdImpl extends OapCompositeElementImpl implements OapParameterKeyValueFirstId {
 
@@ -32,6 +33,11 @@ public class OapParameterKeyValueFirstIdImpl extends OapCompositeElementImpl imp
   @NotNull
   public PsiElement getKeyName() {
     return notNullChild(findChildByType(OAP_KEY_NAME));
+  }
+
+  @Override
+  public @Nullable JvmNamedElementReference getReference() {
+    return GrammarPsiImplUtil.getReference(this);
   }
 
 }

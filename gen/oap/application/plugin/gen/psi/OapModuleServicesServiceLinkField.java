@@ -4,9 +4,9 @@ package oap.application.plugin.gen.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import oap.application.plugin.psi.OapCompositeElement;
+import oap.application.plugin.psi.IndentNormal;
 
-public interface OapModuleServicesServiceLinkField extends OapCompositeElement {
+public interface OapModuleServicesServiceLinkField extends IndentNormal {
 
   @Nullable
   OapReferenceModulesValue getReferenceModulesValue();

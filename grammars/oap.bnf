@@ -93,11 +93,9 @@ module ::=
         []
         module_name_pair
         ( &'enabled' module_enabled )?
-        ( &'include' module_include )*
         ( &'dependsOn' module_depends_on )?
         ( &'include' module_include )*
         ( &'services' module_services )?
-        ( &'include' module_include )*
         ( &'configurations' module_configurations )? {
     pin = 1
     recoverWhile=recover_module
@@ -269,7 +267,9 @@ parameters_array_item ::= &'<' any_reference | &'{' parameters_object | function
 java_parameter_key_value ::= parameter_key_value
 private java_parameters_object ::= '{' java_parameter_key_value? (','? java_parameter_key_value )* '}' {pin=1}
 
-parameter_key_value_first_id ::= key_name
+parameter_key_value_first_id ::= key_name {
+    methods=[getReference]
+}
 parameter_key_value ::= parameter_key_value_first_id ('.' key_name)* (&'=' parameter_key_value_key_eq | parameter_key_value_key_object ) {
     pin=1
     mixin="oap.application.plugin.psi.OapModuleServicesServiceParameterKeyValueMixin"
@@ -287,7 +287,10 @@ module_services_service_listen ::= 'listen' ( &'.' dot_module_services_service_l
 dot_module_services_service_link_field ::= '.' module_services_service_link_field {pin=1}
 module_services_service_link_field_object ::= '{' module_services_service_link_field* '}' {pin=1}
 
-module_services_service_link_field ::= key_name '=' reference_modules_value {pin=1}
+module_services_service_link_field ::= key_name '=' reference_modules_value {
+    pin=1
+    implements="oap.application.plugin.psi.IndentNormal"
+}
 
 module_services_service_link ::= 'link' ( &'.' dot_module_services_service_link_field | module_services_service_link_field_object ) {
     pin=1

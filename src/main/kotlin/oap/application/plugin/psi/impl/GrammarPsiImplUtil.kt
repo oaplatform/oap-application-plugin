@@ -1,6 +1,11 @@
 package oap.application.plugin.psi.impl
 
+import com.intellij.lang.jvm.JvmParameter
+import com.intellij.openapi.util.text.Strings
+import com.intellij.psi.PsiClass
+import com.intellij.psi.PsiField
 import com.intellij.psi.PsiFile
+import com.intellij.psi.PsiMethod
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.psi.util.PsiTreeUtil
@@ -8,6 +13,7 @@ import oap.application.plugin.gen.psi.*
 import oap.application.plugin.psi.IModuleName
 import oap.application.plugin.psi.IServiceName
 import oap.application.plugin.psi.ModuleUtils
+import oap.application.plugin.psi.OapClassValueMixin
 import oap.application.plugin.stub.OapModuleNameIndex
 
 class GrammarPsiImplUtil {
@@ -60,6 +66,34 @@ class GrammarPsiImplUtil {
                 ?.firstOrNull { it.serviceName.text.equals(serviceName) }
 
             return service?.let { OapServiceReference(m, it) }
+        }
+
+        @JvmStatic
+        fun getReference(m: OapParameterKeyValueFirstId): JvmNamedElementReference? {
+            val service: OapModuleServicesService? = PsiTreeUtil.getParentOfType(m, OapModuleServicesService::class.java)
+            val psiClass: PsiClass? = (service?.moduleServicesServiceImplementation?.classNamePsi as? OapClassValueMixin)?.getPsiClass()
+
+            if (psiClass != null) {
+                val propertyName: String = m.keyName.text
+
+                val psiMethod: PsiMethod? = psiClass.methods.firstOrNull { m -> m.name.startsWith("set" + Strings.capitalize(propertyName)) && m.parameterList.parametersCount == 1 }
+                if (psiMethod != null) {
+                    return JvmNamedElementReference(m, psiMethod)
+                }
+
+                val parameter: JvmParameter? = psiClass.constructors.flatMap { c -> c.parameters.filter { p -> propertyName.equals(p.name) } }.firstOrNull()
+                if (parameter != null) {
+                    return JvmNamedElementReference(m, parameter);
+                }
+
+                val psiField: PsiField? = psiClass.allFields.firstOrNull { it.name.equals(propertyName) }
+
+                if (psiField != null) {
+                    return JvmNamedElementReference(m, psiField)
+                }
+            }
+
+            return null;
         }
     }
 }
