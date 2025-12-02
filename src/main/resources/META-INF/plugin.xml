@@ -56,6 +56,8 @@
                                  implementationClass="oap.application.plugin.manipulators.OapModuleNameManipulator"/>
         <lang.elementManipulator forClass="oap.application.plugin.psi.IServiceName"
                                  implementationClass="oap.application.plugin.manipulators.OapServiceNameManipulator"/>
+        <lang.elementManipulator forClass="oap.application.plugin.gen.psi.OapParameterKeyValueFirstId"
+                                 implementationClass="oap.application.plugin.manipulators.OapParameterKeyValueFirstIdManipulator"/>
 
 
         <breadcrumbsInfoProvider implementation="oap.application.plugin.misc.OapBreadcrumbsInfoProvider"/>

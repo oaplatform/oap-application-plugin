@@ -161,7 +161,7 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleServicesServiceLinkField(@NotNull OapModuleServicesServiceLinkField o) {
-    visitCompositeElement(o);
+    visitIndentNormal(o);
   }
 
   public void visitModuleServicesServiceLinkFieldObject(@NotNull OapModuleServicesServiceLinkFieldObject o) {
