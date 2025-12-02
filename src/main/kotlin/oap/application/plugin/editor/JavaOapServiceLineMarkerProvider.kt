@@ -7,6 +7,7 @@ import com.intellij.icons.AllIcons
 import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiElement
+import com.intellij.psi.PsiIdentifier
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StubIndex
 import oap.application.plugin.gen.psi.OapModuleServicesService
@@ -20,13 +21,14 @@ class JavaOapServiceLineMarkerProvider : LineMarkerProvider {
                     .getElements(OapModuleServicesServiceIndex.KEY, it, element.project, GlobalSearchScope.allScope(element.project), OapModuleServicesService::class.java);
             }
 
-            if (services != null) {
+            val nameIdentifier: PsiIdentifier? = element.nameIdentifier
+            if (services != null && nameIdentifier != null) {
                 return NavigationGutterIconBuilder
                     .create(AllIcons.Nodes.Services)
                     .setTargets(services)
                     .setTooltipText("Service implementation")
                     .setAlignment(GutterIconRenderer.Alignment.RIGHT)
-                    .createLineMarkerInfo(element.nameIdentifier!!)
+                    .createLineMarkerInfo(nameIdentifier)
             }
         }
 
