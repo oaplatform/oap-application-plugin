@@ -457,6 +457,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "{"                  { yypushState(_OBJECT); return OAP_LEFTBRACE; }
 
   {KEY_NAME}           { return OAP_KEY_NAME; }
+  {STRING}             { return OAP_KEY_NAME; }
   "."                  { return OAP_DOT; }
   "="                  { yypushState(_OBJECT_ENTITY); return OAP_EQ; }
 

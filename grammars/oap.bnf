@@ -91,7 +91,7 @@
 
 module ::=
         []
-        ( &'name' module_name_pair )?
+        module_name_pair
         ( &'enabled' module_enabled )?
         ( &'dependsOn' module_depends_on )?
         ( &'include' module_include )*
@@ -131,7 +131,7 @@ reference_kernel_value ::= '<' reference_kernel_value_in '>' {
 reference_type_modules ::= [] 'modules' { pin=1 }
 reference_modules_name ::= [] (reference_value | 'this') {
     pin=1
-    methods=[getReference]
+    methods=[getReferences]
     implements="oap.application.plugin.psi.IModuleName"
 }
 reference_modules_service_name ::= [] reference_value {
@@ -188,6 +188,7 @@ module_depends_on ::= 'dependsOn' '=' ('[' (module_depends_on_name (','? module_
 module_services ::= 'services' '{' module_services_service* '}' {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePair"
+    methods=[getServices]
 }
 service_name ::= key_name
 module_services_service ::= service_name ( &'.' dot_implementation_service | object_service ) {

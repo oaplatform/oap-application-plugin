@@ -1,2 +1,6 @@
 OAP_FILE
-  <empty list>
+  OAP_MODULE_NAME_PAIR
+    PsiErrorElement:name expected
+      <empty list>
+    OAP_MODULE_NAME
+      <empty list>

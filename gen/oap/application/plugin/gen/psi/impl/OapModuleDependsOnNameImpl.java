@@ -11,7 +11,6 @@ import static oap.application.plugin.gen.OapTypes.*;
 import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
-import oap.application.plugin.psi.impl.OapModuleReference;
 
 public class OapModuleDependsOnNameImpl extends OapCompositeElementImpl implements OapModuleDependsOnName {
 
@@ -33,11 +32,6 @@ public class OapModuleDependsOnNameImpl extends OapCompositeElementImpl implemen
   @NotNull
   public PsiElement getKeyValue() {
     return notNullChild(findChildByType(OAP_KEY_VALUE));
-  }
-
-  @Override
-  public @Nullable OapModuleReference getReference() {
-    return GrammarPsiImplUtil.getReference(this);
   }
 
 }
