@@ -149,7 +149,6 @@ public interface OapTypes {
   IElementType OAP_ID_URL = new OapTokenType("url");
   IElementType OAP_ID_WS_HANDLER = new OapTokenType("ws-handler");
   IElementType OAP_ID_WS_SERVICE = new OapTokenType("ws-service");
-  IElementType OAP_INCLUDE_RESOURCE_NAME = new OapTokenType("include_resource_name");
   IElementType OAP_KEY_NAME = new OapTokenType("key_name");
   IElementType OAP_KEY_VALUE = new OapTokenType("key_value");
   IElementType OAP_LEFTANGLE = new OapTokenType("<");

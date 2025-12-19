@@ -42,12 +42,6 @@ public class OapModuleIncludeImpl extends OapCompositeElementImpl implements Oap
 
   @Override
   @Nullable
-  public PsiElement getIncludeResourceName() {
-    return findChildByType(OAP_INCLUDE_RESOURCE_NAME);
-  }
-
-  @Override
-  @Nullable
   public PsiElement getLeftparen() {
     return findChildByType(OAP_LEFTPAREN);
   }
@@ -56,6 +50,12 @@ public class OapModuleIncludeImpl extends OapCompositeElementImpl implements Oap
   @Nullable
   public PsiElement getRightparen() {
     return findChildByType(OAP_RIGHTPAREN);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getString() {
+    return findChildByType(OAP_STRING);
   }
 
 }

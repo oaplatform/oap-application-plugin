@@ -20,6 +20,9 @@ object OapHighlighterColors {
     val ModuleDependsOn = key("OAP_MODULE_DEPENDS_ON", DefaultLanguageHighlighterColors.KEYWORD)
     val ModuleDependsOnModuleName = key("OAP_MODULE_DEPENDS_ON_MODULE_NAME", DefaultLanguageHighlighterColors.LABEL)
 
+    val Include = key("OAP_INCLUDE", DefaultLanguageHighlighterColors.KEYWORD)
+    val Required = key("OAP_REQUIRED", DefaultLanguageHighlighterColors.KEYWORD)
+
     val ModuleServices = key("OAP_MODULE_SERVICES", DefaultLanguageHighlighterColors.KEYWORD)
     val ModuleService = key("OAP_MODULE_SERVICE", DefaultLanguageHighlighterColors.INSTANCE_FIELD)
     val ModuleServiceEnabled = key("OAP_MODULE_SERVICE_ENABLED", DefaultLanguageHighlighterColors.KEYWORD)

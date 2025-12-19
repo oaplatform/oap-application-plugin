@@ -15,12 +15,12 @@ public interface OapModuleInclude extends OapCompositeElement {
   PsiElement getIdRequired();
 
   @Nullable
-  PsiElement getIncludeResourceName();
-
-  @Nullable
   PsiElement getLeftparen();
 
   @Nullable
   PsiElement getRightparen();
+
+  @Nullable
+  PsiElement getString();
 
 }

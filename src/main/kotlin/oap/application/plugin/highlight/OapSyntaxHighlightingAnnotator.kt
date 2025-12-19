@@ -25,6 +25,9 @@ class OapSyntaxHighlightingAnnotator : Annotator {
             OapTypes.OAP_ID_DEPENDS_ON -> annot(OapHighlighterColors.ModuleDependsOn)
             OapTypes.OAP_MODULE_DEPENDS_ON_NAME -> annot(OapHighlighterColors.ModuleDependsOnModuleName)
 
+            OapTypes.OAP_ID_INCLUDE -> annot(OapHighlighterColors.Include)
+            OapTypes.OAP_ID_REQUIRED -> annot(OapHighlighterColors.Required)
+
             OapTypes.OAP_ID_SERVICES -> annot(OapHighlighterColors.ModuleServices)
             OapTypes.OAP_SERVICE_NAME -> annot(OapHighlighterColors.ModuleService)
             OapTypes.OAP_ID_ENABLED -> annot(OapHighlighterColors.ModuleServiceEnabled)

@@ -642,7 +642,7 @@ public class OapParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // []
-  //         module_name_pair
+  //         ( &'name' module_name_pair )?
   //         ( &'enabled' module_enabled )?
   //         ( &'dependsOn' module_depends_on )?
   //         ( &'include' module_include )*
@@ -654,7 +654,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b, l, _NONE_);
     r = module_0(b, l + 1);
     p = r; // pin = 1
-    r = r && report_error_(b, module_name_pair(b, l + 1));
+    r = r && report_error_(b, module_1(b, l + 1));
     r = p && report_error_(b, module_2(b, l + 1)) && r;
     r = p && report_error_(b, module_3(b, l + 1)) && r;
     r = p && report_error_(b, module_4(b, l + 1)) && r;
@@ -667,6 +667,34 @@ public class OapParser implements PsiParser, LightPsiParser {
   // []
   private static boolean module_0(PsiBuilder b, int l) {
     return true;
+  }
+
+  // ( &'name' module_name_pair )?
+  private static boolean module_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_1")) return false;
+    module_1_0(b, l + 1);
+    return true;
+  }
+
+  // &'name' module_name_pair
+  private static boolean module_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = module_1_0_0(b, l + 1);
+    r = r && module_name_pair(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // &'name'
+  private static boolean module_1_0_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_1_0_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _AND_);
+    r = consumeToken(b, OAP_ID_NAME);
+    exit_section_(b, l, m, r, false, null);
+    return r;
   }
 
   // ( &'enabled' module_enabled )?
@@ -1036,13 +1064,13 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'include' 'required' '(' include_resource_name ')'
+  // 'include' 'required' '(' string ')'
   public static boolean module_include(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_include")) return false;
     if (!nextTokenIs(b, OAP_ID_INCLUDE)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, OAP_MODULE_INCLUDE, null);
-    r = consumeTokens(b, 1, OAP_ID_INCLUDE, OAP_ID_REQUIRED, OAP_LEFTPAREN, OAP_INCLUDE_RESOURCE_NAME, OAP_RIGHTPAREN);
+    r = consumeTokens(b, 1, OAP_ID_INCLUDE, OAP_ID_REQUIRED, OAP_LEFTPAREN, OAP_STRING, OAP_RIGHTPAREN);
     p = r; // pin = 1
     exit_section_(b, l, m, r, p, null);
     return r || p;

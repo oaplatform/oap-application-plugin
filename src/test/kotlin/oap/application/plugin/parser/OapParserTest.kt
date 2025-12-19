@@ -107,8 +107,8 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(true)
     }
 
-    fun testModuleNoNameError() {
-        doTest(true)
+    fun testModuleNoName() {
+        doTest(false)
     }
 
 

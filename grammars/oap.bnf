@@ -91,7 +91,7 @@
 
 module ::=
         []
-        module_name_pair
+        ( &'name' module_name_pair )?
         ( &'enabled' module_enabled )?
         ( &'dependsOn' module_depends_on )?
         ( &'include' module_include )*
@@ -484,7 +484,7 @@ configuration_key_value_pair ::=
 // ] // configurations
 
 // include required("resource")
-module_include ::= 'include' 'required' '(' include_resource_name ')' {
+module_include ::= 'include' 'required' '(' string ')' {
     pin=1
 }
 // include required("resource")
