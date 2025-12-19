@@ -486,6 +486,7 @@ configuration_key_value_pair ::=
 // include required("resource")
 module_include ::= 'include' 'required' '(' string ')' {
     pin=1
+    methods=[getReference]
 }
 // include required("resource")
 

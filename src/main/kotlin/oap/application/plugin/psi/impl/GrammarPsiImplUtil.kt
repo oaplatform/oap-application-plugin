@@ -1,11 +1,17 @@
 package oap.application.plugin.psi.impl
 
 import com.intellij.lang.jvm.JvmParameter
+import com.intellij.openapi.util.TextRange
 import com.intellij.openapi.util.text.Strings
+import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.openapi.vfs.findPsiFile
 import com.intellij.psi.PsiClass
 import com.intellij.psi.PsiField
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiMethod
+import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReference
+import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReferenceSet
+import com.intellij.psi.search.FilenameIndex
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.psi.util.PsiTreeUtil
@@ -94,6 +100,30 @@ class GrammarPsiImplUtil {
             }
 
             return null;
+        }
+
+        @JvmStatic
+        fun getReference(m: OapModuleInclude): FileReference? {
+
+            val resourceName: String? = m.string?.text?.trim('"')
+            if (resourceName == null) {
+                return null
+            }
+
+            val includeFile: VirtualFile? =
+                FilenameIndex.getVirtualFilesByName(resourceName, GlobalSearchScope.allScope(m.project)).firstOrNull()
+                    ?: FilenameIndex.getVirtualFilesByName(resourceName + ".oap", GlobalSearchScope.allScope(m.project)).firstOrNull()
+
+            if (includeFile == null) {
+                return null
+            }
+
+            val psiFile: PsiFile? = includeFile.findPsiFile(m.project)
+            if (psiFile == null) {
+                return null;
+            }
+
+            return FileReference(FileReferenceSet(m.containingFile), psiFile.textRange, 0, includeFile.name)
         }
     }
 }
