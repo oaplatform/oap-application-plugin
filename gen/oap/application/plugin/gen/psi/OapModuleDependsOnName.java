@@ -6,14 +6,13 @@ import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import oap.application.plugin.psi.IndentNormal;
 import oap.application.plugin.psi.IModuleName;
+import com.intellij.psi.PsiReference;
 
 public interface OapModuleDependsOnName extends IndentNormal, IModuleName {
 
   @NotNull
   PsiElement getKeyValue();
 
-  //WARNING: getReference(...) is skipped
-  //matching getReference(OapModuleDependsOnName, ...)
-  //methods are not found in GrammarPsiImplUtil
+  @NotNull PsiReference @NotNull [] getReferences();
 
 }
