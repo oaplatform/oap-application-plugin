@@ -5,6 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import oap.application.plugin.psi.OapCompositeElement;
+import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReference;
 
 public interface OapModuleInclude extends OapCompositeElement {
 
@@ -15,12 +16,14 @@ public interface OapModuleInclude extends OapCompositeElement {
   PsiElement getIdRequired();
 
   @Nullable
-  PsiElement getIncludeResourceName();
-
-  @Nullable
   PsiElement getLeftparen();
 
   @Nullable
   PsiElement getRightparen();
+
+  @Nullable
+  PsiElement getString();
+
+  @Nullable FileReference getReference();
 
 }

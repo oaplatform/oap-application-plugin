@@ -6,13 +6,13 @@ import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import oap.application.plugin.psi.IndentNormal;
 import oap.application.plugin.psi.IModuleName;
-import oap.application.plugin.psi.impl.OapModuleReference;
+import com.intellij.psi.PsiReference;
 
 public interface OapModuleDependsOnName extends IndentNormal, IModuleName {
 
   @NotNull
   PsiElement getKeyValue();
 
-  @Nullable OapModuleReference getReference();
+  @NotNull PsiReference @NotNull [] getReferences();
 
 }

@@ -12,7 +12,7 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(required)('required')
     PsiElement(()('(')
-    PsiElement(include_resource_name)('"1"')
+    PsiElement(string)('"1"')
     PsiElement())(')')
   PsiWhiteSpace('\n')
   OAP_MODULE_INCLUDE
@@ -20,7 +20,7 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(required)('required')
     PsiElement(()('(')
-    PsiElement(include_resource_name)('"2"')
+    PsiElement(string)('"2"')
     PsiElement())(')')
   PsiWhiteSpace('\n')
   OAP_MODULE_INCLUDE
@@ -28,7 +28,7 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(required)('required')
     PsiElement(()('(')
-    PsiElement(include_resource_name)('"3"')
+    PsiElement(string)('"3"')
     PsiElement())(')')
   PsiWhiteSpace('\n')
   OAP_MODULE_INCLUDE
@@ -36,7 +36,7 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(required)('required')
     PsiElement(()('(')
-    PsiElement(include_resource_name)('"4"')
+    PsiElement(string)('"4"')
     PsiElement())(')')
   PsiWhiteSpace('\n')
   OAP_MODULE_INCLUDE
@@ -44,5 +44,5 @@ OAP_FILE
     PsiWhiteSpace(' ')
     PsiElement(required)('required')
     PsiElement(()('(')
-    PsiElement(include_resource_name)('"5"')
+    PsiElement(string)('"5"')
     PsiElement())(')')

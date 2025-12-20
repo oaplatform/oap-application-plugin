@@ -99,7 +99,7 @@ WHITE_SPACE=[ \t\x0B\f\r]+
 COMMENT=("//"|"#")[^\n]*
 STRING=\"(\\\"|[^\"])*\"
 UNQUOTED_STRING=([:jletterdigit:]|[-/\.]) ([:jletterdigit:]|[-/\. ])*
-CLASS_NAME=([:jletter:] [:jletterdigit:]*)("." [:jletter:] [:jletterdigit:]*)+
+CLASS_NAME=([:jletter:] [:jletterdigit:]*)("." [:jletter:] [:jletterdigit:]*)*
 FIELD_NAME=[:jletter:] [:jletterdigit:]+
 KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 
@@ -141,7 +141,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   {BOOL}               { return OAP_BOOL; }
   "("                  { return OAP_LEFTPAREN; }
   ")"                  { return OAP_RIGHTPAREN; }
-  {STRING}             { return OAP_INCLUDE_RESOURCE_NAME; }
+  {STRING}             { return OAP_STRING; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
   {NEXTLINE}           { yypopState(); return WHITE_SPACE; }
@@ -457,6 +457,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "{"                  { yypushState(_OBJECT); return OAP_LEFTBRACE; }
 
   {KEY_NAME}           { return OAP_KEY_NAME; }
+  {STRING}             { return OAP_KEY_NAME; }
   "."                  { return OAP_DOT; }
   "="                  { yypushState(_OBJECT_ENTITY); return OAP_EQ; }
 

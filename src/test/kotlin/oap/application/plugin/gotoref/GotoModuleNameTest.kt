@@ -5,7 +5,6 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiReference
 import oap.application.plugin.OapFixtureTestCase
 import oap.application.plugin.gen.psi.OapModuleNamePair
-import oap.application.plugin.gen.psi.OapModuleServicesService
 import org.assertj.core.api.Assertions
 
 class GotoModuleNameTest : OapFixtureTestCase() {
@@ -26,11 +25,13 @@ class GotoModuleNameTest : OapFixtureTestCase() {
         myFixture.openFileInEditor(file2.virtualFile)
 
         val focusedElement: PsiElement = myFixture.getFile().findElementAt(myFixture.getEditor().getCaretModel().getOffset())!!
-        val reference: PsiReference? = focusedElement.reference ?: focusedElement.parent.reference
+        val references: Array<PsiReference> = focusedElement.references.plus(focusedElement.parent.references)
 
-        val psiElement: PsiElement? = reference?.resolve()
-        Assertions.assertThat(psiElement).isInstanceOf(OapModuleNamePair::class.java)
-        Assertions.assertThat(psiElement?.containingFile).isSameAs(file1)
+        val psiElements: List<PsiElement> = references.mapNotNull { it.resolve() }
+        Assertions.assertThat(psiElements).hasSize(1)
+
+        Assertions.assertThat(psiElements[0]).isInstanceOf(OapModuleNamePair::class.java)
+        Assertions.assertThat(psiElements[0].containingFile).isSameAs(file1)
     }
 
     fun testGotoModuleReferenceThis() {
@@ -47,10 +48,11 @@ class GotoModuleNameTest : OapFixtureTestCase() {
         )
 
         val focusedElement: PsiElement = myFixture.getFile().findElementAt(myFixture.getEditor().getCaretModel().getOffset())!!
-        val reference: PsiReference? = focusedElement.reference ?: focusedElement.parent.reference
+        val references: Array<PsiReference> = focusedElement.references.plus(focusedElement.parent.references)
 
-        val psiElement: PsiElement? = reference?.resolve()
-        Assertions.assertThat((psiElement as? OapModuleNamePair)?.moduleName?.text).isEqualTo("module1")
+        val psiElements: List<PsiElement> = references.mapNotNull { it.resolve() }
+        Assertions.assertThat(psiElements).hasSize(1)
+        Assertions.assertThat((psiElements[0] as? OapModuleNamePair)?.moduleName?.text).isEqualTo("module1")
     }
 
     fun testGotoModuleReferenceModuleName() {
@@ -78,10 +80,12 @@ class GotoModuleNameTest : OapFixtureTestCase() {
         myFixture.openFileInEditor(file2.virtualFile)
 
         val focusedElement: PsiElement = myFixture.getFile().findElementAt(myFixture.getEditor().getCaretModel().getOffset())!!
-        val reference: PsiReference? = focusedElement.reference ?: focusedElement.parent.reference
+        val references: Array<PsiReference> = focusedElement.references.plus(focusedElement.parent.references)
 
-        val psiElement: PsiElement? = reference?.resolve()
-        Assertions.assertThat((psiElement as? OapModuleNamePair)?.moduleName?.text).isEqualTo("module1")
-        Assertions.assertThat(psiElement?.containingFile).isSameAs(file1)
+        val psiElements: List<PsiElement> = references.mapNotNull { it.resolve() }
+        Assertions.assertThat(psiElements).hasSize(1)
+
+        Assertions.assertThat((psiElements[0] as? OapModuleNamePair)?.moduleName?.text).isEqualTo("module1")
+        Assertions.assertThat(psiElements[0].containingFile).isSameAs(file1)
     }
 }

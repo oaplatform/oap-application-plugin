@@ -74,7 +74,7 @@ OAP_FILE
                         PsiWhiteSpace(' ')
                         PsiElement(required)('required')
                         PsiElement(()('(')
-                        PsiElement(include_resource_name)('"oap-module-include.conf"')
+                        PsiElement(string)('"oap-module-include.conf"')
                         PsiElement())(')')
                     PsiWhiteSpace('\n')
                     PsiWhiteSpace('        ')

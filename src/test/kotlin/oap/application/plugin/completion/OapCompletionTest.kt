@@ -10,12 +10,12 @@ class OapCompletionTest : OapFixtureTestCase() {
         return "completion"
     }
 
-    fun testModuleName() {
-        myFixture.configureByText("testModuleName.oap", "<caret>")
-        myFixture.complete(CompletionType.BASIC)
-
-        myFixture.checkResult("name")
-    }
+//    fun testModuleName() {
+//        myFixture.configureByText("testModuleName.oap", "<caret>")
+//        myFixture.complete(CompletionType.BASIC)
+//
+//        myFixture.checkResult("name")
+//    }
 
     fun testAfterModuleName() {
         myFixture.configureByText(

@@ -1,0 +1,12 @@
+name = ParametersQuotedString
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestJavaService
+    parameters {
+      finalMap {
+        "test.val" = "sdfsdf sdf"
+      }
+    }
+  }
+}

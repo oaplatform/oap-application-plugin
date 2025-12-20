@@ -52,4 +52,9 @@ public class OapModuleServicesImpl extends OapCompositeElementImpl implements Oa
     return findChildByType(OAP_RIGHTBRACE);
   }
 
+  @Override
+  public @NotNull List<@NotNull OapModuleServicesService> getServices() {
+    return GrammarPsiImplUtil.getServices(this);
+  }
+
 }

@@ -11,7 +11,7 @@ import static oap.application.plugin.gen.OapTypes.*;
 import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
-import oap.application.plugin.psi.impl.OapModuleReference;
+import com.intellij.psi.PsiReference;
 
 public class OapReferenceModulesNameImpl extends OapCompositeElementImpl implements OapReferenceModulesName {
 
@@ -42,8 +42,8 @@ public class OapReferenceModulesNameImpl extends OapCompositeElementImpl impleme
   }
 
   @Override
-  public @Nullable OapModuleReference getReference() {
-    return GrammarPsiImplUtil.getReference(this);
+  public @NotNull PsiReference @NotNull [] getReferences() {
+    return GrammarPsiImplUtil.getReferences(this);
   }
 
 }

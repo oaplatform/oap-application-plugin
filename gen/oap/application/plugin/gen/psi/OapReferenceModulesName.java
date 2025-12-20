@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import oap.application.plugin.psi.IModuleName;
-import oap.application.plugin.psi.impl.OapModuleReference;
+import com.intellij.psi.PsiReference;
 
 public interface OapReferenceModulesName extends IModuleName {
 
@@ -15,6 +15,6 @@ public interface OapReferenceModulesName extends IModuleName {
   @Nullable
   PsiElement getReferenceValue();
 
-  @Nullable OapModuleReference getReference();
+  @NotNull PsiReference @NotNull [] getReferences();
 
 }

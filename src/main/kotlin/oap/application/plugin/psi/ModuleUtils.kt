@@ -1,13 +1,12 @@
 package oap.application.plugin.psi
 
+import com.intellij.openapi.project.Project
+import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.stubs.StubIndex
 import com.intellij.psi.util.PsiTreeUtil
-import oap.application.plugin.gen.psi.OapModuleName
-import oap.application.plugin.gen.psi.OapModuleNamePair
-import oap.application.plugin.gen.psi.OapModuleServicesService
-import oap.application.plugin.gen.psi.OapReferenceModulesName
+import oap.application.plugin.gen.psi.*
 import oap.application.plugin.stub.OapModuleNameIndex
 
 object ModuleUtils {
@@ -28,6 +27,26 @@ object ModuleUtils {
                 .map { it.containingFile }
                 .firstOrNull()
         }
+
+    }
+
+    fun getServices(element: PsiElement, moduleNameOrThis: String?): List<OapModuleServicesService> {
+        var moduleName: String? = moduleNameOrThis;
+
+        if ("this".equals(moduleName)) {
+            moduleName = getModuleName(element.containingFile)
+        }
+
+        if (moduleName == null) {
+            return emptyList();
+        }
+
+        val project: Project = element.project;
+
+        return StubIndex
+            .getElements(OapModuleNameIndex.KEY, moduleName, project, GlobalSearchScope.allScope(project), OapModuleNamePair::class.java)
+            .mapNotNull { PsiTreeUtil.findChildOfType(it.parent, OapModuleServices::class.java) }
+            .flatMap { it.services }
 
     }
 }

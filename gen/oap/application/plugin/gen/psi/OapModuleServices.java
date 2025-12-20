@@ -20,4 +20,6 @@ public interface OapModuleServices extends OapKeyValuePair {
   @Nullable
   PsiElement getRightbrace();
 
+  @NotNull List<@NotNull OapModuleServicesService> getServices();
+
 }

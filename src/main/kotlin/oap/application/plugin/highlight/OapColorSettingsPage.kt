@@ -30,6 +30,8 @@ class OapColorSettingsPage : ColorSettingsPage {
             |  <module_dependson_module_name>b</module_dependson_module_name>
             |]
             |
+            |<include>include</include> <required>required</required>("resource")
+            |
             |<moduleservices>services</moduleservices> <brackets>{</brackets>
             |  <moduleservice>service-name</moduleservice> <brackets>{</brackets>
             |    <service_enabled>enabled</service_enabled> <eq>=</eq> <Boolean>false</Boolean>
@@ -85,6 +87,9 @@ class OapColorSettingsPage : ColorSettingsPage {
             "moduledependson" to OapHighlighterColors.ModuleDependsOn,
             "module_dependson_module_name" to OapHighlighterColors.ModuleDependsOnModuleName,
 
+            "include" to OapHighlighterColors.Include,
+            "required" to OapHighlighterColors.Required,
+
             "moduleservices" to OapHighlighterColors.ModuleServices,
             "moduleservice" to OapHighlighterColors.ModuleService,
             "service_enabled" to OapHighlighterColors.ModuleServiceEnabled,
@@ -138,6 +143,10 @@ class OapColorSettingsPage : ColorSettingsPage {
             "Module name" to OapHighlighterColors.ModuleName,
             "Module dependsOn" to OapHighlighterColors.ModuleDependsOn,
             "Module dependsOn [module name]" to OapHighlighterColors.ModuleDependsOnModuleName,
+
+            "Module include" to OapHighlighterColors.Include,
+            "Module include required" to OapHighlighterColors.Required,
+
             "Services" to OapHighlighterColors.ModuleServices,
             "Service Name" to OapHighlighterColors.ModuleService,
             "Service enabled/disabled" to OapHighlighterColors.ModuleServiceEnabled,

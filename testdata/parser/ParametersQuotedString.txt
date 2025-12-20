@@ -1,0 +1,66 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('ParametersQuotedString')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('test-master')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestJavaService')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_PARAMETERS
+        OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
+          PsiElement(parameters)('parameters')
+        PsiWhiteSpace(' ')
+        PsiElement({)('{')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('finalMap')
+            PsiWhiteSpace(' ')
+            OAP_PARAMETERS_OBJECT
+              PsiElement({)('{')
+              PsiWhiteSpace('\n')
+              PsiWhiteSpace('        ')
+              OAP_PARAMETER_KEY_VALUE
+                OAP_PARAMETER_KEY_VALUE_FIRST_ID
+                  PsiElement(key_name)('"test.val"')
+                PsiWhiteSpace(' ')
+                PsiElement(=)('=')
+                PsiWhiteSpace(' ')
+                OAP_ID_VALUE
+                  PsiElement(key_value)('"sdfsdf sdf"')
+              PsiWhiteSpace('\n')
+              PsiWhiteSpace('      ')
+              PsiElement(})('}')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('    ')
+        PsiElement(})('}')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

@@ -11,6 +11,7 @@ import static oap.application.plugin.gen.OapTypes.*;
 import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
+import com.intellij.psi.impl.source.resolve.reference.impl.providers.FileReference;
 
 public class OapModuleIncludeImpl extends OapCompositeElementImpl implements OapModuleInclude {
 
@@ -42,12 +43,6 @@ public class OapModuleIncludeImpl extends OapCompositeElementImpl implements Oap
 
   @Override
   @Nullable
-  public PsiElement getIncludeResourceName() {
-    return findChildByType(OAP_INCLUDE_RESOURCE_NAME);
-  }
-
-  @Override
-  @Nullable
   public PsiElement getLeftparen() {
     return findChildByType(OAP_LEFTPAREN);
   }
@@ -56,6 +51,17 @@ public class OapModuleIncludeImpl extends OapCompositeElementImpl implements Oap
   @Nullable
   public PsiElement getRightparen() {
     return findChildByType(OAP_RIGHTPAREN);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getString() {
+    return findChildByType(OAP_STRING);
+  }
+
+  @Override
+  public @Nullable FileReference getReference() {
+    return GrammarPsiImplUtil.getReference(this);
   }
 
 }

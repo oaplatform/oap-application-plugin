@@ -131,7 +131,7 @@ reference_kernel_value ::= '<' reference_kernel_value_in '>' {
 reference_type_modules ::= [] 'modules' { pin=1 }
 reference_modules_name ::= [] (reference_value | 'this') {
     pin=1
-    methods=[getReference]
+    methods=[getReferences]
     implements="oap.application.plugin.psi.IModuleName"
 }
 reference_modules_service_name ::= [] reference_value {
@@ -176,7 +176,7 @@ module_enabled ::= 'enabled' '=' bool {
 // dependsOn = [
 module_depends_on_name ::= key_value {
     implements=["oap.application.plugin.psi.IndentNormal";"oap.application.plugin.psi.IModuleName"]
-    methods=[getReference]
+    methods=[getReferences]
 }
 module_depends_on ::= 'dependsOn' '=' ('[' (module_depends_on_name (','? module_depends_on_name )* )? ']' | module_depends_on_name) {
     pin=1
@@ -188,6 +188,7 @@ module_depends_on ::= 'dependsOn' '=' ('[' (module_depends_on_name (','? module_
 module_services ::= 'services' '{' module_services_service* '}' {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePair"
+    methods=[getServices]
 }
 service_name ::= key_name
 module_services_service ::= service_name ( &'.' dot_implementation_service | object_service ) {
@@ -484,8 +485,9 @@ configuration_key_value_pair ::=
 // ] // configurations
 
 // include required("resource")
-module_include ::= 'include' 'required' '(' include_resource_name ')' {
+module_include ::= 'include' 'required' '(' string ')' {
     pin=1
+    methods=[getReference]
 }
 // include required("resource")
 

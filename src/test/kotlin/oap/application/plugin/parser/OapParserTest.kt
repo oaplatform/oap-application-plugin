@@ -107,7 +107,7 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(true)
     }
 
-    fun testModuleNoNameError() {
+    fun testModuleNoName() {
         doTest(true)
     }
 
@@ -157,6 +157,10 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
     fun testParametersObjectComma() {
+        doTest(false)
+    }
+
+    fun testParametersQuotedString() {
         doTest(false)
     }
 

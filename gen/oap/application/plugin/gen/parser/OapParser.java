@@ -1036,13 +1036,13 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'include' 'required' '(' include_resource_name ')'
+  // 'include' 'required' '(' string ')'
   public static boolean module_include(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_include")) return false;
     if (!nextTokenIs(b, OAP_ID_INCLUDE)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, OAP_MODULE_INCLUDE, null);
-    r = consumeTokens(b, 1, OAP_ID_INCLUDE, OAP_ID_REQUIRED, OAP_LEFTPAREN, OAP_INCLUDE_RESOURCE_NAME, OAP_RIGHTPAREN);
+    r = consumeTokens(b, 1, OAP_ID_INCLUDE, OAP_ID_REQUIRED, OAP_LEFTPAREN, OAP_STRING, OAP_RIGHTPAREN);
     p = r; // pin = 1
     exit_section_(b, l, m, r, p, null);
     return r || p;
