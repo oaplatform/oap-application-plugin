@@ -32,6 +32,9 @@ class OapParametersCompletionTest : OapFixtureTestCase() {
         )
         myFixture.complete(CompletionType.BASIC)
 
-        assertSameElements(myFixture.lookupElementStrings!!, "enabled", "dependOn", "services", "configurations")
+        assertSameElements(
+            myFixture.lookupElementStrings!!,
+            "constructor1StringField", "constructor2IntField", "constructor2StringField", "integerField", "intField", "privateStringField", "setterMethodString", "stringField"
+        )
     }
 }

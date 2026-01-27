@@ -2,10 +2,7 @@ package oap.application.plugin.psi.impl
 
 import com.intellij.lang.jvm.JvmParameter
 import com.intellij.openapi.util.Key
-import com.intellij.psi.PsiClass
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiField
-import com.intellij.psi.PsiMethod
+import com.intellij.psi.*
 import com.intellij.psi.util.CachedValueProvider
 import com.intellij.psi.util.CachedValuesManager
 import com.intellij.psi.util.PsiTreeUtil
@@ -25,13 +22,19 @@ object JavaPsiUtils {
 
                 val parameters: List<JvmParameter> = psiClass.constructors.flatMap { c -> c.parameters.filter { c -> c.name != null } }
 
-                val fields: List<PsiField> = psiClass.allFields.asList()
+                val fields: List<PsiField> = psiClass.allFields.filter { !it.hasModifierProperty(PsiModifier.FINAL) }
 
-                psiMethods.forEach { m -> ret.add(ServiceParameter(m.name, METHOD)) }
+                psiMethods.forEach { m -> ret.add(ServiceParameter(m.name.substring(3).replaceFirstChar { it.lowercaseChar() }, METHOD)) }
                 parameters.forEach { c -> ret.add(ServiceParameter(c.name!!, CONSTRUCTOR_PARAMETER)) }
                 fields.forEach { f -> ret.add(ServiceParameter(f.name, FIELD)) }
 
-                CachedValueProvider.Result.create(ret)
+                var dependencies: List<PsiElement> = emptyList()
+
+                dependencies += psiMethods;
+                dependencies += parameters.mapNotNull { it.sourceElement };
+                dependencies += fields;
+
+                CachedValueProvider.Result.create(ret, dependencies)
             }
 
         }
