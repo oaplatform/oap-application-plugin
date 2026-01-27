@@ -45,6 +45,7 @@
 
         <completion.contributor language="OAP" implementationClass="oap.application.plugin.completion.OapReferenceCompletionContributor" order="first"/>
         <completion.contributor language="OAP" implementationClass="oap.application.plugin.completion.OapKeywordCompletionContributor" order="last"/>
+        <completion.contributor language="OAP" implementationClass="oap.application.plugin.completion.OapParameterCompletionContributor" order="last"/>
         <psi.referenceContributor implementation="oap.application.plugin.ref.OapReferenceContributor" language="OAP"/>
         <psi.referenceContributor
                 language="OAP"
