@@ -2,11 +2,10 @@ plugins {
     id("java")
     id("idea")
     id("org.jetbrains.kotlin.jvm") version "2.2.21"
-    id("org.jetbrains.intellij.platform") version "2.10.4"
+    id("org.jetbrains.intellij.platform") version "2.18.1"
 }
 
 group = "oap"
-version = "0.0.7"
 
 repositories {
     mavenCentral()
@@ -36,7 +35,7 @@ dependencies {
 
     testImplementation("junit:junit:4.13.2")
     testImplementation("org.opentest4j:opentest4j:1.3.0")
-    testImplementation("org.assertj:assertj-core:3.27.6")
+    testImplementation("org.assertj:assertj-core:3.27.7")
     testImplementation("io.github.java-diff-utils:java-diff-utils:4.16")
 }
 

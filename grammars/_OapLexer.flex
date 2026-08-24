@@ -40,6 +40,7 @@ import static oap.application.plugin.gen.OapTypes.*;
             case CONFIGURATIONS_OBJECT -> "CONFIGURATIONS_OBJECT";
             case CONFIGURATIONS_OBJECT_LOADER -> "CONFIGURATIONS_OBJECT_LOADER";
             case CONFIGURATIONS_OBJECT_CONFIG -> "CONFIGURATIONS_OBJECT_CONFIG";
+            case CONFIGURATIONS_BLOCK_ITEM -> "CONFIGURATIONS_BLOCK_ITEM";
             case SERVICES -> "SERVICES";
             case SERVICES_IN -> "SERVICES_IN";
             case SERVICES_SERVICE -> "SERVICES_SERVICE";
@@ -105,7 +106,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 
 %state INCLUDE
 %state DEPENDS_ON, DEPENDS_ON_IN
-%state CONFIGURATIONS, CONFIGURATIONS_OBJECTS, CONFIGURATIONS_OBJECT, CONFIGURATIONS_OBJECT_LOADER, CONFIGURATIONS_OBJECT_CONFIG
+%state CONFIGURATIONS, CONFIGURATIONS_OBJECTS, CONFIGURATIONS_OBJECT, CONFIGURATIONS_OBJECT_LOADER, CONFIGURATIONS_OBJECT_CONFIG, CONFIGURATIONS_BLOCK_ITEM
 %state SERVICES, SERVICES_IN, SERVICES_SERVICE, SERVICES_SERVICE_REMOTE, SERVICES_SERVICE_REMOTE_DOT_NAME
 %state SERVICES_SERVICE_PARAMETERS
 %state SERVICES_SERVICE_WS_SERVICE, SERVICES_SERVICE_WS_SERVICE_DOT_PATH
@@ -179,6 +180,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 
 <CONFIGURATIONS> {
   "="                  { return OAP_EQ; }
+  ":"                  { yybegin(CONFIGURATIONS_BLOCK_ITEM); return OAP_COLON; }
 
   "["                  { yybegin(CONFIGURATIONS_OBJECTS); return OAP_LEFTBRACKET; }
 
@@ -196,8 +198,8 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 <CONFIGURATIONS_OBJECT> {
   "}"                  { yybegin(CONFIGURATIONS_OBJECTS); return OAP_RIGHTBRACE; }
 
-  "loader"             { yybegin(CONFIGURATIONS_OBJECT_LOADER); return OAP_ID_LOADER; }
-  "config"             { yybegin(CONFIGURATIONS_OBJECT_CONFIG); return OAP_ID_CONFIG; }
+  "loader"             { yypushState(CONFIGURATIONS_OBJECT_LOADER); return OAP_ID_LOADER; }
+  "config"             { yypushState(CONFIGURATIONS_OBJECT_CONFIG); return OAP_ID_CONFIG; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
   {NEXTLINE}           { return WHITE_SPACE; }
@@ -207,7 +209,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   {CLASS_NAME}         { return OAP_CLASS_NAME; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
-  {NEXTLINE}           { yybegin(CONFIGURATIONS_OBJECT); return WHITE_SPACE; }
+  {NEXTLINE}           { yypopState(); return WHITE_SPACE; }
 }
 <CONFIGURATIONS_OBJECT_CONFIG> {
   "="                  { return OAP_EQ; }
@@ -215,7 +217,16 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "{"                  { yypushState(_OBJECT); return OAP_LEFTBRACE; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
-  {NEXTLINE}           { yybegin(CONFIGURATIONS_OBJECT); return WHITE_SPACE; }
+  {NEXTLINE}           { yypopState(); return WHITE_SPACE; }
+}
+<CONFIGURATIONS_BLOCK_ITEM> {
+  "-"                  { return OAP_DASH; }
+
+  "loader"             { yypushState(CONFIGURATIONS_OBJECT_LOADER); return OAP_ID_LOADER; }
+  "config"             { yypushState(CONFIGURATIONS_OBJECT_CONFIG); return OAP_ID_CONFIG; }
+
+  {WHITE_SPACE}        { return WHITE_SPACE; }
+  {NEXTLINE}           { return WHITE_SPACE; }
 }
 
 

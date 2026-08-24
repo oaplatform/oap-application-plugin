@@ -829,6 +829,20 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // '-' module_configuration_entries
+  public static boolean module_configuration_block(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_configuration_block")) return false;
+    if (!nextTokenIs(b, OAP_DASH)) return false;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, OAP_MODULE_CONFIGURATION_BLOCK, null);
+    r = consumeToken(b, OAP_DASH);
+    p = r; // pin = 1
+    r = r && module_configuration_entries(b, l + 1);
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
+  }
+
+  /* ********************************************************** */
   // [] module_configuration_entries_loader module_configuration_entries_config
   public static boolean module_configuration_entries(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_configuration_entries")) return false;
@@ -903,29 +917,77 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'configurations' '=' '[' module_configuration* ']'
+  // 'configurations' ( '=' '[' module_configuration* ']' | ':' module_configuration_block+ )
   public static boolean module_configurations(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "module_configurations")) return false;
     if (!nextTokenIs(b, OAP_ID_CONFIGURATIONS)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, OAP_MODULE_CONFIGURATIONS, null);
-    r = consumeTokens(b, 1, OAP_ID_CONFIGURATIONS, OAP_EQ, OAP_LEFTBRACKET);
+    r = consumeToken(b, OAP_ID_CONFIGURATIONS);
     p = r; // pin = 1
-    r = r && report_error_(b, module_configurations_3(b, l + 1));
-    r = p && consumeToken(b, OAP_RIGHTBRACKET) && r;
+    r = r && module_configurations_1(b, l + 1);
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
+  // '=' '[' module_configuration* ']' | ':' module_configuration_block+
+  private static boolean module_configurations_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_configurations_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = module_configurations_1_0(b, l + 1);
+    if (!r) r = module_configurations_1_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // '=' '[' module_configuration* ']'
+  private static boolean module_configurations_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_configurations_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeTokens(b, 0, OAP_EQ, OAP_LEFTBRACKET);
+    r = r && module_configurations_1_0_2(b, l + 1);
+    r = r && consumeToken(b, OAP_RIGHTBRACKET);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
   // module_configuration*
-  private static boolean module_configurations_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "module_configurations_3")) return false;
+  private static boolean module_configurations_1_0_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_configurations_1_0_2")) return false;
     while (true) {
       int c = current_position_(b);
       if (!module_configuration(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "module_configurations_3", c)) break;
+      if (!empty_element_parsed_guard_(b, "module_configurations_1_0_2", c)) break;
     }
     return true;
+  }
+
+  // ':' module_configuration_block+
+  private static boolean module_configurations_1_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_configurations_1_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, OAP_COLON);
+    r = r && module_configurations_1_1_1(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // module_configuration_block+
+  private static boolean module_configurations_1_1_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "module_configurations_1_1_1")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = module_configuration_block(b, l + 1);
+    while (r) {
+      int c = current_position_(b);
+      if (!module_configuration_block(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "module_configurations_1_1_1", c)) break;
+    }
+    exit_section_(b, m, null, r);
+    return r;
   }
 
   /* ********************************************************** */

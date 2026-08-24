@@ -53,3 +53,5 @@ bin/
 /.intellijPlatform/coroutines-javaagent-legacy.jar
 /.idea/gradle.xml
 /.intellijPlatform/self-update.lock
+/.intellijPlatform/**
+/CLAUDE.md

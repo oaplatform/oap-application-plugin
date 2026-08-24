@@ -31,6 +31,7 @@
         leftangle='<'
         rightangle='>'
         comma=','
+        colon=':'
         dollar='$'
 
         duration='regexp:[0-9]+(kb|mb|gb|ms|s|m|h|d|w)'
@@ -441,12 +442,16 @@ wshandler_blocking ::= 'blocking' '=' bool_value {
 
 
 // configurations = [
-module_configurations ::= 'configurations' '=' '[' module_configuration* ']' {
+module_configurations ::= 'configurations' ( '=' '[' module_configuration* ']' | ':' module_configuration_block+ ) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePair"
 }
 module_configuration ::= '{' module_configuration_entries '}' {
     pin=2
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
+module_configuration_block ::= '-' module_configuration_entries {
+    pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 module_configuration_entries ::= [] module_configuration_entries_loader module_configuration_entries_config {
