@@ -1,0 +1,11 @@
+name = ConfigurationsBlockArrayFormatter
+
+configurations:
+  - loader = a.A
+    config {
+      key = value
+    }
+  - loader = b.B
+    config {
+      key2 = value2
+    }

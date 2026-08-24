@@ -10,6 +10,10 @@ class FormatterTest : OapFixtureTestCase() {
         doTest(true)
     }
 
+    fun testConfigurationsBlockArray() {
+        doTest(true)
+    }
+
     private fun doTest(format: Boolean) {
         val inputFile: String = getInputFileName()
         val inputText: String = FileUtil.loadFile(File(getTestDataPath() + inputFile));

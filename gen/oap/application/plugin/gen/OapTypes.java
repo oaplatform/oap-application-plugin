@@ -28,6 +28,7 @@ public interface OapTypes {
   IElementType OAP_JAVA_PARAMETER_KEY_VALUE = new OapCompositeElementType("OAP_JAVA_PARAMETER_KEY_VALUE");
   IElementType OAP_MODULE_CONFIGURATION = new OapCompositeElementType("OAP_MODULE_CONFIGURATION");
   IElementType OAP_MODULE_CONFIGURATIONS = new OapCompositeElementType("OAP_MODULE_CONFIGURATIONS");
+  IElementType OAP_MODULE_CONFIGURATION_BLOCK = new OapCompositeElementType("OAP_MODULE_CONFIGURATION_BLOCK");
   IElementType OAP_MODULE_CONFIGURATION_ENTRIES = new OapCompositeElementType("OAP_MODULE_CONFIGURATION_ENTRIES");
   IElementType OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG = new OapCompositeElementType("OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG");
   IElementType OAP_MODULE_CONFIGURATION_ENTRIES_LOADER = new OapCompositeElementType("OAP_MODULE_CONFIGURATION_ENTRIES_LOADER");
@@ -106,6 +107,7 @@ public interface OapTypes {
 
   IElementType OAP_BOOL = new OapTokenType("bool");
   IElementType OAP_CLASS_NAME = new OapTokenType("class_name");
+  IElementType OAP_COLON = new OapTokenType(":");
   IElementType OAP_COMMA = new OapTokenType(",");
   IElementType OAP_COMMENT = new OapTokenType("comment");
   IElementType OAP_DASH = new OapTokenType("-");
@@ -215,6 +217,9 @@ public interface OapTypes {
       }
       else if (type == OAP_MODULE_CONFIGURATIONS) {
         return new OapModuleConfigurationsImpl(node);
+      }
+      else if (type == OAP_MODULE_CONFIGURATION_BLOCK) {
+        return new OapModuleConfigurationBlockImpl(node);
       }
       else if (type == OAP_MODULE_CONFIGURATION_ENTRIES) {
         return new OapModuleConfigurationEntriesImpl(node);

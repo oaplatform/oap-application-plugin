@@ -24,6 +24,7 @@ class OapSyntaxHighlighterFactory : SyntaxHighlighterFactory() {
             TokenType.BAD_CHARACTER to OapHighlighterColors.BadCharacter,
             OapTypes.OAP_COMMA to COMMA,
             OapTypes.OAP_EQ to EQ,
+            OapTypes.OAP_COLON to EQ,
         )
 
         override fun getEmbeddedTokenAttributes(): MultiMap<IElementType, TextAttributesKey> {

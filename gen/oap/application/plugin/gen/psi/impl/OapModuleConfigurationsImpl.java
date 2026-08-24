@@ -35,6 +35,18 @@ public class OapModuleConfigurationsImpl extends OapCompositeElementImpl impleme
   }
 
   @Override
+  @NotNull
+  public List<OapModuleConfigurationBlock> getModuleConfigurationBlockList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleConfigurationBlock.class);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getColon() {
+    return findChildByType(OAP_COLON);
+  }
+
+  @Override
   @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);

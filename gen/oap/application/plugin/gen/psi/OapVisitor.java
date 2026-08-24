@@ -78,6 +78,10 @@ public class OapVisitor extends PsiElementVisitor {
     visitKeyValuePairWithIndentNormal(o);
   }
 
+  public void visitModuleConfigurationBlock(@NotNull OapModuleConfigurationBlock o) {
+    visitKeyValuePairWithIndentNormal(o);
+  }
+
   public void visitModuleConfigurationEntries(@NotNull OapModuleConfigurationEntries o) {
     visitCompositeElement(o);
   }

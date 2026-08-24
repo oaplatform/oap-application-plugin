@@ -18,7 +18,8 @@ class OapFoldingBuilder : FoldingBuilder {
             OapTypes.OAP_MODULE_SERVICES_SERVICE_WSSERVICE,
 
             OapTypes.OAP_MODULE_CONFIGURATIONS,
-            OapTypes.OAP_MODULE_CONFIGURATION
+            OapTypes.OAP_MODULE_CONFIGURATION,
+            OapTypes.OAP_MODULE_CONFIGURATION_BLOCK
         )
         val buffer: MutableList<FoldingDescriptor> = mutableListOf()
         val iterator: Iterator<ASTNode> = depthFirst(node)
@@ -39,7 +40,8 @@ class OapFoldingBuilder : FoldingBuilder {
             OapTypes.OAP_MODULE_SERVICES_SERVICE_SUPERVISION,
             OapTypes.OAP_MODULE_SERVICES_SERVICE_WSSERVICE,
             OapTypes.OAP_MODULE_CONFIGURATIONS,
-            OapTypes.OAP_MODULE_CONFIGURATION -> "{...} // ${(node.getPsi() as OapCompositeElement).firstChild.text}"
+            OapTypes.OAP_MODULE_CONFIGURATION,
+            OapTypes.OAP_MODULE_CONFIGURATION_BLOCK -> "{...} // ${(node.getPsi() as OapCompositeElement).firstChild.text}"
 
             else -> null
         }
