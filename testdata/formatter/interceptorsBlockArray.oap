@@ -1,0 +1,12 @@
+name = InterceptorsBlockArray
+
+services {
+  test1 {
+    implementation = oap.application.plugin.TestService
+    ws-service {
+      interceptors:
+      - <modules.a.b>
+      - <modules.c.d>
+    }
+  }
+}

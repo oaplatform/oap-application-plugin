@@ -23,6 +23,8 @@ class OapCustomCodeStyleSettings(container: CodeStyleSettings) : CustomCodeStyle
     var KEEP_BLANK_LINES_BEFORE_SERVICES: Int = 1
     @JvmField
     var KEEP_BLANK_LINES_BEFORE_CONFIGURATIONS: Int = 1
+    @JvmField
+    var KEEP_BLANK_LINES_BEFORE_SERVICES_SERVICE: Int = 1
 
     @JvmField
     var KEEP_BLANK_LINES_IN_OBJECTS: Int = 0

@@ -1,0 +1,10 @@
+name = xenoss-reporting-worker
+
+dependsOn:
+  - oap
+  - oap-ws
+  - oap-http-prometheus
+
+services {
+
+}

@@ -82,7 +82,7 @@ class OapFormattingBlock(val formatter: OapFormatter, node: ASTNode, val myInden
         }
 
         return when ((child2 as OapFormattingBlock).myNode.elementType) {
-            OapTypes.OAP_MODULE_SERVICES_SERVICE -> defaultSpace(0)
+            OapTypes.OAP_MODULE_SERVICES_SERVICE -> defaultSpace(formatter.customSettings.KEEP_BLANK_LINES_BEFORE_SERVICES_SERVICE)
 
             OapTypes.OAP_MODULE_DEPENDS_ON -> defaultSpace(formatter.customSettings.KEEP_BLANK_LINES_BEFORE_DEPENDS_ON)
             OapTypes.OAP_MODULE_SERVICES -> defaultSpace(formatter.customSettings.KEEP_BLANK_LINES_BEFORE_SERVICES)

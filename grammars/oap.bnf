@@ -253,14 +253,20 @@ private module_services_service_dependson_block ::= indent module_services_servi
 private module_services_service_dependson_block_item ::= '-' (module_services_service_dependson_name | block_scalar_value) { pin=1 }
 // ] // dependsOn
 
-module_services_service_abstract ::= 'abstract' ('=' | ':') bool_value {pin=1}
+module_services_service_abstract ::= 'abstract' ('=' | ':') bool_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
 
 module_services_service_implementation ::= 'implementation' ('=' | ':') class_name_psi {
     pin=1
     extends="oap.application.plugin.psi.impl.OapModuleServicesServiceImplementationImpl"
 }
 
-module_services_service_default ::= 'default' ('=' | ':') reference_modules_value {pin=1 }
+module_services_service_default ::= 'default' ('=' | ':') reference_modules_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
 // } // services
 
 
@@ -315,6 +321,7 @@ private parameter_key_value_key_object ::= parameters_object
 // listen|link {
 module_services_service_listen ::= 'listen' ( &'.' dot_module_services_service_link_field | module_services_service_link_field_object) {
     pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
 dot_module_services_service_link_field ::= '.' module_services_service_link_field {pin=1}

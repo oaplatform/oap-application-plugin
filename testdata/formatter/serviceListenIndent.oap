@@ -1,0 +1,10 @@
+name = xenoss-missioncontrol
+
+services {
+  campaign-history-mongo {
+    implementation = io.xenoss.missioncontrol.history.HistoryMongo
+    listen {
+      data = <modules.this.campaign-storage>
+    }
+  }
+}

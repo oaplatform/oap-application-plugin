@@ -4,9 +4,9 @@ package oap.application.plugin.gen.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import oap.application.plugin.psi.OapCompositeElement;
+import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
-public interface OapModuleServicesServiceListen extends OapCompositeElement {
+public interface OapModuleServicesServiceListen extends OapKeyValuePairWithIndentNormal {
 
   @Nullable
   OapDotModuleServicesServiceLinkField getDotModuleServicesServiceLinkField();

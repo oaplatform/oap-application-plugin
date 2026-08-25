@@ -136,11 +136,11 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleServicesServiceAbstract(@NotNull OapModuleServicesServiceAbstract o) {
-    visitCompositeElement(o);
+    visitKeyValuePairWithIndentNormal(o);
   }
 
   public void visitModuleServicesServiceDefault(@NotNull OapModuleServicesServiceDefault o) {
-    visitCompositeElement(o);
+    visitKeyValuePairWithIndentNormal(o);
   }
 
   public void visitModuleServicesServiceDependson(@NotNull OapModuleServicesServiceDependson o) {
@@ -177,7 +177,7 @@ public class OapVisitor extends PsiElementVisitor {
   }
 
   public void visitModuleServicesServiceListen(@NotNull OapModuleServicesServiceListen o) {
-    visitCompositeElement(o);
+    visitKeyValuePairWithIndentNormal(o);
   }
 
   public void visitModuleServicesServiceParameters(@NotNull OapModuleServicesServiceParameters o) {

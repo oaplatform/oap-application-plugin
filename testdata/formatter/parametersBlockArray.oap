@@ -1,0 +1,11 @@
+name = ParametersBlockArray
+
+services {
+  test1 {
+    implementation = oap.application.plugin.TestService
+    parameters:
+      list:
+      - a
+      - b
+  }
+}

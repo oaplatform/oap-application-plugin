@@ -4,9 +4,9 @@ package oap.application.plugin.gen.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import oap.application.plugin.psi.OapCompositeElement;
+import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
-public interface OapModuleServicesServiceAbstract extends OapCompositeElement {
+public interface OapModuleServicesServiceAbstract extends OapKeyValuePairWithIndentNormal {
 
   @Nullable
   OapBoolValue getBoolValue();
