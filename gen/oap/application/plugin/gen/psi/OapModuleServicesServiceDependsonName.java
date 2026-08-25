@@ -13,6 +13,7 @@ public interface OapModuleServicesServiceDependsonName extends IndentNormal, ISe
   @NotNull
   PsiElement getKeyValue();
 
-  @Nullable OapServiceReference getReference();
+  @Nullable
+  OapServiceReference getReference();
 
 }

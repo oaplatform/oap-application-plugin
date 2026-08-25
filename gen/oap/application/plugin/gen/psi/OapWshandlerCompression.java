@@ -12,6 +12,9 @@ public interface OapWshandlerCompression extends OapKeyValuePairWithIndentNormal
   OapBoolValue getBoolValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

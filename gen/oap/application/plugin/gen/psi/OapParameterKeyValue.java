@@ -26,10 +26,22 @@ public interface OapParameterKeyValue extends OapCompositeElement {
   @Nullable
   OapParametersArray getParametersArray();
 
+  @NotNull
+  List<OapParametersArrayItem> getParametersArrayItemList();
+
   @Nullable
   OapParametersObject getParametersObject();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
   PsiElement getEq();
+
+  @Nullable
+  PsiElement getIndent();
 
 }

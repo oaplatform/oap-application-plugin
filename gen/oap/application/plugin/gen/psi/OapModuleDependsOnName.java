@@ -13,6 +13,7 @@ public interface OapModuleDependsOnName extends IndentNormal, IModuleName {
   @NotNull
   PsiElement getKeyValue();
 
-  @NotNull PsiReference @NotNull [] getReferences();
+  @NotNull
+  PsiReference[] getReferences();
 
 }

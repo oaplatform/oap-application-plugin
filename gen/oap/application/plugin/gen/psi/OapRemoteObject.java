@@ -11,7 +11,16 @@ public interface OapRemoteObject extends OapCompositeElement {
   @Nullable
   OapRemoteEntries getRemoteEntries();
 
-  @NotNull
+  @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
+  PsiElement getIndent();
+
+  @Nullable
   PsiElement getLeftbrace();
 
   @Nullable

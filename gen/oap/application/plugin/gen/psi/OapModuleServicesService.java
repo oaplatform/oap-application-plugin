@@ -50,7 +50,16 @@ public interface OapModuleServicesService extends PsiNamedElement, StubBasedPsiE
   OapServiceName getServiceName();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
   PsiElement getDot();
+
+  @Nullable
+  PsiElement getIndent();
 
   @Nullable
   PsiElement getLeftbrace();

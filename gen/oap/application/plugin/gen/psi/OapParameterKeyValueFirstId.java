@@ -12,6 +12,7 @@ public interface OapParameterKeyValueFirstId extends OapCompositeElement {
   @NotNull
   PsiElement getKeyName();
 
-  @Nullable JvmNamedElementReference getReference();
+  @Nullable
+  JvmNamedElementReference getReference();
 
 }

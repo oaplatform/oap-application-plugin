@@ -11,7 +11,16 @@ public interface OapParametersObject extends OapCompositeElement {
   @NotNull
   List<OapParameterKeyValue> getParameterKeyValueList();
 
-  @NotNull
+  @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
+  PsiElement getIndent();
+
+  @Nullable
   PsiElement getLeftbrace();
 
   @Nullable

@@ -12,6 +12,9 @@ public interface OapWshandlerBlocking extends OapKeyValuePairWithIndentNormal {
   OapBoolValue getBoolValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

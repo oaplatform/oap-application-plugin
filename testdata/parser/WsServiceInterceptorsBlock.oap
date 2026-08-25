@@ -1,0 +1,16 @@
+name = test-module
+services {
+  admin-ws {
+    implementation = io.xenoss.reporting.AdminWS
+    parameters {
+      adminPrivateWS = <modules.this.admin-private-ws>
+    }
+    ws-service {
+      path = admin
+      sessionAware = true
+      interceptors:
+        - <modules.oap-ws-sso-api.oap-ws-sso-api-key-interceptor>
+        - <modules.oap-ws-sso-api.oap-ws-sso-jwt-security-interceptor>
+    }
+  }
+}

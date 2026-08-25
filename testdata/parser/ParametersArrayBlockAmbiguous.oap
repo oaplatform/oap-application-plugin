@@ -1,0 +1,15 @@
+name = ParametersArrayBlockAmbiguous
+
+services {
+  test1 {
+    implementation = oap.application.plugin.TestService
+    parameters:
+      nestedObject:
+        a = 1
+        b = 2
+      nestedArray:
+        - 1
+        - 2
+        - <modules.this.other-service>
+  }
+}

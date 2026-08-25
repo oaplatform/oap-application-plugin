@@ -24,10 +24,19 @@ public interface OapModuleServicesServiceSupervision extends OapKeyValuePairWith
   List<OapModuleServicesServiceSupervisionEntitiesThread> getModuleServicesServiceSupervisionEntitiesThreadList();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
   PsiElement getDot();
 
   @NotNull
   PsiElement getIdSupervision();
+
+  @Nullable
+  PsiElement getIndent();
 
   @Nullable
   PsiElement getLeftbrace();

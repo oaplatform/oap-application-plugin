@@ -12,10 +12,19 @@ public interface OapModuleDependsOn extends OapCompositeElement {
   List<OapModuleDependsOnName> getModuleDependsOnNameList();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull
   PsiElement getIdDependsOn();
+
+  @Nullable
+  PsiElement getIndent();
 
   @Nullable
   PsiElement getLeftbracket();

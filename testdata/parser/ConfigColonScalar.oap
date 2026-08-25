@@ -1,0 +1,9 @@
+name = config-colon-scalar-module
+
+configurations = [{
+  loader = oap.json.TypeIdFactory
+  config:
+    cookie: io.undertow.server.handlers.CookieImpl
+    nested:
+      key: value
+}]

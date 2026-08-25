@@ -15,6 +15,9 @@ public interface OapWsserviceEnabled extends OapKeyValuePairWithIndentNormal {
   OapWsserviceEnabledId getWsserviceEnabledId();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
 }

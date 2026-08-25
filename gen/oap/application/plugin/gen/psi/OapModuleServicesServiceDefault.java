@@ -12,6 +12,9 @@ public interface OapModuleServicesServiceDefault extends OapCompositeElement {
   OapReferenceModulesValue getReferenceModulesValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

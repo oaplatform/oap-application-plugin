@@ -65,6 +65,12 @@ public class OapParameterKeyValueImpl extends OapModuleServicesServiceParameterK
   }
 
   @Override
+  @NotNull
+  public List<OapParametersArrayItem> getParametersArrayItemList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapParametersArrayItem.class);
+  }
+
+  @Override
   @Nullable
   public OapParametersObject getParametersObject() {
     return PsiTreeUtil.getChildOfType(this, OapParametersObject.class);
@@ -72,8 +78,26 @@ public class OapParameterKeyValueImpl extends OapModuleServicesServiceParameterK
 
   @Override
   @Nullable
+  public PsiElement getColon() {
+    return findChildByType(OAP_COLON);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getDedent() {
+    return findChildByType(OAP_DEDENT);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getIndent() {
+    return findChildByType(OAP_INDENT);
   }
 
 }

@@ -24,6 +24,7 @@ public interface OapModuleInclude extends OapCompositeElement {
   @Nullable
   PsiElement getString();
 
-  @Nullable FileReference getReference();
+  @Nullable
+  FileReference getReference();
 
 }

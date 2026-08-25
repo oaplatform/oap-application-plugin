@@ -11,7 +11,16 @@ public interface OapConfigObject extends IndentNormal {
   @NotNull
   List<OapConfigurationKeyValuePair> getConfigurationKeyValuePairList();
 
-  @NotNull
+  @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
+  PsiElement getIndent();
+
+  @Nullable
   PsiElement getLeftbrace();
 
   @Nullable

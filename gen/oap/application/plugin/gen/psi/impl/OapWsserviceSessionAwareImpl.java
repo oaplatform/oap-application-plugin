@@ -42,6 +42,12 @@ public class OapWsserviceSessionAwareImpl extends OapCompositeElementImpl implem
 
   @Override
   @Nullable
+  public PsiElement getColon() {
+    return findChildByType(OAP_COLON);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
   }

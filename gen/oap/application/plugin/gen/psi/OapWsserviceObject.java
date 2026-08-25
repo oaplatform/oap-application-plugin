@@ -11,7 +11,16 @@ public interface OapWsserviceObject extends OapCompositeElement {
   @Nullable
   OapWsserviceEntries getWsserviceEntries();
 
-  @NotNull
+  @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
+  PsiElement getIndent();
+
+  @Nullable
   PsiElement getLeftbrace();
 
   @Nullable

@@ -36,6 +36,18 @@ public class OapModuleDependsOnImpl extends OapCompositeElementImpl implements O
 
   @Override
   @Nullable
+  public PsiElement getColon() {
+    return findChildByType(OAP_COLON);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getDedent() {
+    return findChildByType(OAP_DEDENT);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
   }
@@ -44,6 +56,12 @@ public class OapModuleDependsOnImpl extends OapCompositeElementImpl implements O
   @NotNull
   public PsiElement getIdDependsOn() {
     return notNullChild(findChildByType(OAP_ID_DEPENDS_ON));
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getIndent() {
+    return findChildByType(OAP_INDENT);
   }
 
   @Override

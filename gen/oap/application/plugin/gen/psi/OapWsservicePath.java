@@ -12,7 +12,16 @@ public interface OapWsservicePath extends OapKeyValuePairWithIndentNormal {
   OapWsservicePathId getWsservicePathId();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
   PsiElement getEq();
+
+  @Nullable
+  PsiElement getIndent();
 
   @Nullable
   PsiElement getLeftbracket();

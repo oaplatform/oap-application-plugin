@@ -35,6 +35,12 @@ public class OapModuleServicesServiceImplementationImpl extends oap.application.
 
   @Override
   @Nullable
+  public PsiElement getColon() {
+    return findChildByType(OAP_COLON);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
   }

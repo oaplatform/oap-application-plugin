@@ -1,0 +1,90 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiElement(:)(':')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('ColonAsEquals')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('test1')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_ENABLED
+        PsiElement(enabled)('enabled')
+        PsiElement(:)(':')
+        PsiWhiteSpace(' ')
+        OAP_BOOL_VALUE
+          PsiElement(bool)('true')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiElement(:)(':')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestService')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_REMOTE
+        PsiElement(remote)('remote')
+        OAP_REMOTE_OBJECT
+          PsiElement(:)(':')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('      ')
+          OAP_REMOTE_ENTRIES
+            OAP_REMOTE_URL
+              PsiElement(url)('url')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              PsiElement(key_value)('"http://example.com"')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('      ')
+            OAP_REMOTE_TIMEOUT
+              OAP_REMOTE_TIMEOUT_ID_VALUE
+                PsiElement(timeout)('timeout')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              PsiElement(key_value)('5000')
+          PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_WSSERVICE
+        PsiElement(ws-service)('ws-service')
+        OAP_WSSERVICE_OBJECT
+          PsiElement(:)(':')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('      ')
+          OAP_WSSERVICE_ENTRIES
+            OAP_WSSERVICE_PATH
+              OAP_WSSERVICE_PATH_ID
+                PsiElement(path)('path')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              PsiElement(key_value)('/static')
+          PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_SUPERVISION
+        PsiElement(supervision)('supervision')
+        PsiElement(:)(':')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SCHEDULE
+          PsiElement(schedule)('schedule')
+          PsiElement(:)(':')
+          PsiWhiteSpace(' ')
+          OAP_BOOL_VALUE
+            PsiElement(bool)('true')
+        PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

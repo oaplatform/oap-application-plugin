@@ -1,0 +1,136 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('test-module')
+  PsiWhiteSpace('\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('admin-ws')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('io.xenoss.reporting.AdminWS')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_PARAMETERS
+        OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
+          PsiElement(parameters)('parameters')
+        PsiWhiteSpace(' ')
+        PsiElement({)('{')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('adminPrivateWS')
+            PsiWhiteSpace(' ')
+            PsiElement(=)('=')
+            PsiWhiteSpace(' ')
+            OAP_ANY_REFERENCE
+              PsiElement(<)('<')
+              OAP_ANY_REFERENCE_IN
+                OAP_REFERENCE_MODULES_VALUE_IN
+                  OAP_REFERENCE_TYPE_MODULES
+                    PsiElement(modules)('modules')
+                  PsiElement(.)('.')
+                  OAP_REFERENCE_MODULES_NAME
+                    PsiElement(this)('this')
+                  PsiElement(.)('.')
+                  OAP_REFERENCE_MODULES_SERVICE_NAME
+                    PsiElement(reference_value)('admin-private-ws')
+              PsiElement(>)('>')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('    ')
+        PsiElement(})('}')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_WSSERVICE
+        PsiElement(ws-service)('ws-service')
+        PsiWhiteSpace(' ')
+        OAP_WSSERVICE_OBJECT
+          PsiElement({)('{')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('      ')
+          OAP_WSSERVICE_ENTRIES
+            OAP_WSSERVICE_PATH
+              OAP_WSSERVICE_PATH_ID
+                PsiElement(path)('path')
+              PsiWhiteSpace(' ')
+              PsiElement(=)('=')
+              PsiWhiteSpace(' ')
+              PsiElement(key_value)('admin')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('      ')
+            OAP_WSSERVICE_SESSION_AWARE
+              OAP_WSSERVICE_SESSION_AWARE_ID
+                PsiElement(sessionAware)('sessionAware')
+              PsiWhiteSpace(' ')
+              PsiElement(=)('=')
+              PsiWhiteSpace(' ')
+              OAP_BOOL_VALUE
+                PsiElement(bool)('true')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('      ')
+            OAP_WSSERVICE_INTERCEPTORS
+              OAP_WSSERVICE_INTERCEPTORS_ID
+                PsiElement(interceptors)('interceptors')
+              PsiElement(:)(':')
+              PsiWhiteSpace('\n')
+              PsiWhiteSpace('        ')
+              PsiElement(-)('-')
+              PsiWhiteSpace(' ')
+              OAP_WSSERVICE_INTERCEPTOR_ONE
+                OAP_REFERENCE_MODULES_VALUE
+                  PsiElement(<)('<')
+                  OAP_REFERENCE_MODULES_VALUE_IN
+                    OAP_REFERENCE_TYPE_MODULES
+                      PsiElement(modules)('modules')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_NAME
+                      PsiElement(reference_value)('oap-ws-sso-api')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_SERVICE_NAME
+                      PsiElement(reference_value)('oap-ws-sso-api-key-interceptor')
+                  PsiElement(>)('>')
+              PsiWhiteSpace('\n')
+              PsiWhiteSpace('        ')
+              PsiElement(-)('-')
+              PsiWhiteSpace(' ')
+              OAP_WSSERVICE_INTERCEPTOR_ONE
+                OAP_REFERENCE_MODULES_VALUE
+                  PsiElement(<)('<')
+                  OAP_REFERENCE_MODULES_VALUE_IN
+                    OAP_REFERENCE_TYPE_MODULES
+                      PsiElement(modules)('modules')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_NAME
+                      PsiElement(reference_value)('oap-ws-sso-api')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_SERVICE_NAME
+                      PsiElement(reference_value)('oap-ws-sso-jwt-security-interceptor')
+                  PsiElement(>)('>')
+              PsiWhiteSpace('\n')
+          PsiWhiteSpace('    ')
+          PsiElement(})('}')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')
