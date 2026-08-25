@@ -8,6 +8,9 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
 public interface OapRemoteTimeout extends OapKeyValuePairWithIndentNormal {
 
+  @Nullable
+  OapBlockScalarValue getBlockScalarValue();
+
   @NotNull
   OapRemoteTimeoutIdValue getRemoteTimeoutIdValue();
 

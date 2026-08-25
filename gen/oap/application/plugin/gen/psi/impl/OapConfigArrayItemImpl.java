@@ -30,6 +30,12 @@ public class OapConfigArrayItemImpl extends OapCompositeElementImpl implements O
 
   @Override
   @Nullable
+  public OapBlockScalarValue getBlockScalarValue() {
+    return PsiTreeUtil.getChildOfType(this, OapBlockScalarValue.class);
+  }
+
+  @Override
+  @Nullable
   public OapConfigObject getConfigObject() {
     return PsiTreeUtil.getChildOfType(this, OapConfigObject.class);
   }

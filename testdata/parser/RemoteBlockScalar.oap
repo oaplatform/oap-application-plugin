@@ -1,0 +1,13 @@
+name = RemoteBlockScalar
+
+services {
+  remote-client {
+    implementation = oap.remote.application.RemoteClient
+    remote {
+      url: |-
+        http://localhost/remote/
+      timeout: |-
+        60s
+    }
+  }
+}

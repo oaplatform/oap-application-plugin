@@ -55,3 +55,4 @@ bin/
 /.intellijPlatform/self-update.lock
 /.intellijPlatform/**
 /CLAUDE.md
+/.idea/go.imports.xml

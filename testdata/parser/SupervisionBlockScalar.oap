@@ -1,0 +1,15 @@
+name = SupervisionBlockScalar
+
+services {
+  test-service {
+    implementation = oap.application.plugin.TestService
+    supervision {
+      supervise = true
+      schedule = true
+      cron: |-
+        */10 * * * * ? *
+      delay: |
+        5s
+    }
+  }
+}

@@ -87,6 +87,8 @@
         key_name="regexp:\w+"
         key_value="regexp:\w+"
 
+        block_scalar='regexp:[|>][-+]?[^\x00]*'
+
         nextline='regexp:\r\n|\n'
         string='regexp:"(\\"|[^"])*"'
         comment='regexp:(//|#)[^\n]+'
@@ -158,7 +160,7 @@ reference_services_value ::= '<' reference_services_in '>' {
     implements="oap.application.plugin.psi.OapValue"
 }
 
-module_name ::= [] key_value {
+module_name ::= [] (block_scalar_value | key_value) {
     pin=1
     implements="oap.application.plugin.psi.IModuleName"
 }
@@ -182,12 +184,12 @@ module_depends_on_name ::= key_value {
     implements=["oap.application.plugin.psi.IndentNormal";"oap.application.plugin.psi.IModuleName"]
     methods=[getReferences]
 }
-module_depends_on ::= 'dependsOn' ('=' | ':') (module_depends_on_block | '[' (module_depends_on_name (','? module_depends_on_name )* )? ']' | module_depends_on_name) {
+module_depends_on ::= 'dependsOn' ('=' | ':') (module_depends_on_block | '[' ((module_depends_on_name|block_scalar_value) (','? (module_depends_on_name|block_scalar_value) )* )? ']' | module_depends_on_name | block_scalar_value) {
     pin=1
     recoverWhile=recover_module
 }
 private module_depends_on_block ::= indent module_depends_on_block_item+ dedent { pin=1 }
-private module_depends_on_block_item ::= '-' module_depends_on_name { pin=1 }
+private module_depends_on_block_item ::= '-' (module_depends_on_name | block_scalar_value) { pin=1 }
 // ] // dependsOn
 
 // services {
@@ -243,22 +245,28 @@ module_services_service_dependson_name ::= key_value {
     methods=[getReference]
 }
 module_services_service_dependson_id ::= 'dependsOn'
-module_services_service_dependson ::= module_services_service_dependson_id ('=' | ':') (module_services_service_dependson_block | '[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)* {
+module_services_service_dependson ::= module_services_service_dependson_id ('=' | ':') (module_services_service_dependson_block | '[' (module_services_service_dependson_name|block_scalar_value)? ( ','? (module_services_service_dependson_name|block_scalar_value) )* ']' | module_services_service_dependson_name | block_scalar_value)* {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 private module_services_service_dependson_block ::= indent module_services_service_dependson_block_item+ dedent { pin=1 }
-private module_services_service_dependson_block_item ::= '-' module_services_service_dependson_name { pin=1 }
+private module_services_service_dependson_block_item ::= '-' (module_services_service_dependson_name | block_scalar_value) { pin=1 }
 // ] // dependsOn
 
-module_services_service_abstract ::= 'abstract' ('=' | ':') bool_value {pin=1}
+module_services_service_abstract ::= 'abstract' ('=' | ':') bool_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
 
 module_services_service_implementation ::= 'implementation' ('=' | ':') class_name_psi {
     pin=1
     extends="oap.application.plugin.psi.impl.OapModuleServicesServiceImplementationImpl"
 }
 
-module_services_service_default ::= 'default' ('=' | ':') reference_modules_value {pin=1 }
+module_services_service_default ::= 'default' ('=' | ':') reference_modules_value {
+    pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
+}
 // } // services
 
 
@@ -273,8 +281,13 @@ private parameters_object_entries ::= parameter_key_value? (','? parameter_key_v
 parameters_object ::= parameters_object_brace | parameters_object_colon
 private parameters_object_brace ::= '{' parameters_object_entries '}' { pin=1 }
 private parameters_object_colon ::= ':' indent parameters_object_entries dedent { pin=1 }
+block_scalar_value ::= block_scalar {
+    implements="oap.application.plugin.psi.OapValue"
+    methods=[getScalarText]
+}
+
 parameters_array ::= '[' parameters_array_item? (','? parameters_array_item)* ']' {pin=1}
-parameters_array_item ::= &'<' any_reference | &'{' parameters_object | function | bool_value | id_value {
+parameters_array_item ::= &'<' any_reference | &'{' parameters_object | function | bool_value | block_scalar_value | id_value {
     implements="oap.application.plugin.psi.IndentNormal"
 }
 
@@ -298,7 +311,7 @@ parameter_key_value ::= parameter_key_value_first_id ('.' key_name)*
 }
 private parameter_key_value_array_block ::= ':' indent parameter_key_value_array_block_item+ dedent { pin=1 }
 private parameter_key_value_array_block_item ::= '-' parameters_array_item { pin=1 }
-private parameter_key_value_value ::= &'[' parameters_array | &'<' any_reference | function | bool_value | id_value
+private parameter_key_value_value ::= &'[' parameters_array | &'<' any_reference | function | bool_value | block_scalar_value | id_value
 private parameter_key_value_key_eq ::= '=' parameter_key_value_value { pin=1 }
 private parameter_key_value_key_colon ::= ':' parameter_key_value_value { pin=1 }
 private parameter_key_value_key_object ::= parameters_object
@@ -308,6 +321,7 @@ private parameter_key_value_key_object ::= parameters_object
 // listen|link {
 module_services_service_listen ::= 'listen' ( &'.' dot_module_services_service_link_field | module_services_service_link_field_object) {
     pin=1
+    implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
 dot_module_services_service_link_field ::= '.' module_services_service_link_field {pin=1}
@@ -361,12 +375,12 @@ module_services_service_supervision_entities_thread ::= 'thread' ('=' | ':') boo
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-module_services_service_supervision_entities_delay ::= 'delay' ('=' | ':') key_value {
+module_services_service_supervision_entities_delay ::= 'delay' ('=' | ':') (block_scalar_value | key_value) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-module_services_service_supervision_entities_cron ::= 'cron' ('=' | ':') key_value {
+module_services_service_supervision_entities_cron ::= 'cron' ('=' | ':') (block_scalar_value | key_value) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
@@ -390,13 +404,13 @@ remote_name ::= 'name' ('=' | ':') reference_modules_value {
     recoverWhile=recover_remote
 }
 
-remote_url ::= 'url' ('=' | ':') key_value {
+remote_url ::= 'url' ('=' | ':') (block_scalar_value | key_value) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
 remote_timeout_id_value ::= 'timeout'
-remote_timeout ::= remote_timeout_id_value (eq | colon) key_value {
+remote_timeout ::= remote_timeout_id_value (eq | colon) (block_scalar_value | key_value) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
     recoverWhile=recover_to_end_of_line
@@ -418,15 +432,15 @@ private wsservice_object_colon ::= ':' indent wsservice_entries? dedent { pin=1 
 wsservice_entries ::= (&'path' wsservice_path | &'port' wsservice_port| &'sessionAware' wsservice_sessionAware| &'interceptors' wsservice_interceptors | &'enabled' wsservice_enabled)*
 
 wsservice_path_id ::= 'path'
-wsservice_path ::= wsservice_path_id ('=' | ':') (wsservice_path_block | &'[' wsservice_path_multiple | key_value ) {
+wsservice_path ::= wsservice_path_id ('=' | ':') (wsservice_path_block | &'[' wsservice_path_multiple | block_scalar_value | key_value ) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 private wsservice_path_block ::= indent wsservice_path_block_item+ dedent { pin=1 }
-private wsservice_path_block_item ::= '-' key_value { pin=1 }
+private wsservice_path_block_item ::= '-' (block_scalar_value | key_value) { pin=1 }
 
 wsservice_port_id ::= 'port'
-wsservice_port ::= wsservice_port_id ('=' | ':') key_value {
+wsservice_port ::= wsservice_port_id ('=' | ':') (block_scalar_value | key_value) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
@@ -451,7 +465,7 @@ wsservice_interceptors ::= wsservice_interceptors_id ('=' | ':') (wsservice_inte
 private wsservice_interceptor_block ::= indent wsservice_interceptor_block_item+ dedent { pin=1 }
 private wsservice_interceptor_block_item ::= '-' wsservice_interceptor_one { pin=1 }
 
-private wsservice_path_multiple ::= '[' key_value (!']' ','? key_value)* ']'
+private wsservice_path_multiple ::= '[' (block_scalar_value | key_value) (!']' ','? (block_scalar_value | key_value))* ']'
 
 wsservice_interceptor_one ::= reference_modules_value {
     implements="oap.application.plugin.psi.IndentNormal"
@@ -512,7 +526,7 @@ private config_entries_config_eq ::= '=' config_array { pin=1 }
 config_array ::= '[' config_array_item? (','? config_array_item)* ']' {
     pin=1
 }
-config_array_item ::= &'{' config_object | key_value {
+config_array_item ::= &'{' config_object | block_scalar_value | key_value {
     implements="oap.application.plugin.psi.IndentNormal"
 }
 config_object ::= config_object_brace | config_object_colon {
@@ -533,7 +547,7 @@ configuration_key_value_pair ::=
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
-private config_key_value_value ::= &'[' config_array | bool_value | id_value
+private config_key_value_value ::= &'[' config_array | bool_value | block_scalar_value | id_value
 private config_key_value_eq ::= '=' config_key_value_value { pin=1 }
 private config_key_value_colon ::= ':' config_key_value_value { pin=1 }
 private config_key_value_array_block ::= ':' indent config_key_value_array_block_item+ dedent { pin=1 }

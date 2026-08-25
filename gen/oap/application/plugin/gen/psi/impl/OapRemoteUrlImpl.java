@@ -30,6 +30,12 @@ public class OapRemoteUrlImpl extends OapCompositeElementImpl implements OapRemo
 
   @Override
   @Nullable
+  public OapBlockScalarValue getBlockScalarValue() {
+    return PsiTreeUtil.getChildOfType(this, OapBlockScalarValue.class);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getColon() {
     return findChildByType(OAP_COLON);
   }

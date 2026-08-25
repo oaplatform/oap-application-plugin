@@ -29,6 +29,12 @@ public class OapRemoteTimeoutImpl extends OapCompositeElementImpl implements Oap
   }
 
   @Override
+  @Nullable
+  public OapBlockScalarValue getBlockScalarValue() {
+    return PsiTreeUtil.getChildOfType(this, OapBlockScalarValue.class);
+  }
+
+  @Override
   @NotNull
   public OapRemoteTimeoutIdValue getRemoteTimeoutIdValue() {
     return notNullChild(PsiTreeUtil.getChildOfType(this, OapRemoteTimeoutIdValue.class));

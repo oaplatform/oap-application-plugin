@@ -29,6 +29,12 @@ public class OapWsservicePortImpl extends OapCompositeElementImpl implements Oap
   }
 
   @Override
+  @Nullable
+  public OapBlockScalarValue getBlockScalarValue() {
+    return PsiTreeUtil.getChildOfType(this, OapBlockScalarValue.class);
+  }
+
+  @Override
   @NotNull
   public OapWsservicePortId getWsservicePortId() {
     return notNullChild(PsiTreeUtil.getChildOfType(this, OapWsservicePortId.class));

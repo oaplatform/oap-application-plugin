@@ -1,0 +1,11 @@
+name = ParametersBlockScalarArray
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters:
+      arr: [|
+        also works as an array element
+      ]
+  }
+}

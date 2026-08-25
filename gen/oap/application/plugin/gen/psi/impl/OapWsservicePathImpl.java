@@ -30,6 +30,12 @@ public class OapWsservicePathImpl extends OapCompositeElementImpl implements Oap
 
   @Override
   @NotNull
+  public List<OapBlockScalarValue> getBlockScalarValueList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapBlockScalarValue.class);
+  }
+
+  @Override
+  @NotNull
   public OapWsservicePathId getWsservicePathId() {
     return notNullChild(PsiTreeUtil.getChildOfType(this, OapWsservicePathId.class));
   }

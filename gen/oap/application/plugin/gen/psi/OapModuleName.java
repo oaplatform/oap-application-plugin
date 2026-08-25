@@ -9,6 +9,9 @@ import oap.application.plugin.psi.IModuleName;
 public interface OapModuleName extends IModuleName {
 
   @Nullable
+  OapBlockScalarValue getBlockScalarValue();
+
+  @Nullable
   PsiElement getKeyValue();
 
 }

@@ -14,6 +14,34 @@ class FormatterTest : OapFixtureTestCase() {
         doTest(true)
     }
 
+    fun testDependsOnBlockArray() {
+        doTest(true)
+    }
+
+    fun testBlockArrayDashLists() {
+        doTest(true)
+    }
+
+    fun testInterceptorsBlockArray() {
+        doTest(true)
+    }
+
+    fun testParametersBlockArray() {
+        doTest(true)
+    }
+
+    fun testServicesBlankLine() {
+        doTest(true)
+    }
+
+    fun testServiceAbstractDefaultIndent() {
+        doTest(true)
+    }
+
+    fun testServiceListenIndent() {
+        doTest(true)
+    }
+
     private fun doTest(format: Boolean) {
         val inputFile: String = getInputFileName()
         val inputText: String = FileUtil.loadFile(File(getTestDataPath() + inputFile));

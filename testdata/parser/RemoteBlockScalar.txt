@@ -1,0 +1,60 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('RemoteBlockScalar')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('remote-client')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.remote.application.RemoteClient')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_REMOTE
+        PsiElement(remote)('remote')
+        PsiWhiteSpace(' ')
+        OAP_REMOTE_OBJECT
+          PsiElement({)('{')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('      ')
+          OAP_REMOTE_ENTRIES
+            OAP_REMOTE_URL
+              PsiElement(url)('url')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              OAP_BLOCK_SCALAR_VALUE
+                PsiElement(block_scalar)('|-\n        http://localhost/remote/\n')
+            PsiWhiteSpace('      ')
+            OAP_REMOTE_TIMEOUT
+              OAP_REMOTE_TIMEOUT_ID_VALUE
+                PsiElement(timeout)('timeout')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              OAP_BLOCK_SCALAR_VALUE
+                PsiElement(block_scalar)('|-\n        60s\n')
+          PsiWhiteSpace('    ')
+          PsiElement(})('}')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

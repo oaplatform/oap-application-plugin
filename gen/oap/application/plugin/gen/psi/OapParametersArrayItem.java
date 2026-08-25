@@ -12,6 +12,9 @@ public interface OapParametersArrayItem extends IndentNormal {
   OapAnyReference getAnyReference();
 
   @Nullable
+  OapBlockScalarValue getBlockScalarValue();
+
+  @Nullable
   OapBoolValue getBoolValue();
 
   @Nullable

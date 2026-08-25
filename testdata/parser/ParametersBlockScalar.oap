@@ -1,0 +1,21 @@
+name = ParametersBlockScalar
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters:
+      description: |
+        line one
+        line two
+      summary: >
+        folded
+        onto one line
+      raw: |-
+        no trailing newline
+      keep: |+
+        keep trailing blanks
+
+
+      after: true
+  }
+}

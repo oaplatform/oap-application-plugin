@@ -30,6 +30,12 @@ public class OapModuleNameImpl extends OapCompositeElementImpl implements OapMod
 
   @Override
   @Nullable
+  public OapBlockScalarValue getBlockScalarValue() {
+    return PsiTreeUtil.getChildOfType(this, OapBlockScalarValue.class);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getKeyValue() {
     return findChildByType(OAP_KEY_VALUE);
   }

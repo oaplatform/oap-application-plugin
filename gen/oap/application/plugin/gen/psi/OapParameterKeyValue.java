@@ -12,6 +12,9 @@ public interface OapParameterKeyValue extends OapCompositeElement {
   OapAnyReference getAnyReference();
 
   @Nullable
+  OapBlockScalarValue getBlockScalarValue();
+
+  @Nullable
   OapBoolValue getBoolValue();
 
   @Nullable

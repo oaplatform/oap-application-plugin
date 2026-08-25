@@ -126,6 +126,18 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // block_scalar
+  public static boolean block_scalar_value(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "block_scalar_value")) return false;
+    if (!nextTokenIs(builder_, OAP_BLOCK_SCALAR)) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, OAP_BLOCK_SCALAR);
+    exit_section_(builder_, marker_, OAP_BLOCK_SCALAR_VALUE, result_);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // bool
   public static boolean bool_value(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "bool_value")) return false;
@@ -202,13 +214,13 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // &'{' config_object | key_value
+  // &'{' config_object | block_scalar_value | key_value
   public static boolean config_array_item(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "config_array_item")) return false;
-    if (!nextTokenIs(builder_, "<config array item>", OAP_KEY_VALUE, OAP_LEFTBRACE)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, OAP_CONFIG_ARRAY_ITEM, "<config array item>");
     result_ = config_array_item_0(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
     if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
@@ -322,13 +334,14 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // &'[' config_array | bool_value | id_value
+  // &'[' config_array | bool_value | block_scalar_value | id_value
   static boolean config_key_value_value(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "config_key_value_value")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = config_key_value_value_0(builder_, level_ + 1);
     if (!result_) result_ = bool_value(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
     if (!result_) result_ = id_value(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
@@ -1275,7 +1288,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'dependsOn' ('=' | ':') (module_depends_on_block | '[' (module_depends_on_name (','? module_depends_on_name )* )? ']' | module_depends_on_name)
+  // 'dependsOn' ('=' | ':') (module_depends_on_block | '[' ((module_depends_on_name|block_scalar_value) (','? (module_depends_on_name|block_scalar_value) )* )? ']' | module_depends_on_name | block_scalar_value)
   public static boolean module_depends_on(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_depends_on")) return false;
     boolean result_, pinned_;
@@ -1297,7 +1310,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // module_depends_on_block | '[' (module_depends_on_name (','? module_depends_on_name )* )? ']' | module_depends_on_name
+  // module_depends_on_block | '[' ((module_depends_on_name|block_scalar_value) (','? (module_depends_on_name|block_scalar_value) )* )? ']' | module_depends_on_name | block_scalar_value
   private static boolean module_depends_on_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_depends_on_2")) return false;
     boolean result_;
@@ -1305,11 +1318,12 @@ public class OapParser implements PsiParser, LightPsiParser {
     result_ = module_depends_on_block(builder_, level_ + 1);
     if (!result_) result_ = module_depends_on_2_1(builder_, level_ + 1);
     if (!result_) result_ = module_depends_on_name(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
-  // '[' (module_depends_on_name (','? module_depends_on_name )* )? ']'
+  // '[' ((module_depends_on_name|block_scalar_value) (','? (module_depends_on_name|block_scalar_value) )* )? ']'
   private static boolean module_depends_on_2_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_depends_on_2_1")) return false;
     boolean result_;
@@ -1321,25 +1335,34 @@ public class OapParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // (module_depends_on_name (','? module_depends_on_name )* )?
+  // ((module_depends_on_name|block_scalar_value) (','? (module_depends_on_name|block_scalar_value) )* )?
   private static boolean module_depends_on_2_1_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_depends_on_2_1_1")) return false;
     module_depends_on_2_1_1_0(builder_, level_ + 1);
     return true;
   }
 
-  // module_depends_on_name (','? module_depends_on_name )*
+  // (module_depends_on_name|block_scalar_value) (','? (module_depends_on_name|block_scalar_value) )*
   private static boolean module_depends_on_2_1_1_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_depends_on_2_1_1_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = module_depends_on_name(builder_, level_ + 1);
+    result_ = module_depends_on_2_1_1_0_0(builder_, level_ + 1);
     result_ = result_ && module_depends_on_2_1_1_0_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
-  // (','? module_depends_on_name )*
+  // module_depends_on_name|block_scalar_value
+  private static boolean module_depends_on_2_1_1_0_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_depends_on_2_1_1_0_0")) return false;
+    boolean result_;
+    result_ = module_depends_on_name(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
+    return result_;
+  }
+
+  // (','? (module_depends_on_name|block_scalar_value) )*
   private static boolean module_depends_on_2_1_1_0_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_depends_on_2_1_1_0_1")) return false;
     while (true) {
@@ -1350,13 +1373,13 @@ public class OapParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // ','? module_depends_on_name
+  // ','? (module_depends_on_name|block_scalar_value)
   private static boolean module_depends_on_2_1_1_0_1_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_depends_on_2_1_1_0_1_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = module_depends_on_2_1_1_0_1_0_0(builder_, level_ + 1);
-    result_ = result_ && module_depends_on_name(builder_, level_ + 1);
+    result_ = result_ && module_depends_on_2_1_1_0_1_0_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
@@ -1366,6 +1389,15 @@ public class OapParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(builder_, level_, "module_depends_on_2_1_1_0_1_0_0")) return false;
     consumeToken(builder_, OAP_COMMA);
     return true;
+  }
+
+  // module_depends_on_name|block_scalar_value
+  private static boolean module_depends_on_2_1_1_0_1_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_depends_on_2_1_1_0_1_0_1")) return false;
+    boolean result_;
+    result_ = module_depends_on_name(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -1399,7 +1431,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '-' module_depends_on_name
+  // '-' (module_depends_on_name | block_scalar_value)
   static boolean module_depends_on_block_item(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_depends_on_block_item")) return false;
     if (!nextTokenIs(builder_, OAP_DASH)) return false;
@@ -1407,9 +1439,18 @@ public class OapParser implements PsiParser, LightPsiParser {
     Marker marker_ = enter_section_(builder_, level_, _NONE_);
     result_ = consumeToken(builder_, OAP_DASH);
     pinned_ = result_; // pin = 1
-    result_ = result_ && module_depends_on_name(builder_, level_ + 1);
+    result_ = result_ && module_depends_on_block_item_1(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
+  }
+
+  // module_depends_on_name | block_scalar_value
+  private static boolean module_depends_on_block_item_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_depends_on_block_item_1")) return false;
+    boolean result_;
+    result_ = module_depends_on_name(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -1461,14 +1502,14 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // [] key_value
+  // [] (block_scalar_value | key_value)
   public static boolean module_name(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_name")) return false;
     boolean result_, pinned_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, OAP_MODULE_NAME, "<module name>");
     result_ = module_name_0(builder_, level_ + 1);
     pinned_ = result_; // pin = 1
-    result_ = result_ && consumeToken(builder_, OAP_KEY_VALUE);
+    result_ = result_ && module_name_1(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
   }
@@ -1476,6 +1517,15 @@ public class OapParser implements PsiParser, LightPsiParser {
   // []
   private static boolean module_name_0(PsiBuilder builder_, int level_) {
     return true;
+  }
+
+  // block_scalar_value | key_value
+  private static boolean module_name_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_name_1")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -1677,7 +1727,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // module_services_service_dependson_id ('=' | ':') (module_services_service_dependson_block | '[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)*
+  // module_services_service_dependson_id ('=' | ':') (module_services_service_dependson_block | '[' (module_services_service_dependson_name|block_scalar_value)? ( ','? (module_services_service_dependson_name|block_scalar_value) )* ']' | module_services_service_dependson_name | block_scalar_value)*
   public static boolean module_services_service_dependson(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson")) return false;
     if (!nextTokenIs(builder_, OAP_ID_DEPENDS_ON)) return false;
@@ -1700,7 +1750,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // (module_services_service_dependson_block | '[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name)*
+  // (module_services_service_dependson_block | '[' (module_services_service_dependson_name|block_scalar_value)? ( ','? (module_services_service_dependson_name|block_scalar_value) )* ']' | module_services_service_dependson_name | block_scalar_value)*
   private static boolean module_services_service_dependson_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2")) return false;
     while (true) {
@@ -1711,7 +1761,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // module_services_service_dependson_block | '[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']' | module_services_service_dependson_name
+  // module_services_service_dependson_block | '[' (module_services_service_dependson_name|block_scalar_value)? ( ','? (module_services_service_dependson_name|block_scalar_value) )* ']' | module_services_service_dependson_name | block_scalar_value
   private static boolean module_services_service_dependson_2_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2_0")) return false;
     boolean result_;
@@ -1719,11 +1769,12 @@ public class OapParser implements PsiParser, LightPsiParser {
     result_ = module_services_service_dependson_block(builder_, level_ + 1);
     if (!result_) result_ = module_services_service_dependson_2_0_1(builder_, level_ + 1);
     if (!result_) result_ = module_services_service_dependson_name(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
-  // '[' module_services_service_dependson_name? ( ','? module_services_service_dependson_name )* ']'
+  // '[' (module_services_service_dependson_name|block_scalar_value)? ( ','? (module_services_service_dependson_name|block_scalar_value) )* ']'
   private static boolean module_services_service_dependson_2_0_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2_0_1")) return false;
     boolean result_;
@@ -1736,14 +1787,23 @@ public class OapParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // module_services_service_dependson_name?
+  // (module_services_service_dependson_name|block_scalar_value)?
   private static boolean module_services_service_dependson_2_0_1_1(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2_0_1_1")) return false;
-    module_services_service_dependson_name(builder_, level_ + 1);
+    module_services_service_dependson_2_0_1_1_0(builder_, level_ + 1);
     return true;
   }
 
-  // ( ','? module_services_service_dependson_name )*
+  // module_services_service_dependson_name|block_scalar_value
+  private static boolean module_services_service_dependson_2_0_1_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2_0_1_1_0")) return false;
+    boolean result_;
+    result_ = module_services_service_dependson_name(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
+    return result_;
+  }
+
+  // ( ','? (module_services_service_dependson_name|block_scalar_value) )*
   private static boolean module_services_service_dependson_2_0_1_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2_0_1_2")) return false;
     while (true) {
@@ -1754,13 +1814,13 @@ public class OapParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // ','? module_services_service_dependson_name
+  // ','? (module_services_service_dependson_name|block_scalar_value)
   private static boolean module_services_service_dependson_2_0_1_2_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2_0_1_2_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = module_services_service_dependson_2_0_1_2_0_0(builder_, level_ + 1);
-    result_ = result_ && module_services_service_dependson_name(builder_, level_ + 1);
+    result_ = result_ && module_services_service_dependson_2_0_1_2_0_1(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
@@ -1770,6 +1830,15 @@ public class OapParser implements PsiParser, LightPsiParser {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2_0_1_2_0_0")) return false;
     consumeToken(builder_, OAP_COMMA);
     return true;
+  }
+
+  // module_services_service_dependson_name|block_scalar_value
+  private static boolean module_services_service_dependson_2_0_1_2_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_services_service_dependson_2_0_1_2_0_1")) return false;
+    boolean result_;
+    result_ = module_services_service_dependson_name(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -1803,7 +1872,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '-' module_services_service_dependson_name
+  // '-' (module_services_service_dependson_name | block_scalar_value)
   static boolean module_services_service_dependson_block_item(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_dependson_block_item")) return false;
     if (!nextTokenIs(builder_, OAP_DASH)) return false;
@@ -1811,9 +1880,18 @@ public class OapParser implements PsiParser, LightPsiParser {
     Marker marker_ = enter_section_(builder_, level_, _NONE_);
     result_ = consumeToken(builder_, OAP_DASH);
     pinned_ = result_; // pin = 1
-    result_ = result_ && module_services_service_dependson_name(builder_, level_ + 1);
+    result_ = result_ && module_services_service_dependson_block_item_1(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
+  }
+
+  // module_services_service_dependson_name | block_scalar_value
+  private static boolean module_services_service_dependson_block_item_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_services_service_dependson_block_item_1")) return false;
+    boolean result_;
+    result_ = module_services_service_dependson_name(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -2685,7 +2763,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'cron' ('=' | ':') key_value
+  // 'cron' ('=' | ':') (block_scalar_value | key_value)
   public static boolean module_services_service_supervision_entities_cron(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_supervision_entities_cron")) return false;
     if (!nextTokenIs(builder_, OAP_ID_CRON)) return false;
@@ -2694,7 +2772,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, OAP_ID_CRON);
     pinned_ = result_; // pin = 1
     result_ = result_ && report_error_(builder_, module_services_service_supervision_entities_cron_1(builder_, level_ + 1));
-    result_ = pinned_ && consumeToken(builder_, OAP_KEY_VALUE) && result_;
+    result_ = pinned_ && module_services_service_supervision_entities_cron_2(builder_, level_ + 1) && result_;
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
   }
@@ -2708,8 +2786,17 @@ public class OapParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
+  // block_scalar_value | key_value
+  private static boolean module_services_service_supervision_entities_cron_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_services_service_supervision_entities_cron_2")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
+    return result_;
+  }
+
   /* ********************************************************** */
-  // 'delay' ('=' | ':') key_value
+  // 'delay' ('=' | ':') (block_scalar_value | key_value)
   public static boolean module_services_service_supervision_entities_delay(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_services_service_supervision_entities_delay")) return false;
     if (!nextTokenIs(builder_, OAP_ID_DELAY)) return false;
@@ -2718,7 +2805,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, OAP_ID_DELAY);
     pinned_ = result_; // pin = 1
     result_ = result_ && report_error_(builder_, module_services_service_supervision_entities_delay_1(builder_, level_ + 1));
-    result_ = pinned_ && consumeToken(builder_, OAP_KEY_VALUE) && result_;
+    result_ = pinned_ && module_services_service_supervision_entities_delay_2(builder_, level_ + 1) && result_;
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
   }
@@ -2729,6 +2816,15 @@ public class OapParser implements PsiParser, LightPsiParser {
     boolean result_;
     result_ = consumeToken(builder_, OAP_EQ);
     if (!result_) result_ = consumeToken(builder_, OAP_COLON);
+    return result_;
+  }
+
+  // block_scalar_value | key_value
+  private static boolean module_services_service_supervision_entities_delay_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_services_service_supervision_entities_delay_2")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
     return result_;
   }
 
@@ -3191,7 +3287,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // &'[' parameters_array | &'<' any_reference | function | bool_value | id_value
+  // &'[' parameters_array | &'<' any_reference | function | bool_value | block_scalar_value | id_value
   static boolean parameter_key_value_value(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "parameter_key_value_value")) return false;
     boolean result_;
@@ -3200,6 +3296,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = parameter_key_value_value_1(builder_, level_ + 1);
     if (!result_) result_ = function(builder_, level_ + 1);
     if (!result_) result_ = bool_value(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
     if (!result_) result_ = id_value(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
@@ -3300,7 +3397,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // &'<' any_reference | &'{' parameters_object | function | bool_value | id_value
+  // &'<' any_reference | &'{' parameters_object | function | bool_value | block_scalar_value | id_value
   public static boolean parameters_array_item(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "parameters_array_item")) return false;
     boolean result_;
@@ -3309,6 +3406,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = parameters_array_item_1(builder_, level_ + 1);
     if (!result_) result_ = function(builder_, level_ + 1);
     if (!result_) result_ = bool_value(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
     if (!result_) result_ = id_value(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
@@ -3905,7 +4003,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // remote_timeout_id_value (eq | colon) key_value
+  // remote_timeout_id_value (eq | colon) (block_scalar_value | key_value)
   public static boolean remote_timeout(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "remote_timeout")) return false;
     boolean result_, pinned_;
@@ -3913,7 +4011,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     result_ = remote_timeout_id_value(builder_, level_ + 1);
     pinned_ = result_; // pin = 1
     result_ = result_ && report_error_(builder_, remote_timeout_1(builder_, level_ + 1));
-    result_ = pinned_ && consumeToken(builder_, OAP_KEY_VALUE) && result_;
+    result_ = pinned_ && remote_timeout_2(builder_, level_ + 1) && result_;
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
   }
@@ -3924,6 +4022,15 @@ public class OapParser implements PsiParser, LightPsiParser {
     boolean result_;
     result_ = consumeToken(builder_, OAP_EQ);
     if (!result_) result_ = consumeToken(builder_, OAP_COLON);
+    return result_;
+  }
+
+  // block_scalar_value | key_value
+  private static boolean remote_timeout_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "remote_timeout_2")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
     return result_;
   }
 
@@ -3940,7 +4047,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // 'url' ('=' | ':') key_value
+  // 'url' ('=' | ':') (block_scalar_value | key_value)
   public static boolean remote_url(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "remote_url")) return false;
     if (!nextTokenIs(builder_, OAP_ID_URL)) return false;
@@ -3949,7 +4056,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     result_ = consumeToken(builder_, OAP_ID_URL);
     pinned_ = result_; // pin = 1
     result_ = result_ && report_error_(builder_, remote_url_1(builder_, level_ + 1));
-    result_ = pinned_ && consumeToken(builder_, OAP_KEY_VALUE) && result_;
+    result_ = pinned_ && remote_url_2(builder_, level_ + 1) && result_;
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
   }
@@ -3960,6 +4067,15 @@ public class OapParser implements PsiParser, LightPsiParser {
     boolean result_;
     result_ = consumeToken(builder_, OAP_EQ);
     if (!result_) result_ = consumeToken(builder_, OAP_COLON);
+    return result_;
+  }
+
+  // block_scalar_value | key_value
+  private static boolean remote_url_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "remote_url_2")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
     return result_;
   }
 
@@ -4673,7 +4789,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // wsservice_path_id ('=' | ':') (wsservice_path_block | &'[' wsservice_path_multiple | key_value )
+  // wsservice_path_id ('=' | ':') (wsservice_path_block | &'[' wsservice_path_multiple | block_scalar_value | key_value )
   public static boolean wsservice_path(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "wsservice_path")) return false;
     if (!nextTokenIs(builder_, OAP_ID_PATH)) return false;
@@ -4696,13 +4812,14 @@ public class OapParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // wsservice_path_block | &'[' wsservice_path_multiple | key_value
+  // wsservice_path_block | &'[' wsservice_path_multiple | block_scalar_value | key_value
   private static boolean wsservice_path_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "wsservice_path_2")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = wsservice_path_block(builder_, level_ + 1);
     if (!result_) result_ = wsservice_path_2_1(builder_, level_ + 1);
+    if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
     if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
     exit_section_(builder_, marker_, null, result_);
     return result_;
@@ -4760,16 +4877,26 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '-' key_value
+  // '-' (block_scalar_value | key_value)
   static boolean wsservice_path_block_item(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "wsservice_path_block_item")) return false;
     if (!nextTokenIs(builder_, OAP_DASH)) return false;
     boolean result_, pinned_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_);
-    result_ = consumeTokens(builder_, 1, OAP_DASH, OAP_KEY_VALUE);
+    result_ = consumeToken(builder_, OAP_DASH);
     pinned_ = result_; // pin = 1
+    result_ = result_ && wsservice_path_block_item_1(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
+  }
+
+  // block_scalar_value | key_value
+  private static boolean wsservice_path_block_item_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "wsservice_path_block_item_1")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
+    return result_;
   }
 
   /* ********************************************************** */
@@ -4785,20 +4912,30 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // '[' key_value (!']' ','? key_value)* ']'
+  // '[' (block_scalar_value | key_value) (!']' ','? (block_scalar_value | key_value))* ']'
   static boolean wsservice_path_multiple(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "wsservice_path_multiple")) return false;
     if (!nextTokenIs(builder_, OAP_LEFTBRACKET)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
-    result_ = consumeTokens(builder_, 0, OAP_LEFTBRACKET, OAP_KEY_VALUE);
+    result_ = consumeToken(builder_, OAP_LEFTBRACKET);
+    result_ = result_ && wsservice_path_multiple_1(builder_, level_ + 1);
     result_ = result_ && wsservice_path_multiple_2(builder_, level_ + 1);
     result_ = result_ && consumeToken(builder_, OAP_RIGHTBRACKET);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
-  // (!']' ','? key_value)*
+  // block_scalar_value | key_value
+  private static boolean wsservice_path_multiple_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "wsservice_path_multiple_1")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
+    return result_;
+  }
+
+  // (!']' ','? (block_scalar_value | key_value))*
   private static boolean wsservice_path_multiple_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "wsservice_path_multiple_2")) return false;
     while (true) {
@@ -4809,14 +4946,14 @@ public class OapParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // !']' ','? key_value
+  // !']' ','? (block_scalar_value | key_value)
   private static boolean wsservice_path_multiple_2_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "wsservice_path_multiple_2_0")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_);
     result_ = wsservice_path_multiple_2_0_0(builder_, level_ + 1);
     result_ = result_ && wsservice_path_multiple_2_0_1(builder_, level_ + 1);
-    result_ = result_ && consumeToken(builder_, OAP_KEY_VALUE);
+    result_ = result_ && wsservice_path_multiple_2_0_2(builder_, level_ + 1);
     exit_section_(builder_, marker_, null, result_);
     return result_;
   }
@@ -4838,8 +4975,17 @@ public class OapParser implements PsiParser, LightPsiParser {
     return true;
   }
 
+  // block_scalar_value | key_value
+  private static boolean wsservice_path_multiple_2_0_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "wsservice_path_multiple_2_0_2")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
+    return result_;
+  }
+
   /* ********************************************************** */
-  // wsservice_port_id ('=' | ':') key_value
+  // wsservice_port_id ('=' | ':') (block_scalar_value | key_value)
   public static boolean wsservice_port(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "wsservice_port")) return false;
     if (!nextTokenIs(builder_, OAP_ID_PORT)) return false;
@@ -4848,7 +4994,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     result_ = wsservice_port_id(builder_, level_ + 1);
     pinned_ = result_; // pin = 1
     result_ = result_ && report_error_(builder_, wsservice_port_1(builder_, level_ + 1));
-    result_ = pinned_ && consumeToken(builder_, OAP_KEY_VALUE) && result_;
+    result_ = pinned_ && wsservice_port_2(builder_, level_ + 1) && result_;
     exit_section_(builder_, level_, marker_, result_, pinned_, null);
     return result_ || pinned_;
   }
@@ -4859,6 +5005,15 @@ public class OapParser implements PsiParser, LightPsiParser {
     boolean result_;
     result_ = consumeToken(builder_, OAP_EQ);
     if (!result_) result_ = consumeToken(builder_, OAP_COLON);
+    return result_;
+  }
+
+  // block_scalar_value | key_value
+  private static boolean wsservice_port_2(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "wsservice_port_2")) return false;
+    boolean result_;
+    result_ = block_scalar_value(builder_, level_ + 1);
+    if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
     return result_;
   }
 

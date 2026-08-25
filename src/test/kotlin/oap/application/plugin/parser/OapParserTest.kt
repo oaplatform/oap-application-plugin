@@ -162,6 +162,46 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(false)
     }
 
+    fun testParametersBlockScalar() {
+        doTest(false)
+    }
+
+    fun testConfigBlockScalar() {
+        doTest(false)
+    }
+
+    fun testParametersBlockScalarArray() {
+        doTest(false)
+    }
+
+    fun testParametersBlockScalarDashList() {
+        doTest(false)
+    }
+
+    fun testModuleDependsOnBlockScalar() {
+        doTest(false)
+    }
+
+    fun testWsServicePathBlockScalar() {
+        doTest(false)
+    }
+
+    fun testSupervisionBlockScalar() {
+        doTest(false)
+    }
+
+    fun testModuleNameBlockScalar() {
+        doTest(false)
+    }
+
+    fun testRemoteBlockScalar() {
+        doTest(false)
+    }
+
+    fun testWsServicePortBlockScalar() {
+        doTest(false)
+    }
+
     fun testParametersArray2() {
         doTest(false)
     }

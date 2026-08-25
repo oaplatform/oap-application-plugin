@@ -1,0 +1,10 @@
+name = xenoss-notification
+
+services {
+  notification-service {
+    abstract = true
+    implementation = io.xenoss.notification.events.NotificationService
+
+    default = <modules.this.notification-service-remote>
+  }
+}

@@ -47,6 +47,7 @@ class OapLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider()
                 showCustomOption("KEEP_BLANK_LINES_BEFORE_DEPENDS_ON", "Before 'dependsOn'", codeStyleSettingsCustomizableOptions.BLANK_LINES_KEEP)
                 showCustomOption("KEEP_BLANK_LINES_BEFORE_SERVICES", "Before 'services'", codeStyleSettingsCustomizableOptions.BLANK_LINES_KEEP)
                 showCustomOption("KEEP_BLANK_LINES_BEFORE_CONFIGURATIONS", "Before 'configurations'", codeStyleSettingsCustomizableOptions.BLANK_LINES_KEEP)
+                showCustomOption("KEEP_BLANK_LINES_BEFORE_SERVICES_SERVICE", "Between services", codeStyleSettingsCustomizableOptions.BLANK_LINES_KEEP)
 
                 showCustomOption("KEEP_BLANK_LINES_IN_OBJECTS", "In objects", codeStyleSettingsCustomizableOptions.BLANK_LINES_KEEP)
                 showCustomOption("KEEP_BLANK_LINES_BEFORE_RBRACE", "Before '}'", codeStyleSettingsCustomizableOptions.BLANK_LINES_KEEP)

@@ -30,6 +30,12 @@ public class OapModuleServicesServiceDependsonImpl extends OapCompositeElementIm
 
   @Override
   @NotNull
+  public List<OapBlockScalarValue> getBlockScalarValueList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapBlockScalarValue.class);
+  }
+
+  @Override
+  @NotNull
   public OapModuleServicesServiceDependsonId getModuleServicesServiceDependsonId() {
     return notNullChild(PsiTreeUtil.getChildOfType(this, OapModuleServicesServiceDependsonId.class));
   }

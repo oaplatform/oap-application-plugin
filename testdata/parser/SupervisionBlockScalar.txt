@@ -1,0 +1,75 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('SupervisionBlockScalar')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('test-service')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestService')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_SUPERVISION
+        PsiElement(supervision)('supervision')
+        PsiWhiteSpace(' ')
+        PsiElement({)('{')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SUPERVISE
+          PsiElement(supervise)('supervise')
+          PsiWhiteSpace(' ')
+          PsiElement(=)('=')
+          PsiWhiteSpace(' ')
+          OAP_BOOL_VALUE
+            PsiElement(bool)('true')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_SCHEDULE
+          PsiElement(schedule)('schedule')
+          PsiWhiteSpace(' ')
+          PsiElement(=)('=')
+          PsiWhiteSpace(' ')
+          OAP_BOOL_VALUE
+            PsiElement(bool)('true')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_CRON
+          PsiElement(cron)('cron')
+          PsiElement(:)(':')
+          PsiWhiteSpace(' ')
+          OAP_BLOCK_SCALAR_VALUE
+            PsiElement(block_scalar)('|-\n        */10 * * * * ? *\n')
+        PsiWhiteSpace('      ')
+        OAP_MODULE_SERVICES_SERVICE_SUPERVISION_ENTITIES_DELAY
+          PsiElement(delay)('delay')
+          PsiElement(:)(':')
+          PsiWhiteSpace(' ')
+          OAP_BLOCK_SCALAR_VALUE
+            PsiElement(block_scalar)('|\n        5s\n')
+        PsiWhiteSpace('    ')
+        PsiElement(})('}')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')
