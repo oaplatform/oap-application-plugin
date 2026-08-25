@@ -10,13 +10,38 @@ import oap.application.plugin.lang.OapLanguage
 import oap.application.plugin.psi.IndentNormal
 
 class OapFormattingBlock(val formatter: OapFormatter, node: ASTNode, val myIndent: Indent?, wrap: Wrap?, alignment: Alignment?) : AbstractBlock(node, wrap, alignment) {
+    companion object {
+        // Parent element types whose direct '-' child is a dash-list item marker spliced in by a
+        // private *_block_item grammar rule (see calcIndent below for why these six specifically).
+        private val DASH_LIST_PARENT_TYPES = setOf(
+            OapTypes.OAP_MODULE_DEPENDS_ON,
+            OapTypes.OAP_MODULE_SERVICES_SERVICE_DEPENDSON,
+            OapTypes.OAP_WSSERVICE_INTERCEPTORS,
+            OapTypes.OAP_WSSERVICE_PATH,
+            OapTypes.OAP_PARAMETER_KEY_VALUE,
+            OapTypes.OAP_CONFIGURATION_KEY_VALUE_PAIR,
+        )
+    }
+
     override fun getDebugName(): String {
         return node.psi.toString()
     }
 
     private fun calcIndent(parent: ASTNode, child: ASTNode): Indent? {
-        return when (child.psi) {
-            is IndentNormal -> Indent.getNormalIndent()
+        return when {
+            child.psi is IndentNormal -> Indent.getNormalIndent()
+            // Dash-list item markers ('- item') from the private *_block_item grammar rules
+            // (dependsOn/interceptors/path/parameters/config dash-lists) are spliced in as bare
+            // leaf children of the parent rule's node - a private bnf rule never gets its own PSI
+            // class, so it can't declare implements=IndentNormal the way module_configuration_block
+            // (the public configurations: block-array rule) does, and the leaf dash itself falls
+            // into the else branch below by default. Indenting the dash leaf directly fixes that -
+            // but ONLY for these six parent types: module_configuration_block already gets its
+            // indent as a whole composite (dash + entries together, via its own IndentNormal), and
+            // giving its dash leaf a second, separate Indent here double-indents it (confirmed by a
+            // regression in testConfigurationsBlockArray when this was tried unconditionally).
+            child.elementType == OapTypes.OAP_DASH && parent.elementType in DASH_LIST_PARENT_TYPES ->
+                Indent.getNormalIndent()
             else -> Indent.getNoneIndent()
         }
     }
