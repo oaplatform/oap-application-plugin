@@ -9,6 +9,9 @@ import oap.application.plugin.psi.IndentNormal;
 public interface OapConfigArrayItem extends IndentNormal {
 
   @Nullable
+  OapBlockScalarValue getBlockScalarValue();
+
+  @Nullable
   OapConfigObject getConfigObject();
 
   @Nullable

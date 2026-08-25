@@ -9,6 +9,9 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 public interface OapWsservicePath extends OapKeyValuePairWithIndentNormal {
 
   @NotNull
+  List<OapBlockScalarValue> getBlockScalarValueList();
+
+  @NotNull
   OapWsservicePathId getWsservicePathId();
 
   @Nullable

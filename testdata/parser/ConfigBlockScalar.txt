@@ -1,0 +1,50 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('ConfigBlockScalar')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_CONFIGURATIONS
+    PsiElement(configurations)('configurations')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    PsiElement([)('[')
+    OAP_MODULE_CONFIGURATION
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      OAP_MODULE_CONFIGURATION_ENTRIES
+        OAP_MODULE_CONFIGURATION_ENTRIES_LOADER
+          PsiElement(loader)('loader')
+          PsiWhiteSpace(' ')
+          PsiElement(=)('=')
+          PsiWhiteSpace(' ')
+          OAP_CLASS_NAME_PSI
+            PsiElement(class_name)('oap.json.TypeIdFactory')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('  ')
+        OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG
+          PsiElement(config)('config')
+          OAP_CONFIG_OBJECT
+            PsiElement(:)(':')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('    ')
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
+              PsiElement(key_name)('description')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              OAP_BLOCK_SCALAR_VALUE
+                PsiElement(block_scalar)('|\n      line one\n      line two\n')
+            PsiWhiteSpace('    ')
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
+              PsiElement(key_name)('summary')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              OAP_BLOCK_SCALAR_VALUE
+                PsiElement(block_scalar)('>\n      folded\n      onto one line\n')
+      PsiElement(})('}')
+    PsiElement(])(']')

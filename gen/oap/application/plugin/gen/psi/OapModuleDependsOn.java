@@ -9,6 +9,9 @@ import oap.application.plugin.psi.OapCompositeElement;
 public interface OapModuleDependsOn extends OapCompositeElement {
 
   @NotNull
+  List<OapBlockScalarValue> getBlockScalarValueList();
+
+  @NotNull
   List<OapModuleDependsOnName> getModuleDependsOnNameList();
 
   @Nullable

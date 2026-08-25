@@ -85,6 +85,61 @@ import static oap.application.plugin.gen.OapTypes.*;
         return true;
     }
 
+    // Extends the match started by the block-scalar indicator ('|'/'>' + optional '-'/'+' chomp
+    // mark) to swallow the rest of its own line plus every following line indented more than the
+    // key's own line - the whole YAML-style block body - as one token, via the same "manually
+    // move the position forward" technique BOL_CHECK/colonOpensBlock() use elsewhere in this
+    // file. A blank line never ends the block by itself; only a non-blank line at or below the
+    // key's column does (or EOF).
+    //
+    // Once the body is swallowed, the lexer is left positioned at the start of the terminating
+    // line (its leading whitespace not yet consumed) - exactly the position handleNextline() is
+    // normally called from right after a NEXTLINE match. So this reproduces handleNextline()'s
+    // own logic (routing through BOL_CHECK when a colon-block is open, so indentStack/DEDENT
+    // bookkeeping for whatever encloses this value stays correct) instead of calling it, since it
+    // also needs to return OAP_BLOCK_SCALAR rather than handleNextline()'s hardcoded WHITE_SPACE.
+    // popState mirrors whether this rule's own state normally pops on a value-terminating
+    // NEXTLINE (true for single-value positions like _OBJECT_ENTITY/DEPENDS_ON/
+    // KEY_VALUE_SINGLE_OR_ARRAY, false for array-element/dash-item positions that stay put to
+    // lex a following ',' / '-' / ']').
+    private IElementType lexBlockScalarBody(boolean popState) {
+        int lineStart = zzStartRead;
+        while (lineStart > 0 && zzBuffer.charAt(lineStart - 1) != '\n') lineStart--;
+        int parentCol = 0;
+        while (lineStart + parentCol < zzEndRead) {
+            char c = zzBuffer.charAt(lineStart + parentCol);
+            if (c != ' ' && c != '\t') break;
+            parentCol++;
+        }
+
+        int pos = zzMarkedPos;
+        while (pos < zzEndRead && zzBuffer.charAt(pos) != '\n') pos++;
+        if (pos < zzEndRead) pos++;
+        int contentEnd = pos;
+
+        while (pos < zzEndRead) {
+            int lineStart2 = pos;
+            int col = 0;
+            while (pos < zzEndRead && (zzBuffer.charAt(pos) == ' ' || zzBuffer.charAt(pos) == '\t')) { pos++; col++; }
+            int contentStart = pos;
+            while (pos < zzEndRead && zzBuffer.charAt(pos) != '\n') pos++;
+            boolean blank = contentStart == pos;
+            if (!blank && col <= parentCol) { pos = lineStart2; break; }
+            if (pos < zzEndRead) pos++;
+            contentEnd = pos;
+        }
+        zzMarkedPos = contentEnd;
+
+        if (popState) {
+            yypopState();
+        }
+        if (!indentStack.isEmpty()) {
+            pendingReturnState = yystate();
+            yybegin(BOL_CHECK);
+        }
+        return OAP_BLOCK_SCALAR;
+    }
+
     private String printState(int state) {
         return switch (state) {
             case YYINITIAL -> "YYINITIAL";
@@ -168,6 +223,10 @@ UNQUOTED_STRING=([:jletterdigit:]|[-/\.]) ([:jletterdigit:]|[-/\. ])*
 // through "- value" (dash, space, value) as a single token, since its continuation class
 // includes space too.
 UNQUOTED_STRING_ITEM=([:jletterdigit:]|[/\.]) ([:jletterdigit:]|[-/\. ])*
+// YAML-style block-scalar indicator: '|' (literal) or '>' (folded), optionally followed by a
+// chomping mark ('-' strip, '+' keep). The action manually extends the match past the whole
+// indented body that follows - see lexBlockScalarBody().
+BLOCK_SCALAR_INDICATOR=[|>] [+-]?
 CLASS_NAME=([:jletter:] [:jletterdigit:]*)("." [:jletter:] [:jletterdigit:]*)*
 FIELD_NAME=[:jletter:] [:jletterdigit:]+
 KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
@@ -229,6 +288,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
                        }
   "["                  { yypushState(DEPENDS_ON_IN); return OAP_LEFTBRACKET; }
 
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(true); }
   {UNQUOTED_STRING}    { return OAP_KEY_VALUE; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
@@ -236,6 +296,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 }
 <DEPENDS_ON_BLOCK_ITEM> {
   "-"                  { return OAP_DASH; }
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(false); }
   {UNQUOTED_STRING_ITEM} { return OAP_KEY_VALUE; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
@@ -243,6 +304,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 }
 <DEPENDS_ON_IN> {
   "]"                  { yypopState(); return OAP_RIGHTBRACKET; }
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(false); }
   {UNQUOTED_STRING}    { return OAP_KEY_VALUE; }
   ","                  { return OAP_COMMA; }
 
@@ -472,6 +534,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "<"                  { yypushState(VALUE_REFERENCE); return OAP_LEFTANGLE; }
 
   {BOOL}               { return OAP_BOOL; }
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(true); }
   {UNQUOTED_STRING}    { return OAP_KEY_VALUE; }
   {STRING}             { return OAP_KEY_VALUE; }
   "("                  { return OAP_LEFTPAREN; }
@@ -501,6 +564,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
                        }
   "["                  { yypushState(KEY_VALUE_SINGLE_OR_ARRAY_ARRAY); return OAP_LEFTBRACKET; }
 
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(true); }
   {UNQUOTED_STRING}    { return OAP_KEY_VALUE; }
   {STRING}             { return OAP_KEY_VALUE; }
 
@@ -509,6 +573,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 }
 <KEY_VALUE_SINGLE_OR_ARRAY_BLOCK_ITEM> {
   "-"                  { return OAP_DASH; }
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(false); }
   {UNQUOTED_STRING_ITEM} { return OAP_KEY_VALUE; }
   {STRING}             { return OAP_KEY_VALUE; }
 
@@ -516,6 +581,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   {NEXTLINE}           { return handleNextline(); }
 }
 <KEY_VALUE_SINGLE_OR_ARRAY_ARRAY> {
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(false); }
   {UNQUOTED_STRING}    { return OAP_KEY_VALUE; }
   {STRING}             { return OAP_KEY_VALUE; }
 
@@ -598,6 +664,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "("                  { return OAP_LEFTPAREN; }
   ")"                  { return OAP_RIGHTPAREN; }
 
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(false); }
   {UNQUOTED_STRING}    { return OAP_KEY_VALUE; }
   {STRING}             { return OAP_KEY_VALUE; }
 
@@ -638,6 +705,7 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 
   "$"                 { yypushState(_ENV); return OAP_DOLLAR; }
   {BOOL}               { return OAP_BOOL; }
+  {BLOCK_SCALAR_INDICATOR} { return lexBlockScalarBody(true); }
   {UNQUOTED_STRING}    { return OAP_KEY_VALUE; }
   {STRING}             { return OAP_KEY_VALUE; }
   "("                  { return OAP_LEFTPAREN; }

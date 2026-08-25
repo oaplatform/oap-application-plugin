@@ -13,6 +13,7 @@ public interface OapTypes {
 
   IElementType OAP_ANY_REFERENCE = new OapCompositeElementType("OAP_ANY_REFERENCE");
   IElementType OAP_ANY_REFERENCE_IN = new OapCompositeElementType("OAP_ANY_REFERENCE_IN");
+  IElementType OAP_BLOCK_SCALAR_VALUE = new OapCompositeElementType("OAP_BLOCK_SCALAR_VALUE");
   IElementType OAP_BOOL_VALUE = new OapCompositeElementType("OAP_BOOL_VALUE");
   IElementType OAP_CLASS_NAME_PSI = new OapCompositeElementType("OAP_CLASS_NAME_PSI");
   IElementType OAP_CONFIGURATION_KEY_VALUE_PAIR = new OapCompositeElementType("OAP_CONFIGURATION_KEY_VALUE_PAIR");
@@ -105,6 +106,7 @@ public interface OapTypes {
   IElementType OAP_WSSERVICE_SESSION_AWARE = new OapCompositeElementType("OAP_WSSERVICE_SESSION_AWARE");
   IElementType OAP_WSSERVICE_SESSION_AWARE_ID = new OapCompositeElementType("OAP_WSSERVICE_SESSION_AWARE_ID");
 
+  IElementType OAP_BLOCK_SCALAR = new OapTokenType("block_scalar");
   IElementType OAP_BOOL = new OapTokenType("bool");
   IElementType OAP_CLASS_NAME = new OapTokenType("class_name");
   IElementType OAP_COLON = new OapTokenType(":");
@@ -174,6 +176,9 @@ public interface OapTypes {
       }
       else if (type == OAP_ANY_REFERENCE_IN) {
         return new OapAnyReferenceInImpl(node);
+      }
+      else if (type == OAP_BLOCK_SCALAR_VALUE) {
+        return new OapBlockScalarValueImpl(node);
       }
       else if (type == OAP_BOOL_VALUE) {
         return new OapBoolValueImpl(node);

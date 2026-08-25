@@ -8,6 +8,9 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 
 public interface OapWsservicePort extends OapKeyValuePairWithIndentNormal {
 
+  @Nullable
+  OapBlockScalarValue getBlockScalarValue();
+
   @NotNull
   OapWsservicePortId getWsservicePortId();
 

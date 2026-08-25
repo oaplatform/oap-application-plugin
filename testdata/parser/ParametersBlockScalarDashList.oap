@@ -1,0 +1,12 @@
+name = ParametersBlockScalarDashList
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters:
+      list:
+        - |
+          dash list item
+        - plain
+  }
+}

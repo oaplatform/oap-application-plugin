@@ -36,6 +36,12 @@ public class OapParametersArrayItemImpl extends OapCompositeElementImpl implemen
 
   @Override
   @Nullable
+  public OapBlockScalarValue getBlockScalarValue() {
+    return PsiTreeUtil.getChildOfType(this, OapBlockScalarValue.class);
+  }
+
+  @Override
+  @Nullable
   public OapBoolValue getBoolValue() {
     return PsiTreeUtil.getChildOfType(this, OapBoolValue.class);
   }

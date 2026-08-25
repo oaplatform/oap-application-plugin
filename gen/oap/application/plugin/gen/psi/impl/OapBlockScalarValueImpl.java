@@ -12,14 +12,14 @@ import oap.application.plugin.psi.impl.OapCompositeElementImpl;
 import oap.application.plugin.gen.psi.*;
 import oap.application.plugin.psi.impl.GrammarPsiImplUtil;
 
-public class OapModuleNameImpl extends OapCompositeElementImpl implements OapModuleName {
+public class OapBlockScalarValueImpl extends OapCompositeElementImpl implements OapBlockScalarValue {
 
-  public OapModuleNameImpl(@NotNull ASTNode node) {
+  public OapBlockScalarValueImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull OapVisitor visitor) {
-    visitor.visitModuleName(this);
+    visitor.visitBlockScalarValue(this);
   }
 
   @Override
@@ -29,15 +29,15 @@ public class OapModuleNameImpl extends OapCompositeElementImpl implements OapMod
   }
 
   @Override
-  @Nullable
-  public OapBlockScalarValue getBlockScalarValue() {
-    return PsiTreeUtil.getChildOfType(this, OapBlockScalarValue.class);
+  @NotNull
+  public PsiElement getBlockScalar() {
+    return notNullChild(findChildByType(OAP_BLOCK_SCALAR));
   }
 
   @Override
-  @Nullable
-  public PsiElement getKeyValue() {
-    return findChildByType(OAP_KEY_VALUE);
+  @NotNull
+  public String getScalarText() {
+    return GrammarPsiImplUtil.getScalarText(this);
   }
 
 }

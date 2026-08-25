@@ -4,14 +4,14 @@ package oap.application.plugin.gen.psi;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import oap.application.plugin.psi.IModuleName;
+import oap.application.plugin.psi.OapValue;
 
-public interface OapModuleName extends IModuleName {
+public interface OapBlockScalarValue extends OapValue {
 
-  @Nullable
-  OapBlockScalarValue getBlockScalarValue();
+  @NotNull
+  PsiElement getBlockScalar();
 
-  @Nullable
-  PsiElement getKeyValue();
+  @NotNull
+  String getScalarText();
 
 }

@@ -30,6 +30,12 @@ public class OapModuleDependsOnImpl extends OapCompositeElementImpl implements O
 
   @Override
   @NotNull
+  public List<OapBlockScalarValue> getBlockScalarValueList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, OapBlockScalarValue.class);
+  }
+
+  @Override
+  @NotNull
   public List<OapModuleDependsOnName> getModuleDependsOnNameList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, OapModuleDependsOnName.class);
   }

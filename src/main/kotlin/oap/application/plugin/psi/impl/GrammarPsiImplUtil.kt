@@ -38,6 +38,73 @@ class GrammarPsiImplUtil {
         }
 
         @JvmStatic
+        fun getScalarText(ref: OapBlockScalarValue): String {
+            val raw = ref.text
+            val folded = raw.isNotEmpty() && raw[0] == '>'
+            val chomp = if (raw.length > 1 && (raw[1] == '-' || raw[1] == '+')) raw[1] else ' '
+
+            val bodyStart = raw.indexOf('\n')
+            if (bodyStart < 0) return ""
+
+            val rawLines = raw.substring(bodyStart + 1).split("\n")
+            // A trailing element from the final split is either an unterminated last line (EOF
+            // with no trailing newline) or an artifact of a trailing '\n' - either way it carries
+            // no content of its own once chomping is applied below, so drop it here.
+            val lines = if (rawLines.isNotEmpty()) rawLines.dropLast(1) else rawLines
+
+            val baseIndent = lines.firstOrNull { it.isNotBlank() }
+                ?.let { it.length - it.trimStart(' ', '\t').length } ?: 0
+            val stripped = lines.map { if (it.length >= baseIndent) it.substring(baseIndent) else "" }
+
+            val lastNonBlank = stripped.indexOfLast { it.isNotBlank() }
+            val effectiveLines = if (chomp == '+') stripped else stripped.take(maxOf(lastNonBlank + 1, 0))
+
+            if (folded) {
+                val body = foldLines(effectiveLines)
+                return when (chomp) {
+                    '-', '+' -> body
+                    else -> if (body.isEmpty()) "" else body + "\n"
+                }
+            }
+
+            // Every captured line - blank or not - was newline-terminated in the source, so
+            // reconstructing literal text as "each line + '\n'" (rather than joining with '\n' as
+            // a separator) is what keeps chomping exact: clip's single trailing '\n' just falls
+            // out of effectiveLines already excluding trailing blanks, strip removes that one
+            // trailing '\n', and keep's precise trailing-blank-line count survives untouched.
+            val body = effectiveLines.joinToString("") { "$it\n" }
+            return when (chomp) {
+                '-' -> body.removeSuffix("\n")
+                else -> body
+            }
+        }
+
+        // Full YAML block-folding: consecutive non-blank, base-indented lines join with a single
+        // space; a blank line becomes a '\n' (paragraph break); a "more-indented" line (one that
+        // still has leading whitespace after the base indent was stripped) is kept literal - never
+        // folded into a neighboring line - matching strict YAML block-scalar folding rules.
+        private fun foldLines(lines: List<String>): String {
+            val sb = StringBuilder()
+            var previousWasMoreIndented = false
+            var previousWasBlank = true
+            for (line in lines) {
+                val moreIndented = line.isNotEmpty() && (line[0] == ' ' || line[0] == '\t')
+                if (line.isBlank()) {
+                    sb.append('\n')
+                    previousWasBlank = true
+                    continue
+                }
+                if (sb.isNotEmpty() && !previousWasBlank) {
+                    sb.append(if (moreIndented || previousWasMoreIndented) '\n' else ' ')
+                }
+                sb.append(line)
+                previousWasMoreIndented = moreIndented
+                previousWasBlank = false
+            }
+            return sb.toString()
+        }
+
+        @JvmStatic
         fun getServices(m: OapModuleServices): List<OapModuleServicesService> {
             val includes: Collection<OapModuleInclude> = PsiTreeUtil.findChildrenOfType(m.containingFile, OapModuleInclude::class.java)
 

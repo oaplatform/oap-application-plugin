@@ -24,7 +24,7 @@ OAP_FILE
     PsiElement(key_value)('module_c')
     PsiWhiteSpace('\n\n')
     PsiElement(key_value)('services ')
-    PsiErrorElement:',', ']' or key_value expected, got '{'
+    PsiErrorElement:',', ']', block_scalar or key_value expected, got '{'
       PsiElement(BAD_CHARACTER)('{')
     PsiWhiteSpace('\n')
     PsiElement(BAD_CHARACTER)('}')

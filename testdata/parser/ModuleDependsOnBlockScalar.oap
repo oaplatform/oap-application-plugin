@@ -1,0 +1,12 @@
+name = ModuleDependsOnBlockScalar
+dependsOn: |
+  module-a
+
+services {
+  test1 {
+    implementation = oap.application.plugin.TestService
+    dependsOn: |
+      test2
+  }
+  test2.implementation = oap.application.plugin.TestService
+}

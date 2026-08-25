@@ -1,0 +1,86 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('ParametersBlockScalar')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('test-master')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestService')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_PARAMETERS
+        OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
+          PsiElement(parameters)('parameters')
+        PsiElement(:)(':')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('description')
+            PsiElement(:)(':')
+            PsiWhiteSpace(' ')
+            OAP_BLOCK_SCALAR_VALUE
+              PsiElement(block_scalar)('|\n        line one\n        line two\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('summary')
+            PsiElement(:)(':')
+            PsiWhiteSpace(' ')
+            OAP_BLOCK_SCALAR_VALUE
+              PsiElement(block_scalar)('>\n        folded\n        onto one line\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('raw')
+            PsiElement(:)(':')
+            PsiWhiteSpace(' ')
+            OAP_BLOCK_SCALAR_VALUE
+              PsiElement(block_scalar)('|-\n        no trailing newline\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('keep')
+            PsiElement(:)(':')
+            PsiWhiteSpace(' ')
+            OAP_BLOCK_SCALAR_VALUE
+              PsiElement(block_scalar)('|+\n        keep trailing blanks\n\n\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('after')
+            PsiElement(:)(':')
+            PsiWhiteSpace(' ')
+            OAP_BOOL_VALUE
+              PsiElement(bool)('true')
+        PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

@@ -5,7 +5,7 @@ OAP_FILE
     PsiElement(=)('=')
     PsiWhiteSpace('\n')
     OAP_MODULE_NAME
-      PsiErrorElement:key_value expected, got 'services'
+      PsiErrorElement:block_scalar or key_value expected, got 'services'
         <empty list>
   OAP_MODULE_SERVICES
     PsiElement(services)('services')

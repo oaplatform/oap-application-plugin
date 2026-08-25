@@ -1,0 +1,12 @@
+name = ConfigBlockScalar
+
+configurations = [{
+  loader = oap.json.TypeIdFactory
+  config:
+    description: |
+      line one
+      line two
+    summary: >
+      folded
+      onto one line
+}]

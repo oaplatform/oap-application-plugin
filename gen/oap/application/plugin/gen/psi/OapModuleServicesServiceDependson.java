@@ -9,6 +9,9 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 public interface OapModuleServicesServiceDependson extends OapKeyValuePairWithIndentNormal {
 
   @NotNull
+  List<OapBlockScalarValue> getBlockScalarValueList();
+
+  @NotNull
   OapModuleServicesServiceDependsonId getModuleServicesServiceDependsonId();
 
   @NotNull

@@ -1,0 +1,11 @@
+name = WsServicePathBlockScalar
+
+services {
+  test1 {
+    implementation = oap.application.plugin.TestService
+    ws-service {
+      path: |
+        /static
+    }
+  }
+}

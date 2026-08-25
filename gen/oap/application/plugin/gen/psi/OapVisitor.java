@@ -22,6 +22,10 @@ public class OapVisitor extends PsiElementVisitor {
     visitCompositeElement(o);
   }
 
+  public void visitBlockScalarValue(@NotNull OapBlockScalarValue o) {
+    visitValue(o);
+  }
+
   public void visitBoolValue(@NotNull OapBoolValue o) {
     visitValue(o);
   }
