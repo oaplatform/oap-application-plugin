@@ -1,0 +1,14 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiElement(:)(':')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      OAP_BLOCK_SCALAR_VALUE
+        PsiElement(block_scalar)('|-\n  ModuleNameBlockScalar\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

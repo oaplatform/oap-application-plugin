@@ -1,0 +1,53 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('WsServicePortBlockScalar')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('test1')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestService')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_WSSERVICE
+        PsiElement(ws-service)('ws-service')
+        PsiWhiteSpace(' ')
+        OAP_WSSERVICE_OBJECT
+          PsiElement({)('{')
+          PsiWhiteSpace('\n')
+          PsiWhiteSpace('      ')
+          OAP_WSSERVICE_ENTRIES
+            OAP_WSSERVICE_PATH
+              OAP_WSSERVICE_PATH_ID
+                PsiElement(path)('port')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              OAP_BLOCK_SCALAR_VALUE
+                PsiElement(block_scalar)('|-\n        8080\n')
+          PsiWhiteSpace('    ')
+          PsiElement(})('}')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

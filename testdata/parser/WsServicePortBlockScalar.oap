@@ -1,0 +1,11 @@
+name = WsServicePortBlockScalar
+
+services {
+  test1 {
+    implementation = oap.application.plugin.TestService
+    ws-service {
+      port: |-
+        8080
+    }
+  }
+}
