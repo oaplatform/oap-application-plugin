@@ -1,0 +1,16 @@
+name = xenoss-http
+
+services {
+  oap-http {
+    implementation = io.xenoss.http.HttpService
+    parameters {
+      oap-http-server {
+        defaultPort {
+        // aligned first
+//        httpPort = ${HTTP_PORT}
+        // aligned last
+        }
+      }
+    }
+  }
+}
