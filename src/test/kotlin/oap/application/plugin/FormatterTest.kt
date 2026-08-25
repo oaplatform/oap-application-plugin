@@ -42,6 +42,14 @@ class FormatterTest : OapFixtureTestCase() {
         doTest(true)
     }
 
+    fun testCommentIndent() {
+        doTest(true)
+    }
+
+    fun testCommentColumnZero() {
+        doTest(true)
+    }
+
     private fun doTest(format: Boolean) {
         val inputFile: String = getInputFileName()
         val inputText: String = FileUtil.loadFile(File(getTestDataPath() + inputFile));

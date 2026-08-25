@@ -41,6 +41,7 @@
                                implementationClass="oap.application.plugin.parser.OapParserDefinition"/>
         <lang.braceMatcher language="OAP" implementationClass="oap.application.plugin.misc.OapBraceMatcher"/>
         <lang.foldingBuilder language="OAP" implementationClass="oap.application.plugin.misc.OapFoldingBuilder"/>
+        <lang.commenter language="OAP" implementationClass="oap.application.plugin.misc.OapCommenter"/>
         <!--        <quoteHandler fileType="OAP" className="org.jetbrains.plugins.oap.editor.OapQuoteHandler"/>-->
 
         <completion.contributor language="OAP" implementationClass="oap.application.plugin.completion.OapReferenceCompletionContributor" order="first"/>

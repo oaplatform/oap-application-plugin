@@ -1,0 +1,36 @@
+name: Version Check
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  version-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Compare version against base branch
+        run: |
+          HEAD_VERSION=$(grep -E '^version[[:space:]]*=' gradle.properties | sed -E 's/^version[[:space:]]*=[[:space:]]*//')
+          BASE_VERSION=$(git show "origin/${{ github.base_ref }}:gradle.properties" | grep -E '^version[[:space:]]*=' | sed -E 's/^version[[:space:]]*=[[:space:]]*//')
+
+          echo "Base branch (${{ github.base_ref }}) version: $BASE_VERSION"
+          echo "This PR's version:               $HEAD_VERSION"
+
+          if [ "$HEAD_VERSION" = "$BASE_VERSION" ]; then
+            echo "::error::Project version was not bumped (still $HEAD_VERSION). Update the 'version' field in gradle.properties."
+            exit 1
+          fi
+
+          HIGHEST=$(printf '%s\n%s\n' "$BASE_VERSION" "$HEAD_VERSION" | sort -V | tail -n1)
+          if [ "$HIGHEST" != "$HEAD_VERSION" ]; then
+            echo "::error::Project version decreased ($BASE_VERSION -> $HEAD_VERSION). Bump the 'version' field in gradle.properties."
+            exit 1
+          fi
+
+          echo "Version bumped: $BASE_VERSION -> $HEAD_VERSION"
