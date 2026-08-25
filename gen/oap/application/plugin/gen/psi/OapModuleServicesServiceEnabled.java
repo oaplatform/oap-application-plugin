@@ -12,6 +12,9 @@ public interface OapModuleServicesServiceEnabled extends OapCompositeElement {
   OapBoolValue getBoolValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

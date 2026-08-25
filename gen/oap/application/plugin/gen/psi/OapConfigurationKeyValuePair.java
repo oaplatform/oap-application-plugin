@@ -14,6 +14,9 @@ public interface OapConfigurationKeyValuePair extends OapKeyValuePairWithIndentN
   @Nullable
   OapConfigArray getConfigArray();
 
+  @NotNull
+  List<OapConfigArrayItem> getConfigArrayItemList();
+
   @Nullable
   OapConfigObject getConfigObject();
 
@@ -24,6 +27,15 @@ public interface OapConfigurationKeyValuePair extends OapKeyValuePairWithIndentN
   OapModuleInclude getModuleInclude();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
   PsiElement getEq();
+
+  @Nullable
+  PsiElement getIndent();
 
 }

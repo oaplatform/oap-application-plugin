@@ -3,7 +3,6 @@ package oap.application.plugin.parser
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
 import com.intellij.lang.PsiParser
-import com.intellij.lexer.FlexAdapter
 import com.intellij.lexer.Lexer
 import com.intellij.lexer.LookAheadLexer
 import com.intellij.lexer.MergingLexerAdapter
@@ -16,9 +15,9 @@ import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import oap.application.plugin.gen.OapTypes
 import oap.application.plugin.gen.parser.OapParser
-import oap.application.plugin.gen.parser._OapLexer
 import oap.application.plugin.stub.types.OapFileElementType
 import oap.application.plugin.psi.OapPsiFile
+import oap.application.plugin.lexer.OapLexer as OapFlexLexer
 
 class OapParserDefinition : ParserDefinition {
     val WS: TokenSet = TokenSet.create(TokenType.WHITE_SPACE)
@@ -58,6 +57,6 @@ class OapParserDefinition : ParserDefinition {
     }
 }
 
-class OapLexer(project: Project) : LookAheadLexer(MergingLexerAdapter(FlexAdapter(_OapLexer(null)), TokenSet.EMPTY)) {
+class OapLexer(project: Project) : LookAheadLexer(MergingLexerAdapter(OapFlexLexer(), TokenSet.EMPTY)) {
 
 }

@@ -1,0 +1,11 @@
+name = ConfigArrayBlockAmbiguous
+
+configurations = [{
+  loader = oap.json.TypeIdFactory
+  config:
+    nestedObject:
+      a = 1
+    nestedArray:
+      - 1
+      - 2
+}]

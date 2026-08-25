@@ -15,6 +15,9 @@ public interface OapModuleServicesServiceDependson extends OapKeyValuePairWithIn
   List<OapModuleServicesServiceDependsonName> getModuleServicesServiceDependsonNameList();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
 }

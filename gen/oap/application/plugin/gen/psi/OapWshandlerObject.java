@@ -11,7 +11,16 @@ public interface OapWshandlerObject extends OapCompositeElement {
   @Nullable
   OapWshandlerEntries getWshandlerEntries();
 
-  @NotNull
+  @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
+  PsiElement getIndent();
+
+  @Nullable
   PsiElement getLeftbrace();
 
   @Nullable

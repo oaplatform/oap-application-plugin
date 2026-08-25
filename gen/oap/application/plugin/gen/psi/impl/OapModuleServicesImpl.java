@@ -35,9 +35,27 @@ public class OapModuleServicesImpl extends OapCompositeElementImpl implements Oa
   }
 
   @Override
+  @Nullable
+  public PsiElement getColon() {
+    return findChildByType(OAP_COLON);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getDedent() {
+    return findChildByType(OAP_DEDENT);
+  }
+
+  @Override
   @NotNull
   public PsiElement getIdServices() {
     return notNullChild(findChildByType(OAP_ID_SERVICES));
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getIndent() {
+    return findChildByType(OAP_INDENT);
   }
 
   @Override
@@ -53,7 +71,8 @@ public class OapModuleServicesImpl extends OapCompositeElementImpl implements Oa
   }
 
   @Override
-  public @NotNull List<@NotNull OapModuleServicesService> getServices() {
+  @NotNull
+  public List<OapModuleServicesService> getServices() {
     return GrammarPsiImplUtil.getServices(this);
   }
 

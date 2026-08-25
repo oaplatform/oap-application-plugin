@@ -15,6 +15,7 @@ public interface OapReferenceModulesName extends IModuleName {
   @Nullable
   PsiElement getReferenceValue();
 
-  @NotNull PsiReference @NotNull [] getReferences();
+  @NotNull
+  PsiReference[] getReferences();
 
 }

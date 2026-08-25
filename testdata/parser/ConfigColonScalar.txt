@@ -1,0 +1,58 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('config-colon-scalar-module')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_CONFIGURATIONS
+    PsiElement(configurations)('configurations')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    PsiElement([)('[')
+    OAP_MODULE_CONFIGURATION
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      OAP_MODULE_CONFIGURATION_ENTRIES
+        OAP_MODULE_CONFIGURATION_ENTRIES_LOADER
+          PsiElement(loader)('loader')
+          PsiWhiteSpace(' ')
+          PsiElement(=)('=')
+          PsiWhiteSpace(' ')
+          OAP_CLASS_NAME_PSI
+            PsiElement(class_name)('oap.json.TypeIdFactory')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('  ')
+        OAP_MODULE_CONFIGURATION_ENTRIES_CONFIG
+          PsiElement(config)('config')
+          OAP_CONFIG_OBJECT
+            PsiElement(:)(':')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('    ')
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
+              PsiElement(key_name)('cookie')
+              PsiElement(:)(':')
+              PsiWhiteSpace(' ')
+              OAP_ID_VALUE
+                PsiElement(key_value)('io.undertow.server.handlers.CookieImpl')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('    ')
+            OAP_CONFIGURATION_KEY_VALUE_PAIR
+              PsiElement(key_name)('nested')
+              OAP_CONFIG_OBJECT
+                PsiElement(:)(':')
+                PsiWhiteSpace('\n')
+                PsiWhiteSpace('      ')
+                OAP_CONFIGURATION_KEY_VALUE_PAIR
+                  PsiElement(key_name)('key')
+                  PsiElement(:)(':')
+                  PsiWhiteSpace(' ')
+                  OAP_ID_VALUE
+                    PsiElement(key_value)('value')
+                PsiWhiteSpace('\n')
+      PsiElement(})('}')
+    PsiElement(])(']')

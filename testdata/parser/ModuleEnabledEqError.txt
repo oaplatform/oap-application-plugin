@@ -11,5 +11,5 @@ OAP_FILE
     PsiElement(enabled)('enabled')
     PsiWhiteSpace(' ')
     PsiElement(=)('=')
-    PsiErrorElement:bool expected
-      <empty list>
+  PsiErrorElement:bool expected
+    <empty list>

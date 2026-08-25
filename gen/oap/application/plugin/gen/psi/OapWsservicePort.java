@@ -12,6 +12,9 @@ public interface OapWsservicePort extends OapKeyValuePairWithIndentNormal {
   OapWsservicePortId getWsservicePortId();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @Nullable

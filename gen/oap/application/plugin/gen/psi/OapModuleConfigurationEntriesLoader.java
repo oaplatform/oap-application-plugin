@@ -12,6 +12,9 @@ public interface OapModuleConfigurationEntriesLoader extends OapKeyValuePairWith
   OapClassNamePsi getClassNamePsi();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

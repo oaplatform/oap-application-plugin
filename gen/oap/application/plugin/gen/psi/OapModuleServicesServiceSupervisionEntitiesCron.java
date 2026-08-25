@@ -9,6 +9,9 @@ import oap.application.plugin.psi.OapKeyValuePairWithIndentNormal;
 public interface OapModuleServicesServiceSupervisionEntitiesCron extends OapKeyValuePairWithIndentNormal {
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

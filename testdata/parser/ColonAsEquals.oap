@@ -1,0 +1,15 @@
+name: ColonAsEquals
+
+services {
+  test1 {
+    enabled: true
+    implementation: oap.application.plugin.TestService
+    remote:
+      url: "http://example.com"
+      timeout: 5000
+    ws-service:
+      path: /static
+    supervision:
+      schedule: true
+  }
+}

@@ -60,6 +60,18 @@ public class OapModuleServicesServiceSupervisionImpl extends OapCompositeElement
 
   @Override
   @Nullable
+  public PsiElement getColon() {
+    return findChildByType(OAP_COLON);
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getDedent() {
+    return findChildByType(OAP_DEDENT);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getDot() {
     return findChildByType(OAP_DOT);
   }
@@ -68,6 +80,12 @@ public class OapModuleServicesServiceSupervisionImpl extends OapCompositeElement
   @NotNull
   public PsiElement getIdSupervision() {
     return notNullChild(findChildByType(OAP_ID_SUPERVISION));
+  }
+
+  @Override
+  @Nullable
+  public PsiElement getIndent() {
+    return findChildByType(OAP_INDENT);
   }
 
   @Override

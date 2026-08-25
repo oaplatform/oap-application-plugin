@@ -36,7 +36,8 @@ public class OapModuleDependsOnNameImpl extends OapCompositeElementImpl implemen
   }
 
   @Override
-  public @NotNull PsiReference @NotNull [] getReferences() {
+  @NotNull
+  public PsiReference[] getReferences() {
     return GrammarPsiImplUtil.getReferences(this);
   }
 

@@ -111,6 +111,7 @@ public interface OapTypes {
   IElementType OAP_COMMA = new OapTokenType(",");
   IElementType OAP_COMMENT = new OapTokenType("comment");
   IElementType OAP_DASH = new OapTokenType("-");
+  IElementType OAP_DEDENT = new OapTokenType("dedent");
   IElementType OAP_DOLLAR = new OapTokenType("$");
   IElementType OAP_DOT = new OapTokenType(".");
   IElementType OAP_DURATION = new OapTokenType("duration");
@@ -151,6 +152,7 @@ public interface OapTypes {
   IElementType OAP_ID_URL = new OapTokenType("url");
   IElementType OAP_ID_WS_HANDLER = new OapTokenType("ws-handler");
   IElementType OAP_ID_WS_SERVICE = new OapTokenType("ws-service");
+  IElementType OAP_INDENT = new OapTokenType("indent");
   IElementType OAP_KEY_NAME = new OapTokenType("key_name");
   IElementType OAP_KEY_VALUE = new OapTokenType("key_value");
   IElementType OAP_LEFTANGLE = new OapTokenType("<");

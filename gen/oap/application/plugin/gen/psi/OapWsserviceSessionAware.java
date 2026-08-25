@@ -15,6 +15,9 @@ public interface OapWsserviceSessionAware extends OapKeyValuePairWithIndentNorma
   OapWsserviceSessionAwareId getWsserviceSessionAwareId();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
 }

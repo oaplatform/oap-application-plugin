@@ -12,6 +12,9 @@ public interface OapRemoteTimeout extends OapKeyValuePairWithIndentNormal {
   OapRemoteTimeoutIdValue getRemoteTimeoutIdValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @Nullable

@@ -12,6 +12,7 @@ public interface OapReferenceModulesServiceName extends IServiceName {
   @Nullable
   PsiElement getReferenceValue();
 
-  @Nullable OapServiceReference getReference();
+  @Nullable
+  OapServiceReference getReference();
 
 }

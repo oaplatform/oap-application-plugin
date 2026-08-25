@@ -12,6 +12,9 @@ public interface OapRemoteName extends OapKeyValuePairWithIndentNormal {
   OapReferenceModulesValue getReferenceModulesValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

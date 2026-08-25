@@ -60,7 +60,8 @@ public class OapModuleIncludeImpl extends OapCompositeElementImpl implements Oap
   }
 
   @Override
-  public @Nullable FileReference getReference() {
+  @Nullable
+  public FileReference getReference() {
     return GrammarPsiImplUtil.getReference(this);
   }
 

@@ -11,8 +11,17 @@ public interface OapModuleServices extends OapKeyValuePair {
   @NotNull
   List<OapModuleServicesService> getModuleServicesServiceList();
 
+  @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
   @NotNull
   PsiElement getIdServices();
+
+  @Nullable
+  PsiElement getIndent();
 
   @Nullable
   PsiElement getLeftbrace();
@@ -20,6 +29,7 @@ public interface OapModuleServices extends OapKeyValuePair {
   @Nullable
   PsiElement getRightbrace();
 
-  @NotNull List<@NotNull OapModuleServicesService> getServices();
+  @NotNull
+  List<OapModuleServicesService> getServices();
 
 }

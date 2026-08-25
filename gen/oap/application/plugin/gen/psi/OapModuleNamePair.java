@@ -14,6 +14,9 @@ public interface OapModuleNamePair extends OapKeyValuePair, StubBasedPsiElement<
   OapModuleName getModuleName();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @Nullable

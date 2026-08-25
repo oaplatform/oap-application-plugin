@@ -12,6 +12,9 @@ public interface OapModuleServicesServiceSupervisionEntitiesSupervise extends Oa
   OapBoolValue getBoolValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

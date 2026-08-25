@@ -15,7 +15,16 @@ public interface OapWsserviceInterceptors extends OapKeyValuePairWithIndentNorma
   OapWsserviceInterceptorsId getWsserviceInterceptorsId();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
   PsiElement getEq();
+
+  @Nullable
+  PsiElement getIndent();
 
   @Nullable
   PsiElement getLeftbracket();

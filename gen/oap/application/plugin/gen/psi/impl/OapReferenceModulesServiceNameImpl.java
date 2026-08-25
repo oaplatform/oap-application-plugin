@@ -36,7 +36,8 @@ public class OapReferenceModulesServiceNameImpl extends OapCompositeElementImpl 
   }
 
   @Override
-  public @Nullable OapServiceReference getReference() {
+  @Nullable
+  public OapServiceReference getReference() {
     return GrammarPsiImplUtil.getReference(this);
   }
 

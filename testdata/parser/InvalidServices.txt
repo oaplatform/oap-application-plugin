@@ -15,7 +15,7 @@ OAP_FILE
     OAP_MODULE_SERVICES_SERVICE
       OAP_SERVICE_NAME
         PsiElement(key_name)('a')
-      PsiErrorElement:'.' or '{' expected, got '='
+      PsiErrorElement:'.', ':' or '{' expected, got '='
         <empty list>
   PsiWhiteSpace(' ')
   PsiElement(BAD_CHARACTER)('=')

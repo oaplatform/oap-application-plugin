@@ -15,7 +15,16 @@ public interface OapModuleServicesServiceParameters extends OapCompositeElement 
   OapModuleServicesServiceParametersId getModuleServicesServiceParametersId();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
+
+  @Nullable
   PsiElement getDot();
+
+  @Nullable
+  PsiElement getIndent();
 
   @Nullable
   PsiElement getLeftbrace();

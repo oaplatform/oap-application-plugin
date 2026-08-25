@@ -17,8 +17,10 @@ public interface OapReferenceModulesValue extends OapValue {
   @Nullable
   PsiElement getRightangle();
 
-  @Nullable String getReferenceModuleName();
+  @Nullable
+  String getReferenceModuleName();
 
-  @Nullable String getReferenceServiceName();
+  @Nullable
+  String getReferenceServiceName();
 
 }

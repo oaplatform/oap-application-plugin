@@ -12,6 +12,9 @@ public interface OapModuleServicesServiceLinkField extends IndentNormal {
   OapReferenceModulesValue getReferenceModulesValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

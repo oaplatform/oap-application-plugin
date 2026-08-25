@@ -36,7 +36,8 @@ public class OapParameterKeyValueFirstIdImpl extends OapCompositeElementImpl imp
   }
 
   @Override
-  public @Nullable JvmNamedElementReference getReference() {
+  @Nullable
+  public JvmNamedElementReference getReference() {
     return GrammarPsiImplUtil.getReference(this);
   }
 

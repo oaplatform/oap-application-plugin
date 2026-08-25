@@ -36,6 +36,12 @@ public class OapModuleServicesServiceSupervisionEntitiesSuperviseImpl extends Oa
 
   @Override
   @Nullable
+  public PsiElement getColon() {
+    return findChildByType(OAP_COLON);
+  }
+
+  @Override
+  @Nullable
   public PsiElement getEq() {
     return findChildByType(OAP_EQ);
   }

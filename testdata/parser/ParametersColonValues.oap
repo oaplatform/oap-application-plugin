@@ -1,0 +1,12 @@
+name = ParametersColonValues
+
+services {
+  test-master {
+    implementation = oap.application.plugin.TestService
+    parameters:
+      watch: true
+      a: <modules.xenoss-platform-dsp-missioncontrol.bidder-filter>
+      complexes: [{i = 2}]
+      service3Field: json("{\"name\":\"from resource\",\"timeout\":1234}")
+  }
+}

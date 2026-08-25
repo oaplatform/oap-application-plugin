@@ -1,0 +1,94 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiWhiteSpace(' ')
+    PsiElement(=)('=')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('ModuleDependsOnBlock')
+  PsiWhiteSpace('\n')
+  OAP_MODULE_DEPENDS_ON
+    PsiElement(dependsOn)('dependsOn')
+    PsiElement(:)(':')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    PsiElement(-)('-')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_DEPENDS_ON_NAME
+      PsiElement(key_value)('module-a')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    PsiElement(-)('-')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_DEPENDS_ON_NAME
+      PsiElement(key_value)('module-b')
+    PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiWhiteSpace(' ')
+    PsiElement({)('{')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('test1')
+      PsiWhiteSpace(' ')
+      PsiElement({)('{')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestService')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_DEPENDSON
+        OAP_MODULE_SERVICES_SERVICE_DEPENDSON_ID
+          PsiElement(dependsOn)('dependsOn')
+        PsiElement(:)(':')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        PsiElement(-)('-')
+        PsiWhiteSpace(' ')
+        OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME
+          PsiElement(key_value)('test2')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        PsiElement(-)('-')
+        PsiWhiteSpace(' ')
+        OAP_MODULE_SERVICES_SERVICE_DEPENDSON_NAME
+          PsiElement(key_value)('test3')
+        PsiWhiteSpace('\n')
+      PsiWhiteSpace('  ')
+      PsiElement(})('}')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('test2')
+      PsiElement(.)('.')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestService')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('test3')
+      PsiElement(.)('.')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('oap.application.plugin.TestService')
+    PsiWhiteSpace('\n')
+    PsiElement(})('}')

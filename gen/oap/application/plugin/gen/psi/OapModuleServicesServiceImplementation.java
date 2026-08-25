@@ -12,6 +12,9 @@ public interface OapModuleServicesServiceImplementation extends OapCompositeElem
   OapClassNamePsi getClassNamePsi();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull

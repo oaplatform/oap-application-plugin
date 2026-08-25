@@ -1,0 +1,12 @@
+name = ParametersColonNestedMixed
+
+services {
+  test1 {
+    implementation = oap.application.plugin.TestService
+    parameters:
+      a:
+        v:
+          c: 5
+          d = 6
+  }
+}

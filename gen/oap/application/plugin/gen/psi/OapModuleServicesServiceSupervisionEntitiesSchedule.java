@@ -12,6 +12,9 @@ public interface OapModuleServicesServiceSupervisionEntitiesSchedule extends Oap
   OapBoolValue getBoolValue();
 
   @Nullable
+  PsiElement getColon();
+
+  @Nullable
   PsiElement getEq();
 
   @NotNull
