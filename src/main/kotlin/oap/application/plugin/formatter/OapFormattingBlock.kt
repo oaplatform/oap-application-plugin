@@ -72,16 +72,34 @@ class OapFormattingBlock(val formatter: OapFormatter, node: ASTNode, val myInden
         return blocks
     }
 
+    // A comment already flush at column 0 in the original source is left completely untouched
+    // (e.g. flush-left to visually flag "everything below is disabled"); a comment at any other
+    // original column still gets normal computed alignment. Keyed on the comment's own original
+    // column, not on its position/neighbors - containingFile.text is the immutable snapshot the
+    // formatting model was built from, so AST offsets line up with it.
+    private fun isAtColumnZero(node: ASTNode): Boolean {
+        val text = node.psi.containingFile.text
+        var i = node.startOffset
+        while (i > 0 && text[i - 1] != '\n') i--
+        return i == node.startOffset
+    }
+
     override fun getSpacing(child1: Block?, child2: Block): Spacing? {
         fun defaultSpace(keepBlankLines: Int): Spacing {
             return Spacing.createSpacing(0, 0, 0, true, keepBlankLines)
+        }
+
+        if ((child2 as OapFormattingBlock).myNode.elementType == OapTypes.OAP_COMMENT &&
+            isAtColumnZero(child2.myNode)
+        ) {
+            return Spacing.getReadOnlySpacing()
         }
 
         if (child1 == null) {
             return Spacing.createSpacing(0, 0, 0, true, 0);
         }
 
-        return when ((child2 as OapFormattingBlock).myNode.elementType) {
+        return when (child2.myNode.elementType) {
             OapTypes.OAP_MODULE_SERVICES_SERVICE -> defaultSpace(formatter.customSettings.KEEP_BLANK_LINES_BEFORE_SERVICES_SERVICE)
 
             OapTypes.OAP_MODULE_DEPENDS_ON -> defaultSpace(formatter.customSettings.KEEP_BLANK_LINES_BEFORE_DEPENDS_ON)
