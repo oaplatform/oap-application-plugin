@@ -517,7 +517,7 @@ module_configuration_entries_loader ::= 'loader' ('=' | ':') class_name_psi {
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-module_configuration_entries_config ::= [] 'config' (config_entries_config_eq | config_object) {
+module_configuration_entries_config ::= [] 'config' (config_entries_config_eq | &(':' indent '-') config_key_value_array_block | config_object) {
     pin=1
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
@@ -526,14 +526,26 @@ private config_entries_config_eq ::= '=' config_array { pin=1 }
 config_array ::= '[' config_array_item? (','? config_array_item)* ']' {
     pin=1
 }
-config_array_item ::= &'{' config_object | block_scalar_value | key_value {
+config_array_item ::= &'{' config_object | &key_name config_object | block_scalar_value | key_value {
     implements="oap.application.plugin.psi.IndentNormal"
 }
-config_object ::= config_object_brace | config_object_colon {
+config_object ::= config_object_brace | config_object_colon | config_object_bare {
     implements="oap.application.plugin.psi.IndentNormal"
 }
 private config_object_brace ::= '{' (configuration_key_value_pair)* '}' { pin=1 }
 private config_object_colon ::= ':' indent (configuration_key_value_pair)* dedent { pin=1 }
+// A bare flat map used as a dash-list item's value (e.g. "- class: X\n  field: Y"), with no
+// wrapping '{'/':' of its own - see dashItemStartsKeyValue() in _OapLexer.flex. The first pair
+// sits on the same line as the '-' (no indent token precedes it); any further pairs are
+// continuation lines wrapped in a single indent/dedent, matching the lexer's actual token
+// stream (the indent column is only established once a continuation line is seen at all).
+//
+// Known limitation: a single-pair item immediately followed by a sibling '-' at the enclosing
+// list's own column (e.g. "- class: X\n- class: Y", no second key on either item) is NOT
+// supported - the lexer's indent resolver can't yet distinguish "this item's map genuinely has
+// more indented content" from "this item has none and the next line is already the next list
+// item at the outer column" without a line of lookahead past the dash.
+private config_object_bare ::= configuration_key_value_pair (indent (configuration_key_value_pair)+ dedent)? { pin=1 }
 
 configuration_key_value_pair ::=
     ( &'include' module_include )

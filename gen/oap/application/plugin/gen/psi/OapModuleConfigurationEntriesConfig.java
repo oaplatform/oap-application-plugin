@@ -11,13 +11,25 @@ public interface OapModuleConfigurationEntriesConfig extends OapKeyValuePairWith
   @Nullable
   OapConfigArray getConfigArray();
 
+  @NotNull
+  List<OapConfigArrayItem> getConfigArrayItemList();
+
   @Nullable
   OapConfigObject getConfigObject();
+
+  @Nullable
+  PsiElement getColon();
+
+  @Nullable
+  PsiElement getDedent();
 
   @Nullable
   PsiElement getEq();
 
   @Nullable
   PsiElement getIdConfig();
+
+  @Nullable
+  PsiElement getIndent();
 
 }

@@ -162,6 +162,14 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(false)
     }
 
+    fun testConfigColonBlockArrayOfMaps() {
+        doTest(false)
+    }
+
+    fun testConfigColonBlockArrayOfMapsLoaderEq() {
+        doTest(false)
+    }
+
     fun testParametersBlockScalar() {
         doTest(false)
     }
