@@ -1,0 +1,13 @@
+name = ConfigColonBlockArrayOfMaps
+
+configurations:
+  - loader: oap.json.ext.ExtDeserializer
+    config:
+      - class: oap.ws.account.User
+        field: ext
+        abstract: oap.json.ext.Ext
+        implementation: com.lightad.LightadUserExt
+      - class: oap.ws.account.Organization
+        field: ext
+        abstract: oap.json.ext.Ext
+        implementation: com.lightad.LightadOrganizationExt

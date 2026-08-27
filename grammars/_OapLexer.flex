@@ -68,6 +68,27 @@ import static oap.application.plugin.gen.OapTypes.*;
         return zzMarkedPos < zzEndRead ? zzBuffer.charAt(zzMarkedPos) : '\0';
     }
 
+    // Looks ahead from the current position (right after a dash-list '-') to decide whether this
+    // item is itself a bare flat map (YAML-style "- key: value" with more "key: value" pairs on
+    // following lines at the same indent, no wrapping '{'/':') rather than a plain scalar/ref/
+    // array/braced-object value. True iff a KEY_NAME-shaped run of characters is immediately
+    // (modulo spaces/tabs) followed by ':' - the trailing content after that ':' is irrelevant
+    // since a value follows on the same line (e.g. "class: oap.ws.account.User").
+    private boolean dashItemStartsKeyValue() {
+        int i = zzMarkedPos;
+        while (i < zzEndRead && (zzBuffer.charAt(i) == ' ' || zzBuffer.charAt(i) == '\t')) i++;
+        int start = i;
+        if (i >= zzEndRead || !Character.isJavaIdentifierStart(zzBuffer.charAt(i))) return false;
+        while (i < zzEndRead) {
+            char c = zzBuffer.charAt(i);
+            if (Character.isJavaIdentifierPart(c) || c == '-' || c == '/') { i++; continue; }
+            break;
+        }
+        if (i == start) return false;
+        while (i < zzEndRead && (zzBuffer.charAt(i) == ' ' || zzBuffer.charAt(i) == '\t')) i++;
+        return i < zzEndRead && zzBuffer.charAt(i) == ':';
+    }
+
     // Scans forward from the current position, skipping spaces/tabs, to decide what a nested
     // key's ':' means: true if only whitespace/comment/EOF follows before the next newline (this
     // ':' opens a nested block, YAML-style), false if real content follows on the same line
@@ -719,9 +740,22 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
 // case: BOL_CHECK redirects here instead of _OBJECT once it sees the first real character
 // of the block is '-', which a nested-object key can never start with). Reuses
 // _OBJECT_ENTITY's existing value matching (<ref>, [array], {object}, bool, id_value,
-// function, string) for whatever follows each dash.
+// function, string) for whatever follows each dash. When the dash is instead followed by a
+// "key: value" pair (dashItemStartsKeyValue()), the item is a bare flat map spanning possibly
+// several lines (e.g. "- class: X\n  field: Y") - push _OBJECT directly (not _OBJECT_ENTITY)
+// with an unresolved indent context so BOL_CHECK captures the column of the first continuation
+// key ("field") the same way any other colon-opened block does, and a later dedent back to this
+// item's own dash column pops back out to _ARRAY_BLOCK_ITEM for the next '-'.
 <_ARRAY_BLOCK_ITEM> {
-  "-"                  { yypushState(_OBJECT_ENTITY); return OAP_DASH; }
+  "-"                  {
+                           if (dashItemStartsKeyValue()) {
+                               yypushState(_OBJECT);
+                               indentStack.push(-1);
+                           } else {
+                               yypushState(_OBJECT_ENTITY);
+                           }
+                           return OAP_DASH;
+                       }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
   {NEXTLINE}           { return handleNextline(); }
@@ -816,6 +850,15 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
     if (!indentStack.isEmpty()) {
         indentStack.pop();
         zzAtEOF = false;
+        // Same "not progressing" hazard BOL_CHECK/BOL_CHECK2 ping-pong around: draining 2+
+        // still-open indent levels at real EOF emits that many zero-width OAP_DEDENT tokens in a
+        // row, all at the same offset - and unlike BOL_CHECK's dedent branch, this rule never
+        // called yybegin(), so consecutive calls also kept the exact same (tokenType, start, end,
+        // state) tuple, which ValidatingLexerWrapper (used by OapHighlightingLexer for editor/diff
+        // highlighting) flags as an infinite loop. Alternate state here too, purely so the tuple
+        // differs between successive EOF-triggered dedents; BOL_CHECK/BOL_CHECK2 aren't otherwise
+        // reachable once real input is exhausted, so reusing them here is safe.
+        yybegin(yystate() == BOL_CHECK ? BOL_CHECK2 : BOL_CHECK);
         return OAP_DEDENT;
     }
     return null;

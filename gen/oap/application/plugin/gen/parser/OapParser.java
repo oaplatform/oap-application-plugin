@@ -214,12 +214,13 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // &'{' config_object | block_scalar_value | key_value
+  // &'{' config_object | &key_name config_object | block_scalar_value | key_value
   public static boolean config_array_item(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "config_array_item")) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, OAP_CONFIG_ARRAY_ITEM, "<config array item>");
     result_ = config_array_item_0(builder_, level_ + 1);
+    if (!result_) result_ = config_array_item_1(builder_, level_ + 1);
     if (!result_) result_ = block_scalar_value(builder_, level_ + 1);
     if (!result_) result_ = consumeToken(builder_, OAP_KEY_VALUE);
     exit_section_(builder_, level_, marker_, result_, false, null);
@@ -243,6 +244,27 @@ public class OapParser implements PsiParser, LightPsiParser {
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _AND_);
     result_ = consumeToken(builder_, OAP_LEFTBRACE);
+    exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  // &key_name config_object
+  private static boolean config_array_item_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "config_array_item_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = config_array_item_1_0(builder_, level_ + 1);
+    result_ = result_ && config_object(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // &key_name
+  private static boolean config_array_item_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "config_array_item_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _AND_);
+    result_ = consumeToken(builder_, OAP_KEY_NAME);
     exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }
@@ -369,15 +391,73 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // config_object_brace | config_object_colon
+  // config_object_brace | config_object_colon | config_object_bare
   public static boolean config_object(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "config_object")) return false;
-    if (!nextTokenIs(builder_, "<config object>", OAP_COLON, OAP_LEFTBRACE)) return false;
     boolean result_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_, OAP_CONFIG_OBJECT, "<config object>");
     result_ = config_object_brace(builder_, level_ + 1);
     if (!result_) result_ = config_object_colon(builder_, level_ + 1);
+    if (!result_) result_ = config_object_bare(builder_, level_ + 1);
     exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  /* ********************************************************** */
+  // configuration_key_value_pair (indent (configuration_key_value_pair)+ dedent)?
+  static boolean config_object_bare(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "config_object_bare")) return false;
+    if (!nextTokenIs(builder_, "", OAP_ID_INCLUDE, OAP_KEY_NAME)) return false;
+    boolean result_, pinned_;
+    Marker marker_ = enter_section_(builder_, level_, _NONE_);
+    result_ = configuration_key_value_pair(builder_, level_ + 1);
+    pinned_ = result_; // pin = 1
+    result_ = result_ && config_object_bare_1(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, pinned_, null);
+    return result_ || pinned_;
+  }
+
+  // (indent (configuration_key_value_pair)+ dedent)?
+  private static boolean config_object_bare_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "config_object_bare_1")) return false;
+    config_object_bare_1_0(builder_, level_ + 1);
+    return true;
+  }
+
+  // indent (configuration_key_value_pair)+ dedent
+  private static boolean config_object_bare_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "config_object_bare_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeToken(builder_, OAP_INDENT);
+    result_ = result_ && config_object_bare_1_0_1(builder_, level_ + 1);
+    result_ = result_ && consumeToken(builder_, OAP_DEDENT);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // (configuration_key_value_pair)+
+  private static boolean config_object_bare_1_0_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "config_object_bare_1_0_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = config_object_bare_1_0_1_0(builder_, level_ + 1);
+    while (result_) {
+      int pos_ = current_position_(builder_);
+      if (!config_object_bare_1_0_1_0(builder_, level_ + 1)) break;
+      if (!empty_element_parsed_guard_(builder_, "config_object_bare_1_0_1", pos_)) break;
+    }
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // (configuration_key_value_pair)
+  private static boolean config_object_bare_1_0_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "config_object_bare_1_0_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = configuration_key_value_pair(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 
@@ -1158,7 +1238,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // [] 'config' (config_entries_config_eq | config_object)
+  // [] 'config' (config_entries_config_eq | &(':' indent '-') config_key_value_array_block | config_object)
   public static boolean module_configuration_entries_config(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_configuration_entries_config")) return false;
     boolean result_, pinned_;
@@ -1176,12 +1256,46 @@ public class OapParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // config_entries_config_eq | config_object
+  // config_entries_config_eq | &(':' indent '-') config_key_value_array_block | config_object
   private static boolean module_configuration_entries_config_2(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "module_configuration_entries_config_2")) return false;
     boolean result_;
+    Marker marker_ = enter_section_(builder_);
     result_ = config_entries_config_eq(builder_, level_ + 1);
+    if (!result_) result_ = module_configuration_entries_config_2_1(builder_, level_ + 1);
     if (!result_) result_ = config_object(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // &(':' indent '-') config_key_value_array_block
+  private static boolean module_configuration_entries_config_2_1(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_configuration_entries_config_2_1")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = module_configuration_entries_config_2_1_0(builder_, level_ + 1);
+    result_ = result_ && config_key_value_array_block(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // &(':' indent '-')
+  private static boolean module_configuration_entries_config_2_1_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_configuration_entries_config_2_1_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _AND_);
+    result_ = module_configuration_entries_config_2_1_0_0(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  // ':' indent '-'
+  private static boolean module_configuration_entries_config_2_1_0_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "module_configuration_entries_config_2_1_0_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = consumeTokens(builder_, 0, OAP_COLON, OAP_INDENT, OAP_DASH);
+    exit_section_(builder_, marker_, null, result_);
     return result_;
   }
 

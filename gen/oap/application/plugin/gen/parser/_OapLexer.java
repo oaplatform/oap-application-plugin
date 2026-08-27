@@ -989,6 +989,27 @@ public class _OapLexer implements FlexLexer {
         return zzMarkedPos < zzEndRead ? zzBuffer.charAt(zzMarkedPos) : '\0';
     }
 
+    // Looks ahead from the current position (right after a dash-list '-') to decide whether this
+    // item is itself a bare flat map (YAML-style "- key: value" with more "key: value" pairs on
+    // following lines at the same indent, no wrapping '{'/':') rather than a plain scalar/ref/
+    // array/braced-object value. True iff a KEY_NAME-shaped run of characters is immediately
+    // (modulo spaces/tabs) followed by ':' - the trailing content after that ':' is irrelevant
+    // since a value follows on the same line (e.g. "class: oap.ws.account.User").
+    private boolean dashItemStartsKeyValue() {
+        int i = zzMarkedPos;
+        while (i < zzEndRead && (zzBuffer.charAt(i) == ' ' || zzBuffer.charAt(i) == '\t')) i++;
+        int start = i;
+        if (i >= zzEndRead || !Character.isJavaIdentifierStart(zzBuffer.charAt(i))) return false;
+        while (i < zzEndRead) {
+            char c = zzBuffer.charAt(i);
+            if (Character.isJavaIdentifierPart(c) || c == '-' || c == '/') { i++; continue; }
+            break;
+        }
+        if (i == start) return false;
+        while (i < zzEndRead && (zzBuffer.charAt(i) == ' ' || zzBuffer.charAt(i) == '\t')) i++;
+        return i < zzEndRead && zzBuffer.charAt(i) == ':';
+    }
+
     // Scans forward from the current position, skipping spaces/tabs, to decide what a nested
     // key's ':' means: true if only whitespace/comment/EOF follows before the next newline (this
     // ':' opens a nested block, YAML-style), false if real content follows on the same line
@@ -1364,6 +1385,15 @@ public class _OapLexer implements FlexLexer {
                 if (!indentStack.isEmpty()) {
         indentStack.pop();
         zzAtEOF = false;
+        // Same "not progressing" hazard BOL_CHECK/BOL_CHECK2 ping-pong around: draining 2+
+        // still-open indent levels at real EOF emits that many zero-width OAP_DEDENT tokens in a
+        // row, all at the same offset - and unlike BOL_CHECK's dedent branch, this rule never
+        // called yybegin(), so consecutive calls also kept the exact same (tokenType, start, end,
+        // state) tuple, which ValidatingLexerWrapper (used by OapHighlightingLexer for editor/diff
+        // highlighting) flags as an infinite loop. Alternate state here too, purely so the tuple
+        // differs between successive EOF-triggered dedents; BOL_CHECK/BOL_CHECK2 aren't otherwise
+        // reachable once real input is exhausted, so reusing them here is safe.
+        yybegin(yystate() == BOL_CHECK ? BOL_CHECK2 : BOL_CHECK);
         return OAP_DEDENT;
     }
     return null;
@@ -1714,7 +1744,13 @@ public class _OapLexer implements FlexLexer {
           // fall through
           case 160: break;
           case 55:
-            { yypushState(_OBJECT_ENTITY); return OAP_DASH;
+            { if (dashItemStartsKeyValue()) {
+                               yypushState(_OBJECT);
+                               indentStack.push(-1);
+                           } else {
+                               yypushState(_OBJECT_ENTITY);
+                           }
+                           return OAP_DASH;
             }
           // fall through
           case 161: break;

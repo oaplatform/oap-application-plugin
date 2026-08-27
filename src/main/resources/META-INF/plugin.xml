@@ -42,6 +42,8 @@
         <lang.braceMatcher language="OAP" implementationClass="oap.application.plugin.misc.OapBraceMatcher"/>
         <lang.foldingBuilder language="OAP" implementationClass="oap.application.plugin.misc.OapFoldingBuilder"/>
         <lang.commenter language="OAP" implementationClass="oap.application.plugin.misc.OapCommenter"/>
+        <lang.findUsagesProvider language="OAP" implementationClass="oap.application.plugin.ref.OapFindUsagesProvider"/>
+        <useScopeEnlarger implementation="oap.application.plugin.ref.OapUseScopeEnlarger"/>
         <!--        <quoteHandler fileType="OAP" className="org.jetbrains.plugins.oap.editor.OapQuoteHandler"/>-->
 
         <completion.contributor language="OAP" implementationClass="oap.application.plugin.completion.OapReferenceCompletionContributor" order="first"/>
