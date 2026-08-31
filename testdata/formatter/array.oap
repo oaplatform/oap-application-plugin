@@ -1,4 +1,5 @@
 name = ArrayFormatter
+
 dependsOn = [
    oap-ws-sso-api
      oap-account

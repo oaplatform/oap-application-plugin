@@ -523,6 +523,13 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   "thread"             { yypushState(KEY_VALUE_STRING); return OAP_ID_THREAD; }
   "delay"              { yypushState(KEY_VALUE_STRING); return OAP_ID_DELAY; }
   "cron"              { yypushState(KEY_VALUE_STRING); return OAP_ID_CRON; }
+  // Fallback for anything that isn't one of the 5 keywords above (a typo, a partial prefix
+  // mid-completion, or completion's own inserted dummy identifier) - without this, such text has
+  // no matching rule in this state and falls through to the file-wide catch-all `[^]` rule one
+  // character at a time, so e.g. typing "su" lexes as two separate single-char BAD_CHARACTER
+  // tokens instead of one identifier token. Grammar-side, module_services_service_supervision's
+  // recoverWhile=recover_supervision already contains whatever this produces.
+  {KEY_NAME}           { return OAP_KEY_NAME; }
 
   {WHITE_SPACE}        { return WHITE_SPACE; }
   {NEXTLINE}           { return handleNextline(); }

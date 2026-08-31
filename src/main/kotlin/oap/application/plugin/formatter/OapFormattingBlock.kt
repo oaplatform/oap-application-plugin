@@ -50,6 +50,24 @@ class OapFormattingBlock(val formatter: OapFormatter, node: ASTNode, val myInden
         return myIndent
     }
 
+    // AbstractBlock.getChildAttributes(newChildIndex) - what decides the indent of a brand new,
+    // not-yet-existing line (i.e. what pressing Enter produces) - delegates to this and defaults
+    // to null, which resolves to a normal-indent line here regardless of context. Without an
+    // override, pressing Enter right after "name = test" or after an already-closed "services {}"
+    // both incorrectly indent the new line, since neither actually has a currently-open indented
+    // block. Mirror calcIndent's own policy prospectively: a new sibling should be indented iff
+    // this node already has at least one real child that itself receives normal indent (i.e.
+    // there's an actually-open indented block here to continue), matching how e.g. a non-empty
+    // "services { s { ... } }" correctly keeps indenting a new service entry, while an empty
+    // "services {}" (or the top-level file) does not.
+    override fun getChildIndent(): Indent {
+        val hasNormalIndentChild = myNode.getChildren(null).any { child ->
+            child.textRange.length > 0 && child.elementType != TokenType.WHITE_SPACE &&
+                calcIndent(myNode, child) == Indent.getNormalIndent()
+        }
+        return if (hasNormalIndentChild) Indent.getNormalIndent() else Indent.getNoneIndent()
+    }
+
     override fun buildChildren(): List<Block?> {
         val blocks: MutableList<Block> = arrayListOf()
         var child: ASTNode? = myNode.firstChildNode

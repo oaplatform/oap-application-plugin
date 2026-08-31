@@ -50,6 +50,14 @@ class FormatterTest : OapFixtureTestCase() {
         doTest(true)
     }
 
+    fun testEnterAfterModuleName() {
+        doTest(false)
+    }
+
+    fun testEnterAfterEmptyServicesBlock() {
+        doTest(false)
+    }
+
     private fun doTest(format: Boolean) {
         val inputFile: String = getInputFileName()
         val inputText: String = FileUtil.loadFile(File(getTestDataPath() + inputFile));

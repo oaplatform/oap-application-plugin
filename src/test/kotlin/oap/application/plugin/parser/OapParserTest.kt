@@ -318,7 +318,7 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         assertTrue(
             "expected the supervision block error to still be reported",
             toParseTreeText(myFile, skipSpaces(), includeRanges())
-                .contains("PsiErrorElement:cron, delay, schedule, supervise or thread expected, got 's'")
+                .contains("PsiErrorElement:cron, delay, schedule, supervise or thread expected, got 'su'")
         )
     }
 
