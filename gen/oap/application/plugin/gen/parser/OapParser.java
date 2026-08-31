@@ -792,13 +792,12 @@ public class OapParser implements PsiParser, LightPsiParser {
   // '.' module_services_service_supervision_entities
   static boolean dot_supervision(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "dot_supervision")) return false;
-    if (!nextTokenIs(builder_, OAP_DOT)) return false;
     boolean result_, pinned_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_);
     result_ = consumeToken(builder_, OAP_DOT);
     pinned_ = result_; // pin = 1
     result_ = result_ && module_services_service_supervision_entities(builder_, level_ + 1);
-    exit_section_(builder_, level_, marker_, result_, pinned_, null);
+    exit_section_(builder_, level_, marker_, result_, pinned_, OapParser::recover_supervision);
     return result_ || pinned_;
   }
 
@@ -3737,6 +3736,31 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // !('supervise' | 'schedule' | 'thread' | 'delay' | 'cron' | '}' | dedent)
+  static boolean recover_supervision(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "recover_supervision")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _NOT_);
+    result_ = !recover_supervision_0(builder_, level_ + 1);
+    exit_section_(builder_, level_, marker_, result_, false, null);
+    return result_;
+  }
+
+  // 'supervise' | 'schedule' | 'thread' | 'delay' | 'cron' | '}' | dedent
+  private static boolean recover_supervision_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "recover_supervision_0")) return false;
+    boolean result_;
+    result_ = consumeToken(builder_, OAP_ID_SUPERVISE);
+    if (!result_) result_ = consumeToken(builder_, OAP_ID_SCHEDULE);
+    if (!result_) result_ = consumeToken(builder_, OAP_ID_THREAD);
+    if (!result_) result_ = consumeToken(builder_, OAP_ID_DELAY);
+    if (!result_) result_ = consumeToken(builder_, OAP_ID_CRON);
+    if (!result_) result_ = consumeToken(builder_, OAP_RIGHTBRACE);
+    if (!result_) result_ = consumeToken(builder_, OAP_DEDENT);
+    return result_;
+  }
+
+  /* ********************************************************** */
   // '<' reference_kernel_value_in '>'
   public static boolean reference_kernel_value(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "reference_kernel_value")) return false;
@@ -4206,13 +4230,36 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // supervision_object_brace | supervision_object_colon
+  // &'{' supervision_object_brace | supervision_object_colon
   static boolean supervision_object(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "supervision_object")) return false;
     if (!nextTokenIs(builder_, "", OAP_COLON, OAP_LEFTBRACE)) return false;
     boolean result_;
-    result_ = supervision_object_brace(builder_, level_ + 1);
+    Marker marker_ = enter_section_(builder_);
+    result_ = supervision_object_0(builder_, level_ + 1);
     if (!result_) result_ = supervision_object_colon(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // &'{' supervision_object_brace
+  private static boolean supervision_object_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "supervision_object_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_);
+    result_ = supervision_object_0_0(builder_, level_ + 1);
+    result_ = result_ && supervision_object_brace(builder_, level_ + 1);
+    exit_section_(builder_, marker_, null, result_);
+    return result_;
+  }
+
+  // &'{'
+  private static boolean supervision_object_0_0(PsiBuilder builder_, int level_) {
+    if (!recursion_guard_(builder_, level_, "supervision_object_0_0")) return false;
+    boolean result_;
+    Marker marker_ = enter_section_(builder_, level_, _AND_);
+    result_ = consumeToken(builder_, OAP_LEFTBRACE);
+    exit_section_(builder_, level_, marker_, result_, false, null);
     return result_;
   }
 
@@ -4220,14 +4267,13 @@ public class OapParser implements PsiParser, LightPsiParser {
   // '{' module_services_service_supervision_entities* '}'
   static boolean supervision_object_brace(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "supervision_object_brace")) return false;
-    if (!nextTokenIs(builder_, OAP_LEFTBRACE)) return false;
     boolean result_, pinned_;
     Marker marker_ = enter_section_(builder_, level_, _NONE_);
     result_ = consumeToken(builder_, OAP_LEFTBRACE);
     pinned_ = result_; // pin = 1
     result_ = result_ && report_error_(builder_, supervision_object_brace_1(builder_, level_ + 1));
     result_ = pinned_ && consumeToken(builder_, OAP_RIGHTBRACE) && result_;
-    exit_section_(builder_, level_, marker_, result_, pinned_, null);
+    exit_section_(builder_, level_, marker_, result_, pinned_, OapParser::recover_supervision);
     return result_ || pinned_;
   }
 

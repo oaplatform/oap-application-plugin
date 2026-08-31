@@ -348,10 +348,31 @@ module_services_service_supervision ::= 'supervision' ( &'.' dot_supervision | s
     implements="oap.application.plugin.psi.OapKeyValuePairWithIndentNormal"
 }
 
-private dot_supervision ::= '.' module_services_service_supervision_entities {pin=1}
-private supervision_object ::= supervision_object_brace | supervision_object_colon
-private supervision_object_brace ::= '{' module_services_service_supervision_entities* '}' { pin=1 }
+// recoverWhile is safe here (unlike the brace-form corruption case documented below):
+// dot_supervision is a linear sequence, not one side of an unpinned '|' choice, and it's only
+// ever entered through the &'.' lookahead gate at the module_services_service_supervision call
+// site - so '.' is guaranteed present and consumeToken(OAP_DOT) can't cleanly fail here.
+private dot_supervision ::= '.' module_services_service_supervision_entities {pin=1 recoverWhile=recover_supervision}
+// &'{' guard is required, not cosmetic: supervision_object_brace's recoverWhile makes its
+// generated exit_section_ call recovery-aware even when the leading '{' check itself fails
+// (verified via the generated OapParser.java - the recovery hook is passed unconditionally, not
+// gated on pin actually engaging), which corrupts the builder position for the sibling
+// supervision_object_colon alternative on unpinned failure. Guarding entry with &'{' means
+// supervision_object_brace's body is only ever invoked once a real '{' is confirmed present, so
+// that interaction never triggers for colon-form input.
+private supervision_object ::= &'{' supervision_object_brace | supervision_object_colon
+// recoverWhile is deliberately only on the brace form: the same addition on
+// supervision_object_colon breaks otherwise-valid colon-form input (verified - its
+// 'indent'/'dedent' bracketing doesn't interact with generated recovery code the same way a
+// plain '{'/'}' pair does). Both of the reported completion use cases are brace-form, so
+// colon-form completion containment remains a known limitation.
+private supervision_object_brace ::= '{' module_services_service_supervision_entities* '}' { pin=1 recoverWhile=recover_supervision }
 private supervision_object_colon ::= ':' indent module_services_service_supervision_entities* dedent { pin=1 }
+
+// Fences an unrecognized token (e.g. completion's mid-typing prefix "su") inside the
+// supervision block instead of letting it bubble past the closing '}' and detach from
+// OapModuleServicesServiceSupervision entirely - mirrors module's own top-level recover_module.
+private recover_supervision ::= !('supervise' | 'schedule' | 'thread' | 'delay' | 'cron' | '}' | dedent)
 
 private module_services_service_supervision_entities ::=
       &'supervise' module_services_service_supervision_entities_supervise
