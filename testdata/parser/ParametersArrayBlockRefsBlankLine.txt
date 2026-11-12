@@ -1,0 +1,93 @@
+OAP_FILE
+  OAP_MODULE_NAME_PAIR
+    PsiElement(name)('name')
+    PsiElement(:)(':')
+    PsiWhiteSpace(' ')
+    OAP_MODULE_NAME
+      PsiElement(key_value)('lightad-dsp-bidder')
+  PsiWhiteSpace('\n\n')
+  OAP_MODULE_SERVICES
+    PsiElement(services)('services')
+    PsiElement(:)(':')
+    PsiWhiteSpace('\n')
+    PsiWhiteSpace('  ')
+    OAP_MODULE_SERVICES_SERVICE
+      OAP_SERVICE_NAME
+        PsiElement(key_name)('bid-request-pnio-listener-with-tunneling-factory')
+      PsiElement(:)(':')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_IMPLEMENTATION
+        PsiElement(implementation)('implementation')
+        PsiWhiteSpace(' ')
+        PsiElement(=)('=')
+        PsiWhiteSpace(' ')
+        OAP_CLASS_NAME_PSI
+          PsiElement(class_name)('io.lightad.platform.dsp.bidder.events.request.tunneling.RequestPnioListenerWithTunnelingFactory')
+      PsiWhiteSpace('\n')
+      PsiWhiteSpace('    ')
+      OAP_MODULE_SERVICES_SERVICE_PARAMETERS
+        OAP_MODULE_SERVICES_SERVICE_PARAMETERS_ID
+          PsiElement(parameters)('parameters')
+        PsiElement(:)(':')
+        PsiWhiteSpace('\n')
+        PsiWhiteSpace('      ')
+        OAP_JAVA_PARAMETER_KEY_VALUE
+          OAP_PARAMETER_KEY_VALUE
+            OAP_PARAMETER_KEY_VALUE_FIRST_ID
+              PsiElement(key_name)('filters')
+            PsiElement(:)(':')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('        ')
+            PsiElement(-)('-')
+            PsiWhiteSpace(' ')
+            OAP_PARAMETERS_ARRAY_ITEM
+              OAP_ANY_REFERENCE
+                PsiElement(<)('<')
+                OAP_ANY_REFERENCE_IN
+                  OAP_REFERENCE_MODULES_VALUE_IN
+                    OAP_REFERENCE_TYPE_MODULES
+                      PsiElement(modules)('modules')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_NAME
+                      PsiElement(this)('this')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_SERVICE_NAME
+                      PsiElement(reference_value)('deny-bidfloor-tunneling-filter')
+                PsiElement(>)('>')
+            PsiWhiteSpace('\n')
+            PsiWhiteSpace('        ')
+            PsiElement(-)('-')
+            PsiWhiteSpace(' ')
+            OAP_PARAMETERS_ARRAY_ITEM
+              OAP_ANY_REFERENCE
+                PsiElement(<)('<')
+                OAP_ANY_REFERENCE_IN
+                  OAP_REFERENCE_MODULES_VALUE_IN
+                    OAP_REFERENCE_TYPE_MODULES
+                      PsiElement(modules)('modules')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_NAME
+                      PsiElement(this)('this')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_SERVICE_NAME
+                      PsiElement(reference_value)('deny-deals-tunneling-filter')
+                PsiElement(>)('>')
+            PsiWhiteSpace('\n\n')
+            PsiWhiteSpace('        ')
+            PsiElement(-)('-')
+            PsiWhiteSpace(' ')
+            OAP_PARAMETERS_ARRAY_ITEM
+              OAP_ANY_REFERENCE
+                PsiElement(<)('<')
+                OAP_ANY_REFERENCE_IN
+                  OAP_REFERENCE_MODULES_VALUE_IN
+                    OAP_REFERENCE_TYPE_MODULES
+                      PsiElement(modules)('modules')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_NAME
+                      PsiElement(this)('this')
+                    PsiElement(.)('.')
+                    OAP_REFERENCE_MODULES_SERVICE_NAME
+                      PsiElement(reference_value)('deny-banner-tunneling-filter')
+                PsiElement(>)('>')

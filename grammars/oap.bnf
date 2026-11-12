@@ -597,4 +597,6 @@ module_include ::= 'include' 'required' '(' string ')' {
 
 
 private recover_module ::= !( 'enabled' | 'name' | 'dependsOn' | 'include' | 'services' | 'configurations' | dedent )
-private recover_reference ::= !('}' | ']' | ',' | '<' | 'link' | 'remote' | 'ws-service' | 'supervision' | key_name | dedent )
+// '-': a reference can be a dash-list item ("- <modules.x.y>"), and recoverWhile runs even after a
+// successful parse - without it the next item's dash is swallowed as an error.
+private recover_reference ::= !('}' | ']' | ',' | '<' | '-' | 'link' | 'remote' | 'ws-service' | 'supervision' | key_name | dedent )

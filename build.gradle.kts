@@ -1,9 +1,9 @@
 plugins {
     id("java")
     id("idea")
-    id("org.jetbrains.kotlin.jvm") version "2.2.21"
-    id("org.jetbrains.intellij.platform") version "2.18.1"
-    id("org.jetbrains.intellij.platform.grammarkit") version "2.18.1"
+    id("org.jetbrains.kotlin.jvm") version "2.4.21"
+    id("org.jetbrains.intellij.platform") version "2.20.1"
+    id("org.jetbrains.intellij.platform.grammarkit") version "2.20.1"
 }
 
 group = "oap"
@@ -25,7 +25,7 @@ idea.module.generatedSourceDirs.add(file("gen"))
 // Read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin.html
 dependencies {
     intellijPlatform {
-        create("IC", "2025.1.4.1")
+        intellijIdea("2026.3")
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Platform)
         testFramework(org.jetbrains.intellij.platform.gradle.TestFrameworkType.Plugin.Java)
 
@@ -47,12 +47,18 @@ dependencies {
 intellijPlatform {
     pluginConfiguration {
         ideaVersion {
-            sinceBuild = "251"
+            sinceBuild = "263"
         }
 
         changeNotes = """
             Initial version
         """.trimIndent()
+    }
+
+    pluginVerification {
+        ides {
+            recommended()
+        }
     }
 }
 
@@ -91,8 +97,8 @@ tasks.generateLexer {
 tasks {
     // Set the JVM compatibility versions
     withType<JavaCompile> {
-        sourceCompatibility = "21"
-        targetCompatibility = "21"
+        sourceCompatibility = "25"
+        targetCompatibility = "25"
     }
 
     test {
@@ -101,9 +107,9 @@ tasks {
 }
 
 kotlin {
+    jvmToolchain(25)
     compilerOptions {
-        freeCompilerArgs.add("-Xwhen-guards")
-        freeCompilerArgs.add("-Xjvm-default=all")
-        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_21)
+        freeCompilerArgs.add("-jvm-default=no-compatibility")
+        jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_25)
     }
 }

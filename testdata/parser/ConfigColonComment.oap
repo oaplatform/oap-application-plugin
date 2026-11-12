@@ -1,0 +1,15 @@
+name = config-colon-comment-module
+
+configurations = [{
+  loader = oap.json.TypeIdFactory
+  config:
+    cookie: io.undertow.server.handlers.CookieImpl
+    nested:
+      key: value
+      bidListeners: []
+//        - "@implementations:io.lightad.bidder.events.BidEventListener"
+
+      prefilters = [
+//        "@implementations:io.lightad.platform.dsp.bidder.filter.RtdePreFilter"
+      ]
+}]

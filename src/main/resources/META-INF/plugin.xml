@@ -10,6 +10,12 @@
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
     <vendor url="https://www.oaplatform.org">OAP</vendor>
 
+    <description><![CDATA[
+    Language support for OAP (Open Application Platform) <code>.oap</code> module configuration files:
+    syntax highlighting, completion, navigation to modules, services, includes and Java classes,
+    inspections, formatting and structure view.
+    ]]></description>
+
     <!-- Product and plugin compatibility requirements.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-compatibility.html -->
     <depends>com.intellij.modules.platform</depends>

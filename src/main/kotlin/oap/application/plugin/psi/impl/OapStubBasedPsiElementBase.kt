@@ -12,6 +12,6 @@ abstract class OapStubBasedPsiElementBase<T> : StubBasedPsiElementBase<T>, StubB
     protected constructor(stub: T, nodeType: IStubElementType<*, *>) : super(stub, nodeType)
 
     override fun toString(): String {
-        return getElementType().toString()
+        return elementTypeImpl.toString()
     }
 }

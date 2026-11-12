@@ -13,7 +13,10 @@ import oap.application.plugin.stub.OapFileStub
 import java.io.IOException
 
 object OapFileElementType : IStubFileElementType<OapFileStub>("OAP_FILE", OapLanguage) {
-    const val VERSION: Int = 1
+    // Bump on every change to grammars/oap.bnf, grammars/_OapLexer.flex or stub serialization.
+    // IDEA rebuilds stub indexes only when this changes; a stale index built by an older parser
+    // throws UpToDateStubIndexMismatch ("Stub count (N) doesn't match stubbed node length (M)").
+    const val VERSION: Int = 3
 
     override fun getStubVersion(): Int {
         return VERSION
