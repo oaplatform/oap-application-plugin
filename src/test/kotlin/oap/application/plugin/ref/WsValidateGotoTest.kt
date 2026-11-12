@@ -59,4 +59,24 @@ class WsValidateGotoTest : OapFixtureTestCase() {
         val resolved = literal.references.firstOrNull()?.resolve()
         assertThat(resolved).isNull()
     }
+
+    fun testGotoInnerStaticClassValidator() {
+        val inner = loadTestClass().findInnerClassByName("Inner", false)!!
+        val method = inner.findMethodsByName("innerMethod", false)[0]
+        val literal = wsValidateLiteral(method)
+
+        val resolved = literal.references.firstOrNull()?.resolve()
+        assertThat(resolved).isInstanceOf(PsiMethod::class.java)
+        assertThat((resolved as PsiMethod).name).isEqualTo("innerValid")
+        assertThat(resolved.containingClass?.name).isEqualTo("Inner")
+    }
+
+    fun testGotoInnerStaticClassDoesNotResolveOuterValidator() {
+        val inner = loadTestClass().findInnerClassByName("Inner", false)!!
+        val method = inner.findMethodsByName("innerUsesOuterValidator", false)[0]
+        val literal = wsValidateLiteral(method)
+
+        val resolved = literal.references.firstOrNull()?.resolve()
+        assertThat(resolved).isNull()
+    }
 }

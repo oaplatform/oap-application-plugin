@@ -170,4 +170,41 @@ class WsValidateCompletionTest : OapFixtureTestCase() {
         assertThat(suggestions).contains("goodValidator")
         assertThat(suggestions).doesNotContain("badValidatorTwoParams")
     }
+
+    fun testInnerStaticClassCompletion() {
+        val file = myFixture.configureByText(
+            "InnerClassCompletion.java", """
+            import oap.ws.validate.ValidationErrors;
+            import oap.ws.validate.WsValidate;
+
+            public class InnerClassCompletion {
+                public ValidationErrors outerValidator(int requiredParameter) {
+                    return ValidationErrors.empty();
+                }
+
+                public static class Inner {
+                    @WsValidate("<caret>")
+                    public int call(int requiredParameter) {
+                        return requiredParameter;
+                    }
+
+                    public ValidationErrors goodValidator(int requiredParameter) {
+                        return ValidationErrors.empty();
+                    }
+                }
+            }
+        """.trimIndent()
+        )
+        myFixture.openFileInEditor(file.virtualFile)
+        myFixture.complete(CompletionType.BASIC)
+
+        val suggestions = myFixture.lookupElementStrings
+        // a single candidate is auto-inserted (lookup is null), so check the document instead
+        if (suggestions == null) {
+            assertThat(myFixture.editor.document.text).contains("@WsValidate(\"goodValidator\")")
+        } else {
+            assertThat(suggestions).contains("goodValidator")
+            assertThat(suggestions).doesNotContain("outerValidator")
+        }
+    }
 }

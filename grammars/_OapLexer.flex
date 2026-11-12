@@ -285,6 +285,15 @@ KEY_NAME=[:jletter:] ([:jletterdigit:]|[-/])*
   {NEXTLINE}           { return handleNextline(); }
 }
 
+// Comment-only line starting at column 0 inside an open colon block. BOL_CHECK's own rule matches
+// just 1 char there, so the file-wide {COMMENT} rule below would win by longest match and return
+// while still in BOL_CHECK, leaving the following newline to the BAD_CHARACTER catch-all. Must
+// precede that rule (ties go to the earlier rule, e.g. a bare "#"). Defers the indent decision to
+// the next real line, same as the BOL action's own comment branch.
+<BOL_CHECK, BOL_CHECK2> {
+  {COMMENT}            { yybegin(pendingReturnState); return OAP_COMMENT; }
+}
+
   {COMMENT}            { return OAP_COMMENT; }
 
 <INCLUDE> {

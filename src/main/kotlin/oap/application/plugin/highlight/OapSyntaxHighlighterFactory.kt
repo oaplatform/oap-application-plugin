@@ -37,7 +37,7 @@ class OapSyntaxHighlighterFactory : SyntaxHighlighterFactory() {
             return OapHighlightingLexer()
         }
 
-        override fun getTokenHighlights(tokenType: IElementType): Array<out TextAttributesKey?> {
+        override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
             return pack(BACKGROUND, tokenHighlights.get(tokenType));
         }
     }

@@ -3684,7 +3684,7 @@ public class OapParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // !('}' | ']' | ',' | '<' | 'link' | 'remote' | 'ws-service' | 'supervision' | key_name | dedent )
+  // !('}' | ']' | ',' | '<' | '-' | 'link' | 'remote' | 'ws-service' | 'supervision' | key_name | dedent )
   static boolean recover_reference(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "recover_reference")) return false;
     boolean result_;
@@ -3694,7 +3694,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     return result_;
   }
 
-  // '}' | ']' | ',' | '<' | 'link' | 'remote' | 'ws-service' | 'supervision' | key_name | dedent
+  // '}' | ']' | ',' | '<' | '-' | 'link' | 'remote' | 'ws-service' | 'supervision' | key_name | dedent
   private static boolean recover_reference_0(PsiBuilder builder_, int level_) {
     if (!recursion_guard_(builder_, level_, "recover_reference_0")) return false;
     boolean result_;
@@ -3702,6 +3702,7 @@ public class OapParser implements PsiParser, LightPsiParser {
     if (!result_) result_ = consumeToken(builder_, OAP_RIGHTBRACKET);
     if (!result_) result_ = consumeToken(builder_, OAP_COMMA);
     if (!result_) result_ = consumeToken(builder_, OAP_LEFTANGLE);
+    if (!result_) result_ = consumeToken(builder_, OAP_DASH);
     if (!result_) result_ = consumeToken(builder_, OAP_ID_LINK);
     if (!result_) result_ = consumeToken(builder_, OAP_ID_REMOTE);
     if (!result_) result_ = consumeToken(builder_, OAP_ID_WS_SERVICE);

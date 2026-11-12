@@ -1,0 +1,11 @@
+name: lightad-dsp-bidder
+
+services:
+  bid-request-pnio-listener-with-tunneling-factory:
+    implementation = io.lightad.platform.dsp.bidder.events.request.tunneling.RequestPnioListenerWithTunnelingFactory
+    parameters:
+      filters:
+        - <modules.this.deny-bidfloor-tunneling-filter>
+        - <modules.this.deny-deals-tunneling-filter>
+
+        - <modules.this.deny-banner-tunneling-filter>

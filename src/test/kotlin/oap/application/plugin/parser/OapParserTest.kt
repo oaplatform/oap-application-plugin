@@ -134,6 +134,10 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
         doTest(false)
     }
 
+    fun testConfigColonComment() {
+        doTest(false)
+    }
+
     fun testConfigurationsBlockArrayColonLoader() {
         doTest(false)
     }
@@ -155,6 +159,14 @@ class OapParserTest : ParsingTestCase("parser", "oap", OapParserDefinition()) {
     }
 
     fun testParametersArrayBlockAmbiguous() {
+        doTest(false)
+    }
+
+    fun testParametersArrayBlockRefs() {
+        doTest(false)
+    }
+
+    fun testParametersArrayBlockRefsBlankLine() {
         doTest(false)
     }
 

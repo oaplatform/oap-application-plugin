@@ -16,6 +16,6 @@ class OapModuleServicesServiceIndex : StringStubIndexExtension<OapModuleServices
     companion object {
         val KEY: StubIndexKey<String, OapModuleServicesService> = StubIndexKey.createIndexKey("oap.module.service")
 
-        const val VERSION = 0
+        const val VERSION = 1
     }
 }

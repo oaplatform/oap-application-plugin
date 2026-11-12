@@ -121,4 +121,96 @@ class WsValidateInspectionTest : OapFixtureTestCase() {
         """
         )
     }
+
+    fun testValidInnerStaticClassMethodLevel() {
+        check(
+            "InnerMethodLevelValid.java", """
+            import oap.ws.validate.ValidationErrors;
+            import oap.ws.validate.WsValidate;
+
+            public class InnerMethodLevelValid {
+                public static class Inner {
+                    @WsValidate("isValid")
+                    public int call(int skipDeprecated) {
+                        return skipDeprecated;
+                    }
+
+                    public ValidationErrors isValid(int skipDeprecated) {
+                        return ValidationErrors.empty();
+                    }
+                }
+            }
+        """
+        )
+    }
+
+    fun testValidInnerStaticClassParameterLevel() {
+        check(
+            "InnerParameterLevelValid.java", """
+            import oap.ws.validate.ValidationErrors;
+            import oap.ws.validate.WsValidate;
+
+            public class InnerParameterLevelValid {
+                public static class Inner {
+                    public int call(@WsValidate("oddParamValidator") int oddParam) {
+                        return oddParam;
+                    }
+
+                    public ValidationErrors oddParamValidator(int oddParam) {
+                        return ValidationErrors.empty();
+                    }
+                }
+            }
+        """
+        )
+    }
+
+    fun testInnerStaticClassMismatchedParameterName() {
+        check(
+            "InnerMismatchedParamName.java", """
+            import oap.ws.validate.ValidationErrors;
+            import oap.ws.validate.WsValidate;
+
+            public class InnerMismatchedParamName {
+                public static class Inner {
+                    @WsValidate(<error descr="Validator 'validator' parameter(s) missedParam not supplied by 'call'">"validator"</error>)
+                    public int call(int requiredParameter) {
+                        return requiredParameter;
+                    }
+
+                    public ValidationErrors validator(int missedParam) {
+                        return ValidationErrors.empty();
+                    }
+                }
+            }
+        """
+        )
+    }
+
+    // Outer's same-named validator has the wrong return type; no error proves Inner's own method is used.
+    fun testInnerStaticClassResolvesOwnValidatorNotOuter() {
+        check(
+            "InnerOwnValidator.java", """
+            import oap.ws.validate.ValidationErrors;
+            import oap.ws.validate.WsValidate;
+
+            public class InnerOwnValidator {
+                public boolean validator(int requiredParameter) {
+                    return true;
+                }
+
+                public static class Inner {
+                    @WsValidate("validator")
+                    public int call(int requiredParameter) {
+                        return requiredParameter;
+                    }
+
+                    public ValidationErrors validator(int requiredParameter) {
+                        return ValidationErrors.empty();
+                    }
+                }
+            }
+        """
+        )
+    }
 }
